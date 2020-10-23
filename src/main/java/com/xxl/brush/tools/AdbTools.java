@@ -38,10 +38,12 @@ public class AdbTools {
      * 命令2：启动报错时使用写日志方式找到主类 （adb logcat>D:/app.txt） 使用ctrl+c中断，查看mainActivity
      */
     @SneakyThrows
-    public static void startup(String androidId, String operateData){
+    public static void startup(Robot robot,String androidId, String operateData){
         log.info("******************启动app**************");
+             robot.delay(1000);
             String operate = " adb -s " + androidId + " shell am start -n " + operateData;
             Runtime.getRuntime().exec(operate);
+            robot.delay(6000);
     }
 
 
@@ -86,7 +88,7 @@ public class AdbTools {
      * todo 向下滑动，正常操作
      */
     public static String downPage(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 540 1800 540 400";
+        String downDraw = "adb -s "+androidId +" shell input swipe 540 1600 540 400";
 
         return  downDraw;
     }
@@ -95,7 +97,7 @@ public class AdbTools {
      * todo 向上滑动，返回操作
      */
     public static String upPage(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 540 400 540 1800";
+        String downDraw = "adb -s "+androidId +" shell input swipe 540 400 540 1600";
 
         return  downDraw;
     }

@@ -16,7 +16,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableScheduling
 @EnableAsync
-@ComponentScan(basePackages={"com.xxl.*"})
 public class BrushApplication {
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(BrushApplication.class);

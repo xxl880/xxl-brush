@@ -4,12 +4,18 @@ import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * todo App抖音
@@ -33,16 +39,26 @@ public class App抖音极速 {
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
-        log.info("2.启动appium");
+        log.info("2.启动app");
+        AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+
+        log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        log.info("3.启动app");
-        AdbTools.startup(androidId, AppConstants.startup抖音);
+        handle2(robot, androidId, driver);
 
+         try {
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+        }catch (Exception e){
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+        }
 
-       // handle6(robot,androidId,driver);
+        handle11(robot,androidId,driver);
+        handle12(robot,androidId,driver);
         handle9(robot,androidId,driver);
-
+        handle6(robot,androidId,driver);
+        handle16(robot,androidId,driver);
 
     }
 
@@ -55,15 +71,29 @@ public class App抖音极速 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-        WebElement wl =  driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-        wl.click();
+        log.info("抖音极速-签到");
+        try {
+            WebElement wl =  null;
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+            }
+            wl.click();
 
-        WebElement wl1 =  driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
-        wl1.click();
-        robot.delay(30);
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
+            wl1.click();
+            robot.delay(32000);
 
-        String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-        AdbTools.process(robot, operateBack);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("抖音极速-签到异常");
+        }
     }
 
 
@@ -72,16 +102,18 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("抖音极速-签到");
-        WebElement wl =  driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-        wl.click();
-        int x = RandomTools.init(8);
-        for (int a = 0; a < x ; a++) {
-            robot.delay(RandomTools.init(20000));
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            if (a == RandomTools.init(6)) {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
+        log.info("抖音极速-看视频");
+        try {
+            int x = RandomTools.init(8);
+            for (int a = 0; a < x; a++) {
+                robot.delay(RandomTools.init(15000));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                if (a == RandomTools.init(6)) {
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                }
             }
+        }catch (Exception e){
+            log.info("抖音极速-看视频异常");
         }
     }
 
@@ -118,22 +150,27 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        robot.delay(3000);
-        WebElement wl =  driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-        AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY()+20)));
+        log.info("抖音极速-看广告");
+        try{
+            robot.delay(1000);
+            WebElement wl2 = null;
+            try{
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
+            }
+            wl2.click();
+            robot.delay(32000);
 
-        AdbTools.process(robot, AdbTools.upPage(androidId));
-        AdbTools.process(robot, AdbTools.upPage(androidId));
-
-   /*     log.info(driver.getPageSource());*/
-
-        WebElement wl2 =  driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
-        wl2.click();
-        robot.delay(32000);
-
-        String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-        AdbTools.process(robot, operateBack);
-        AdbTools.process(robot, operateBack);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("抖音极速-看广告异常");
+        }
 
     }
 
@@ -142,7 +179,23 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle7(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("抖音极速-玩游戏");
+        try {
+            robot.delay(1000);
+            AdbTools.process(robot, AdbTools.downPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"玩游戏赚钱\")");
+            wl2.click();
 
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
+            wl3.click();
+
+            robot.delay(32000);
+
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("抖音极速-玩游戏异常");
+        }
     }
 
 
@@ -161,19 +214,22 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        WebElement wl =  driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-        AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY()+20)));
+        log.info("抖音极速-开宝箱");
+        try {
+            robot.delay(1000);
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
+            wl2.click();
 
-        WebElement wl2 =  driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
-        wl2.click();
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
+            wl3.click();
 
-        WebElement wl3 =  driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
-        wl3.click();
+            robot.delay(32000);
 
-        robot.delay(32000);
-
-        String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-        AdbTools.process(robot, operateBack);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("抖音极速-开宝箱异常");
+        }
     }
 
 
@@ -199,15 +255,40 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver){
-        WebElement wl2 =  driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"走得越多赚的越多\").fromParent(text(\"去赚钱\"))");
-        wl2.click();
+        log.info("抖音极速-走路");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-        WebElement wl3 =  driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看广告视频可领\")");
-        wl3.click();
+            WebElement wl2 = null;
+            try {
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"走得越多赚的越多\")");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"走得越多赚的越多\")");
+            }
+            wl2.click();
 
-       /* WebElement wl4 =  driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-        wl4.click();*/
-
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看广告视频可领\")");
+                wl3.click();
+                robot.delay(32000);
+                AdbTools.process(robot, operateBack);
+            } catch (Exception e) {
+                try {
+                    WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
+                    wl4.click();
+                    robot.delay(32000);
+                    AdbTools.process(robot, operateBack);
+                }catch (Exception e1){ }
+            }
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("抖音极速-走路异常");
+        }
 
     }
 
@@ -242,11 +323,27 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle16(Robot robot,String androidId,  AndroidDriver driver){
-        WebElement wl2 =  driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"限时福利，每天饭点领补贴\").fromParent(text(\"去领取\"))");
-        wl2.click();
+        log.info("抖音极速-吃饭");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            WebElement wl2 = null;
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"限时福利，每天饭点领补贴\").fromParent(text(\"去领取\"))");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"限时福利，每天饭点领补贴\").fromParent(text(\"去领取\"))");
+            }
+            wl2.click();
 
-        WebElement wl3 =  driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-        wl3.click();
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
+            wl3.click();
+
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("抖音极速-吃饭异常");
+        }
 
 
     }
@@ -279,17 +376,13 @@ public class App抖音极速 {
 
 
 
+/*
     public static void main(String args[]) throws AWTException {
         Robot robot = new Robot();
          handle(robot,"phone003");
 
-
-    /*    log.info("2.启动appium");
-        AndroidDriver driver = AppiumTools.init("phone003");
-
-        WebElement wl2 =  driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"限时福利，每天饭点领补贴\").fromParent(text(\"去领取\"))");
-        wl2.click();*/
     }
+*/
 
 
 }

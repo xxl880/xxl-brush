@@ -1,5 +1,6 @@
 package com.xxl.brush.controller;
 
+import com.xxl.brush.app.App抖音极速;
 import com.xxl.brush.response.BaseResponse;
 import com.xxl.brush.service.AppService;
 import io.swagger.annotations.Api;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.awt.*;
 
 @RestController
 @RequestMapping(value = "/app")
@@ -21,15 +24,9 @@ public class AppController {
     //************************一种类型：签到********************************************************
     @GetMapping("start")
     @ApiOperation("1-签到")
-    public BaseResponse start() {
-        appService.start("phone001");
-        appService.start("phone002");
-        appService.start("phone003");
-        appService.start("phone0031");
-        appService.start("phone0032");
-        appService.start("phone0033");
-        appService.start("phone0034");
-        appService.start("phone0035");
+    public BaseResponse start() throws AWTException {
+        Robot robot = new Robot();
+        App抖音极速.handle(robot,"phone003");
         return BaseResponse.newSuccess();
     }
 
