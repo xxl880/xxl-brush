@@ -1,0 +1,26 @@
+server:
+  port: 888
+  servlet:
+    context-path: /brush
+
+
+spring:
+  application:
+    name: xxl-brush
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://rm-8vb609g9dl7q906xlmo.mysql.zhangbei.rds.aliyuncs.com:3306/xxl_robot?characterEncoding=utf8&useSSL=false&serverTimezone=GMT&rewriteBatchedStatements=true
+    #username: xxl880
+    #password: Phoenix880
+    url: jdbc:mysql://localhost:3306/xxl_robot?characterEncoding=utf8&useSSL=false&serverTimezone=GMT&rewriteBatchedStatements=true
+    username: root
+    password: Phoenix880
+
+mybatis:
+  basepackage: com.xxl.brush.dao
+  mapper-locations: classpath*:mapper/*.xml
+
+
+logging:
+  level:
+    com.xxl.robot.dao: debug
