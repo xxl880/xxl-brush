@@ -30,7 +30,8 @@ public class AppController {
         //App火山极速.handle(robot,"phone003");
         //App快手极速.handle(robot,"phone003");
         //App今日头条.handle(robot,"phone003");
-        App趣头条.handle(robot,"phone003");
+        //App趣头条.handle(robot,"phone003");
+        AppQQ阅读.handle(robot,"phone003");
         return BaseResponse.newSuccess();
     }
 
