@@ -34,7 +34,7 @@ public class App今日头条 {
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+        AdbTools.startup(robot, androidId, AppConstants.startup今日头条);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
@@ -43,9 +43,9 @@ public class App今日头条 {
 
         try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
         }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1960)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
         }
 
 
@@ -53,6 +53,8 @@ public class App今日头条 {
         handle12(robot,androidId,driver);
         handle16(robot,androidId,driver);
         handle11(robot,androidId,driver);
+
+        handle5(robot,androidId,driver);
 
 
 
@@ -125,7 +127,27 @@ public class App今日头条 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("今日头条-看小说");
+        try {
+            robot.delay(1000);
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+            wl.click();
 
+            AdbTools.process(robot, AdbTools.downPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的书架\")");
+            wl2.click();
+
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1660)));
+
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即阅读\")");
+            wl3.click();
+
+            robot.delay(1000);
+            AdbTools.process(robot, AdbTools.left(androidId));
+
+        }catch (Exception e){
+            log.info("今日头条-看小说异常");
+        }
     }
 
 
@@ -203,23 +225,29 @@ public class App今日头条 {
             WebElement wl2 = null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"睡觉赚钱\")");
             }catch (Exception e){
+                AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"睡觉赚钱\")");
             }
             wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-            wl3.click();
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
+                wl3.click();
+            }catch (Exception e){
+                AdbTools.process(robot, operateBack);
+            }
 
             robot.delay(1000);
             WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看视频\")");
             wl4.click();
             robot.delay(32000);
+            AdbTools.process(robot, operateBack);
 
-            AdbTools.process(robot, operateBack);
-            AdbTools.process(robot, operateBack);
+
         }catch (Exception e){
             log.info("今日头条-睡觉异常");
         }

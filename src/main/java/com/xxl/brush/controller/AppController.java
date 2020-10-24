@@ -1,5 +1,6 @@
 package com.xxl.brush.controller;
 
+import com.xxl.brush.app.App今日头条;
 import com.xxl.brush.app.App快手极速;
 import com.xxl.brush.app.App抖音极速;
 import com.xxl.brush.app.App火山极速;
@@ -30,7 +31,8 @@ public class AppController {
         Robot robot = new Robot();
         //App抖音极速.handle(robot,"phone003");
         //App火山极速.handle(robot,"phone003");
-        App快手极速.handle(robot,"phone003");
+        //App快手极速.handle(robot,"phone003");
+        App今日头条.handle(robot,"phone003");
         return BaseResponse.newSuccess();
     }
 
