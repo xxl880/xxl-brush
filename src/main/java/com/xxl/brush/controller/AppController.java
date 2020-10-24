@@ -1,6 +1,8 @@
 package com.xxl.brush.controller;
 
+import com.xxl.brush.app.App快手极速;
 import com.xxl.brush.app.App抖音极速;
+import com.xxl.brush.app.App火山极速;
 import com.xxl.brush.response.BaseResponse;
 import com.xxl.brush.service.AppService;
 import io.swagger.annotations.Api;
@@ -26,7 +28,9 @@ public class AppController {
     @ApiOperation("1-签到")
     public BaseResponse start() throws AWTException {
         Robot robot = new Robot();
-        App抖音极速.handle(robot,"phone003");
+        //App抖音极速.handle(robot,"phone003");
+        //App火山极速.handle(robot,"phone003");
+        App快手极速.handle(robot,"phone003");
         return BaseResponse.newSuccess();
     }
 

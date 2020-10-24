@@ -12,14 +12,14 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 
 /**
- * todo App快手
+ * todo App火山
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App快手极速 {
-    private static Logger log = LoggerFactory.getLogger(App快手极速.class);
+public class App火山极速 {
+    private static Logger log = LoggerFactory.getLogger(App火山极速.class);
 
 
     /**
@@ -28,30 +28,28 @@ public class App快手极速 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************快手极速操作********************************************");
+        log.info("********************************火山极速操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup快手);
+        AdbTools.startup(robot, androidId, AppConstants.startup火山);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        //handle2(robot, androidId, driver);
+        handle2(robot, androidId, driver);
 
          try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
-            wl.click();
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"红包\")");
+             wl.click();
         }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(680), String.valueOf(2140)));
         }
 
-
-       // handle9(robot,androidId,driver);
-       // handle6(robot,androidId,driver);
-        handle20(robot,androidId,driver);
+        handle6(robot,androidId,driver);
+        handle9(robot,androidId,driver);
 
     }
 
@@ -64,24 +62,28 @@ public class App快手极速 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("快手极速-签到");
+        log.info("火山极速-签到");
         try {
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"去签到\")");
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"去签到\")");
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
             }
             wl.click();
+
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看广告 再领\")");
+            wl1.click();
+            robot.delay(32000);
 
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("快手极速-签到异常");
+            log.info("火山极速-签到异常");
         }
     }
 
@@ -91,7 +93,7 @@ public class App快手极速 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("快手极速-看视频");
+        log.info("火山极速-看视频");
         try {
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
@@ -102,7 +104,7 @@ public class App快手极速 {
                 }
             }
         }catch (Exception e){
-            log.info("快手极速-看视频异常");
+            log.info("火山极速-看视频异常");
         }
     }
 
@@ -139,28 +141,26 @@ public class App快手极速 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("快手极速-看广告");
+        log.info("火山极速-看广告");
         try{
             robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             WebElement wl2 = null;
             try{
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\") .textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频赚海量金币\")");
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\") .textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
-
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频赚海量金币\")");
             }
             wl2.click();
             robot.delay(32000);
+
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
-
-
         }catch (Exception e){
-            log.info("快手极速-看广告异常");
+            log.info("火山极速-看广告异常");
         }
 
     }
@@ -189,25 +189,21 @@ public class App快手极速 {
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("快手极速-开宝箱");
+        log.info("火山极速-开宝箱");
         try {
             robot.delay(1000);
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
             wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看视频 金币翻8倍\")");
             wl3.click();
-            robot.delay(2000);
 
-            try {
-                WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"HGGPyDxR67B6PpvwC+B+CeSgKklEgAAAABJRU5ErkJggg==\")");
-                wl4.click();
-            }catch (Exception e){
-                log.info("快手极速-开宝箱返回异常");
-            }
+            robot.delay(32000);
 
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("快手极速-开宝箱异常");
+            log.info("火山极速-开宝箱异常");
         }
     }
 
@@ -270,7 +266,6 @@ public class App快手极速 {
      */
     public static void handle16(Robot robot,String androidId,  AndroidDriver driver){
 
-
     }
 
     /**
@@ -297,40 +292,15 @@ public class App快手极速 {
 
     }
 
-    /**
-     * todo 20.直播
-     * @param robot
-     */
-    public static void handle20(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("快手极速-直播");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"观看精彩直播得100金币，已完成 10/10\")");
-            }catch (Exception e){
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
-                AdbTools.process(robot,AdbTools.tap(androidId,"880",String.valueOf(wl3.getLocation().getY()-10)));
-                AdbTools.process(robot, operateBack);
-            }
 
-        }catch (Exception e){
-            log.info("快手极速-直播");
-        }
-    }
 
 
 
 /*
-
     public static void main(String args[]) throws AWTException {
         Robot robot = new Robot();
-       //  handle(robot,"phone003");
-        AndroidDriver driver = AppiumTools.init("phone003");
-        log.info(driver.getPageSource());
-        robot.delay(3000);
-        WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"HGGPyDxR67B6PpvwC+B+CeSgKklEgAAAABJRU5ErkJggg==\")");
-        wl4.click();
+         handle(robot,"phone003");
+
     }
 */
 
