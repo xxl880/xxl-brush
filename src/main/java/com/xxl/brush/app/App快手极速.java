@@ -307,15 +307,20 @@ public class App快手极速 {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             try {
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"观看精彩直播得100金币，已完成 10/10\")");
             }catch (Exception e){
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
                 WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
-                AdbTools.process(robot,AdbTools.tap(androidId,"880",String.valueOf(wl3.getLocation().getY()-10)));
+                AdbTools.process(robot,AdbTools.tap(androidId,"880",String.valueOf(wl3.getLocation().getY())));
+                robot.delay(32000);
                 AdbTools.process(robot, operateBack);
             }
 
         }catch (Exception e){
-            log.info("快手极速-直播");
+            log.info("快手极速-直播异常");
         }
     }
 
