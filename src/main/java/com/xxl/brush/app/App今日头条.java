@@ -143,7 +143,9 @@ public class App今日头条 {
             wl3.click();
 
             robot.delay(1000);
-            AdbTools.process(robot, AdbTools.left(androidId));
+            for(int i=0;i<10;i++) {
+                AdbTools.process(robot, AdbTools.left(androidId));
+            }
 
         }catch (Exception e){
             log.info("今日头条-看小说异常");

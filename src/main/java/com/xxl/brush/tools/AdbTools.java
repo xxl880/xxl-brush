@@ -69,7 +69,7 @@ public class AdbTools {
      * todo 向左滑动，返回操作
      */
     public static String left(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 900 1000 100 1000";
+        String downDraw = "adb -s "+androidId +" shell input swipe 1000 1000 60 1000";
 
         return  downDraw;
     }
@@ -78,7 +78,7 @@ public class AdbTools {
      * todo 向右滑动，返回操作
      */
     public static String right(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 100 1000 900 1000";
+        String downDraw = "adb -s "+androidId +" shell input swipe 60 1000 1000 1000";
 
         return  downDraw;
     }
