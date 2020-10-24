@@ -33,8 +33,9 @@ public class AppController {
         App趣头条.handle(robot,"phone003");
         AppQQ阅读.handle(robot,"phone003");
         App火山小说.handle(robot,"phone003");
-        AppNOW直播.handle(robot,"phone003");*/
-        App搜狗.handle(robot,"phone003");
+        AppNOW直播.handle(robot,"phone003");
+        App搜狗.handle(robot,"phone003");*/
+        App拼多多.handle(robot,"phone003");
 
         return BaseResponse.newSuccess();
     }
