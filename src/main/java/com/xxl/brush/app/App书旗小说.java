@@ -72,8 +72,15 @@ public class App书旗小说 {
             wl1.click();
             robot.delay(59000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
+            try {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close_layout\")");
+                wl2.click();
+            }catch (Exception e){
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                AdbTools.process(robot, operateBack);
+            }
+
+
         }catch (Exception e){
             log.info("书旗小说-签到异常");
         }
@@ -123,16 +130,20 @@ public class App书旗小说 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("书旗小说-看广告");
         try{
-            robot.delay(1000);
+                robot.delay(1000);
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"快速得百万金币\")");
+                wl2.click();
+                robot.delay(32000);
 
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement   wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"快速得百万金币\")");
-            wl2.click();
-            robot.delay(32000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
+                try {
+                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close_layout\")");
+                    wl3.click();
+                } catch (Exception e) {
+                    String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                    AdbTools.process(robot, operateBack);
+                }
         }catch (Exception e){
             log.info("书旗小说-看广告异常");
         }
