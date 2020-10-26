@@ -41,8 +41,10 @@ public class AppController {
         App番茄小说.handle(robot,"phone002");
         App奇热小说.handle(robot,"phone002");
         App抖音火山.handle(robot,"phone003");
-        App晴象浏览器.handle(robot,"phone003");*/
-        App米读小说.handle(robot,"phone003");
+        App晴象浏览器.handle(robot,"phone003");
+        App米读小说.handle(robot,"phone003");*/
+        App必看小说.handle(robot,"phone003");
+
 
 
         return BaseResponse.newSuccess();
