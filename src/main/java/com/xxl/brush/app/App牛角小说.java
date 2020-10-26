@@ -125,11 +125,11 @@ public class App牛角小说 {
             try{
                 AdbTools.process(robot, AdbTools.up(androidId));
                 AdbTools.process(robot, AdbTools.up(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"去观看\")");
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去观看\")");
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.down(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"去观看\")");
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去观看\")");
             }
             wl2.click();
             robot.delay(32000);
@@ -159,10 +159,10 @@ public class App牛角小说 {
         log.info("App牛角小说-领红包");
         try{
             robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"领取\")");
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取\")");
             wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\") .text(\"分享领取\")");
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"分享领取\")");
             wl3.click();
 
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
