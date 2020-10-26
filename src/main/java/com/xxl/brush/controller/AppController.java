@@ -39,9 +39,10 @@ public class AppController {
         App微博.handle(robot,"phone002");
         App书旗小说.handle(robot,"phone002");
         App番茄小说.handle(robot,"phone002");
-        App奇热小说.handle(robot,"phone002");*/
+        App奇热小说.handle(robot,"phone002");
+        App抖音火山.handle(robot,"phone003");*/
 
-        App抖音火山.handle(robot,"phone003");
+        App晴象浏览器.handle(robot,"phone003");
 
         return BaseResponse.newSuccess();
     }

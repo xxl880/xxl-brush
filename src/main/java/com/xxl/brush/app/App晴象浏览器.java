@@ -10,9 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.util.List;
 
 /**
- * todo App抖音
+ * todo AppApp晴象浏览器
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
@@ -28,32 +29,39 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************抖音极速操作********************************************");
+        log.info("********************************App晴象浏览器操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+        AdbTools.startup(robot, androidId, AppConstants.startup晴象);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        handle2(robot, androidId, driver);
-
          try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
+            wl.click();
         }catch (Exception e){
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
         }
 
-        handle11(robot,androidId,driver);
-        handle12(robot,androidId,driver);
-        handle9(robot,androidId,driver);
-        handle6(robot,androidId,driver);
-        handle16(robot,androidId,driver);
+        handle1(robot,androidId,driver);
 
+        WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"浏览器\")");
+        wl2.click();
+
+        handle8(robot,androidId,driver);
+        handle81(robot,androidId,driver);
+        handle82(robot,androidId,driver);
+        handle83(robot,androidId,driver);
+        handle84(robot,androidId,driver);
+        handle10(robot,androidId,driver);
+        handle20(robot,androidId,driver);
+        handle19(robot,androidId,driver);
+
+        handle2(robot,androidId,driver);
     }
 
 
@@ -65,28 +73,24 @@ public class App晴象浏览器 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("抖音极速-签到");
+        log.info("App晴象浏览器-签到");
         try {
-            WebElement wl =  null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-            }
-            wl.click();
-
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
-            wl1.click();
-            robot.delay(32000);
-
+            robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频金币翻倍\")");
+            wl1.click();
+            robot.delay(59000);
+
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+            wl2.click();
+
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+            wl3.click();
+
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("抖音极速-签到异常");
+            log.info("App晴象浏览器-签到异常");
         }
     }
 
@@ -96,9 +100,22 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("抖音极速-看视频");
+        log.info("App晴象浏览器-看视频");
         try {
-            int x = RandomTools.init(8);
+
+            try{
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看视频\")");
+                wl1.click();
+                robot.delay(59000);
+
+                WebElement wl6 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                wl6.click();
+
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                wl3.click();
+            }catch (Exception e){}
+
+            int x = RandomTools.init(6);
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
@@ -107,7 +124,7 @@ public class App晴象浏览器 {
                 }
             }
         }catch (Exception e){
-            log.info("抖音极速-看视频异常");
+            log.info("App晴象浏览器-看视频异常");
         }
     }
 
@@ -144,27 +161,7 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("抖音极速-看广告");
-        try{
-            robot.delay(1000);
-            WebElement wl2 = null;
-            try{
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
-            }
-            wl2.click();
-            robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("抖音极速-看广告异常");
-        }
 
     }
 
@@ -173,23 +170,7 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle7(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("抖音极速-玩游戏");
-        try {
-            robot.delay(1000);
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"玩游戏赚钱\")");
-            wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
-            wl3.click();
-
-            robot.delay(32000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("抖音极速-玩游戏异常");
-        }
     }
 
 
@@ -198,9 +179,182 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App晴象浏览器-左上方红包");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/float_coin_2\")");
+            wl2.click();
+            robot.delay(59000);
+
+            try {
+                WebElement wl144 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView");
+                wl144.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                wl4.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                wl3.click();
+            }catch (Exception e){}
+
+        }catch (Exception e){
+            log.info("App晴象浏览器-左上方红包异常");
+        }
 
     }
 
+    /**
+     * todo 8.1领红包(操作流程：1-点击红包，2-看广告)
+     * @param robot
+     */
+    public static void handle81(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App晴象浏览器-左下方红包");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/float_coin_1\")");
+            wl2.click();
+            robot.delay(59000);
+
+            try {
+                WebElement wl144 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView");
+                wl144.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                wl4.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                wl3.click();
+            }catch (Exception e){}
+
+        }catch (Exception e){
+            log.info("App晴象浏览器-左下方红包异常");
+        }
+
+    }
+
+
+    /**
+     * todo 8.2领红包(操作流程：1-点击红包，2-看广告)
+     * @param robot
+     */
+    public static void handle82(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App晴象浏览器-右上方红包");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/float_coin_3\")");
+            wl2.click();
+            robot.delay(59000);
+
+            try {
+                WebElement wl144 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView");
+                wl144.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                wl4.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                wl3.click();
+            }catch (Exception e){}
+
+        }catch (Exception e){
+            log.info("App晴象浏览器-右上方红包异常");
+        }
+
+    }
+
+
+    /**
+     * todo 8.3领红包(操作流程：1-点击红包，2-看广告)
+     * @param robot
+     */
+    public static void handle83(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App晴象浏览器-右下方红包");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/float_coin_4\")");
+            wl2.click();
+            robot.delay(59000);
+
+            try {
+                WebElement wl144 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView");
+                wl144.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                wl4.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                wl3.click();
+            }catch (Exception e){}
+
+        }catch (Exception e){
+            log.info("App晴象浏览器-右下方红包异常");
+        }
+
+    }
+
+    /**
+     * todo 8.4领红包(操作流程：1-点击红包，2-看广告)
+     * @param robot
+     */
+    public static void handle84(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App晴象浏览器-右下下方红包");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/get_coin_iv\")");
+            wl2.click();
+            robot.delay(59000);
+
+            try {
+                WebElement wl144 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView");
+                wl144.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                wl4.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                wl3.click();
+            }catch (Exception e){}
+
+        }catch (Exception e){
+            log.info("App晴象浏览器-右下下方红包异常");
+        }
+
+    }
 
 
     /**
@@ -208,22 +362,7 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("抖音极速-开宝箱");
-        try {
-            robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
-            wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
-            wl3.click();
-
-            robot.delay(32000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("抖音极速-开宝箱异常");
-        }
     }
 
 
@@ -232,7 +371,47 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle10(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App晴象浏览器-抽奖");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去抽奖\")");
+            wl2.click();
+
+
+            try {
+                WebElement wl33 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/close\")");
+                wl33.click();
+            }catch (Exception e){}
+
+            WebElement wl33 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/go_iv\")");
+            wl33.click();
+
+            robot.delay(2000);
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看视频\")");
+            wl1.click();
+            robot.delay(59000);
+
+            try {
+                WebElement wl144 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView");
+                wl144.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                wl4.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                wl3.click();
+            }catch (Exception e){}
+
+        }catch (Exception e){
+            log.info("App晴象浏览器-抽奖异常");
+        }
     }
 
 
@@ -249,40 +428,7 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("抖音极速-走路");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"走得越多赚的越多\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"走得越多赚的越多\")");
-            }
-            wl2.click();
-
-            try {
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看广告视频可领\")");
-                wl3.click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-            } catch (Exception e) {
-                try {
-                    WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-                    wl4.click();
-                    robot.delay(32000);
-                    AdbTools.process(robot, operateBack);
-                }catch (Exception e1){ }
-            }
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("抖音极速-走路异常");
-        }
 
     }
 
@@ -317,27 +463,6 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle16(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("抖音极速-吃饭");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"限时福利，每天饭点领补贴\").fromParent(text(\"去领取\"))");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"限时福利，每天饭点领补贴\").fromParent(text(\"去领取\"))");
-            }
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-            wl3.click();
-
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("抖音极速-吃饭异常");
-        }
 
 
     }
@@ -363,10 +488,113 @@ public class App晴象浏览器 {
      * @param robot
      */
     public static void handle19(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App晴象浏览器-刮奖");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去刮卡赚钱\")");
+            wl2.click();
+
+
+            try {
+                WebElement wl33 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/close\")");
+                wl33.click();
+            }catch (Exception e){}
+
+
+            WebElement wl32 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"奖励\")");
+            AdbTools.process(robot, AdbTools.tapDraw(androidId, String.valueOf(wl32.getLocation().getX()+10), String.valueOf(wl32.getLocation().getY()+80)));
+
+            robot.delay(2000);
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频金币翻倍\")");
+            wl1.click();
+            robot.delay(59000);
+
+            try {
+                WebElement wl144 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView");
+                wl144.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                wl4.click();
+            }catch (Exception e){}
+
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                wl3.click();
+            }catch (Exception e){}
+
+        }catch (Exception e){
+            log.info("App晴象浏览器-刮奖异常");
+        }
     }
 
 
+
+    /**
+     * todo 20.打卡
+     * @param robot
+     */
+    public static void handle20(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App晴象浏览器-打卡");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"打卡赚钱\")");
+            wl2.click();
+
+            try {
+                WebElement wl33 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/close\")");
+                wl33.click();
+            }catch (Exception e){}
+
+            List<WebElement> wl4 = null;
+            try {
+                wl4 = driver.findElementsByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"去补卡\")");
+            }catch (Exception e){
+                try {
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    wl4 = driver.findElementsByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"去补卡\")");
+                }catch (Exception e1){
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    wl4 = driver.findElementsByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"去补卡\")");
+                }
+            }
+            for(WebElement wl :wl4){
+                wl.click();
+                robot.delay(2000);
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频金币翻倍\")");
+                wl1.click();
+                robot.delay(59000);
+
+                try {
+                    WebElement wl144 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView");
+                    wl144.click();
+                }catch (Exception e){}
+
+                try {
+                    WebElement wl14 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
+                    wl14.click();
+                }catch (Exception e){}
+
+                try {
+                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
+                    wl3.click();
+                }catch (Exception e){}
+            }
+
+
+
+        }catch (Exception e){
+            log.info("App晴象浏览器-打卡异常");
+        }
+    }
 
 
 
