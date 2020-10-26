@@ -43,7 +43,7 @@ public class App牛角小说 {
         wl.click();
 
         handle1(robot,androidId,driver);
-
+        handle8(robot,androidId,driver);
         handle6(robot,androidId,driver);
 
     }
@@ -156,7 +156,20 @@ public class App牛角小说 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("App牛角小说-领红包");
+        try{
+            robot.delay(1000);
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"领取\")");
+            wl2.click();
 
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\") .text(\"分享领取\")");
+            wl3.click();
+
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("App牛角小说-领红包异常");
+        }
     }
 
 
