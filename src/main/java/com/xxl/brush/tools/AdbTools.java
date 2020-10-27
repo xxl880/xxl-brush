@@ -265,7 +265,11 @@ public class AdbTools {
             wl5.click();
             Thread.sleep(6000);
         }catch (Exception e){}
-
+        try{
+            WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"继续\")");
+            wl11.click();
+            Thread.sleep(12000);
+        }catch (Exception e){}
         try{
             WebElement wl6 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"继续安装\")");
             wl6.click();
@@ -294,6 +298,10 @@ public class AdbTools {
             wl10.click();
             Thread.sleep(12000);
         }catch (Exception e){}
+
+
+
+
 
     }
 
