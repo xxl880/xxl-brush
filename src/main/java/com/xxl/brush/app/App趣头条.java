@@ -69,6 +69,8 @@ public class App趣头条 {
              WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
              AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
         }
+        handle1(robot,androidId,driver);
+
         handle18(robot,androidId,driver);
         handle61(robot,androidId,driver);
         handle6(robot,androidId,driver);
@@ -86,19 +88,21 @@ public class App趣头条 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       /* log.info("趣头条-签到");
+       log.info("趣头条-签到");
         try {
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
             }
-            wl.click();
+
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
             wl1.click();
@@ -108,7 +112,7 @@ public class App趣头条 {
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("趣头条-签到异常");
-        }*/
+        }
     }
 
 

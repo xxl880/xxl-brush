@@ -53,7 +53,7 @@ public class App抖音极速 {
         }catch (Exception e){
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
         }
-
+        handle1(robot, androidId, driver);
         handle11(robot,androidId,driver);
         handle12(robot,androidId,driver);
         handle9(robot,androidId,driver);

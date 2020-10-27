@@ -250,6 +250,12 @@ public class AdbTools {
      * todo 20.清除
      */
     public static void clear( AndroidDriver driver){
+
+        try{
+            WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.kuaishou.nebula:id/login_dialog_cancel\")");
+            wl11.click();
+        }catch (Exception e){}
+
         try{
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"设置青少年模式\").fromParent(text(\"我知道了\"))");
             wl3.click();

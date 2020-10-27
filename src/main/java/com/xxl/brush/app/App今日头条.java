@@ -69,19 +69,20 @@ public class App今日头条 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-   /*     log.info("今日头条-签到");
+       log.info("今日头条-签到");
         try {
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
             }
-            wl.click();
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
             wl1.click();
@@ -91,7 +92,7 @@ public class App今日头条 {
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("今日头条-签到异常");
-        }*/
+        }
     }
 
 

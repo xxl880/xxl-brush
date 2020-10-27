@@ -39,7 +39,8 @@ public class App快手极速 {
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        //handle2(robot, androidId, driver);
+        AdbTools.clear(driver);
+        handle2(robot, androidId, driver);
 
          try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
@@ -47,10 +48,9 @@ public class App快手极速 {
         }catch (Exception e){
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
         }
-
-
-       // handle9(robot,androidId,driver);
-       // handle6(robot,androidId,driver);
+        handle1(robot,androidId,driver);
+        handle9(robot,androidId,driver);
+        handle6(robot,androidId,driver);
         handle20(robot,androidId,driver);
 
     }
