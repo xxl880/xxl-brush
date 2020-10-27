@@ -50,8 +50,9 @@ public class AppController {
         App刷宝视频.handle(robot,"phone003");
         App小吃货视频.handle(robot,"phone003");
         App火火视频.handle(robot,"phone003");
-        App红包视频.handle(robot,"phone003");*/
-        App彩蛋视频.handle(robot,"phone003");
+        App红包视频.handle(robot,"phone003");
+        App彩蛋视频.handle(robot,"phone003");*/
+        App热火视频.handle(robot,"phone003");
 
 
 
