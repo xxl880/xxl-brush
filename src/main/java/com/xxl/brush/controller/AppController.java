@@ -43,8 +43,10 @@ public class AppController {
         App抖音火山.handle(robot,"phone003");
         App晴象浏览器.handle(robot,"phone003");
         App米读小说.handle(robot,"phone003");
-        App必看小说.handle(robot,"phone003");*/
-        App牛角小说.handle(robot,"phone003");
+        App必看小说.handle(robot,"phone003");
+        App牛角小说.handle(robot,"phone003");*/
+        App2345浏览器.handle(robot,"phone003");
+
 
 
 

@@ -43,18 +43,18 @@ public class App2345浏览器 {
 
         appClear(robot, androidId, driver);
 
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            wl.click();
-        }catch (Exception e){}
 
-        handle8(robot,androidId,driver);
 
         WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领现金\")");
         wl1.click();
-
         handle1(robot,androidId,driver);
         handle21(robot,androidId,driver);
+
+        try {
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+            wl.click();
+        }catch (Exception e){}
+        handle8(robot,androidId,driver);
 
         wl1.click();
         handle2(robot,androidId,driver);
