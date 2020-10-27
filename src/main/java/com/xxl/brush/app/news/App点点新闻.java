@@ -41,14 +41,14 @@ public class App点点新闻 {
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
+        handle2(robot,androidId,driver);
+        handle4(robot,androidId,driver);
         try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
             wl.click();
         }catch (Exception e){  }
         handle1(robot,androidId,driver);
-
-        handle2(robot,androidId,driver);
-        handle4(robot,androidId,driver);
+        handle41(robot,androidId,driver);
 
     }
 
@@ -150,6 +150,116 @@ public class App点点新闻 {
             log.info("点点新闻-看新闻异常");
         }
     }
+
+
+
+    /**
+     * todo 4.1看新闻
+     * @param robot
+     */
+    public static void handle41(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("点点新闻-看点点新闻");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+           try {
+               WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"百度新闻\").fromParent(text(\"去完成\"))");
+               wl1.click();
+               for (int a = 0; a < 6; a++) {
+                   AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                   robot.delay(RandomTools.init(6000));
+                   AdbTools.process(robot, AdbTools.upPage(androidId));
+                   for (int i = 0; i < 6; i++) {
+                       robot.delay(RandomTools.init(9000));
+                       AdbTools.process(robot, AdbTools.down(androidId));
+                   }
+                   AdbTools.process(robot, operateBack);
+               }
+           }catch (Exception e){}
+
+           try {
+               WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"趣闻社\").fromParent(text(\"去完成\"))");
+               wl2.click();
+               for (int a = 0; a < 6; a++) {
+                   AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                   robot.delay(RandomTools.init(6000));
+                   AdbTools.process(robot, AdbTools.upPage(androidId));
+                   for (int i = 0; i < 6; i++) {
+                       robot.delay(RandomTools.init(9000));
+                       AdbTools.process(robot, AdbTools.down(androidId));
+                   }
+                   AdbTools.process(robot, operateBack);
+               }
+           }catch (Exception e){}
+
+          try {
+              WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每日看点\").fromParent(text(\"去完成\"))");
+              wl3.click();
+              for (int a = 0; a < 6; a++) {
+                  AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                  robot.delay(RandomTools.init(6000));
+                  AdbTools.process(robot, AdbTools.upPage(androidId));
+                  for (int i = 0; i < 6; i++) {
+                      robot.delay(RandomTools.init(9000));
+                      AdbTools.process(robot, AdbTools.down(androidId));
+                  }
+                  AdbTools.process(robot, operateBack);
+              }
+          }catch (Exception e){}
+
+          try {
+              WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"精选头条\").fromParent(text(\"去完成\"))");
+              wl4.click();
+              for (int a = 0; a < 6; a++) {
+                  AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                  robot.delay(RandomTools.init(6000));
+                  AdbTools.process(robot, AdbTools.upPage(androidId));
+                  for (int i = 0; i < 6; i++) {
+                      robot.delay(RandomTools.init(9000));
+                      AdbTools.process(robot, AdbTools.down(androidId));
+                  }
+                  AdbTools.process(robot, operateBack);
+              }
+          }catch (Exception e){}
+
+
+        try {
+            WebElement wl6 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"1.9包邮\").fromParent(text(\"去完成\"))");
+            wl6.click();
+            for (int a = 0; a < 6; a++) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                robot.delay(RandomTools.init(6000));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                for (int i = 0; i < 6; i++) {
+                    robot.delay(RandomTools.init(9000));
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                }
+                AdbTools.process(robot, operateBack);
+            }
+        }catch (Exception e){}
+
+        try {
+            WebElement wl7 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利互动\").fromParent(text(\"去完成\"))");
+            wl7.click();
+            for (int a = 0; a < 6; a++) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                robot.delay(RandomTools.init(6000));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                for (int i = 0; i < 6; i++) {
+                    robot.delay(RandomTools.init(9000));
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                }
+                AdbTools.process(robot, operateBack);
+            }
+        }catch (Exception e){}
+
+
+        }catch (Exception e){
+            log.info("点点新闻-看点点新闻异常");
+        }
+    }
+
+
 
 
     /**
