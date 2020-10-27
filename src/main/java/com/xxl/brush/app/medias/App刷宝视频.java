@@ -41,7 +41,7 @@ public class App刷宝视频 {
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        appClear(robot,androidId,driver);
+
         try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
             wl.click();
@@ -52,6 +52,7 @@ public class App刷宝视频 {
          try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
             wl.click();
+            appClear(robot,androidId,driver);
         }catch (Exception e){ }
 
         handle1(robot,androidId,driver);
@@ -104,7 +105,7 @@ public class App刷宝视频 {
         try {
             robot.delay(1000);
 
-            int x = RandomTools.init(16);
+            int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
