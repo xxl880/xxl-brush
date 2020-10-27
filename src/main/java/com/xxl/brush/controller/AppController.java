@@ -3,6 +3,7 @@ package com.xxl.brush.controller;
 import com.xxl.brush.app.*;
 import com.xxl.brush.app.medias.App刷宝视频;
 import com.xxl.brush.app.medias.App小吃货视频;
+import com.xxl.brush.app.medias.App火火视频;
 import com.xxl.brush.response.BaseResponse;
 import com.xxl.brush.service.AppService;
 import io.swagger.annotations.Api;
@@ -48,8 +49,10 @@ public class AppController {
         App必看小说.handle(robot,"phone003");
         App牛角小说.handle(robot,"phone003");
         App2345浏览器.handle(robot,"phone003");
-        App刷宝视频.handle(robot,"phone003");*/
-        App小吃货视频.handle(robot,"phone003");
+        App刷宝视频.handle(robot,"phone003");
+        App小吃货视频.handle(robot,"phone003");*/
+        App火火视频.handle(robot,"phone003");
+
 
 
 
