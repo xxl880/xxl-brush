@@ -30,26 +30,16 @@ public class App赚钱视频 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************趣头条操作********************************************");
+        log.info("********************************赚钱操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup趣头条);
+        AdbTools.startup(robot, androidId, AppConstants.startup赚钱);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.jifen.qukan:id/afk\")");
-            wl.click();
-        }catch (Exception e){
-            //AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1641)));
-        }
-
-        handle8(robot,androidId,driver);
-        handle4(robot,androidId,driver);
 
         try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
@@ -70,7 +60,6 @@ public class App赚钱视频 {
              AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
         }
         handle18(robot,androidId,driver);
-        handle61(robot,androidId,driver);
         handle6(robot,androidId,driver);
         handle9(robot,androidId,driver);
         handle11(robot,androidId,driver);
@@ -86,7 +75,7 @@ public class App赚钱视频 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       /* log.info("趣头条-签到");
+       /* log.info("赚钱-签到");
         try {
             WebElement wl =  null;
             try {
@@ -107,7 +96,7 @@ public class App赚钱视频 {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("趣头条-签到异常");
+            log.info("赚钱-签到异常");
         }*/
     }
 
@@ -117,21 +106,20 @@ public class App赚钱视频 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看视频");
+        log.info("赚钱-看视频");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
-
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
-                wl2.click();
-            }catch (Exception e){}
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
+            wl1.click();
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
 
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"播放\")");
+                wl2.click();
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 if (a == RandomTools.init(6)) {
@@ -139,7 +127,7 @@ public class App赚钱视频 {
                 }
             }
         }catch (Exception e){
-            log.info("趣头条-看视频异常");
+            log.info("赚钱-看视频异常");
         }
     }
 
@@ -158,22 +146,7 @@ public class App赚钱视频 {
      * @param robot
      */
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看新闻");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
-
-            int x = RandomTools.init(8);
-            for (int a = 0; a < x; a++) {
-                robot.delay(RandomTools.init(15000));
-                AdbTools.process(robot, AdbTools.down(androidId));
-            }
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("趣头条-看新闻异常");
-        }
     }
 
 
@@ -182,88 +155,41 @@ public class App赚钱视频 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看小说");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            wl1.click();
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即领取\")");
-            wl3.click();
-
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("趣头条-看小说异常");
-        }
     }
 
 
+
     /**
-     * todo 6.看广告
+     * todo 6 看广告
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看广告");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"看视频领金币\")");
-            if(!CollectionUtils.isEmpty(wls)){
-                wls.get(0).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-                wls.get(1).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-                wls.get(2).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-            }
-
-        }catch (Exception e){
-            log.info("趣头条-看广告异常");
-        }
-
-    }
-
-
-
-    /**
-     * todo 6.1 列表看广告
-     * @param robot
-     */
-    public static void handle61(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-列表看广告");
+        log.info("赚钱-看广告");
         try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             WebElement wl2 = null;
             try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"观看视频领金币,每日可领6次\").fromParent(text(\"立即观看\"))");
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每篇最多可得480金币\")");
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"观看视频领金币,每日可领6次\").fromParent(text(\"立即观看\"))");
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每篇最多可得480金币\")");
             }
-            wl2.click();
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl2.getLocation().getY())));
             robot.delay(32000);
 
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/tt_video_ad_close_layout\")");
+            wl3.click();
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/money_dialog_getcash_new2_close\")");
+            wl4.click();
 
         }catch (Exception e){
-            log.info("趣头条-列表看广告异常");
+            log.info("赚钱-看广告异常");
         }
 
     }
@@ -284,23 +210,20 @@ public class App赚钱视频 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-领红包");
+        log.info("赚钱-领红包");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取\")");
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领金币\")");
             wl1.click();
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"再领\")");
+            robot.delay(1000);
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"看视频再得\")");
             wl2.click();
             robot.delay(32000);
 
-            AdbTools.process(robot, operateBack);
-
         }catch (Exception e){
-            log.info("趣头条-领红包异常");
+            log.info("赚钱-领红包异常");
         }
     }
 
@@ -311,19 +234,7 @@ public class App赚钱视频 {
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-开宝箱");
-        try {
-            robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"最高\")");
-            wl2.click();
 
-            robot.delay(31000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("趣头条-开宝箱异常");
-        }
     }
 
 
@@ -341,30 +252,7 @@ public class App赚钱视频 {
      * @param robot
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-睡觉");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
-            }
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-            wl3.click();
-            robot.delay(32000);
-
-        }catch (Exception e){
-            log.info("趣头条-睡觉");
-        }
     }
 
     /**
@@ -417,40 +305,105 @@ public class App赚钱视频 {
      * @param robot
      */
     public static void handle17(Robot robot,String androidId,  AndroidDriver driver){
-
-    }
-
-    /**
-     * todo 18.摇钱树
-     * @param robot
-     */
-    public static void handle18(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-摇钱树");
+        log.info("赚钱-分享");
         try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             WebElement wl2 = null;
             try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每天首次分享加800金币\").fromParent(text(\"去分享\"))");
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每天首次分享加800金币\").fromParent(text(\"去分享\"))");
             }
-            wl2.click();
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl2.getLocation().getY())));
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\").fromParent(textStartsWith(\"领\"))");
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"朋友圈分享\")");
             wl3.click();
+            robot.delay(3000);
+            AdbTools.process(robot, operateBack);
+            AdbTools.process(robot, operateBack);
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/task_share_getgold_tx1_1\")");
+            wl4.click();
             robot.delay(32000);
-            AdbTools.process(robot, operateBack);
-            AdbTools.process(robot, operateBack);
+            WebElement wl31 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/tt_video_ad_close_layout\")");
+            wl31.click();
+
+            WebElement wl24 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/task_share_getgold_tx2_1\")");
+            wl24.click();
+            robot.delay(32000);
+
+            wl31.click();
+            WebElement wl41 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/money_dialog_getcash_new2_close\")");
+            wl41.click();
 
         }catch (Exception e){
-            log.info("趣头条-摇钱树");
+            log.info("赚钱-分享");
         }
+    }
+
+
+    /**
+     * todo 17.1分享
+     * @param robot
+     */
+    public static void handle171(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("赚钱-分享视频");
+        try{
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            WebElement wl2 = null;
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每天分享3条视频可得1600金币\").fromParent(textContains(\"已分享\"))");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每天分享3条视频可得1600金币\").fromParent(textContains(\"已分享\"))");
+            }
+
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl2.getLocation().getY())));
+
+            robot.delay(2000);
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
+            robot.delay(12000);
+            AdbTools.process(robot, AdbTools.downPage(androidId));
+
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
+            WebElement wl5 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"分享3条得\")");
+            wl5.click();
+
+            WebElement wl6 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"微信分享\")");
+            wl6.click();
+            AdbTools.process(robot, operateBack);
+
+            robot.delay(2000);
+            WebElement wl7 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"看视频再得\")");
+            wl7.click();
+
+
+        }catch (Exception e){
+            log.info("赚钱-分享视频报错");
+        }
+    }
+
+
+
+    /**
+     * todo 18.摇钱树
+     * @param robot
+     */
+    public static void handle18(Robot robot,String androidId,  AndroidDriver driver){
+
     }
 
     /**
@@ -461,7 +414,59 @@ public class App赚钱视频 {
 
     }
 
+    /**
+     * todo 20.晒收入
+     * @param robot
+     */
+    public static void handle20(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("赚钱-晒收入");
+        try{
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
+            WebElement wl2 = null;
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("resourceId(\"com.sljh.zqxsp:id/item_money_go\").text(\"晒收入\")");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("resourceId(\"com.sljh.zqxsp:id/item_money_go\").text(\"晒收入\")");
+            }
+            wl2.click();
+
+            robot.delay(2000);
+
+            WebElement wl6 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"微信分享\")");
+            wl6.click();
+            AdbTools.process(robot, operateBack);
+            AdbTools.process(robot, operateBack);
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/task_share_getgold_tx1_1\")");
+            wl4.click();
+            robot.delay(32000);
+            WebElement wl31 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/tt_video_ad_close_layout\")");
+            wl31.click();
+
+            WebElement wl24 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/task_share_getgold_tx2_1\")");
+            wl24.click();
+            robot.delay(32000);
+
+            wl31.click();
+            WebElement wl41 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/money_dialog_getcash_new2_close\")");
+            wl41.click();
+
+
+        }catch (Exception e){
+            log.info("赚钱-晒收入报错");
+        }
+
+
+
+
+
+
+    }
 
 
 
