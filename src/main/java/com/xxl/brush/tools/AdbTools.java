@@ -1,8 +1,10 @@
 package com.xxl.brush.tools;
 
 import com.xxl.brush.constants.PhoneConstants;
+import io.appium.java_client.android.AndroidDriver;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -244,7 +246,21 @@ public class AdbTools {
 
 
 
+    /**
+     * todo 20.清除
+     */
+    public static void clear( AndroidDriver driver){
+        try{
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"设置青少年模式\").fromParent(text(\"我知道了\"))");
+            wl3.click();
+        }catch (Exception e){}
 
+        try{
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
+            wl4.click();
+        }catch (Exception e){}
+
+    }
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
