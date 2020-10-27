@@ -53,7 +53,7 @@ public class AppController {
         App红包视频.handle(robot,"phone001");
         App彩蛋视频.handle(robot,"phone001");
         App热火视频.handle(robot,"phone001");
-
+        App长豆视频.handle(robot,"phone001");
 
 
 
