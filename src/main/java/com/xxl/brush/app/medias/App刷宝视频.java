@@ -41,39 +41,23 @@ public class App刷宝视频 {
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
+        appClear(robot,androidId,driver);
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.jifen.qukan:id/afk\")");
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
             wl.click();
-        }catch (Exception e){
-            //AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1641)));
-        }
-
-        handle8(robot,androidId,driver);
-        handle4(robot,androidId,driver);
-
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
-            wl.click();
-        }catch (Exception e){
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
-        }
+        }catch (Exception e){ }
         handle2(robot,androidId,driver);
 
-        handle5(robot,androidId,driver);
 
          try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
             wl.click();
-        }catch (Exception e){
-             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
-        }
-        handle18(robot,androidId,driver);
-        handle61(robot,androidId,driver);
-        handle6(robot,androidId,driver);
+        }catch (Exception e){ }
+
+        handle1(robot,androidId,driver);
         handle9(robot,androidId,driver);
-        handle11(robot,androidId,driver);
+        handle6(robot,androidId,driver);
+
 
     }
 
@@ -86,29 +70,28 @@ public class App刷宝视频 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       /* log.info("刷宝-签到");
+       log.info("刷宝-签到");
         try {
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"立即签到\")");
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"立即签到\")");
             }
             wl.click();
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
-            wl1.click();
-            robot.delay(32000);
+            robot.delay(1000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
+            WebElement wl1 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[7]/android.view.View/android.view.View[1]");
+            wl1.click();
+
         }catch (Exception e){
             log.info("刷宝-签到异常");
-        }*/
+        }
     }
 
 
@@ -120,17 +103,8 @@ public class App刷宝视频 {
         log.info("刷宝-看视频");
         try {
             robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
-
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
-                wl2.click();
-            }catch (Exception e){}
-
-            int x = RandomTools.init(8);
+            int x = RandomTools.init(16);
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
@@ -158,22 +132,7 @@ public class App刷宝视频 {
      * @param robot
      */
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("刷宝-看新闻");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
-
-            int x = RandomTools.init(8);
-            for (int a = 0; a < x; a++) {
-                robot.delay(RandomTools.init(15000));
-                AdbTools.process(robot, AdbTools.down(androidId));
-            }
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("刷宝-看新闻异常");
-        }
     }
 
 
@@ -182,27 +141,7 @@ public class App刷宝视频 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("刷宝-看小说");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            wl1.click();
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即领取\")");
-            wl3.click();
-
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("刷宝-看小说异常");
-        }
     }
 
 
@@ -215,20 +154,18 @@ public class App刷宝视频 {
         try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
             AdbTools.process(robot, AdbTools.upPage(androidId));
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"看视频领金币\")");
-            if(!CollectionUtils.isEmpty(wls)){
-                wls.get(0).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-                wls.get(1).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-                wls.get(2).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-            }
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"去观看\")");
+            wl.click();
+            robot.delay(32000);
+
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.jm.video:id/tt_video_ad_close_layout\")");
+            wl1.click();
+
+            WebElement wl2 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[7]/android.view.View/android.view.View[1]");
+            wl2.click();
 
         }catch (Exception e){
             log.info("刷宝-看广告异常");
@@ -236,37 +173,6 @@ public class App刷宝视频 {
 
     }
 
-
-
-    /**
-     * todo 6.1 列表看广告
-     * @param robot
-     */
-    public static void handle61(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("刷宝-列表看广告");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"观看视频领金币,每日可领6次\").fromParent(text(\"立即观看\"))");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"观看视频领金币,每日可领6次\").fromParent(text(\"立即观看\"))");
-            }
-            wl2.click();
-            robot.delay(32000);
-
-
-        }catch (Exception e){
-            log.info("刷宝-列表看广告异常");
-        }
-
-    }
 
 
 
@@ -284,24 +190,7 @@ public class App刷宝视频 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("刷宝-领红包");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取\")");
-            wl1.click();
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"再领\")");
-            wl2.click();
-            robot.delay(32000);
-
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("刷宝-领红包异常");
-        }
     }
 
 
@@ -314,13 +203,13 @@ public class App刷宝视频 {
         log.info("刷宝-开宝箱");
         try {
             robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"最高\")");
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开箱领元宝\")");
             wl2.click();
+            robot.delay(32000);
 
-            robot.delay(31000);
+            WebElement wl3 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[7]/android.view.View/android.view.View[1]");
+            wl3.click();
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("刷宝-开宝箱异常");
         }
@@ -341,30 +230,7 @@ public class App刷宝视频 {
      * @param robot
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("刷宝-睡觉");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
-            }
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-            wl3.click();
-            robot.delay(32000);
-
-        }catch (Exception e){
-            log.info("刷宝-睡觉");
-        }
     }
 
     /**
@@ -425,32 +291,7 @@ public class App刷宝视频 {
      * @param robot
      */
     public static void handle18(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("刷宝-摇钱树");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
-            }
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\").fromParent(textStartsWith(\"领\"))");
-            wl3.click();
-            robot.delay(32000);
-            AdbTools.process(robot, operateBack);
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("刷宝-摇钱树");
-        }
     }
 
     /**
@@ -462,6 +303,18 @@ public class App刷宝视频 {
     }
 
 
+
+    /**
+     * todo 20.清除
+     * @param robot
+     */
+    public static void appClear(Robot robot,String androidId,  AndroidDriver driver){
+        try{
+            robot.delay(1000);
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.jm.video:id/imgClose\")");
+            wl3.click();
+        }catch (Exception e){}
+    }
 
 
 
