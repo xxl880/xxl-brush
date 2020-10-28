@@ -30,50 +30,37 @@ public class App蚂蚁看点新闻 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************趣头条操作********************************************");
+        log.info("********************************蚂蚁看点操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup趣头条);
+        AdbTools.startup(robot, androidId, AppConstants.startup蚂蚁看点);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.jifen.qukan:id/afk\")");
-            wl.click();
-        }catch (Exception e){
-            //AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1641)));
-        }
+        AdbTools.clear(driver);
+        clear(robot,androidId,driver);
 
-        handle8(robot,androidId,driver);
         handle4(robot,androidId,driver);
 
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
-            wl.click();
-        }catch (Exception e){
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
-        }
         handle2(robot,androidId,driver);
 
-        handle5(robot,androidId,driver);
-
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
+        try {
+            WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.ldzs.zhangxin:id/tv_home_tab\")");
             wl.click();
-        }catch (Exception e){
-             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
-        }
-        handle18(robot,androidId,driver);
-        handle61(robot,androidId,driver);
-        handle6(robot,androidId,driver);
-        handle9(robot,androidId,driver);
-        handle11(robot,androidId,driver);
+        }catch (Exception e){ }
+        handle1(robot,androidId,driver);
+
+        try {
+            WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.ldzs.zhangxin:id/tv_home_tab\")");
+            wl.click();
+        }catch (Exception e){ }
+
+        handle8(robot,androidId,driver);
+        handle81(robot,androidId,driver);
 
     }
 
@@ -86,29 +73,27 @@ public class App蚂蚁看点新闻 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       /* log.info("趣头条-签到");
+       log.info("蚂蚁看点-签到");
         try {
-            WebElement wl =  null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-            }
-            wl.click();
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement  wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
+            wl.click();
+            robot.delay(1000);
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"免费领取\")");
             wl1.click();
             robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/iv_close\")");
+            wl2.click();
+
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("趣头条-签到异常");
-        }*/
+            log.info("蚂蚁看点-签到异常");
+        }
     }
 
 
@@ -117,29 +102,25 @@ public class App蚂蚁看点新闻 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看视频");
+        log.info("蚂蚁看点-看视频");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
-
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
-                wl2.click();
-            }catch (Exception e){}
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/tv_find_tab\")");
+            wl1.click();
 
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
-                robot.delay(RandomTools.init(15000));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                if (a == RandomTools.init(6)) {
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
-                }
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"取消\")");
+                wl2.click();
+                robot.delay(RandomTools.init(36000));
+                AdbTools.process(robot, operateBack);
             }
         }catch (Exception e){
-            log.info("趣头条-看视频异常");
+            log.info("蚂蚁看点-看视频异常");
         }
     }
 
@@ -158,12 +139,90 @@ public class App蚂蚁看点新闻 {
      * @param robot
      */
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看新闻");
+        log.info("蚂蚁看点-看新闻");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/center_button\")");
+            wl1.click();
+
+            try {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"阅读文章\").fromParent(text(\"去完成\"))");
+                wl2.click();
+                for(int i=0;i<3;i++) {
+                    try {
+                        WebElement wl21 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"close200713\")");
+                        wl21.click();
+                    }catch (Exception e){}
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    WebElement wl22 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"下一章\")");
+                    wl22.click();
+                }
+                try{
+                    AdbTools.process(robot, operateBack);
+                    WebElement wl21 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"close200713\")");
+                    wl21.click();
+                }catch (Exception e){}
+                AdbTools.process(robot, operateBack);
+            }catch (Exception e){}
+
+
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"阅读红包\").fromParent(text(\"去完成\"))");
+                wl3.click();
+                for(int i=0;i<6;i++) {
+                    try {
+                        WebElement wl21 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"close200713\")");
+                        wl21.click();
+                    }catch (Exception e){}
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    robot.delay(9000);
+                    WebElement wl22 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"下一章\")");
+                    wl22.click();
+                }
+                try{
+                    AdbTools.process(robot, operateBack);
+                    WebElement wl21 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"close200713\")");
+                    wl21.click();
+                }catch (Exception e){}
+                AdbTools.process(robot, operateBack);
+            }catch (Exception e){}
+
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"搜索领金币\").fromParent(text(\"去完成\"))");
+                wl4.click();
+                for(int i=0;i<16;i++) {
+                    try {
+                        WebElement wl212 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"今日热词 refresh.png 换一批\")");
+                        wl212.click();
+                    }catch (Exception e11){}
+                    try {
+                        WebElement wl21 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"close200713\")");
+                        wl21.click();
+                    }catch (Exception e11){}
+                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1500)));
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    robot.delay(RandomTools.init(6000));
+                    AdbTools.process(robot, operateBack);
+
+                    WebElement wl22 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"下一章\")");
+                    wl22.click();
+                }
+                try{
+                    AdbTools.process(robot, operateBack);
+                    WebElement wl21 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"close200713\")");
+                    wl21.click();
+                }catch (Exception e){}
+                AdbTools.process(robot, operateBack);
+            }catch (Exception e){}
+
+
 
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
@@ -172,7 +231,7 @@ public class App蚂蚁看点新闻 {
             }
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("趣头条-看新闻异常");
+            log.info("蚂蚁看点-看新闻异常");
         }
     }
 
@@ -182,27 +241,7 @@ public class App蚂蚁看点新闻 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看小说");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            wl1.click();
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即领取\")");
-            wl3.click();
-
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("趣头条-看小说异常");
-        }
     }
 
 
@@ -211,62 +250,11 @@ public class App蚂蚁看点新闻 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看广告");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"看视频领金币\")");
-            if(!CollectionUtils.isEmpty(wls)){
-                wls.get(0).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-                wls.get(1).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-                wls.get(2).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-            }
 
-        }catch (Exception e){
-            log.info("趣头条-看广告异常");
-        }
 
     }
 
 
-
-    /**
-     * todo 6.1 列表看广告
-     * @param robot
-     */
-    public static void handle61(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-列表看广告");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"观看视频领金币,每日可领6次\").fromParent(text(\"立即观看\"))");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"观看视频领金币,每日可领6次\").fromParent(text(\"立即观看\"))");
-            }
-            wl2.click();
-            robot.delay(32000);
-
-
-        }catch (Exception e){
-            log.info("趣头条-列表看广告异常");
-        }
-
-    }
 
 
 
@@ -284,7 +272,7 @@ public class App蚂蚁看点新闻 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-领红包");
+        log.info("蚂蚁看点-领红包");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -293,17 +281,48 @@ public class App蚂蚁看点新闻 {
             wl1.click();
 
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"再领\")");
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"金币翻倍\")");
             wl2.click();
             robot.delay(32000);
 
-            AdbTools.process(robot, operateBack);
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/tt_video_ad_close_layout\")");
+            wl3.click();
+            robot.delay(3000);
+
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/iv_close\")");
+            wl4.click();
 
         }catch (Exception e){
-            log.info("趣头条-领红包异常");
+            log.info("蚂蚁看点-领红包异常");
         }
     }
 
+
+    /**
+     * todo 8.1领红包(操作流程：1-点击红包，2-看广告)
+     * @param robot
+     */
+    public static void handle81(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("蚂蚁看点-点我领红包");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/ll_article_list_video\")");
+            wl4.click();
+            robot.delay(59000);
+
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/tt_video_ad_close_layout\")");
+            wl3.click();
+            robot.delay(3000);
+
+            WebElement wl6 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/iv_close\")");
+            wl6.click();
+
+        }catch (Exception e){
+            log.info("蚂蚁看点-领红包异常");
+        }
+    }
 
 
     /**
@@ -311,19 +330,7 @@ public class App蚂蚁看点新闻 {
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-开宝箱");
-        try {
-            robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"最高\")");
-            wl2.click();
 
-            robot.delay(31000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("趣头条-开宝箱异常");
-        }
     }
 
 
@@ -341,30 +348,7 @@ public class App蚂蚁看点新闻 {
      * @param robot
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-睡觉");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
-            }
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-            wl3.click();
-            robot.delay(32000);
-
-        }catch (Exception e){
-            log.info("趣头条-睡觉");
-        }
     }
 
     /**
@@ -425,32 +409,7 @@ public class App蚂蚁看点新闻 {
      * @param robot
      */
     public static void handle18(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-摇钱树");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
-            }
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\").fromParent(textStartsWith(\"领\"))");
-            wl3.click();
-            robot.delay(32000);
-            AdbTools.process(robot, operateBack);
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("趣头条-摇钱树");
-        }
     }
 
     /**
@@ -461,7 +420,20 @@ public class App蚂蚁看点新闻 {
 
     }
 
-
+    /**
+     * todo 20.清除
+     * @param robot
+     */
+    public static void clear(Robot robot,String androidId,  AndroidDriver driver){
+          try{
+              try {
+                  WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ldzs.zhangxin:id/iv_close\")");
+                  wl3.click();
+              }catch (Exception e1){}
+              WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"android:id/button2\")");
+              wl4.click();
+          }catch (Exception e){}
+    }
 
 
 
