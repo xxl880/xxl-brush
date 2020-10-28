@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * todo App抖音
+ * todo App趣新闻
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
@@ -86,17 +86,17 @@ public class App趣新闻 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       /* log.info("趣新闻-签到");
+       log.info("趣新闻-签到");
         try {
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到\")");
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到\")");
             }
             wl.click();
 
@@ -108,7 +108,7 @@ public class App趣新闻 {
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("趣新闻-签到异常");
-        }*/
+        }
     }
 
 
