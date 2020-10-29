@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * todo App抖音
+ * todo App赚钱阅文赚新闻
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
@@ -30,23 +30,18 @@ public class App赚钱阅文赚新闻 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************趣头条操作********************************************");
+        log.info("********************************赚钱阅文赚操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup趣头条);
+        AdbTools.startup(robot, androidId, AppConstants.startup赚钱阅文赚);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.jifen.qukan:id/afk\")");
-            wl.click();
-        }catch (Exception e){
-            //AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1641)));
-        }
+
 
         handle8(robot,androidId,driver);
         handle4(robot,androidId,driver);
@@ -86,7 +81,7 @@ public class App赚钱阅文赚新闻 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       /* log.info("趣头条-签到");
+        log.info("赚钱阅文赚-签到");
         try {
             WebElement wl =  null;
             try {
@@ -107,8 +102,9 @@ public class App赚钱阅文赚新闻 {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("趣头条-签到异常");
-        }*/
+            log.info("赚钱阅文赚-签到异常");
+        }
+
     }
 
 
@@ -117,7 +113,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看视频");
+        log.info("赚钱阅文赚-看视频");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -139,7 +135,7 @@ public class App赚钱阅文赚新闻 {
                 }
             }
         }catch (Exception e){
-            log.info("趣头条-看视频异常");
+            log.info("赚钱阅文赚-看视频异常");
         }
     }
 
@@ -158,7 +154,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看新闻");
+        log.info("赚钱阅文赚-看新闻");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -172,7 +168,7 @@ public class App赚钱阅文赚新闻 {
             }
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("趣头条-看新闻异常");
+            log.info("赚钱阅文赚-看新闻异常");
         }
     }
 
@@ -182,7 +178,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看小说");
+        log.info("赚钱阅文赚-看小说");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -201,7 +197,7 @@ public class App赚钱阅文赚新闻 {
             AdbTools.process(robot, operateBack);
 
         }catch (Exception e){
-            log.info("趣头条-看小说异常");
+            log.info("赚钱阅文赚-看小说异常");
         }
     }
 
@@ -211,7 +207,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看广告");
+        log.info("赚钱阅文赚-看广告");
         try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -231,7 +227,7 @@ public class App赚钱阅文赚新闻 {
             }
 
         }catch (Exception e){
-            log.info("趣头条-看广告异常");
+            log.info("赚钱阅文赚-看广告异常");
         }
 
     }
@@ -243,7 +239,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle61(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-列表看广告");
+        log.info("赚钱阅文赚-列表看广告");
         try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -263,7 +259,7 @@ public class App赚钱阅文赚新闻 {
 
 
         }catch (Exception e){
-            log.info("趣头条-列表看广告异常");
+            log.info("赚钱阅文赚-列表看广告异常");
         }
 
     }
@@ -284,7 +280,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-领红包");
+        log.info("赚钱阅文赚-领红包");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -300,7 +296,7 @@ public class App赚钱阅文赚新闻 {
             AdbTools.process(robot, operateBack);
 
         }catch (Exception e){
-            log.info("趣头条-领红包异常");
+            log.info("赚钱阅文赚-领红包异常");
         }
     }
 
@@ -311,7 +307,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-开宝箱");
+        log.info("赚钱阅文赚-开宝箱");
         try {
             robot.delay(1000);
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"最高\")");
@@ -322,7 +318,7 @@ public class App赚钱阅文赚新闻 {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("趣头条-开宝箱异常");
+            log.info("赚钱阅文赚-开宝箱异常");
         }
     }
 
@@ -341,7 +337,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-睡觉");
+        log.info("赚钱阅文赚-睡觉");
         try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -363,7 +359,7 @@ public class App赚钱阅文赚新闻 {
             robot.delay(32000);
 
         }catch (Exception e){
-            log.info("趣头条-睡觉");
+            log.info("赚钱阅文赚-睡觉");
         }
     }
 
@@ -425,7 +421,7 @@ public class App赚钱阅文赚新闻 {
      * @param robot
      */
     public static void handle18(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-摇钱树");
+        log.info("赚钱阅文赚-摇钱树");
         try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -449,7 +445,7 @@ public class App赚钱阅文赚新闻 {
             AdbTools.process(robot, operateBack);
 
         }catch (Exception e){
-            log.info("趣头条-摇钱树");
+            log.info("赚钱阅文赚-摇钱树");
         }
     }
 
