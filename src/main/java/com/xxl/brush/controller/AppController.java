@@ -27,9 +27,9 @@ public class AppController {
     @ApiOperation("1-签到")
     public BaseResponse start() throws AWTException {
         Robot robot = new Robot();
-      /*  App抖音极速.handle(robot,"phone003");
+        App抖音极速.handle(robot,"phone003");
         App火山极速.handle(robot,"phone003");
-        App快手极速.handle(robot,"phone003");*/
+        App快手极速.handle(robot,"phone003");
         App今日头条.handle(robot,"phone003");
         App趣头条.handle(robot,"phone003");
         AppQQ阅读.handle(robot,"phone003");

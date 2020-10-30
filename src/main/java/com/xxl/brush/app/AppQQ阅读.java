@@ -86,6 +86,7 @@ public class AppQQ阅读 {
                 wl.click();
             }catch (Exception e ){}
 
+            robot.delay(2000);
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看小视频再领\")");
             wl1.click();
             robot.delay(32000);
