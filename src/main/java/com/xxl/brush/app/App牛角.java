@@ -3,7 +3,6 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -18,8 +17,8 @@ import java.awt.*;
 
 
 
-public class App牛角小说 {
-    private static Logger log = LoggerFactory.getLogger(App牛角小说.class);
+public class App牛角 {
+    private static Logger log = LoggerFactory.getLogger(App牛角.class);
 
 
     /**

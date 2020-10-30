@@ -12,14 +12,14 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 
 /**
- * todo App火山小说
+ * todo App米读小说
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App火山小说 {
-    private static Logger log = LoggerFactory.getLogger(App火山小说.class);
+public class App米读 {
+    private static Logger log = LoggerFactory.getLogger(App米读.class);
 
 
     /**
@@ -28,35 +28,22 @@ public class App火山小说 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************火山小说操作********************************************");
+        log.info("********************************米读小说操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup火山小说);
+        AdbTools.startup(robot, androidId, AppConstants.startup米读);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书架\")");
-            wl.click();
-        }catch (Exception e){
-
-        }
-        handle8(robot,androidId,driver);
-
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"赚钱\")");
-            wl.click();
-        }catch (Exception e){
-
-        }
+        WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
+        wl.click();
 
         handle1(robot,androidId,driver);
-        handle6(robot,androidId,driver);
-        handle10(robot,androidId,driver);
+        handle5(robot,androidId,driver);
 
     }
 
@@ -69,28 +56,21 @@ public class App火山小说 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("火山小说-签到");
+        log.info("米读小说-签到");
         try {
-            WebElement wl =  null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"签到领金币\")");
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"签到领金币\")");
-            }
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement   wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
             wl.click();
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频再领+100金币\")");
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"再领100金币\")");
             wl1.click();
-            robot.delay(59000);
+            robot.delay(32000);
 
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("火山小说-签到异常");
+            log.info("米读小说-签到异常");
         }
     }
 
@@ -127,7 +107,25 @@ public class App火山小说 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("米读小说-看小说");
+        try {
+            robot.delay(1000);
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"全部\")");
+            wl.click();
+            int xx = RandomTools.init(10);
+            for(int x=0;x<xx;x++){
+                AdbTools.process(robot, AdbTools.down(androidId));
+            }
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1500)));
 
+            for(int i=0;i<60;i++) {
+                robot.delay(RandomTools.init(6000));
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(140)));
+            }
+
+        }catch (Exception e){
+            log.info("米读小说-看小说异常");
+        }
     }
 
 
@@ -136,21 +134,7 @@ public class App火山小说 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("火山小说-看广告");
-        try{
-            robot.delay(1000);
 
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频\")");
-            wl2.click();
-            robot.delay(59000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("火山小说-看广告异常");
-        }
 
     }
 
@@ -168,34 +152,7 @@ public class App火山小说 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("火山小说-红包");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取\"))");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取\"))");
-            }
-            wl2.click();
-            robot.delay(1000);
 
-            try {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"金币翻倍\"))");
-                wl3.click();
-                AdbTools.process(robot, operateBack);
-            }catch (Exception e){
-
-            }
-
-
-        }catch (Exception e){
-            log.info("火山小说-红包异常");
-        }
     }
 
 
@@ -214,23 +171,7 @@ public class App火山小说 {
      * @param robot
      */
     public static void handle10(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("火山小说-开宝箱");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去抽奖\")");
-            wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"抽奖\")");
-            wl3.click();
-            robot.delay(59000);
-
-            AdbTools.process(robot, operateBack);
-
-            robot.delay(6000);
-        }catch (Exception e){
-            log.info("火山小说-开宝箱异常");
-        }
     }
 
 
@@ -247,6 +188,7 @@ public class App火山小说 {
      * @param robot
      */
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver){
+
 
     }
 
@@ -281,6 +223,7 @@ public class App火山小说 {
      * @param robot
      */
     public static void handle16(Robot robot,String androidId,  AndroidDriver driver){
+
 
     }
 

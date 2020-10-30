@@ -18,8 +18,8 @@ import java.awt.*;
 
 
 
-public class App喜马拉雅小说 {
-    private static Logger log = LoggerFactory.getLogger(App喜马拉雅小说.class);
+public class App喜马拉雅 {
+    private static Logger log = LoggerFactory.getLogger(App喜马拉雅.class);
 
 
     /**

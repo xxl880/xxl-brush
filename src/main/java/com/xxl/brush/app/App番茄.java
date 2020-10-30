@@ -3,7 +3,6 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -12,14 +11,14 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 
 /**
- * todo AppApp必看小说
+ * todo App番茄小说
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App必看小说 {
-    private static Logger log = LoggerFactory.getLogger(App必看小说.class);
+public class App番茄 {
+    private static Logger log = LoggerFactory.getLogger(App番茄.class);
 
 
     /**
@@ -28,30 +27,29 @@ public class App必看小说 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************App必看小说操作********************************************");
+        log.info("********************************番茄小说操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup必看);
+        AdbTools.startup(robot, androidId, AppConstants.startup番茄);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书城\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.RadioButton\").text(\"福利\")");
+            wl.click();
         }catch (Exception e){
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
         }
 
         handle1(robot,androidId,driver);
-
-        handle9(robot,androidId,driver);
         handle6(robot,androidId,driver);
-
+        handle9(robot,androidId,driver);
         handle5(robot,androidId,driver);
+
 
     }
 
@@ -64,28 +62,29 @@ public class App必看小说 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("App必看小说-签到");
+        log.info("番茄小说-签到");
         try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             WebElement wl =  null;
-            try {
+         /*   try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"连续签到30天可获得21648金币\")");
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"连续签到30天可获得21648金币\")");
             }
-            wl.click();
+            wl.click();*/
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
-            wl1.click();
-            robot.delay(32000);
+          /*  WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/anc\")");
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            robot.delay(32000);*/
+           // AdbTools.process(robot, operateBack);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("App必看小说-签到异常");
+            log.info("番茄小说-签到异常");
         }
     }
 
@@ -122,40 +121,29 @@ public class App必看小说 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("必看小说-看小说");
+        log.info("番茄小说-去书城");
         try{
             robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去阅读\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去阅读\")");
-            }
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.RadioButton\") .text(\"书城\")");
             wl2.click();
 
-            robot.delay(1000);
-            AdbTools.process(robot, AdbTools.downPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"立即阅读\")");
-            wl3.click();
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(800), String.valueOf(1000)));
 
-            for(int i=0;i<60;i++) {
-                robot.delay(RandomTools.init(6000));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(140)));
-            }
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/aq_\")");
+            wl4.click();
 
+            WebElement wl46 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/aot\")");
+            wl46.click();
+
+            WebElement wl45 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"微信\")");
+            wl45.click();
 
         }catch (Exception e){
-            log.info("必看小说-看小说异常");
+            log.info("番茄小说-去书城异常");
         }
-
     }
 
 
@@ -164,21 +152,26 @@ public class App必看小说 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("App必看小说-看广告");
+        log.info("番茄小说-看广告");
         try{
             robot.delay(1000);
-
             AdbTools.process(robot, AdbTools.upPage(androidId));
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"视频赚\")");
+            AdbTools.process(robot, AdbTools.down(androidId));
+            AdbTools.process(robot, AdbTools.down(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"立即观看\")");
             wl2.click();
-
             robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/tt_video_ad_close_layout\")");
+                wl4.click();
+            }catch (Exception e){
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                AdbTools.process(robot, operateBack);
+            }
         }catch (Exception e){
-            log.info("App必看小说-看广告异常");
+            log.info("番茄小说-看广告异常");
         }
 
     }
@@ -207,20 +200,29 @@ public class App必看小说 {
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("App必看小说-开宝箱");
+        log.info("番茄小说-开宝箱");
         try {
             robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"开宝箱\")");
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
             wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"看广告\")");
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"看视频再领\")");
             wl3.click();
-            robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
+            robot.delay(59000);
+
+            try {
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/tt_video_ad_close_layout\")");
+                wl4.click();
+            }catch (Exception e){
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                AdbTools.process(robot, operateBack);
+            }
         }catch (Exception e){
-            log.info("App必看小说-开宝箱异常");
+            log.info("番茄小说-开宝箱异常");
         }
     }
 
@@ -230,22 +232,6 @@ public class App必看小说 {
      * @param robot
      */
     public static void handle10(Robot robot,String androidId,  AndroidDriver driver){
-/*        log.info("必看小说-抽奖");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"幸运大转盘\")");
-            wl2.click();
-
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl3.getLocation().getY() + wl3.getLocation().getY())));
-
-
-        }catch (Exception e){
-            log.info("必看小说-抽奖异常");
-        }*/
 
     }
 
