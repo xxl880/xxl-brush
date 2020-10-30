@@ -8,10 +8,8 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
-import java.util.List;
 
 /**
  * todo App微鲤看看新闻
@@ -20,8 +18,8 @@ import java.util.List;
 
 
 
-public class App微鲤看看新闻 {
-    private static Logger log = LoggerFactory.getLogger(App微鲤看看新闻.class);
+public class App微鲤看看 {
+    private static Logger log = LoggerFactory.getLogger(App微鲤看看.class);
 
 
     /**

@@ -47,13 +47,13 @@ public class AppController {
         App必看小说.handle(robot,"phone003");
         App牛角小说.handle(robot,"phone003");
         App2345浏览器.handle(robot,"phone003");
-        App刷宝视频.handle(robot,"phone003");
-        App小吃货视频.handle(robot,"phone003");
-        App火火视频.handle(robot,"phone003");
-        App红包视频.handle(robot,"phone003");
-        App彩蛋视频.handle(robot,"phone003");
-        App热火视频.handle(robot,"phone003");
-        App长豆视频.handle(robot,"phone003");
+        App刷宝.handle(robot,"phone003");
+        App小吃货.handle(robot,"phone003");
+        App火火.handle(robot,"phone003");
+        App红包.handle(robot,"phone003");
+        App彩蛋.handle(robot,"phone003");
+        App热火.handle(robot,"phone003");
+        App长豆.handle(robot,"phone003");
 
 
 

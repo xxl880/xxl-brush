@@ -1,4 +1,4 @@
-package com.xxl.brush.app.news;
+package com.xxl.brush.app.medias;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
@@ -8,20 +8,18 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
-import java.util.List;
 
 /**
- * todo App有料看看新闻
+ * todo App彩蛋视频
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App有料看看新闻 {
-    private static Logger log = LoggerFactory.getLogger(App有料看看新闻.class);
+public class App彩蛋 {
+    private static Logger log = LoggerFactory.getLogger(App彩蛋.class);
 
 
     /**
@@ -30,20 +28,25 @@ public class App有料看看新闻 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************有料看看操作********************************************");
+        log.info("********************************彩蛋操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup有料看看);
+        AdbTools.startup(robot, androidId, AppConstants.startup彩蛋);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        handle1(robot,androidId,driver);
-        handle4(robot,androidId,driver);
+        AdbTools.clear(driver);
         handle2(robot,androidId,driver);
+
+         try {
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));
+        }catch (Exception e){  }
+        handle1(robot,androidId,driver);
 
     }
 
@@ -56,26 +59,30 @@ public class App有料看看新闻 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       log.info("有料看看-签到");
+      log.info("彩蛋-签到");
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"资产\")");
-            wl.click();
+            WebElement wl =  null;
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
+            }
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到\")");
+
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看视频再赚\")");
             wl1.click();
-            robot.delay(2000);
-
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.youliao.topic:id/button\")");
-            wl2.click();
             robot.delay(32000);
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.youliao.topic:id/tt_video_ad_close_layout\")");
-            wl3.click();
 
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("有料看看-签到异常");
+            log.info("彩蛋-签到异常");
         }
     }
 
@@ -85,15 +92,13 @@ public class App有料看看新闻 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("有料看看-看视频");
+        log.info("彩蛋-看视频");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
             wl1.click();
-
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
 
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
@@ -109,7 +114,7 @@ public class App有料看看新闻 {
                 }
             }
         }catch (Exception e){
-            log.info("有料看看-看视频异常");
+            log.info("彩蛋-看视频异常");
         }
     }
 
@@ -128,25 +133,7 @@ public class App有料看看新闻 {
      * @param robot
      */
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("有料看看-看新闻");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            int x = RandomTools.init(8);
-            for (int a = 0; a < x; a++) {
-                AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
-                for(int i=0;i<6;i++) {
-                    robot.delay(RandomTools.init(15000));
-                    AdbTools.process(robot, AdbTools.down(androidId));
-                }
-                AdbTools.process(robot, operateBack);
-            }
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("有料看看-看新闻异常");
-        }
     }
 
 
@@ -165,8 +152,8 @@ public class App有料看看新闻 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
 
-
     }
+
 
 
 

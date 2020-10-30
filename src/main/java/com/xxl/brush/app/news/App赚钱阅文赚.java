@@ -3,15 +3,12 @@ package com.xxl.brush.app.news;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
-import java.util.List;
 
 /**
  * todo App赚钱阅文赚新闻
@@ -20,8 +17,8 @@ import java.util.List;
 
 
 
-public class App赚钱阅文赚新闻 {
-    private static Logger log = LoggerFactory.getLogger(App赚钱阅文赚新闻.class);
+public class App赚钱阅文赚 {
+    private static Logger log = LoggerFactory.getLogger(App赚钱阅文赚.class);
 
 
     /**

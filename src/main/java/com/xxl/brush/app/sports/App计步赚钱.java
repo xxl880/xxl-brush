@@ -3,25 +3,22 @@ package com.xxl.brush.app.sports;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
-import java.util.List;
 
 /**
- * todo App走路赚钱运动
+ * todo App计步赚钱运动
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App走路赚钱运动 {
-    private static Logger log = LoggerFactory.getLogger(App走路赚钱运动.class);
+public class App计步赚钱 {
+    private static Logger log = LoggerFactory.getLogger(App计步赚钱.class);
 
 
     /**
@@ -30,13 +27,13 @@ public class App走路赚钱运动 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************走路赚钱操作********************************************");
+        log.info("********************************计步赚钱操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup走路赚钱);
+        AdbTools.startup(robot, androidId, AppConstants.startup计步赚钱);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
@@ -47,7 +44,7 @@ public class App走路赚钱运动 {
         }catch (Exception e){  }
         handle1(robot,androidId,driver);
 
-         try {
+        try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"赚金币\")");
             wl.click();
         }catch (Exception e){}
@@ -65,7 +62,7 @@ public class App走路赚钱运动 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("走路赚钱-签到");
+        log.info("计步赚钱-签到");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -83,7 +80,7 @@ public class App走路赚钱运动 {
             quit(robot,androidId,driver);
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("走路赚钱-签到异常");
+            log.info("计步赚钱-签到异常");
         }
     }
 
@@ -129,7 +126,7 @@ public class App走路赚钱运动 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("走路赚钱-看广告");
+        log.info("计步赚钱-看广告");
         try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -145,7 +142,7 @@ public class App走路赚钱运动 {
             }catch (Exception e){}
             quit(robot,androidId,driver);
         }catch (Exception e){
-            log.info("走路赚钱-看广告异常");
+            log.info("计步赚钱-看广告异常");
         }
 
     }
@@ -295,10 +292,10 @@ public class App走路赚钱运动 {
      * @param robot
      */
     public static void quit(Robot robot,String androidId,  AndroidDriver driver){
-          try{
-              WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.quzhuan.app:id/tt_video_ad_close\")");
-              wl1.click();
-          }catch (Exception e){}
+        try{
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.quzhuan.app:id/tt_video_ad_close\")");
+            wl1.click();
+        }catch (Exception e){}
 
         try{
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.quzhuan.app:id/lx_close_end\")");

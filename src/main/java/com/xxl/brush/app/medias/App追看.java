@@ -8,7 +8,6 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
 import java.util.List;
@@ -20,8 +19,8 @@ import java.util.List;
 
 
 
-public class App追看视频 {
-    private static Logger log = LoggerFactory.getLogger(App追看视频.class);
+public class App追看 {
+    private static Logger log = LoggerFactory.getLogger(App追看.class);
 
 
     /**

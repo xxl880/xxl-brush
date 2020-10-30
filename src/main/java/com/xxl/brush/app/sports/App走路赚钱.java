@@ -1,27 +1,24 @@
-package com.xxl.brush.app.medias;
+package com.xxl.brush.app.sports;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
-import java.util.List;
 
 /**
- * todo App彩蛋视频
+ * todo App走路赚钱运动
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App彩蛋视频 {
-    private static Logger log = LoggerFactory.getLogger(App彩蛋视频.class);
+public class App走路赚钱 {
+    private static Logger log = LoggerFactory.getLogger(App走路赚钱.class);
 
 
     /**
@@ -30,25 +27,29 @@ public class App彩蛋视频 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************彩蛋操作********************************************");
+        log.info("********************************走路赚钱操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup彩蛋);
+        AdbTools.startup(robot, androidId, AppConstants.startup走路赚钱);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        AdbTools.clear(driver);
-        handle2(robot,androidId,driver);
-
-         try {
+        try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));
+            wl.click();
         }catch (Exception e){  }
         handle1(robot,androidId,driver);
+
+         try {
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"赚金币\")");
+            wl.click();
+        }catch (Exception e){}
+        handle6(robot,androidId,driver);
+        handle17(robot,androidId,driver);
 
     }
 
@@ -61,30 +62,25 @@ public class App彩蛋视频 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-      log.info("彩蛋-签到");
+        log.info("走路赚钱-签到");
         try {
-            WebElement wl =  null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-                wl.click();
-            }
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement  wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到\")");
+            wl.click();
+            robot.delay(2000);
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看视频再赚\")");
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
             wl1.click();
             robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            quit(robot,androidId,driver);
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("彩蛋-签到异常");
+            log.info("走路赚钱-签到异常");
         }
     }
 
@@ -94,30 +90,7 @@ public class App彩蛋视频 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("彩蛋-看视频");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            wl1.click();
-
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
-                wl2.click();
-            }catch (Exception e){}
-
-            int x = RandomTools.init(8);
-            for (int a = 0; a < x; a++) {
-                robot.delay(RandomTools.init(15000));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                if (a == RandomTools.init(6)) {
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
-                }
-            }
-        }catch (Exception e){
-            log.info("彩蛋-看视频异常");
-        }
     }
 
 
@@ -153,11 +126,26 @@ public class App彩蛋视频 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("走路赚钱-看广告");
+        try{
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            try{
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取奖励\")");
+                wl1.click();
+            }catch (Exception e){}
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看视频广告，领取金币\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(930), String.valueOf(wl.getLocation().getY())));
+                robot.delay(32000);
+            }catch (Exception e){}
+            quit(robot,androidId,driver);
+        }catch (Exception e){
+            log.info("走路赚钱-看广告异常");
+        }
 
     }
-
-
-
 
 
     /**
@@ -255,7 +243,30 @@ public class App彩蛋视频 {
      * @param robot
      */
     public static void handle17(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("走种赚钱-分享");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
+            try{
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取奖励\")");
+                wl1.click();
+            }catch (Exception e){}
+            try {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"分享成功后返回app得金币\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(930), String.valueOf(wl2.getLocation().getY())));
+
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"发送我的邀请\")");
+                wl3.click();
+                robot.delay(2000);
+                AdbTools.process(robot, operateBack);
+            }catch (Exception e){}
+
+            quit(robot,androidId,driver);
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("走种赚钱-分享异常");
+        }
     }
 
     /**
@@ -276,6 +287,22 @@ public class App彩蛋视频 {
 
 
 
+    /**
+     * todo 20.退出
+     * @param robot
+     */
+    public static void quit(Robot robot,String androidId,  AndroidDriver driver){
+          try{
+              WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.quzhuan.app:id/tt_video_ad_close\")");
+              wl1.click();
+          }catch (Exception e){}
+
+        try{
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.quzhuan.app:id/lx_close_end\")");
+            wl1.click();
+        }catch (Exception e){}
+
+    }
 
 
 /*

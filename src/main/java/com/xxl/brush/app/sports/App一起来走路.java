@@ -3,25 +3,23 @@ package com.xxl.brush.app.sports;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
 import java.util.List;
 
 /**
- * todo App多宝运动
+ * todo App一起来走路运动
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App多宝运动 {
-    private static Logger log = LoggerFactory.getLogger(App多宝运动.class);
+public class App一起来走路 {
+    private static Logger log = LoggerFactory.getLogger(App一起来走路.class);
 
 
     /**
@@ -30,39 +28,36 @@ public class App多宝运动 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************多宝操作********************************************");
+        log.info("********************************一起来走路操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup多宝);
+        AdbTools.startup(robot, androidId, AppConstants.startup一起来走路);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每日打卡\")");
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"走走\")");
             wl.click();
-        }catch (Exception e){}
+        }catch (Exception e){ }
         handle1(robot,androidId,driver);
+        handle6(robot,androidId,driver);
+        handle8(robot,androidId,driver);
+        handle12(robot,androidId,driver);
         handle21(robot,androidId,driver);
 
          try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"存钱罐\")");
-            wl.click();
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
+            wl1.click();
         }catch (Exception e){ }
-        handle9(robot,androidId,driver);
-
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"走路赚\")");
-            wl.click();
-        }catch (Exception e){ }
-        handle8(robot,androidId,driver);
-        handle9(robot,androidId,driver);
-        handle12(robot,androidId,driver);
-        handle19(robot,androidId,driver);
         handle22(robot,androidId,driver);
+
+
+
+
     }
 
 
@@ -74,7 +69,7 @@ public class App多宝运动 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       log.info("多宝-签到");
+       log.info("一起来走路-签到");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -83,23 +78,21 @@ public class App多宝运动 {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即打卡\")");
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到\")");
                 wl.click();
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即打卡\")");
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到\")");
                 wl.click();
             }
-            robot.delay(1000);
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"收下\")");
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"开心收下\")");
             wl1.click();
-            robot.delay(32000);
-            quit(robot,androidId,driver);
+
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("多宝-签到异常");
+            log.info("一起来走路-签到异常");
         }
     }
 
@@ -145,9 +138,25 @@ public class App多宝运动 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-
+        log.info("一起来走路-看广告");
+        try{
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement  wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即领取\")");
+            wl1.click();
+            robot.delay(36000);
+           quit(robot,androidId,driver);
+        }catch (Exception e){
+            log.info("一起来走路-看广告异常");
+        }
 
     }
+
+
+
+
 
 
     /**
@@ -164,54 +173,55 @@ public class App多宝运动 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("多宝-领红包");
+        log.info("一起来走路-领红包");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/tv_water\")");
-            for(WebElement wl:wls){
-                wl.click();
-                robot.delay(3000);
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"翻倍\")");
+            try {
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.yx.yqlzl:id/a8s\")");
                 wl1.click();
-                robot.delay(32000);
+                robot.delay(2000);
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"奖励翻倍\")");
+                wl2.click();
+                robot.delay(59000);
                 quit(robot,androidId,driver);
-            }
+            }catch (Exception e){}
+
+            try {
+                WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.yx.yqlzl:id/a8r\")");
+                wl11.click();
+                robot.delay(2000);
+                WebElement wl21 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"奖励翻倍\")");
+                wl21.click();
+                robot.delay(59000);
+                quit(robot,androidId,driver);
+            }catch (Exception e){}
+
+            try {
+                WebElement wl12 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.yx.yqlzl:id/a8t\")");
+                wl12.click();
+                robot.delay(2000);
+                WebElement wl22 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"奖励翻倍\")");
+                wl22.click();
+                robot.delay(59000);
+                quit(robot,androidId,driver);
+            }catch (Exception e){}
 
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("多宝-领红包异常");
+            log.info("一起来走路-领红包异常");
         }
     }
 
 
 
     /**
-     * todo 9.开宝箱-存钱罐
+     * todo 9.开宝箱
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("多宝-存钱罐");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
 
-            List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/tv_water\")");
-            for(WebElement wl:wls){
-                wl.click();
-                robot.delay(3000);
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"收下\")");
-                wl1.click();
-                robot.delay(32000);
-                quit(robot,androidId,driver);
-            }
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("多宝-存钱罐异常");
-        }
     }
 
 
@@ -237,25 +247,21 @@ public class App多宝运动 {
      * @param robot
      */
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("多宝-走路");
+        log.info("一起来走路-走路");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, AdbTools.upPage(androidId));
             AdbTools.process(robot, AdbTools.upPage(androidId));
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"兑换金币\")");
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取金币\")");
             wl1.click();
 
-            robot.delay(2000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"翻倍\")");
-            wl2.click();
-            robot.delay(32000);
             quit(robot,androidId,driver);
-
             AdbTools.process(robot, operateBack);
+
         }catch (Exception e){
-            log.info("多宝-走路异常");
+            log.info("一起来走路-走路异常");
         }
 
     }
@@ -317,103 +323,84 @@ public class App多宝运动 {
      * @param robot
      */
     public static void handle19(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("多宝-刮奖");
-        try{
-            robot.delay(1000);
-            List<WebElement> wls = null ;
-            AdbTools.process(robot, AdbTools.down(androidId));
-            wls = driver.findElementsByAndroidUIAutomator("new UiSelector().resourceId(\"om.lotus.town.news:id/tv_reward\")");
-            if(CollectionUtils.isEmpty(wls)){
-                AdbTools.process(robot, AdbTools.down(androidId));
-                wls = driver.findElementsByAndroidUIAutomator("new UiSelector().resourceId(\"om.lotus.town.news:id/tv_reward\")");
-            }
-            for(WebElement wl:wls){
-                robot.delay(2000);
-                wl.click();
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/gv_card\")");
-                AdbTools.process(robot, AdbTools.tapDraw(androidId, String.valueOf(wl2.getLocation().getX()+20), String.valueOf(wl2.getLocation().getY()+20)));
-                robot.delay(5000);
-                try {
-                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/iv_type\")");
-                    wl3.click();
-                    robot.delay(32000);
-                }catch (Exception e){}
-                quit(robot,androidId,driver);
-            }
-        }catch (Exception e){
-            log.info("多宝-刮奖异常");
-        }
-    }
 
+    }
 
     /**
      * todo 20.退出
      * @param robot
      */
     public static void quit(Robot robot,String androidId,  AndroidDriver driver){
-       try{
-           robot.delay(1000);
-           WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/tt_video_ad_close_layout\")");
-           wl2.click();
-       }catch (Exception e){ }
-
-        try{
+        try {
             robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/iv_close\")");
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").fromParent(className(\"android.widget.TextView\"))");
             wl2.click();
-        }catch (Exception e){ }
+        }catch (Exception e){}
+
+        try {
+            robot.delay(1000);
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.yx.yqlzl:id/a8u\")");
+            wl3.click();
+        }catch (Exception e){}
 
     }
 
 
 
     /**
-     * todo 21.打卡
+     * todo 21.分享
      * @param robot
      */
     public static void handle21(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("多宝-打卡");
+        log.info("一起来走路-分享");
         try{
             robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取\")");
-            wl2.click();
-            robot.delay(2000);
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"收下\")");
-            wl1.click();
-            robot.delay(32000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            WebElement wl2 = null;
+            try {
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"分享到朋友圈可领取奖励\").fromParent(text(\"立即领取\"))");
+                wl2.click();
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"分享到朋友圈可领取奖励\").fromParent(text(\"立即领取\"))");
+                wl2.click();
+            }
             quit(robot,androidId,driver);
 
+            AdbTools.process(robot, operateBack);
+
         }catch (Exception e){
-            log.info("多宝-打卡异常");
+            log.info("一起来走路-分享出错");
         }
     }
 
 
 
+
     /**
-     * todo 22.礼包
+     * todo 22.获取红心
      * @param robot
      */
     public static void handle22(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("多宝-礼包");
-        try {
+        log.info("一起来走路-获取红心");
+        try{
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
 
-            List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/tv_have_receive\")");
+            List<WebElement> wls = driver.findElementsByAndroidUIAutomator("className(\"android.view.View\").text(\"立即领取\")");
             for(WebElement wl:wls){
                 wl.click();
-                robot.delay(3000);
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"收下\")");
-                wl1.click();
-                robot.delay(32000);
+                robot.delay(45000);
                 quit(robot,androidId,driver);
             }
+
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("多宝-礼包异常");
+            log.info("一起来走路-获取红心出错");
         }
     }
 

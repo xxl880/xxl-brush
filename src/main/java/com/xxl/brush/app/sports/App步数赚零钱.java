@@ -3,12 +3,10 @@ package com.xxl.brush.app.sports;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
 import java.util.List;
@@ -20,8 +18,8 @@ import java.util.List;
 
 
 
-public class App步数赚零钱运动 {
-    private static Logger log = LoggerFactory.getLogger(App步数赚零钱运动.class);
+public class App步数赚零钱 {
+    private static Logger log = LoggerFactory.getLogger(App步数赚零钱.class);
 
 
     /**

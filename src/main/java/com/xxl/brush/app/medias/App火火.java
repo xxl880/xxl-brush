@@ -8,20 +8,18 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
-import java.util.List;
 
 /**
- * todo App抖音
+ * todo App火火
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App快逗视频 {
-    private static Logger log = LoggerFactory.getLogger(App快逗视频.class);
+public class App火火 {
+    private static Logger log = LoggerFactory.getLogger(App火火.class);
 
 
     /**
@@ -30,26 +28,26 @@ public class App快逗视频 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************快逗操作********************************************");
+        log.info("********************************火火操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup快逗);
+        AdbTools.startup(robot, androidId, AppConstants.startup火火视频);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-        handle2(robot,androidId,driver);
-
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.video.kd:id/action_bar_root\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(549), String.valueOf(wl.getLocation().getY())));
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"看视频\")");
+            wl.click();
         }catch (Exception e){ }
-
-
         handle1(robot,androidId,driver);
+        handle8(robot,androidId,driver);
+
+        handle2(robot,androidId,driver);
+        handle3(robot,androidId,driver);
 
     }
 
@@ -62,18 +60,37 @@ public class App快逗视频 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("快逗-签到");
+        log.info("火火-签到");
         try {
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
-            wl.click();
-            robot.delay(59000);
+            WebElement wl =  null;
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
+            }
+
+
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"金币翻倍\")");
+            wl1.click();
+            robot.delay(32000);
+
+            try{
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"再接再厉，赚更多哦~\")");
+                wl2.clear();
+            }catch (Exception e){
+
+            }
 
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("快逗-签到异常");
+            log.info("火火-签到异常");
         }
     }
 
@@ -83,19 +100,38 @@ public class App快逗视频 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("快逗-看视频");
+        log.info("火火-看视频");
         try {
             robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+            wl1.click();
+
+            try {
+                WebElement wl11 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"金蛋大奖\")");
+                wl11.click();
+
+                WebElement wl111 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"看视频再送\")");
+                wl111.click();
+                robot.delay(32000);
+            }catch (Exception e){}
+            try {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
+                wl2.click();
+            }catch (Exception e){}
+
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
                 if (a == RandomTools.init(6)) {
                     AdbTools.process(robot, AdbTools.upPage(androidId));
                 }
             }
         }catch (Exception e){
-            log.info("快逗-看视频异常");
+            log.info("火火-看视频异常");
         }
     }
 
@@ -105,7 +141,30 @@ public class App快逗视频 {
      * @param robot
      */
     public static void handle3(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("火火-看小视频");
+        try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
+            wl1.click();
+
+            try {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
+                wl2.click();
+            }catch (Exception e){}
+
+            int x = RandomTools.init(8);
+            for (int a = 0; a < x; a++) {
+                robot.delay(RandomTools.init(15000));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                if (a == RandomTools.init(6)) {
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                }
+            }
+        }catch (Exception e){
+            log.info("火火-看小视频异常");
+        }
     }
 
 
@@ -136,9 +195,6 @@ public class App快逗视频 {
     }
 
 
-
-
-
     /**
      * todo 7.玩游戏
      * @param robot
@@ -153,23 +209,19 @@ public class App快逗视频 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("快逗-领红包");
+        log.info("火火-领红包");
         try {
             robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(130)));
-            robot.delay(2000);
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(160), String.valueOf(350)));
-            robot.delay(1000);
-
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"480\")");
+            wl1.click();
             robot.delay(32000);
 
-            AdbTools.process(robot, operateBack);
-
         }catch (Exception e){
-            log.info("快逗-领红包异常");
+            log.info("火火-领红包异常");
         }
     }
 

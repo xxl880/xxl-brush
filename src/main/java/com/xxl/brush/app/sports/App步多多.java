@@ -3,25 +3,22 @@ package com.xxl.brush.app.sports;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
-import java.util.List;
 
 /**
- * todo App走走赚运动
+ * todo App步多多运动
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App走走赚运动 {
-    private static Logger log = LoggerFactory.getLogger(App走走赚运动.class);
+public class App步多多 {
+    private static Logger log = LoggerFactory.getLogger(App步多多.class);
 
 
     /**
@@ -30,31 +27,35 @@ public class App走走赚运动 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************走走赚操作********************************************");
+        log.info("********************************步多多操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup走走赚);
+        AdbTools.startup(robot, androidId, AppConstants.startup步多多);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"赚钱\")");
-            wl.click();
-        }catch (Exception e){ }
-        handle1(robot,androidId,driver);
-        handle6(robot,androidId,driver);
-        handle9(robot,androidId,driver);
-        handle10(robot,androidId,driver);
-        handle12(robot,androidId,driver);
-         try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"运动\")");
             wl.click();
-        }catch (Exception e){  }
+        }catch (Exception e){   }
+        handle12(robot,androidId,driver);
         handle8(robot,androidId,driver);
+
+        try {
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"步友圈\")");
+            wl2.click();
+        }catch (Exception e){   }
+        handle1(robot,androidId,driver);
+
+         try {
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"赚赚\")");
+            wl1.click();
+        }catch (Exception e){  }
+        handle9(robot,androidId,driver);
 
     }
 
@@ -67,31 +68,33 @@ public class App走走赚运动 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-       log.info("走走赚-签到");
+       log.info("步多多-签到");
         try {
             robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"签到\")");
                 wl.click();
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"签到\")");
                 wl.click();
             }
 
-            robot.delay(2000);
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"金币翻倍\")");
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到翻倍\")");
             wl1.click();
             robot.delay(32000);
 
             quit(robot,androidId,driver);
 
+            AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("走走赚-签到异常");
+            log.info("步多多-签到异常");
         }
     }
 
@@ -137,21 +140,10 @@ public class App走走赚运动 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("走走赚-看广告");
-        try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"去看看\")");
-            robot.delay(32000);
-            quit(robot,androidId,driver);
-
-        }catch (Exception e){
-            log.info("走走赚-看广告异常");
-        }
 
     }
+
 
 
 
@@ -169,38 +161,27 @@ public class App走走赚运动 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("走走赚-领红包");
+        log.info("步多多-领红包");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            AdbTools.process(robot, AdbTools.downPage(androidId));
             try {
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.wind.king:id/iv_fg_helth_gold1\")");
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qsmy.walkmonkey:id/oi\")");
                 wl1.click();
-                robot.delay(2000);
-                quit(robot, androidId, driver);
+                quit(robot,androidId,driver);
             }catch (Exception e){}
 
             try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.wind.king:id/iv_fg_helth_gold2\")");
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qsmy.walkmonkey:id/al6\")");
                 wl2.click();
-                robot.delay(2000);
-                quit(robot, androidId, driver);
-            }catch (Exception e){}
-
-            try {
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.wind.king:id/iv_fg_helth_gold3\")");
-                wl3.click();
-                robot.delay(2000);
-                quit(robot, androidId, driver);
+                quit(robot,androidId,driver);
             }catch (Exception e){}
 
             AdbTools.process(robot, operateBack);
 
         }catch (Exception e){
-            log.info("走走赚-领红包异常");
+            log.info("步多多-领红包异常");
         }
     }
 
@@ -211,27 +192,18 @@ public class App走走赚运动 {
      * @param robot
      */
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("走走赚-开宝箱");
+        log.info("步多多-开宝箱");
         try {
             robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"开宝箱\")");
-            wl1.click();
-            robot.delay(2000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"开宝箱\")");
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"可领取\")");
             wl2.click();
             robot.delay(32000);
             quit(robot,androidId,driver);
-
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
-
         }catch (Exception e){
-            log.info("走走赚-开宝箱异常");
+            log.info("步多多-开宝箱异常");
         }
-
     }
 
 
@@ -240,26 +212,7 @@ public class App走走赚运动 {
      * @param robot
      */
     public static void handle10(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("走走赚-抽奖");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"立即抽奖\")");
-            wl1.click();
-
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("resourceId(\"com.wind.king:id/wheelSurfView_ac\").fromParent(className(\"android.widget.ImageView\"))");
-            wl2.click();
-            robot.delay(32000);
-            quit(robot,androidId,driver);
-
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("走走赚-抽奖异常");
-        }
     }
 
 
@@ -276,24 +229,21 @@ public class App走走赚运动 {
      * @param robot
      */
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("走走赚-走路");
+        log.info("步多多-走路");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"立即兑换\")");
-            wl1.click();
-
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领取 金币\")");
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"领取\")");
             wl2.click();
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"金币翻倍\")");
+            wl3.click();
+            robot.delay(32000);
             quit(robot,androidId,driver);
 
             AdbTools.process(robot, operateBack);
-
         }catch (Exception e){
-            log.info("走走赚-走路异常");
+            log.info("步多多-走路异常");
         }
 
     }
@@ -359,30 +309,37 @@ public class App走走赚运动 {
     }
 
 
+
     /**
      * todo 20.退出
      * @param robot
      */
     public static void quit(Robot robot,String androidId,  AndroidDriver driver){
-        try {
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.wind.king:id/tt_video_ad_close_layout\")");
+        try{
+            robot.delay(1000);
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qsmy.walkmonkey:id/qt\")");
+            wl1.click();
+        }catch (Exception e){}
+
+        try{
+            robot.delay(1000);
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qsmy.walkmonkey:id/azv\")");
             wl2.click();
         }catch (Exception e){}
 
-        try {
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.wind.king:id/tv_dialog_coin_ad_double\")");
+        try{
+            robot.delay(1000);
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qsmy.walkmonkey:id/ao\")");
             wl3.click();
         }catch (Exception e){}
 
-        try {
-            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.wind.king:id/tv_dialog_coin_close\")");
-            wl4.click();
+        try{
+            robot.delay(1000);
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qsmy.walkmonkey:id/ao\")");
+            wl3.click();
         }catch (Exception e){}
 
-
     }
-
-
 
 
 /*

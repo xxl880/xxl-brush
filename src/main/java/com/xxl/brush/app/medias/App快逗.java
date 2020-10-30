@@ -1,4 +1,4 @@
-package com.xxl.brush.app.news;
+package com.xxl.brush.app.medias;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
@@ -8,20 +8,18 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
-import java.util.List;
 
 /**
- * todo App悦头条
+ * todo App抖音
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
 
 
-public class App悦头条新闻 {
-    private static Logger log = LoggerFactory.getLogger(App悦头条新闻.class);
+public class App快逗 {
+    private static Logger log = LoggerFactory.getLogger(App快逗.class);
 
 
     /**
@@ -30,26 +28,26 @@ public class App悦头条新闻 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************悦头条操作********************************************");
+        log.info("********************************快逗操作********************************************");
 
         log.info("1.初始化手机");
         String androidId  = AdbTools.initMobile(robot,robotCode);
 
         log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup悦头条);
+        AdbTools.startup(robot, androidId, AppConstants.startup快逗);
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-
         handle2(robot,androidId,driver);
 
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
-            wl.click();
+            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.video.kd:id/action_bar_root\")");
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(549), String.valueOf(wl.getLocation().getY())));
         }catch (Exception e){ }
+
+
         handle1(robot,androidId,driver);
-        handle8(robot,androidId,driver);
 
     }
 
@@ -62,25 +60,18 @@ public class App悦头条新闻 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
-         log.info("悦头条-签到");
+        log.info("快逗-签到");
         try {
-            WebElement wl =  null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
-            }
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
             wl.click();
-            robot.delay(1000);
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"我知道了\")");
-            wl1.click();
+            robot.delay(59000);
 
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, operateBack);
         }catch (Exception e){
-            log.info("悦头条-签到异常");
+            log.info("快逗-签到异常");
         }
     }
 
@@ -90,7 +81,20 @@ public class App悦头条新闻 {
      * @param robot
      */
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
-
+        log.info("快逗-看视频");
+        try {
+            robot.delay(1000);
+            int x = RandomTools.init(8);
+            for (int a = 0; a < x; a++) {
+                robot.delay(RandomTools.init(15000));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                if (a == RandomTools.init(6)) {
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                }
+            }
+        }catch (Exception e){
+            log.info("快逗-看视频异常");
+        }
     }
 
 
@@ -108,28 +112,7 @@ public class App悦头条新闻 {
      * @param robot
      */
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("悦头条-看新闻");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"头条\")");
-            wl.click();
-            int x = RandomTools.init(8);
-            for (int a = 0; a < x; a++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
-                robot.delay(RandomTools.init(15000));
-                AdbTools.process(robot, AdbTools.down(androidId));
-                for (int i=0;i<6;i++) {
-                    robot.delay(RandomTools.init(9000));
-                    AdbTools.process(robot, AdbTools.down(androidId));
-                }
-                AdbTools.process(robot, operateBack);
-            }
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("悦头条-看新闻异常");
-        }
     }
 
 
@@ -148,8 +131,8 @@ public class App悦头条新闻 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
 
-
     }
+
 
 
 
@@ -168,20 +151,23 @@ public class App悦头条新闻 {
      * @param robot
      */
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("悦头条-领红包");
+        log.info("快逗-领红包");
         try {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"立即翻倍\")");
-            wl1.click();
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(130)));
+            robot.delay(2000);
+
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(160), String.valueOf(350)));
+            robot.delay(1000);
 
             robot.delay(32000);
 
             AdbTools.process(robot, operateBack);
 
         }catch (Exception e){
-            log.info("悦头条-领红包异常");
+            log.info("快逗-领红包异常");
         }
     }
 
@@ -201,26 +187,7 @@ public class App悦头条新闻 {
      * @param robot
      */
     public static void handle10(Robot robot,String androidId,  AndroidDriver driver){
-     /*   log.info("悦头条-抽奖");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"可领取\")");
-            wl1.click();
-            robot.delay(2000);
-
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续抽奖\")");
-            wl2.click();
-
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("悦头条-抽奖异常");
-        }*/
     }
 
 
