@@ -3,6 +3,7 @@ package com.xxl.brush.service.impl;
 import com.xxl.brush.app.*;
 import com.xxl.brush.app.medias.*;
 import com.xxl.brush.service.AppService;
+import com.xxl.brush.tools.AppiumTools;
 import lombok.SneakyThrows;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class AppServiceImpl implements AppService {
 	@SneakyThrows
 	@Override
 	public void circulate(String robotCode){
+		AppiumTools.start(robotCode);
 		Robot robot = new Robot();
 
 		App抖音极速.handle(robot,robotCode);
