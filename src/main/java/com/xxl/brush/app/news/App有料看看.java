@@ -39,7 +39,7 @@ public class App有料看看 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
         handle1(robot,androidId,driver);
         handle4(robot,androidId,driver);
         handle2(robot,androidId,driver);

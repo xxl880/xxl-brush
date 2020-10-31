@@ -39,7 +39,7 @@ public class App微鲤看看 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
         try {
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
             wl1.click();

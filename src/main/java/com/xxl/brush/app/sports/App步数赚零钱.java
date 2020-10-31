@@ -39,7 +39,7 @@ public class App步数赚零钱 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
         try {
             clear(robot,androidId,driver);
             WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.szwx.cfbsz:id/id_tab\")");

@@ -39,7 +39,7 @@ public class App必看 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书城\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));

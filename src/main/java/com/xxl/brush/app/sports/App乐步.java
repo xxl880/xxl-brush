@@ -41,7 +41,7 @@ public class App乐步 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
         try {
             WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.jifen.qukan:id/afk\")");
             wl.click();

@@ -40,7 +40,7 @@ public class App抖音火山 {
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-
+            AdbTools.clear(driver);
         AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
 
         handle2(robot, androidId, driver);

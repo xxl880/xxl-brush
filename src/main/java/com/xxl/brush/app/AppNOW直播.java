@@ -39,7 +39,7 @@ public class AppNOW直播 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
             appClear(robot, androidId, driver);
 
             try {

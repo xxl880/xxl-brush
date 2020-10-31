@@ -38,7 +38,7 @@ public class App步多多 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
         try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"运动\")");
             wl.click();

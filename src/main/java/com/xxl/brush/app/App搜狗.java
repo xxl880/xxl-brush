@@ -41,7 +41,7 @@ public class App搜狗 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
          try {
             WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
             wl.click();

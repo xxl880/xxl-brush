@@ -42,7 +42,7 @@ public class App微博 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"首页\")");
                 wl.click();

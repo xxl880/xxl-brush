@@ -42,6 +42,7 @@ public class App2345浏览器 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
 
+            AdbTools.clear(driver);
             appClear(robot, androidId, driver);
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领现金\")");

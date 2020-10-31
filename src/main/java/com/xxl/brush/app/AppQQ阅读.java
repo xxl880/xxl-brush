@@ -39,7 +39,7 @@ public class AppQQ阅读 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书架\")");
                 wl.click();

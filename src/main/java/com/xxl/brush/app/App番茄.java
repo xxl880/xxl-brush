@@ -38,7 +38,7 @@ public class App番茄 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
         try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.RadioButton\").text(\"福利\")");
             wl.click();

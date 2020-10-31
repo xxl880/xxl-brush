@@ -39,7 +39,7 @@ public class App赚钱阅文赚 {
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
 
-
+            AdbTools.clear(driver);
         WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
         wl1.click();
 

@@ -39,7 +39,7 @@ public class App趣故事 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-
+            AdbTools.clear(driver);
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
             wl1.click();
             handle1(robot, androidId, driver);

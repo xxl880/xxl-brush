@@ -45,7 +45,7 @@ public class App抖音极速 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-
+        AdbTools.clear(driver);
         handle2(robot, androidId, driver);
 
          try {
