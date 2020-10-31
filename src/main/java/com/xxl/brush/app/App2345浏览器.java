@@ -30,44 +30,46 @@ public class App2345浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************App2345浏览器操作********************************************");
-
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
-
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup2345);
-
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
-
-        appClear(robot, androidId, driver);
-
-
-
-        WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领现金\")");
-        wl1.click();
-        handle1(robot,androidId,driver);
-        handle21(robot,androidId,driver);
-
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            wl.click();
-        }catch (Exception e){}
-        handle8(robot,androidId,driver);
+            log.info("********************************App2345浏览器操作********************************************");
 
-        wl1.click();
-        handle2(robot,androidId,driver);
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
 
-        wl1.click();
-        handle3(robot,androidId,driver);
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup2345);
 
-        wl1.click();
-        handle4(robot,androidId,driver);
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
 
-        wl1.click();
-        handle5(robot,androidId,driver);
+            appClear(robot, androidId, driver);
 
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"领现金\")");
+            wl1.click();
+            handle1(robot, androidId, driver);
+            handle21(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                wl.click();
+            } catch (Exception e) {
+            }
+            handle8(robot, androidId, driver);
+
+            wl1.click();
+            handle2(robot, androidId, driver);
+
+            wl1.click();
+            handle3(robot, androidId, driver);
+
+            wl1.click();
+            handle4(robot, androidId, driver);
+
+            wl1.click();
+            handle5(robot, androidId, driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

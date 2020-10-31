@@ -28,6 +28,7 @@ public class App点点 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************点点新闻操作********************************************");
 
         log.info("1.初始化手机");
@@ -47,6 +48,7 @@ public class App点点 {
         }catch (Exception e){  }
         handle1(robot,androidId,driver);
         handle41(robot,androidId,driver);
+        }catch (Exception e){}
 
     }
 

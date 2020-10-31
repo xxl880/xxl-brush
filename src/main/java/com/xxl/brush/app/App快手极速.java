@@ -28,31 +28,35 @@ public class App快手极速 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************快手极速操作********************************************");
+        try {
+            log.info("********************************快手极速操作********************************************");
 
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
 
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup快手);
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup快手);
 
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
 
-        AdbTools.clear(driver);
-        handle2(robot, androidId, driver);
+            AdbTools.clear(driver);
+            handle2(robot, androidId, driver);
 
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
-            wl.click();
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+            }
+            handle1(robot, androidId, driver);
+            handle9(robot, androidId, driver);
+            handle6(robot, androidId, driver);
+            handle20(robot, androidId, driver);
+
         }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+            e.printStackTrace();
         }
-        handle1(robot,androidId,driver);
-        handle9(robot,androidId,driver);
-        handle6(robot,androidId,driver);
-        handle20(robot,androidId,driver);
-
     }
 
 

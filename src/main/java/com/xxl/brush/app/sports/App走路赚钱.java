@@ -27,6 +27,7 @@ public class App走路赚钱 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************走路赚钱操作********************************************");
 
         log.info("1.初始化手机");
@@ -50,6 +51,9 @@ public class App走路赚钱 {
         }catch (Exception e){}
         handle6(robot,androidId,driver);
         handle17(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

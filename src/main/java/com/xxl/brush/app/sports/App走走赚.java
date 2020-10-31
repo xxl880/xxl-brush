@@ -27,6 +27,7 @@ public class App走走赚 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************走走赚操作********************************************");
 
         log.info("1.初始化手机");
@@ -52,6 +53,9 @@ public class App走走赚 {
             wl.click();
         }catch (Exception e){  }
         handle8(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

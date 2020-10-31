@@ -27,6 +27,7 @@ public class App步多多 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************步多多操作********************************************");
 
         log.info("1.初始化手机");
@@ -56,6 +57,10 @@ public class App步多多 {
             wl1.click();
         }catch (Exception e){  }
         handle9(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
     }
 

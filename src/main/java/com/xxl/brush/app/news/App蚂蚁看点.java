@@ -28,6 +28,7 @@ public class App蚂蚁看点 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************蚂蚁看点操作********************************************");
 
         log.info("1.初始化手机");
@@ -59,6 +60,9 @@ public class App蚂蚁看点 {
 
         handle8(robot,androidId,driver);
         handle81(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

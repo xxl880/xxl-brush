@@ -28,6 +28,7 @@ public class App一起来走路 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************一起来走路操作********************************************");
 
         log.info("1.初始化手机");
@@ -55,6 +56,9 @@ public class App一起来走路 {
         }catch (Exception e){ }
         handle22(robot,androidId,driver);
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
 

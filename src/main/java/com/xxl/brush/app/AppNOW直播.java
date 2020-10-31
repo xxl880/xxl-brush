@@ -28,34 +28,37 @@ public class AppNOW直播 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************NOW直播操作********************************************");
-
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
-
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startupNOW直播);
-
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
-
-        appClear(robot, androidId, driver);
-
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            wl.click();
+            log.info("********************************NOW直播操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startupNOW直播);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+
+            appClear(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                wl.click();
+            } catch (Exception e) {
+
+            }
+            try {
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tencent.now:id/pl\")");
+                wl1.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(990), String.valueOf(1000)));
+            }
+
+            handle1(robot, androidId, driver);
         }catch (Exception e){
-
+            e.printStackTrace();
         }
-        try {
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tencent.now:id/pl\")");
-            wl1.click();
-        }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(990), String.valueOf(1000)));
-        }
-
-        handle1(robot,androidId,driver);
-
 
     }
 

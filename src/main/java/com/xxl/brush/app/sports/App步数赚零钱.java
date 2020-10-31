@@ -28,6 +28,7 @@ public class App步数赚零钱 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************步数赚零钱操作********************************************");
 
         log.info("1.初始化手机");
@@ -53,6 +54,9 @@ public class App步数赚零钱 {
         }catch (Exception e){ }
 
         handle8(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

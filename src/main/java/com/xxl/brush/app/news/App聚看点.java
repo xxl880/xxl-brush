@@ -30,6 +30,7 @@ public class App聚看点 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************聚看点操作********************************************");
 
         log.info("1.初始化手机");
@@ -74,6 +75,9 @@ public class App聚看点 {
         handle6(robot,androidId,driver);
         handle9(robot,androidId,driver);
         handle11(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

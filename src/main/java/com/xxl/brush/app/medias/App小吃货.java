@@ -28,6 +28,7 @@ public class App小吃货 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************小吃货操作********************************************");
 
         log.info("1.初始化手机");
@@ -48,6 +49,7 @@ public class App小吃货 {
 
 
         handle1(robot,androidId,driver);
+        }catch (Exception e){}
 
     }
 

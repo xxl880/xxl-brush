@@ -27,6 +27,7 @@ public class App牛角 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************App牛角小说操作********************************************");
 
         log.info("1.初始化手机");
@@ -45,6 +46,9 @@ public class App牛角 {
         handle8(robot,androidId,driver);
         handle6(robot,androidId,driver);
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

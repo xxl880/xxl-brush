@@ -28,7 +28,7 @@ public class AppServiceImpl implements AppService {
 	@SneakyThrows
 	@Override
 	public void circulate(String robotCode){
-		AppiumTools.start(robotCode);
+		//AppiumTools.start(robotCode);
 		Robot robot = new Robot();
 
 		App抖音极速.handle(robot,robotCode);

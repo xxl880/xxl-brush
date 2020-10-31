@@ -28,6 +28,7 @@ public class App微鲤看看 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************微鲤看看操作********************************************");
 
         log.info("1.初始化手机");
@@ -56,6 +57,7 @@ public class App微鲤看看 {
         handle20(robot,androidId,driver);
         handle21(robot,androidId,driver);
         handle6(robot,androidId,driver);
+        }catch (Exception e){}
 
 
     }

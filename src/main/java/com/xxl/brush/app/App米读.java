@@ -28,6 +28,7 @@ public class App米读 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************米读小说操作********************************************");
 
         log.info("1.初始化手机");
@@ -45,6 +46,9 @@ public class App米读 {
         handle1(robot,androidId,driver);
         handle5(robot,androidId,driver);
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

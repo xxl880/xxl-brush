@@ -28,6 +28,7 @@ public class App悦头条 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************悦头条操作********************************************");
 
         log.info("1.初始化手机");
@@ -48,6 +49,7 @@ public class App悦头条 {
         }catch (Exception e){ }
         handle1(robot,androidId,driver);
         handle8(robot,androidId,driver);
+        }catch (Exception e){}
 
     }
 

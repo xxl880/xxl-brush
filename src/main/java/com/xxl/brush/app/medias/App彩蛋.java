@@ -28,6 +28,7 @@ public class App彩蛋 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************彩蛋操作********************************************");
 
         log.info("1.初始化手机");
@@ -47,6 +48,7 @@ public class App彩蛋 {
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));
         }catch (Exception e){  }
         handle1(robot,androidId,driver);
+        }catch (Exception e){}
 
     }
 

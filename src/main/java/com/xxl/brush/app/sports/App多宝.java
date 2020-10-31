@@ -29,6 +29,7 @@ public class App多宝 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************多宝操作********************************************");
 
         log.info("1.初始化手机");
@@ -62,6 +63,10 @@ public class App多宝 {
         handle12(robot,androidId,driver);
         handle19(robot,androidId,driver);
         handle22(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 

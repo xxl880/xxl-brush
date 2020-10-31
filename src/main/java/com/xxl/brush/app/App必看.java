@@ -28,31 +28,34 @@ public class App必看 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************App必看小说操作********************************************");
-
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
-
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup必看);
-
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
-
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书城\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));
+            log.info("********************************App必看小说操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup必看);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书城\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            }
+
+            handle1(robot, androidId, driver);
+
+            handle9(robot, androidId, driver);
+            handle6(robot, androidId, driver);
+
+            handle5(robot, androidId, driver);
         }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            e.printStackTrace();
         }
-
-        handle1(robot,androidId,driver);
-
-        handle9(robot,androidId,driver);
-        handle6(robot,androidId,driver);
-
-        handle5(robot,androidId,driver);
-
     }
 
 

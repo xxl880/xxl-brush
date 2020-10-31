@@ -27,6 +27,7 @@ public class App快看点 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
+        try{
         log.info("********************************快看点操作********************************************");
 
         log.info("1.初始化手机");
@@ -47,6 +48,7 @@ public class App快看点 {
         handle8(robot,androidId,driver);
         handle20(robot,androidId,driver);
         handle6(robot,androidId,driver);
+        }catch (Exception e){}
 
     }
 

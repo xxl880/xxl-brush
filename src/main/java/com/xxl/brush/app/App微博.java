@@ -31,36 +31,40 @@ public class App微博 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void handle(Robot robot,String robotCode){
-        log.info("********************************微博操作********************************************");
+        try {
+            log.info("********************************微博操作********************************************");
 
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
 
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup微博);
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup微博);
 
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
 
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"首页\")");
-            wl.click();
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"首页\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            }
+
+            handle4(robot, androidId, driver);
+
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sina.weibo:id/redpacketSave\")");
+            wl2.click();
+
+
+            handle1(robot, androidId, driver);
+            handle41(robot, androidId, driver);
+            handle42(robot, androidId, driver);
+            handle43(robot, androidId, driver);
+            handle44(robot, androidId, driver);
+            handle45(robot, androidId, driver);
         }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            e.printStackTrace();
         }
-
-        handle4(robot,androidId,driver);
-
-        WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sina.weibo:id/redpacketSave\")");
-        wl2.click();
-
-
-        handle1(robot,androidId,driver);
-        handle41(robot,androidId,driver);
-        handle42(robot,androidId,driver);
-        handle43(robot,androidId,driver);
-        handle44(robot,androidId,driver);
-        handle45(robot,androidId,driver);
 
     }
 
