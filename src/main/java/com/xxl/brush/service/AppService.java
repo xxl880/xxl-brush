@@ -12,7 +12,25 @@ public interface AppService {
      */
     public void start(String robotCode);
 
+    /**
+     * todo 1.凌晨0:00-2:00(签到)
+     */
+    public void section1(String robotCode);
 
+    /**
+     * todo 1.凌晨0:00-2:00(签到)
+     */
+    public void section2(String robotCode);
+
+    /**
+     * todo 1.凌晨0:00-2:00(签到)
+     */
+    public void section3(String robotCode);
+
+    /**
+     * todo 1.凌晨0:00-2:00(签到)
+     */
+    public void section4(String robotCode);
 
     /**
      * todo 6-循环收取金币大于200金币

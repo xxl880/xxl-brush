@@ -25,7 +25,7 @@ public class App火山极速 {
      */
     public static void start(Robot robot,String robotCode){
         try{
-            log.info("********************************抖音极速操作********************************************");
+            log.info("********************************火山极速操作********************************************");
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -37,7 +37,6 @@ public class App火山极速 {
 
             log.info("4.清除");
             AdbTools.clear(driver);
-            clear(robot,androidId,driver);
 
             handle2(robot, androidId, driver);
 
@@ -47,6 +46,7 @@ public class App火山极速 {
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(680), String.valueOf(2140)));
             }
+            clear(robot,androidId,driver);
 
             handle1(robot,androidId,driver);
             handle6(robot,androidId,driver);
@@ -64,7 +64,7 @@ public class App火山极速 {
      */
     public static void section1(Robot robot,String robotCode){
         try{
-            log.info("********************************抖音极速操作********************************************");
+            log.info("********************************火山极速操作********************************************");
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -104,7 +104,7 @@ public class App火山极速 {
      */
     public static void section2(Robot robot,String robotCode){
         try{
-            log.info("********************************抖音极速操作********************************************");
+            log.info("********************************火山极速操作********************************************");
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -116,7 +116,6 @@ public class App火山极速 {
 
             log.info("4.清除");
             AdbTools.clear(driver);
-            clear(robot,androidId,driver);
 
             handle2(robot, androidId, driver);
 
@@ -127,8 +126,11 @@ public class App火山极速 {
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(680), String.valueOf(2140)));
             }
 
+            clear(robot,androidId,driver);
+
             handle6(robot,androidId,driver);
             handle9(robot,androidId,driver);
+            handle20(robot,androidId,driver);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -143,7 +145,7 @@ public class App火山极速 {
      */
     public static void section3(Robot robot,String robotCode){
         try{
-            log.info("********************************抖音极速操作********************************************");
+            log.info("********************************火山极速操作********************************************");
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -155,7 +157,7 @@ public class App火山极速 {
 
             log.info("4.清除");
             AdbTools.clear(driver);
-            clear(robot,androidId,driver);
+
 
             handle2(robot, androidId, driver);
 
@@ -166,6 +168,7 @@ public class App火山极速 {
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(680), String.valueOf(2140)));
             }
 
+            clear(robot,androidId,driver);
             handle6(robot,androidId,driver);
             handle9(robot,androidId,driver);
 
@@ -183,7 +186,7 @@ public class App火山极速 {
      */
     public static void section4(Robot robot,String robotCode){
         try{
-            log.info("********************************抖音极速操作********************************************");
+            log.info("********************************火山极速操作********************************************");
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -195,7 +198,7 @@ public class App火山极速 {
 
             log.info("4.清除");
             AdbTools.clear(driver);
-            clear(robot,androidId,driver);
+
 
             handle2(robot, androidId, driver);
 
@@ -205,6 +208,8 @@ public class App火山极速 {
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(680), String.valueOf(2140)));
             }
+
+            clear(robot,androidId,driver);
 
             handle6(robot,androidId,driver);
             handle9(robot,androidId,driver);
@@ -223,7 +228,7 @@ public class App火山极速 {
      */
     public static void circulate(Robot robot,String robotCode){
         try{
-            log.info("********************************抖音极速操作********************************************");
+            log.info("********************************火山极速操作********************************************");
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -235,7 +240,6 @@ public class App火山极速 {
 
             log.info("4.清除");
             AdbTools.clear(driver);
-            clear(robot,androidId,driver);
 
             handle2(robot, androidId, driver);
 
@@ -246,6 +250,7 @@ public class App火山极速 {
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(680), String.valueOf(2140)));
             }
 
+            clear(robot,androidId,driver);
             handle6(robot,androidId,driver);
             handle9(robot,androidId,driver);
 
@@ -277,13 +282,11 @@ public class App火山极速 {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.app.Dialog\").childSelector(text(\"sentinelEnd\"))");
             wl.click();
+            robot.delay(1000);
             AdbTools.process(robot, operateBack);
         }catch (Exception e){   }
 
     }
-
-
-
 
 
 
@@ -296,12 +299,6 @@ public class App火山极速 {
         log.info("火山极速-签到");
         try {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-                wl.click();
-            } catch (Exception e) { }
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看广告 再领\")");
             wl1.click();
@@ -369,21 +366,19 @@ public class App火山极速 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("火山极速-看广告");
         try{
-            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
             WebElement wl2 = null;
             try{
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频赚海量金币\")");
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频赚海量金币\")");
             }
             wl2.click();
             robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("火山极速-看广告异常");
@@ -448,7 +443,22 @@ public class App火山极速 {
      * @param robot
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("火山极速-睡觉");
+        try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.down(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"睡觉赚金币\")");
+            wl2.click();
+
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"睡觉\")");
+            wl3.click();
+
+            AdbTools.process(robot, operateBack);
+        }catch (Exception e){
+            log.info("火山极速-睡觉异常");
+        }
     }
 
     /**
@@ -519,7 +529,31 @@ public class App火山极速 {
     }
 
 
+    /**
+     * todo 20.晒收入
+     * @param robot
+     */
+    public static void handle20(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("火山极速-晒收入");
+        try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.downPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"晒收入\")");
+            wl2.click();
+            for(int i=0;i<3;i++) {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"微信\")");
+                wl3.click();
+
+                WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去粘贴\")");
+                wl4.click();
+                AdbTools.process(robot, operateBack);
+            }
+        }catch (Exception e){
+            log.info("火山极速-晒收入异常");
+        }
+    }
 
 
 /*
