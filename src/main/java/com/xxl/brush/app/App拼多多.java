@@ -60,32 +60,7 @@ public class App拼多多 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void section1(Robot robot,String robotCode){
-        try {
-            log.info("********************************拼多多操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup拼多多);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            appClear(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(110), String.valueOf(2140)));
-            }
-
-            handle1(robot, androidId, driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -96,32 +71,7 @@ public class App拼多多 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void section2(Robot robot,String robotCode){
-        try {
-            log.info("********************************拼多多操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup拼多多);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            appClear(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(110), String.valueOf(2140)));
-            }
-
-            handle1(robot, androidId, driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -131,32 +81,7 @@ public class App拼多多 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void section3(Robot robot,String robotCode){
-        try {
-            log.info("********************************拼多多操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup拼多多);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            appClear(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(110), String.valueOf(2140)));
-            }
-
-            handle1(robot, androidId, driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -167,32 +92,7 @@ public class App拼多多 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void section4(Robot robot,String robotCode){
-        try {
-            log.info("********************************拼多多操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup拼多多);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            appClear(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(110), String.valueOf(2140)));
-            }
-
-            handle1(robot, androidId, driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -204,32 +104,7 @@ public class App拼多多 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String robotCode){
-        try {
-            log.info("********************************拼多多操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup拼多多);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            appClear(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(110), String.valueOf(2140)));
-            }
-
-            handle1(robot, androidId, driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -252,42 +127,6 @@ public class App拼多多 {
     public static void clear(Robot robot, AndroidDriver driver){
 
     }
-
-    /**
-     * todo 1.
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     */
-    public static void handle(Robot robot,String robotCode){
-        try {
-            log.info("********************************拼多多操作********************************************");
-
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup拼多多);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            appClear(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(110), String.valueOf(2140)));
-            }
-
-            handle1(robot, androidId, driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
 
 
 

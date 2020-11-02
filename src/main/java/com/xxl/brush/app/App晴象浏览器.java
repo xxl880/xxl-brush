@@ -87,14 +87,7 @@ public class App晴象浏览器 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
             AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
-            }
 
-            handle1(robot,androidId,driver);
 
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"浏览器\")");
             wl2.click();
@@ -135,14 +128,7 @@ public class App晴象浏览器 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
             AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
-            }
 
-            handle1(robot,androidId,driver);
 
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"浏览器\")");
             wl2.click();
@@ -182,14 +168,6 @@ public class App晴象浏览器 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
             AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
-            }
-
-            handle1(robot,androidId,driver);
 
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"浏览器\")");
             wl2.click();
@@ -230,14 +208,6 @@ public class App晴象浏览器 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
             AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
-            }
-
-            handle1(robot,androidId,driver);
 
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"浏览器\")");
             wl2.click();
@@ -279,14 +249,6 @@ public class App晴象浏览器 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
             AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
-            }
-
-            handle1(robot,androidId,driver);
 
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"浏览器\")");
             wl2.click();
@@ -327,53 +289,6 @@ public class App晴象浏览器 {
     public static void clear(Robot robot, AndroidDriver driver){
 
     }
-
-    /**
-     * todo 1.
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     */
-    public static void handle(Robot robot,String robotCode){
-        try{
-        log.info("********************************App晴象浏览器操作********************************************");
-
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
-
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup晴象);
-
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
-            wl.click();
-        }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
-        }
-
-        handle1(robot,androidId,driver);
-
-        WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"浏览器\")");
-        wl2.click();
-
-        handle8(robot,androidId,driver);
-        handle81(robot,androidId,driver);
-        handle82(robot,androidId,driver);
-        handle83(robot,androidId,driver);
-        handle84(robot,androidId,driver);
-        handle10(robot,androidId,driver);
-        handle20(robot,androidId,driver);
-        handle19(robot,androidId,driver);
-
-        handle2(robot,androidId,driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
 
 
 

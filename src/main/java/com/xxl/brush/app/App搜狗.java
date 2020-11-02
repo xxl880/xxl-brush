@@ -243,7 +243,6 @@ public class App搜狗 {
 
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(900), String.valueOf(160)));
 
-            handle1(robot,androidId,driver);
             handle20(robot,androidId,driver);
 
             handle4(robot,androidId,driver);
@@ -273,43 +272,6 @@ public class App搜狗 {
     public static void clear(Robot robot, AndroidDriver driver){
 
     }
-    /**
-     * todo 1.
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     */
-    public static void handle(Robot robot,String robotCode){
-        try{
-        log.info("********************************搜狗操作********************************************");
-
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
-
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup搜狗);
-
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
-            wl.click();
-        }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1960)));
-        }
-
-        AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(900), String.valueOf(160)));
-
-        handle1(robot,androidId,driver);
-        handle20(robot,androidId,driver);
-
-        handle4(robot,androidId,driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
 
 
 

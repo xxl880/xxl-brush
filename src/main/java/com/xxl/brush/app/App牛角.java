@@ -72,7 +72,6 @@ public class App牛角 {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
             wl.click();
 
-            handle1(robot,androidId,driver);
             handle8(robot,androidId,driver);
             handle6(robot,androidId,driver);
 
@@ -104,7 +103,6 @@ public class App牛角 {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
             wl.click();
 
-            handle1(robot,androidId,driver);
             handle8(robot,androidId,driver);
             handle6(robot,androidId,driver);
 
@@ -135,7 +133,6 @@ public class App牛角 {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
             wl.click();
 
-            handle1(robot,androidId,driver);
             handle8(robot,androidId,driver);
             handle6(robot,androidId,driver);
 
@@ -167,7 +164,6 @@ public class App牛角 {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
             wl.click();
 
-            handle1(robot,androidId,driver);
             handle8(robot,androidId,driver);
             handle6(robot,androidId,driver);
 
@@ -200,7 +196,6 @@ public class App牛角 {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
             wl.click();
 
-            handle1(robot,androidId,driver);
             handle8(robot,androidId,driver);
             handle6(robot,androidId,driver);
 

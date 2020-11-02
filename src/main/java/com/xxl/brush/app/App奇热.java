@@ -97,7 +97,6 @@ public class App奇热 {
             } catch (Exception e) {
             }
 
-            handle1(robot, androidId, driver);
             handle6(robot, androidId, driver);
             handle10(robot, androidId, driver);
             handle101(robot, androidId, driver);
@@ -143,7 +142,6 @@ public class App奇热 {
             } catch (Exception e) {
             }
 
-            handle1(robot, androidId, driver);
             handle6(robot, androidId, driver);
             handle10(robot, androidId, driver);
             handle101(robot, androidId, driver);
@@ -188,7 +186,6 @@ public class App奇热 {
             } catch (Exception e) {
             }
 
-            handle1(robot, androidId, driver);
             handle6(robot, androidId, driver);
             handle10(robot, androidId, driver);
             handle101(robot, androidId, driver);
@@ -234,7 +231,6 @@ public class App奇热 {
             } catch (Exception e) {
             }
 
-            handle1(robot, androidId, driver);
             handle6(robot, androidId, driver);
             handle10(robot, androidId, driver);
             handle101(robot, androidId, driver);
@@ -281,7 +277,6 @@ public class App奇热 {
             } catch (Exception e) {
             }
 
-            handle1(robot, androidId, driver);
             handle6(robot, androidId, driver);
             handle10(robot, androidId, driver);
             handle101(robot, androidId, driver);
@@ -312,51 +307,6 @@ public class App奇热 {
     public static void clear(Robot robot, AndroidDriver driver){
 
     }
-
-    /**
-     * todo 1.
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     */
-    public static void handle(Robot robot,String robotCode){
-        try {
-            log.info("********************************奇热小说操作********************************************");
-
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup奇热);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            handle2(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.RadioButton\").text(\"书城\")");
-                wl.click();
-                handle8(robot, androidId, driver);
-            } catch (Exception e) {
-            }
-
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.RadioButton\").text(\"赚钱\")");
-                wl2.click();
-            } catch (Exception e) {
-            }
-
-            handle1(robot, androidId, driver);
-            handle6(robot, androidId, driver);
-            handle10(robot, androidId, driver);
-            handle101(robot, androidId, driver);
-
-            handle4(robot, androidId, driver);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
 
 
 

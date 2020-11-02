@@ -302,48 +302,6 @@ public class AppQQ阅读 {
 
     }
 
-    /**
-     * todo 1.
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     */
-    public static void handle(Robot robot,String robotCode){
-        try {
-            log.info("********************************QQ阅读操作********************************************");
-
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startupQQ阅读);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书架\")");
-                wl.click();
-            } catch (Exception e) {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"精选\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(93), String.valueOf(wl.getLocation().getY())));
-            }
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"本周阅读/分钟\")");
-                wl.click();
-            } catch (Exception e) {
-
-            }
-
-            handle9(robot, androidId, driver);
-            handle6(robot, androidId, driver);
-            handle5(robot, androidId, driver);
-            handle51(robot, androidId, driver);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
 
 
 

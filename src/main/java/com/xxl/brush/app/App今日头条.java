@@ -284,49 +284,6 @@ public class App今日头条 {
 
     }
 
-    /**
-     * todo 1.
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     */
-    public static void handle(Robot robot,String robotCode){
-        try {
-            log.info("********************************今日头条操作********************************************");
-
-            log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup今日头条);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-            handle2(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
-            }
-
-
-            handle9(robot, androidId, driver);
-            handle12(robot, androidId, driver);
-            handle16(robot, androidId, driver);
-            handle11(robot, androidId, driver);
-
-            handle5(robot, androidId, driver);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-    }
-
-
-
 
     /**
      * todo 1.签到

@@ -128,7 +128,6 @@ public class App趣头条 {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
             }
-            handle1(robot, androidId, driver);
 
             handle18(robot, androidId, driver);
             handle61(robot, androidId, driver);
@@ -189,7 +188,6 @@ public class App趣头条 {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
             }
-            handle1(robot, androidId, driver);
 
             handle18(robot, androidId, driver);
             handle61(robot, androidId, driver);
@@ -249,7 +247,6 @@ public class App趣头条 {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
             }
-            handle1(robot, androidId, driver);
 
             handle18(robot, androidId, driver);
             handle61(robot, androidId, driver);
@@ -310,7 +307,6 @@ public class App趣头条 {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
             }
-            handle1(robot, androidId, driver);
 
             handle18(robot, androidId, driver);
             handle61(robot, androidId, driver);
@@ -372,7 +368,6 @@ public class App趣头条 {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
             }
-            handle1(robot, androidId, driver);
 
             handle18(robot, androidId, driver);
             handle61(robot, androidId, driver);
@@ -410,66 +405,6 @@ public class App趣头条 {
     }
 
 
-
-    /**
-     * todo 1.
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     */
-    public static void handle(Robot robot,String robotCode){
-        try{
-        log.info("********************************趣头条操作********************************************");
-          log.info("1.初始化手机");
-          String androidId = AdbTools.initMobile(robot, robotCode);
-
-          log.info("2.启动app");
-          AdbTools.startup(robot, androidId, AppConstants.startup趣头条);
-
-          log.info("3.启动appium");
-          AndroidDriver driver = AppiumTools.init(robotCode);
-            AdbTools.clear(driver);
-          try {
-              WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.jifen.qukan:id/afk\")");
-              wl.click();
-          } catch (Exception e) {
-              //AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1641)));
-          }
-
-          handle8(robot, androidId, driver);
-          handle4(robot, androidId, driver);
-
-          try {
-              WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
-              wl.click();
-          } catch (Exception e) {
-              WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-              AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
-          }
-          handle2(robot, androidId, driver);
-
-          handle5(robot, androidId, driver);
-
-          robot.delay(2000);
-          try {
-              WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
-              wl.click();
-          } catch (Exception e) {
-              WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-              AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
-          }
-          handle1(robot, androidId, driver);
-
-          handle18(robot, androidId, driver);
-          handle61(robot, androidId, driver);
-          handle6(robot, androidId, driver);
-          handle9(robot, androidId, driver);
-          handle11(robot, androidId, driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
 
 

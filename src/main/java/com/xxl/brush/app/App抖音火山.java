@@ -64,35 +64,7 @@ public class App抖音火山 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void section1(Robot robot,String robotCode){
-        try{
-            log.info("********************************抖音火山操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId  = AdbTools.initMobile(robot,robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup抖音火山);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-
-            AdbTools.clear(driver);
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
-
-            handle2(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(80), String.valueOf(wl.getLocation().getY())));
-            }catch (Exception e){
-
-            }
-
-            handle1(robot,androidId,driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -103,35 +75,7 @@ public class App抖音火山 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void section2(Robot robot,String robotCode){
-        try{
-            log.info("********************************抖音火山操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId  = AdbTools.initMobile(robot,robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup抖音火山);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-
-            AdbTools.clear(driver);
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
-
-            handle2(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(80), String.valueOf(wl.getLocation().getY())));
-            }catch (Exception e){
-
-            }
-
-            handle1(robot,androidId,driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -141,35 +85,7 @@ public class App抖音火山 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void section3(Robot robot,String robotCode){
-        try{
-            log.info("********************************抖音火山操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId  = AdbTools.initMobile(robot,robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup抖音火山);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-
-            AdbTools.clear(driver);
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
-
-            handle2(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(80), String.valueOf(wl.getLocation().getY())));
-            }catch (Exception e){
-
-            }
-
-            handle1(robot,androidId,driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -180,35 +96,7 @@ public class App抖音火山 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void section4(Robot robot,String robotCode){
-        try{
-            log.info("********************************抖音火山操作********************************************");
 
-            log.info("1.初始化手机");
-            String androidId  = AdbTools.initMobile(robot,robotCode);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup抖音火山);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
-
-            AdbTools.clear(driver);
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
-
-            handle2(robot, androidId, driver);
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(80), String.valueOf(wl.getLocation().getY())));
-            }catch (Exception e){
-
-            }
-
-            handle1(robot,androidId,driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -237,15 +125,6 @@ public class App抖音火山 {
 
             handle2(robot, androidId, driver);
 
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(80), String.valueOf(wl.getLocation().getY())));
-            }catch (Exception e){
-
-            }
-
-            handle1(robot,androidId,driver);
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -271,45 +150,6 @@ public class App抖音火山 {
     public static void clear(Robot robot, AndroidDriver driver){
 
     }
-
-    /**
-     * todo 1.
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     */
-    public static void handle(Robot robot,String robotCode){
-        try{
-        log.info("********************************抖音火山操作********************************************");
-
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
-
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup抖音火山);
-
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
-
-            AdbTools.clear(driver);
-        AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
-
-        handle2(robot, androidId, driver);
-
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(80), String.valueOf(wl.getLocation().getY())));
-        }catch (Exception e){
-
-        }
-
-        handle1(robot,androidId,driver);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
 
 
 
