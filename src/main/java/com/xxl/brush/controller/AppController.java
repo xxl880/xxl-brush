@@ -23,7 +23,7 @@ public class AppController {
     public BaseResponse start() throws AWTException {
       /*  appService.circulate("phone001");
         appService.circulate("phone002");*/
-        appService.circulate("phone003");
+        appService.start("phone003");
         return BaseResponse.newSuccess();
     }
 

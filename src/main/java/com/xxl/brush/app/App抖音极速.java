@@ -49,8 +49,13 @@ public class App抖音极速 {
             AdbTools.clear(driver);
             clear(robot,driver);
 
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            handle2(robot, androidId, driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            }
 
             handle1(robot, androidId, driver);
             handle9(robot,androidId,driver);
@@ -69,7 +74,6 @@ public class App抖音极速 {
     public static void section1(Robot robot,String robotCode){
         try{
             log.info("********************************抖音极速操作********************************************");
-
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -78,21 +82,22 @@ public class App抖音极速 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-       /* AdbTools.clear(driver);
-        handle2(robot, androidId, driver);*/
 
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+
+            handle2(robot, androidId, driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
             }
-            handle1(robot, androidId, driver);
+
             handle9(robot,androidId,driver);
             handle6(robot,androidId,driver);
             handle16(robot,androidId,driver);
-            handle12(robot,androidId,driver);
-
 
         }catch (Exception e){
             e.printStackTrace();
@@ -109,7 +114,6 @@ public class App抖音极速 {
     public static void section2(Robot robot,String robotCode){
         try{
             log.info("********************************抖音极速操作********************************************");
-
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -118,21 +122,22 @@ public class App抖音极速 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-       /* AdbTools.clear(driver);
-        handle2(robot, androidId, driver);*/
 
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+
+            handle2(robot, androidId, driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
             }
-            handle1(robot, androidId, driver);
+
             handle9(robot,androidId,driver);
             handle6(robot,androidId,driver);
             handle16(robot,androidId,driver);
-            handle12(robot,androidId,driver);
-
 
         }catch (Exception e){
             e.printStackTrace();
@@ -148,7 +153,6 @@ public class App抖音极速 {
     public static void section3(Robot robot,String robotCode){
         try{
             log.info("********************************抖音极速操作********************************************");
-
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -157,21 +161,22 @@ public class App抖音极速 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-       /* AdbTools.clear(driver);
-        handle2(robot, androidId, driver);*/
 
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+
+            handle2(robot, androidId, driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
             }
-            handle1(robot, androidId, driver);
+
             handle9(robot,androidId,driver);
             handle6(robot,androidId,driver);
             handle16(robot,androidId,driver);
-            handle12(robot,androidId,driver);
-
 
         }catch (Exception e){
             e.printStackTrace();
@@ -188,7 +193,6 @@ public class App抖音极速 {
     public static void section4(Robot robot,String robotCode){
         try{
             log.info("********************************抖音极速操作********************************************");
-
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -197,22 +201,23 @@ public class App抖音极速 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-       /* AdbTools.clear(driver);
-        handle2(robot, androidId, driver);*/
 
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+
+            handle2(robot, androidId, driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
             }
-            handle1(robot, androidId, driver);
+
             handle9(robot,androidId,driver);
             handle6(robot,androidId,driver);
-            handle16(robot,androidId,driver);
             handle12(robot,androidId,driver);
-
-
+            handle16(robot,androidId,driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -229,7 +234,6 @@ public class App抖音极速 {
     public static void circulate(Robot robot,String robotCode){
         try{
             log.info("********************************抖音极速操作********************************************");
-
             log.info("1.初始化手机");
             String androidId  = AdbTools.initMobile(robot,robotCode);
 
@@ -238,21 +242,21 @@ public class App抖音极速 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
-       /* AdbTools.clear(driver);
-        handle2(robot, androidId, driver);*/
 
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+
+            handle2(robot, androidId, driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
             }
-            handle1(robot, androidId, driver);
+
             handle9(robot,androidId,driver);
             handle6(robot,androidId,driver);
-            handle16(robot,androidId,driver);
-            handle12(robot,androidId,driver);
-
 
         }catch (Exception e){
             e.printStackTrace();
@@ -323,7 +327,7 @@ public class App抖音极速 {
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
         log.info("抖音极速-看视频");
         try {
-            int x = RandomTools.init(8);
+            int x = RandomTools.init(6);
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
@@ -376,7 +380,7 @@ public class App抖音极速 {
             AdbTools.process(robot, AdbTools.upPage(androidId));
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
             wl2.click();
-            robot.delay(30000);
+            robot.delay(36000);
 
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
