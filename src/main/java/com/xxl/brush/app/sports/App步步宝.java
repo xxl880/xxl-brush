@@ -22,52 +22,321 @@ import java.util.List;
 public class App步步宝 {
     private static Logger log = LoggerFactory.getLogger(App步步宝.class);
 
-
     /**
-     * todo 1.
+     * todo 1.凌晨0:00-2:00(签到)
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
      */
-    public static void handle(Robot robot,String robotCode){
+    public static void start(Robot robot,String robotCode){
         try{
-        log.info("********************************步步宝操作********************************************");
+            log.info("********************************步步宝操作********************************************");
 
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
 
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup步步宝);
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup步步宝);
 
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
             AdbTools.clear(driver);
-        try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
-            wl.click();
-        }catch (Exception e){
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
-        }
-        handle2(robot,androidId,driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle2(robot,androidId,driver);
 
-        handle5(robot,androidId,driver);
+            handle5(robot,androidId,driver);
 
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
-            wl.click();
-        }catch (Exception e){
-             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
-        }
-        handle18(robot,androidId,driver);
-        handle6(robot,androidId,driver);
-        handle9(robot,androidId,driver);
-        handle11(robot,androidId,driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle18(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle9(robot,androidId,driver);
+            handle11(robot,androidId,driver);
         }catch (Exception e){
             e.printStackTrace();
         }
 
     }
+
+    /**
+     * todo 2.早上6:00-8:00 （一次性收取，睡觉收取，吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section1(Robot robot,String robotCode){
+        try{
+            log.info("********************************步步宝操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup步步宝);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle2(robot,androidId,driver);
+
+            handle5(robot,androidId,driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle18(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle9(robot,androidId,driver);
+            handle11(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    /**
+     * todo 3.中午10：00-12:00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section2(Robot robot,String robotCode){
+        try{
+            log.info("********************************步步宝操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup步步宝);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle2(robot,androidId,driver);
+
+            handle5(robot,androidId,driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle18(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle9(robot,androidId,driver);
+            handle11(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /**
+     * todo 4.下午18：00-20：00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section3(Robot robot,String robotCode){
+
+        try{
+            log.info("********************************步步宝操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup步步宝);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle2(robot,androidId,driver);
+
+            handle5(robot,androidId,driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle18(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle9(robot,androidId,driver);
+            handle11(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * todo 5.晚上22：00-24：00（睡觉打卡，吃饭，喝水，打卡，种菜，分享，游戏，充电，步行收取）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section4(Robot robot,String robotCode){
+
+        try{
+            log.info("********************************步步宝操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup步步宝);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle2(robot,androidId,driver);
+
+            handle5(robot,androidId,driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle18(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle9(robot,androidId,driver);
+            handle11(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    /**
+     * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void circulate(Robot robot,String robotCode){
+
+        try{
+            log.info("********************************步步宝操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup步步宝);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"小视频\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle2(robot,androidId,driver);
+
+            handle5(robot,androidId,driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"任务\")");
+                wl.click();
+            }catch (Exception e){
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+            }
+            handle18(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle9(robot,androidId,driver);
+            handle11(robot,androidId,driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * todo 退出
+     * @param robot
+
+     */
+    public static void quit(Robot robot, AndroidDriver driver){
+        try {
+            robot.delay(2000);
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.meituo.bububao:id/tt_video_ad_close_layout\")");
+            wl4.click();
+        } catch (Exception e) { }
+        try {
+            robot.delay(2000);
+            WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.meituo.bububao:id/channel\")");
+            wl5.click();
+        } catch (Exception e) { }
+    }
+
+
+    /**
+     * todo 清除
+     * @param robot
+
+     */
+    public static void clear(Robot robot, AndroidDriver driver){
+
+    }
+
+
 
 
 
@@ -445,32 +714,6 @@ public class App步步宝 {
         }
     }
 
-
-    /**
-     * todo 20.退出
-     * @param robot
-     */
-    public static void quit(Robot robot, AndroidDriver driver){
-        try {
-            robot.delay(2000);
-            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.meituo.bububao:id/tt_video_ad_close_layout\")");
-            wl4.click();
-        } catch (Exception e) { }
-        try {
-            robot.delay(2000);
-            WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.meituo.bububao:id/channel\")");
-            wl5.click();
-        } catch (Exception e) { }
-    }
-
-
-    /**
-     * todo 21.清除
-     * @param robot
-     */
-    public static void clear(Robot robot, AndroidDriver driver){
-
-    }
 
 
 /*
