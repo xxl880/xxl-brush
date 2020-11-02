@@ -21,6 +21,268 @@ import java.awt.*;
 public class App今日头条 {
     private static Logger log = LoggerFactory.getLogger(App今日头条.class);
 
+    /**
+     * todo 1.凌晨0:00-2:00(签到)
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void start(Robot robot,String robotCode){
+        try {
+            log.info("********************************今日头条操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup今日头条);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
+            }
+
+
+            handle9(robot, androidId, driver);
+            handle12(robot, androidId, driver);
+            handle16(robot, androidId, driver);
+            handle11(robot, androidId, driver);
+
+            handle5(robot, androidId, driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * todo 2.早上6:00-8:00 （一次性收取，睡觉收取，吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section1(Robot robot,String robotCode){
+        try {
+            log.info("********************************今日头条操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup今日头条);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
+            }
+
+
+            handle9(robot, androidId, driver);
+            handle12(robot, androidId, driver);
+            handle16(robot, androidId, driver);
+            handle11(robot, androidId, driver);
+
+            handle5(robot, androidId, driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * todo 3.中午10：00-12:00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section2(Robot robot,String robotCode){
+        try {
+            log.info("********************************今日头条操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup今日头条);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
+            }
+
+
+            handle9(robot, androidId, driver);
+            handle12(robot, androidId, driver);
+            handle16(robot, androidId, driver);
+            handle11(robot, androidId, driver);
+
+            handle5(robot, androidId, driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * todo 4.下午18：00-20：00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section3(Robot robot,String robotCode){
+        try {
+            log.info("********************************今日头条操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup今日头条);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
+            }
+
+
+            handle9(robot, androidId, driver);
+            handle12(robot, androidId, driver);
+            handle16(robot, androidId, driver);
+            handle11(robot, androidId, driver);
+
+            handle5(robot, androidId, driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * todo 5.晚上22：00-24：00（睡觉打卡，吃饭，喝水，打卡，种菜，分享，游戏，充电，步行收取）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section4(Robot robot,String robotCode){
+        try {
+            log.info("********************************今日头条操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup今日头条);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
+            }
+
+
+            handle9(robot, androidId, driver);
+            handle12(robot, androidId, driver);
+            handle16(robot, androidId, driver);
+            handle11(robot, androidId, driver);
+
+            handle5(robot, androidId, driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    /**
+     * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void circulate(Robot robot,String robotCode){
+        try {
+            log.info("********************************今日头条操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup今日头条);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+            AdbTools.clear(driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
+            }
+
+
+            handle9(robot, androidId, driver);
+            handle12(robot, androidId, driver);
+            handle16(robot, androidId, driver);
+            handle11(robot, androidId, driver);
+
+            handle5(robot, androidId, driver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * todo 退出
+     * @param robot
+
+     */
+    public static void quit(Robot robot, AndroidDriver driver){
+
+    }
+
+
+    /**
+     * todo 清除
+     * @param robot
+
+     */
+    public static void clear(Robot robot, AndroidDriver driver){
+
+    }
 
     /**
      * todo 1.

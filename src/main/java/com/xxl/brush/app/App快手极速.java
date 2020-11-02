@@ -21,16 +21,14 @@ import java.awt.*;
 public class App快手极速 {
     private static Logger log = LoggerFactory.getLogger(App快手极速.class);
 
-
     /**
-     * todo 1.
+     * todo 1.凌晨0:00-2:00(签到)
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
      */
-    public static void handle(Robot robot,String robotCode){
-        try {
+    public static void start(Robot robot,String robotCode){
+        try{
             log.info("********************************快手极速操作********************************************");
-
             log.info("1.初始化手机");
             String androidId = AdbTools.initMobile(robot, robotCode);
 
@@ -40,7 +38,8 @@ public class App快手极速 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
 
-           AdbTools.clear(driver);
+            log.info("4.清除");
+            AdbTools.clear(driver);
             clear(robot,driver);
             handle2(robot, androidId, driver);
 
@@ -50,6 +49,7 @@ public class App快手极速 {
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
             }
+
             handle1(robot, androidId, driver);
             handle9(robot, androidId, driver);
             handle6(robot, androidId, driver);
@@ -59,6 +59,205 @@ public class App快手极速 {
             e.printStackTrace();
         }
     }
+
+    /**
+     * todo 2.早上6:00-8:00 （一次性收取，睡觉收取，吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section1(Robot robot,String robotCode){
+        try{
+            log.info("********************************快手极速操作********************************************");
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup快手);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+            }
+
+            handle9(robot, androidId, driver);
+            handle6(robot, androidId, driver);
+            handle20(robot, androidId, driver);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * todo 3.中午10：00-12:00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section2(Robot robot,String robotCode){
+        try{
+            log.info("********************************快手极速操作********************************************");
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup快手);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+            }
+
+            handle9(robot, androidId, driver);
+            handle6(robot, androidId, driver);
+            handle20(robot, androidId, driver);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * todo 4.下午18：00-20：00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section3(Robot robot,String robotCode){
+        try{
+            log.info("********************************快手极速操作********************************************");
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup快手);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+            }
+
+            handle9(robot, androidId, driver);
+            handle6(robot, androidId, driver);
+            handle20(robot, androidId, driver);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * todo 5.晚上22：00-24：00（睡觉打卡，吃饭，喝水，打卡，种菜，分享，游戏，充电，步行收取）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section4(Robot robot,String robotCode){
+        try{
+            log.info("********************************快手极速操作********************************************");
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup快手);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+            }
+
+            handle9(robot, androidId, driver);
+            handle6(robot, androidId, driver);
+            handle20(robot, androidId, driver);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    /**
+     * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void circulate(Robot robot,String robotCode){
+        try{
+            log.info("********************************快手极速操作********************************************");
+            log.info("1.初始化手机");
+            String androidId = AdbTools.initMobile(robot, robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup快手);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+            handle2(robot, androidId, driver);
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
+                wl.click();
+            } catch (Exception e) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+            }
+
+            handle9(robot, androidId, driver);
+            handle6(robot, androidId, driver);
+            handle20(robot, androidId, driver);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
 
     /**
@@ -91,19 +290,23 @@ public class App快手极速 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("快手极速-签到");
         try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            robot.delay(1000);
+            try{
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
+                wl2.click();
+                return;
+            }catch (Exception e){}
+
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"去签到\")");
+                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"去签到\")");
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"去签到\")");
+                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"去签到\")");
             }
             wl.click();
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("快手极速-签到异常");
@@ -171,19 +374,15 @@ public class App快手极速 {
             WebElement wl2 = null;
             try{
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\") .textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\") .textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
-
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
             }
             wl2.click();
             robot.delay(32000);
+
             AdbTools.process(robot, operateBack);
-
-
         }catch (Exception e){
             log.info("快手极速-看广告异常");
         }
@@ -222,14 +421,12 @@ public class App快手极速 {
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
             wl3.click();
-            robot.delay(2000);
+            robot.delay(1000);
 
             try {
                 WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"HGGPyDxR67B6PpvwC+B+CeSgKklEgAAAABJRU5ErkJggg==\")");
                 wl4.click();
-            }catch (Exception e){
-                log.info("快手极速-开宝箱返回异常");
-            }
+            }catch (Exception e){    }
 
         }catch (Exception e){
             log.info("快手极速-开宝箱异常");

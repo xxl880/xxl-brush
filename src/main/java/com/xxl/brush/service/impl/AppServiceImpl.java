@@ -30,8 +30,8 @@ public class AppServiceImpl implements AppService {
 		Robot robot = new Robot();
 		//-综合
 	//	App抖音极速.start(robot,robotCode);
-		App火山极速.start(robot,robotCode);
-		App快手极速.handle(robot,robotCode);
+	//	App火山极速.start(robot,robotCode);
+		App快手极速.start(robot,robotCode);
 		App今日头条.handle(robot,robotCode);
 		App趣头条.handle(robot,robotCode);
 		AppQQ阅读.handle(robot,robotCode);
@@ -75,7 +75,7 @@ public class AppServiceImpl implements AppService {
 		//-综合
 		App抖音极速.section1(robot,robotCode);
 		App火山极速.section1(robot,robotCode);
-		App快手极速.handle(robot,robotCode);
+		App快手极速.section1(robot,robotCode);
 		App今日头条.handle(robot,robotCode);
 		App趣头条.handle(robot,robotCode);
 		AppQQ阅读.handle(robot,robotCode);
@@ -119,7 +119,7 @@ public class AppServiceImpl implements AppService {
 		//-综合
 		//App抖音极速.section2(robot,robotCode);
 		App火山极速.section2(robot,robotCode);
-		App快手极速.handle(robot,robotCode);
+		App快手极速.section2(robot,robotCode);
 		App今日头条.handle(robot,robotCode);
 		App趣头条.handle(robot,robotCode);
 		AppQQ阅读.handle(robot,robotCode);
@@ -163,7 +163,7 @@ public class AppServiceImpl implements AppService {
 		//-综合
 		App抖音极速.section3(robot,robotCode);
 		App火山极速.section3(robot,robotCode);
-		App快手极速.handle(robot,robotCode);
+		App快手极速.section3(robot,robotCode);
 		App今日头条.handle(robot,robotCode);
 		App趣头条.handle(robot,robotCode);
 		AppQQ阅读.handle(robot,robotCode);
@@ -207,7 +207,7 @@ public class AppServiceImpl implements AppService {
 		//-综合
 		App抖音极速.section4(robot,robotCode);
 		App火山极速.section4(robot,robotCode);
-		App快手极速.handle(robot,robotCode);
+		App快手极速.section4(robot,robotCode);
 		App今日头条.handle(robot,robotCode);
 		App趣头条.handle(robot,robotCode);
 		AppQQ阅读.handle(robot,robotCode);
@@ -250,7 +250,7 @@ public class AppServiceImpl implements AppService {
 		//-综合
 		App抖音极速.circulate(robot,robotCode);
 		App火山极速.circulate(robot,robotCode);
-		App快手极速.handle(robot,robotCode);
+		App快手极速.circulate(robot,robotCode);
 		App今日头条.handle(robot,robotCode);
 		App趣头条.handle(robot,robotCode);
 		AppQQ阅读.handle(robot,robotCode);
