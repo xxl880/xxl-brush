@@ -50,7 +50,7 @@ public class AppiumTools {
         }else if(robotCode.equals("phone002")){
             driver = process("10", PhoneConstants.phone002,"6001");
         }else if(robotCode.equals("phone003")){
-            driver = process("9", PhoneConstants.phone003,"6002");
+            driver = process("9", PhoneConstants.phone003,"4723");
         }else if(robotCode.equals("phone0031")){
             driver = process("9", PhoneConstants.phone0031,"6003");
         }else if(robotCode.equals("phone0032")){

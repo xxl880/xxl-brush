@@ -45,8 +45,8 @@ public class App抖音极速 {
 
         log.info("3.启动appium");
         AndroidDriver driver = AppiumTools.init(robotCode);
-        AdbTools.clear(driver);
-        handle2(robot, androidId, driver);
+       /* AdbTools.clear(driver);
+        handle2(robot, androidId, driver);*/
 
          try {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
@@ -55,18 +55,32 @@ public class App抖音极速 {
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
         }
         handle1(robot, androidId, driver);
-        handle11(robot,androidId,driver);
-        handle12(robot,androidId,driver);
         handle9(robot,androidId,driver);
         handle6(robot,androidId,driver);
         handle16(robot,androidId,driver);
+        handle12(robot,androidId,driver);
+
 
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
+    /**
+     * todo 退出
+     * @param robot
+     */
+    public static void quit(Robot robot,AndroidDriver driver){
 
+    }
+
+    /**
+     * todo 清除
+     * @param robot
+     */
+    public static void clear(Robot robot,AndroidDriver driver){
+
+    }
 
 
     /**
@@ -77,23 +91,30 @@ public class App抖音极速 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("抖音极速-签到");
         try {
+            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
             } catch (Exception e) {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                wl.click();
             }
-            wl.click();
+
+            try {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"好的\")");
+                wl2.click();
+            }catch (Exception e){}
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
             wl1.click();
             robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("抖音极速-签到异常");

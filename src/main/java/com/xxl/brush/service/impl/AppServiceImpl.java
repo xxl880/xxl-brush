@@ -30,7 +30,7 @@ public class AppServiceImpl implements AppService {
 	public void circulate(String robotCode){
 		//AppiumTools.start(robotCode);
 		Robot robot = new Robot();
-
+		//-综合
 		App抖音极速.handle(robot,robotCode);
 		App火山极速.handle(robot,robotCode);
 		App快手极速.handle(robot,robotCode);
@@ -42,6 +42,8 @@ public class AppServiceImpl implements AppService {
 		App搜狗.handle(robot,robotCode);
 		App拼多多.handle(robot,robotCode);
 		App微博.handle(robot,robotCode);
+
+        //综合
 		App书旗.handle(robot,robotCode);
 		App番茄.handle(robot,robotCode);
 		App奇热.handle(robot,robotCode);
@@ -51,6 +53,8 @@ public class AppServiceImpl implements AppService {
 		App必看.handle(robot,robotCode);
 		App牛角.handle(robot,robotCode);
 		App2345浏览器.handle(robot,robotCode);
+
+		//-视频
 		App刷宝.handle(robot,robotCode);
 		App小吃货.handle(robot,robotCode);
 		App火火.handle(robot,robotCode);

@@ -40,7 +40,8 @@ public class App快手极速 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
 
-            AdbTools.clear(driver);
+           AdbTools.clear(driver);
+            clear(robot,driver);
             handle2(robot, androidId, driver);
 
             try {
@@ -60,7 +61,27 @@ public class App快手极速 {
     }
 
 
+    /**
+     * todo 退出
+     * @param robot
 
+     */
+    public static void quit(Robot robot, AndroidDriver driver){
+
+    }
+
+
+    /**
+     * todo 清除
+     * @param robot
+
+     */
+    public static void clear(Robot robot, AndroidDriver driver){
+        try{
+            WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.kuaishou.nebula:id/login_dialog_cancel\")");
+            wl11.click();
+        }catch (Exception e){}
+    }
 
     /**
      * todo 1.签到
