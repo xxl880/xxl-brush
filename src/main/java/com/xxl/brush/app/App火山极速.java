@@ -539,7 +539,10 @@ public class App火山极速 {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.downPage(androidId));
+            AdbTools.process(robot, AdbTools.down(androidId));
+            AdbTools.process(robot, AdbTools.down(androidId));
+            AdbTools.process(robot, AdbTools.down(androidId));
+            AdbTools.process(robot, AdbTools.down(androidId));
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"晒收入\")");
             wl2.click();
             for(int i=0;i<3;i++) {
@@ -555,6 +558,29 @@ public class App火山极速 {
         }
     }
 
+
+    /**
+     * todo 20.摇钱树
+     * @param robot
+     */
+    public static void handle21(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("火山极速-摇钱树");
+        try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"摇钱树\")");
+            wl2.click();
+            robot.delay(8000);
+
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1100)));
+
+            AdbTools.process(robot, operateBack);
+
+        }catch (Exception e){
+            log.info("火山极速-摇钱树异常");
+        }
+    }
 
 /*
     public static void main(String args[]) throws AWTException {
