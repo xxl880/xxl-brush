@@ -377,7 +377,7 @@ public class App火山极速 {
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频赚海量金币\")");
             }
             wl2.click();
-            robot.delay(32000);
+            robot.delay(36000);
 
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
@@ -419,7 +419,7 @@ public class App火山极速 {
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看视频 金币翻8倍\")");
             wl3.click();
 
-            robot.delay(32000);
+            robot.delay(36000);
 
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);

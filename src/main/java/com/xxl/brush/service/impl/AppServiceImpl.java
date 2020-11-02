@@ -21,7 +21,7 @@ public class AppServiceImpl implements AppService {
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(AppServiceImpl.class);
 
 	/**
-	 * todo 3.1-循环收取金币大于200金币
+	 * todo 1.凌晨0:00-2:00(签到)
 	 */
 	@Async
 	@SneakyThrows
@@ -65,7 +65,7 @@ public class AppServiceImpl implements AppService {
 
 
 	/**
-	 * todo 3.1-循环收取金币大于200金币
+	 * todo 2.早上6:00-8:00 （一次性收取，睡觉收取，吃饭，喝水，打卡，种菜，分享，游戏，充电）
 	 */
 	@Async
 	@SneakyThrows
@@ -109,7 +109,7 @@ public class AppServiceImpl implements AppService {
 
 
 	/**
-	 * todo 3.1-循环收取金币大于200金币
+	 * todo 3.中午10：00-12:00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
 	 */
 	@Async
 	@SneakyThrows
@@ -153,7 +153,7 @@ public class AppServiceImpl implements AppService {
 
 
 	/**
-	 * todo 3.1-循环收取金币大于200金币
+	 * todo 4.下午18：00-20：00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
 	 */
 	@Async
 	@SneakyThrows
@@ -197,7 +197,7 @@ public class AppServiceImpl implements AppService {
 
 
 	/**
-	 * todo 5-循环收取金币大于200金币
+	 * todo 5.晚上22：00-24：00（睡觉打卡，吃饭，喝水，打卡，种菜，分享，游戏，充电，步行收取）
 	 */
 	@Async
 	@SneakyThrows
@@ -240,7 +240,7 @@ public class AppServiceImpl implements AppService {
 
 
 	/**
-	 * todo 3.1-循环收取金币大于200金币
+	 * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
 	 */
 	@Async
 	@SneakyThrows
