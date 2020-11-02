@@ -250,47 +250,10 @@ public class AdbTools {
      * todo 20.清除
      */
     public static void clear( AndroidDriver driver){
-
-
-
         try{
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"设置青少年模式\").fromParent(text(\"我知道了\"))");
             wl3.click();
         }catch (Exception e){}
-
-        try{
-            WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"继续播放\")");
-            wl4.click();
-        }catch (Exception e){}
-
-        try{
-            WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"更新\")");
-            wl5.click();
-            Thread.sleep(6000);
-        }catch (Exception e){}
-        try{
-            WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"继续\")");
-            wl11.click();
-            Thread.sleep(8000);
-        }catch (Exception e){}
-
-        try{
-            WebElement wl7 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"安装\")");
-            wl7.click();
-            Thread.sleep(8000);
-        }catch (Exception e){}
-
-        try{
-            WebElement wl9 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"确定\")");
-            wl9.click();
-            Thread.sleep(8000);
-        }catch (Exception e){}
-
-        try{
-            WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"以后再说\")");
-            wl11.click();
-        }catch (Exception e){}
-
 
 
     }

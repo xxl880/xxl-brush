@@ -18,6 +18,15 @@ public class AppController {
     @Autowired
     private AppService appService;
 
+    @GetMapping("start")
+    @ApiOperation("羊毛")
+    public BaseResponse start() throws AWTException {
+      /*  appService.circulate("phone001");
+        appService.circulate("phone002");*/
+        appService.circulate("phone003");
+        return BaseResponse.newSuccess();
+    }
+
 
     @GetMapping("circulate")
     @ApiOperation("羊毛")

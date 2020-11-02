@@ -29,42 +29,241 @@ public class App抖音极速 {
 
 
     /**
-     * todo 1.
+     * todo 1.凌晨0:00-2:00(签到)
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
      */
-    public static void handle(Robot robot,String robotCode){
+    public static void start(Robot robot,String robotCode){
         try{
-        log.info("********************************抖音极速操作********************************************");
+            log.info("********************************抖音极速操作********************************************");
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
 
-        log.info("1.初始化手机");
-        String androidId  = AdbTools.initMobile(robot,robotCode);
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup抖音);
 
-        log.info("2.启动app");
-        AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
 
-        log.info("3.启动appium");
-        AndroidDriver driver = AppiumTools.init(robotCode);
+            log.info("4.清除");
+            AdbTools.clear(driver);
+            clear(robot,driver);
+
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+
+            handle1(robot, androidId, driver);
+            handle9(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * todo 2.早上6:00-8:00 （一次性收取，睡觉收取，吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section1(Robot robot,String robotCode){
+        try{
+            log.info("********************************抖音极速操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
        /* AdbTools.clear(driver);
         handle2(robot, androidId, driver);*/
 
-         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
-        }catch (Exception e){
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
-        }
-        handle1(robot, androidId, driver);
-        handle9(robot,androidId,driver);
-        handle6(robot,androidId,driver);
-        handle16(robot,androidId,driver);
-        handle12(robot,androidId,driver);
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            }
+            handle1(robot, androidId, driver);
+            handle9(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle16(robot,androidId,driver);
+            handle12(robot,androidId,driver);
 
 
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
+
+
+    /**
+     * todo 3.中午10：00-12:00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section2(Robot robot,String robotCode){
+        try{
+            log.info("********************************抖音极速操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+       /* AdbTools.clear(driver);
+        handle2(robot, androidId, driver);*/
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            }
+            handle1(robot, androidId, driver);
+            handle9(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle16(robot,androidId,driver);
+            handle12(robot,androidId,driver);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * todo 4.下午18：00-20：00（吃饭，喝水，打卡，种菜，分享，游戏，充电）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section3(Robot robot,String robotCode){
+        try{
+            log.info("********************************抖音极速操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+       /* AdbTools.clear(driver);
+        handle2(robot, androidId, driver);*/
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            }
+            handle1(robot, androidId, driver);
+            handle9(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle16(robot,androidId,driver);
+            handle12(robot,androidId,driver);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * todo 5.晚上22：00-24：00（睡觉打卡，吃饭，喝水，打卡，种菜，分享，游戏，充电，步行收取）
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void section4(Robot robot,String robotCode){
+        try{
+            log.info("********************************抖音极速操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+       /* AdbTools.clear(driver);
+        handle2(robot, androidId, driver);*/
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            }
+            handle1(robot, androidId, driver);
+            handle9(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle16(robot,androidId,driver);
+            handle12(robot,androidId,driver);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    /**
+     * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
+     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 传相应的app_code对应的phoneCodeDtos
+     */
+    public static void circulate(Robot robot,String robotCode){
+        try{
+            log.info("********************************抖音极速操作********************************************");
+
+            log.info("1.初始化手机");
+            String androidId  = AdbTools.initMobile(robot,robotCode);
+
+            log.info("2.启动app");
+            AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+
+            log.info("3.启动appium");
+            AndroidDriver driver = AppiumTools.init(robotCode);
+       /* AdbTools.clear(driver);
+        handle2(robot, androidId, driver);*/
+
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+            }
+            handle1(robot, androidId, driver);
+            handle9(robot,androidId,driver);
+            handle6(robot,androidId,driver);
+            handle16(robot,androidId,driver);
+            handle12(robot,androidId,driver);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
 
     /**
      * todo 退出
@@ -79,6 +278,10 @@ public class App抖音极速 {
      * @param robot
      */
     public static void clear(Robot robot,AndroidDriver driver){
+        try{
+            WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"以后再说\")");
+            wl11.click();
+        }catch (Exception e){}
 
     }
 
@@ -91,29 +294,20 @@ public class App抖音极速 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("抖音极速-签到");
         try {
-            robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            WebElement wl =  null;
             try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到\")");
                 wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-                wl.click();
-            }
-
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"好的\")");
-                wl2.click();
             }catch (Exception e){}
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
-            wl1.click();
-            robot.delay(32000);
+            try {
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
+                wl1.click();
+            }catch (Exception e){}
+
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
+            wl2.click();
+            robot.delay(30000);
 
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
@@ -177,21 +371,13 @@ public class App抖音极速 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("抖音极速-看广告");
         try{
-            robot.delay(1000);
-            WebElement wl2 = null;
-            try{
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
-            }
-            wl2.click();
-            robot.delay(32000);
-
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
+            wl2.click();
+            robot.delay(30000);
+
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("抖音极速-看广告异常");
@@ -241,16 +427,15 @@ public class App抖音极速 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
         log.info("抖音极速-开宝箱");
         try {
-            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
             wl2.click();
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
             wl3.click();
+            robot.delay(30000);
 
-            robot.delay(32000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("抖音极速-开宝箱异常");
