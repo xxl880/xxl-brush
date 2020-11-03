@@ -21,8 +21,8 @@ public class AppController {
     @GetMapping("start")
     @ApiOperation("羊毛")
     public BaseResponse start() throws AWTException {
-      /*  appService.circulate("phone001");
-        appService.circulate("phone002");*/
+        appService.start("phone001");
+        appService.start("phone002");
         appService.start("phone003");
         return BaseResponse.newSuccess();
     }
