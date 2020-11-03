@@ -31,8 +31,8 @@ public class AppServiceImpl implements AppService {
 	public void start(String robotCode){
 		Robot robot = new Robot();
 		//-综合
-    	App抖音极速.start(robot,robotCode);
-       	App火山极速.start(robot,robotCode);
+    /*	App抖音极速.start(robot,robotCode);
+       	App火山极速.start(robot,robotCode);*/
 		App快手极速.start(robot,robotCode);
 		App今日头条.start(robot,robotCode);
 		App趣头条.start(robot,robotCode);
