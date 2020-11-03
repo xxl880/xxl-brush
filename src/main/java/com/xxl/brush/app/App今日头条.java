@@ -685,11 +685,8 @@ public class App今日头条 {
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(880)));
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(470)));
             AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(460)));
-
-            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.bytedance.article.lite.plugin.appbrand:id/microapp_m_titlebar_capsule_more\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl4.getLocation().getY()+120)));
            for(int i=0;i<3;i++) {
-               wl4.click();
+               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(300)));
                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(12360)));
                robot.delay(18000);
@@ -703,6 +700,47 @@ public class App今日头条 {
         }
     }
 
+
+    /**
+     * todo 21.搜索
+     * @param robot
+     */
+    public static void handle22(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("今日头条-搜索");
+        try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            WebElement wl2 = null;
+            try {
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"种菜赚金币\")");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"种菜赚金币\")");
+            }
+            wl2.click();
+            robot.delay(6000);
+
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(800)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(880)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(470)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(460)));
+
+            for(int i=0;i<3;i++) {
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(300)));
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(12360)));
+                robot.delay(18000);
+                AdbTools.process(robot, operateBack);
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1360)));
+            }
+
+        }catch (Exception e){
+            log.info("今日头条-搜索异常");
+        }
+    }
 
 
 /*
