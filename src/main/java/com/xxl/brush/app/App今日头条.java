@@ -330,28 +330,52 @@ public class App今日头条 {
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
         log.info("今日头条-看小说");
         try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
             WebElement wl2 =  null;
             try{
                 AdbTools.process(robot, AdbTools.down(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看小说赚金币\")");
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看小说赚金币\")");
             }
             wl2.click();
-            robot.delay(3000);
+            robot.delay(2000);
             AdbTools.process(robot, AdbTools.downPage(androidId));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1600)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(160), String.valueOf(1580)));
+            try {
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"立即阅读\")");
+                wl3.click();
+            }catch (Exception e){
+                try {
+                    WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"继续阅读\")");
+                    wl4.click();
+                }catch (Exception e1){
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(160), String.valueOf(1580)));
+                    WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"阅读\")");
+                    wl5.click();
+                }
+            }
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即阅读\")");
-            wl3.click();
+
 
             for(int i=0;i<60;i++) {
-                robot.delay(RandomTools.init(6000));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1030), String.valueOf(120)));
+                try{
+                    robot.delay(3000);
+                    if(i%5==0){
+                        WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看视频\")");
+                        wl4.click();
+                        robot.delay(20000);
+                        AdbTools.process(robot, operateBack);
+                    }
+                }catch (Exception e){}
+
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1030), String.valueOf(600)));
             }
 
         }catch (Exception e){
