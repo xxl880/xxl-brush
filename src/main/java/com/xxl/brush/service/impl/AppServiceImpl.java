@@ -33,7 +33,7 @@ public class AppServiceImpl implements AppService {
 		//-综合
     /*	App抖音极速.start(robot,robotCode);
        	App火山极速.start(robot,robotCode);*/
-		App快手极速.start(robot,robotCode);
+/*		App快手极速.start(robot,robotCode);*/
 		App今日头条.start(robot,robotCode);
 		App趣头条.start(robot,robotCode);
 		AppQQ阅读.start(robot,robotCode);

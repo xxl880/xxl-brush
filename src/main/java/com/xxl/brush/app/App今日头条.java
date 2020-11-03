@@ -38,7 +38,10 @@ public class App今日头条 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
+
+            log.info("4.清除");
             AdbTools.clear(driver);
+
             handle2(robot, androidId, driver);
 
             try {
@@ -48,13 +51,10 @@ public class App今日头条 {
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
             }
 
-
+            handle1(robot, androidId, driver);
             handle9(robot, androidId, driver);
-            handle12(robot, androidId, driver);
-            handle16(robot, androidId, driver);
-            handle11(robot, androidId, driver);
-
             handle5(robot, androidId, driver);
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -68,7 +68,6 @@ public class App今日头条 {
     public static void section1(Robot robot,String robotCode){
         try {
             log.info("********************************今日头条操作********************************************");
-
             log.info("1.初始化手机");
             String androidId = AdbTools.initMobile(robot, robotCode);
 
@@ -77,7 +76,10 @@ public class App今日头条 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(robotCode);
+
+            log.info("4.清除");
             AdbTools.clear(driver);
+
             handle2(robot, androidId, driver);
 
             try {
@@ -87,13 +89,9 @@ public class App今日头条 {
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
             }
 
-
             handle9(robot, androidId, driver);
-            handle12(robot, androidId, driver);
             handle16(robot, androidId, driver);
-            handle11(robot, androidId, driver);
 
-            handle5(robot, androidId, driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -130,11 +128,8 @@ public class App今日头条 {
 
 
             handle9(robot, androidId, driver);
-            handle12(robot, androidId, driver);
             handle16(robot, androidId, driver);
-            handle11(robot, androidId, driver);
 
-            handle5(robot, androidId, driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -168,13 +163,9 @@ public class App今日头条 {
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
             }
 
-
             handle9(robot, androidId, driver);
-            handle12(robot, androidId, driver);
             handle16(robot, androidId, driver);
-            handle11(robot, androidId, driver);
 
-            handle5(robot, androidId, driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -215,7 +206,6 @@ public class App今日头条 {
             handle16(robot, androidId, driver);
             handle11(robot, androidId, driver);
 
-            handle5(robot, androidId, driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -251,13 +241,8 @@ public class App今日头条 {
                 AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
             }
 
-
             handle9(robot, androidId, driver);
-            handle12(robot, androidId, driver);
-            handle16(robot, androidId, driver);
-            handle11(robot, androidId, driver);
 
-            handle5(robot, androidId, driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -293,25 +278,18 @@ public class App今日头条 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
        log.info("今日头条-签到");
         try {
-            WebElement wl =  null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-                wl.click();
-            }
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
+            WebElement  wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+            wl.click();
+
+            robot.delay(2000);
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看视频再赚\")");
             wl1.click();
             robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
+
         }catch (Exception e){
             log.info("今日头条-签到异常");
         }
@@ -352,22 +330,28 @@ public class App今日头条 {
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
         log.info("今日头条-看小说");
         try {
-            robot.delay(1000);
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            wl.click();
-
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的书架\")");
+            WebElement wl2 =  null;
+            try{
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
+            }
             wl2.click();
-
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1660)));
+            robot.delay(3000);
+            AdbTools.process(robot, AdbTools.downPage(androidId));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1600)));
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即阅读\")");
             wl3.click();
 
-            robot.delay(1000);
-            for(int i=0;i<10;i++) {
-                AdbTools.process(robot, AdbTools.left(androidId));
+            for(int i=0;i<60;i++) {
+                robot.delay(RandomTools.init(6000));
+                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1030), String.valueOf(120)));
             }
 
         }catch (Exception e){
