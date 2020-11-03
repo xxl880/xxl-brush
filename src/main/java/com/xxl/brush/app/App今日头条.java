@@ -91,6 +91,7 @@ public class App今日头条 {
 
             handle9(robot, androidId, driver);
             handle16(robot, androidId, driver);
+            handle20(robot, androidId, driver);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -129,7 +130,7 @@ public class App今日头条 {
 
             handle9(robot, androidId, driver);
             handle16(robot, androidId, driver);
-
+            handle21(robot, androidId, driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -165,7 +166,7 @@ public class App今日头条 {
 
             handle9(robot, androidId, driver);
             handle16(robot, androidId, driver);
-
+            handle20(robot, androidId, driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -205,6 +206,7 @@ public class App今日头条 {
             handle12(robot, androidId, driver);
             handle16(robot, androidId, driver);
             handle11(robot, androidId, driver);
+            handle21(robot, androidId, driver);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -565,7 +567,6 @@ public class App今日头条 {
     public static void handle16(Robot robot,String androidId,  AndroidDriver driver){
         log.info("今日头条-吃饭");
         try {
-            robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             WebElement wl2 = null;
             try {
@@ -618,7 +619,89 @@ public class App今日头条 {
 
     }
 
+    /**
+     * todo 20.模拟开店赚钱
+     * @param robot
+     */
+    public static void handle20(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("今日头条-模拟开店赚钱");
+        try {
+            WebElement wl2 = null;
+            try {
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"模拟开店赚钱\")");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"模拟开店赚钱\")");
+            }
+            wl2.click();
+            robot.delay(6000);
 
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(950), String.valueOf(960)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(950), String.valueOf(870)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(470)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(400)));
+
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.bytedance.article.lite.plugin.appbrand:id/microapp_m_titlebar_capsule_more\")");
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl4.getLocation().getY()+120)));
+            wl4.click();
+            robot.delay(2000);
+            wl4.click();
+            robot.delay(2000);
+            wl4.click();
+
+        }catch (Exception e){
+            log.info("今日头条-模拟开店赚钱异常");
+        }
+
+    }
+
+    /**
+     * todo 21.种菜赚金币
+     * @param robot
+     */
+    public static void handle21(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("今日头条-种菜赚金币");
+        try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            WebElement wl2 = null;
+            try {
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"种菜赚金币\")");
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"种菜赚金币\")");
+            }
+            wl2.click();
+            robot.delay(6000);
+
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(800)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(880)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(470)));
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(460)));
+
+            WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.bytedance.article.lite.plugin.appbrand:id/microapp_m_titlebar_capsule_more\")");
+            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl4.getLocation().getY()+120)));
+           for(int i=0;i<3;i++) {
+               wl4.click();
+               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
+               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(12360)));
+               robot.delay(18000);
+               AdbTools.process(robot, operateBack);
+               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
+               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1360)));
+           }
+
+        }catch (Exception e){
+            log.info("今日头条-种菜赚金币异常");
+        }
+    }
 
 
 
