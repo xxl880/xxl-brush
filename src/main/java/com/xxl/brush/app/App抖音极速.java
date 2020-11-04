@@ -438,7 +438,7 @@ public class App抖音极速 {
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
             wl3.click();
-            robot.delay(30000);
+            robot.delay(36000);
 
             AdbTools.process(robot, operateBack);
         }catch (Exception e){

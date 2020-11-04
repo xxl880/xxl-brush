@@ -21,7 +21,7 @@ public class AppController {
     @GetMapping("start")
     @ApiOperation("羊毛")
     public BaseResponse start() throws AWTException {
-     /*   appService.start("phone001");
+      /*appService.start("phone001");
         appService.start("phone002");*/
         appService.start("phone003");
         return BaseResponse.newSuccess();
@@ -30,8 +30,8 @@ public class AppController {
     @GetMapping("section1")
     @ApiOperation("羊毛")
     public BaseResponse section1() throws AWTException {
-      /*  appService.section1("phone001");
-        appService.section1("phone002");*/
+       appService.section1("phone001");
+        appService.section1("phone002");
         appService.section1("phone003");
         return BaseResponse.newSuccess();
     }
@@ -39,8 +39,8 @@ public class AppController {
     @GetMapping("section2")
     @ApiOperation("羊毛")
     public BaseResponse section2() throws AWTException {
-      /*  appService.section2("phone001");
-        appService.section2("phone002");*/
+       appService.section2("phone001");
+        appService.section2("phone002");
         appService.section2("phone003");
         return BaseResponse.newSuccess();
     }
@@ -66,8 +66,8 @@ public class AppController {
     @GetMapping("circulate")
     @ApiOperation("羊毛")
     public BaseResponse circulate() throws AWTException {
-      /*  appService.circulate("phone001");
-        appService.circulate("phone002");*/
+        appService.circulate("phone001");
+        appService.circulate("phone002");
         appService.circulate("phone003");
         return BaseResponse.newSuccess();
     }

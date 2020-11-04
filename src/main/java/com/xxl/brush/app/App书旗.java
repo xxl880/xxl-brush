@@ -209,7 +209,10 @@ public class App书旗 {
 
      */
     public static void clear(Robot robot, AndroidDriver driver){
-
+        try{
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"取消\")");
+            wl.click();
+        }catch (Exception e){}
     }
 
 

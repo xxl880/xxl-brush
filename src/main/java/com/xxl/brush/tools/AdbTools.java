@@ -42,7 +42,7 @@ public class AdbTools {
     @SneakyThrows
     public static void startup(Robot robot,String androidId, String operateData){
         log.info("******************启动app**************");
-             robot.delay(1000);
+             robot.delay(6000);
             String operate = " adb -s " + androidId + " shell am start -n " + operateData;
             Runtime.getRuntime().exec(operate);
             robot.delay(6000);

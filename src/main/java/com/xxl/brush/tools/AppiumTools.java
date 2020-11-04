@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class AppiumTools {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(AppiumTools.class);
 
-
+/*
     public static void start(String robotCode){
         try {
             String appiumCode = null;
@@ -39,7 +39,7 @@ public class AppiumTools {
             }
             Runtime.getRuntime().exec(appiumCode);
         }catch (Exception e){}
-    }
+    }*/
 
 
 

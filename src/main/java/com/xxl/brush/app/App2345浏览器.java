@@ -5,6 +5,9 @@ import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +31,8 @@ public class App2345浏览器 {
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
      */
-    public static void start(Robot robot,String robotCode){
+    @SneakyThrows
+    public static void start(Robot robot, String robotCode){
         try {
             log.info("********************************App2345浏览器操作********************************************");
 

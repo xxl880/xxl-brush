@@ -6,6 +6,7 @@ import com.xxl.brush.app.news.*;
 import com.xxl.brush.app.sports.*;
 import com.xxl.brush.service.AppService;
 import com.xxl.brush.tools.AppiumTools;
+import com.xxl.brush.tools.AppiumWindow;
 import lombok.SneakyThrows;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,14 @@ public class AppServiceImpl implements AppService {
 	@SneakyThrows
 	@Override
 	public void start(String robotCode){
+		AppiumWindow appiumWindow = new AppiumWindow();
+		appiumWindow.init(4723,appiumWindow);
+
 		Robot robot = new Robot();
 		//-综合
-    /*	App抖音极速.start(robot,robotCode);
-       	App火山极速.start(robot,robotCode);*/
-/*		App快手极速.start(robot,robotCode);*/
+    	App抖音极速.start(robot,robotCode);
+       	App火山极速.start(robot,robotCode);
+ 	    App快手极速.start(robot,robotCode);
 		App今日头条.start(robot,robotCode);
 		App趣头条.start(robot,robotCode);
 		AppQQ阅读.start(robot,robotCode);
