@@ -46,21 +46,21 @@ public class AppiumTools {
     public static AndroidDriver init(String robotCode){
         AndroidDriver driver = null;
         if(robotCode.equals("phone001")){
-            driver = process("9", PhoneConstants.phone001,"6000");
+            driver = process("9", PhoneConstants.phone001,"6000","9220");
         }else if(robotCode.equals("phone002")){
-            driver = process("10", PhoneConstants.phone002,"6001");
+            driver = process("10", PhoneConstants.phone002,"6001","9221");
         }else if(robotCode.equals("phone003")){
-            driver = process("9", PhoneConstants.phone003,"4723");
+            driver = process("9", PhoneConstants.phone003,"4723","9222");
         }else if(robotCode.equals("phone0031")){
-            driver = process("9", PhoneConstants.phone0031,"6003");
+            driver = process("9", PhoneConstants.phone0031,"6003","9223");
         }else if(robotCode.equals("phone0032")){
-            driver = process("9", PhoneConstants.phone0032,"6004");
+            driver = process("9", PhoneConstants.phone0032,"6004","9224");
         }else if(robotCode.equals("phone0033")){
-            driver = process("9", PhoneConstants.phone0033,"6005");
+            driver = process("9", PhoneConstants.phone0033,"6005","9225");
         }else if(robotCode.equals("phone0034")){
-            driver = process("9", PhoneConstants.phone0034,"6006");
+            driver = process("9", PhoneConstants.phone0034,"6006","9226");
         }else if(robotCode.equals("phone0035")){
-            driver = process("9", PhoneConstants.phone0035,"6007");
+            driver = process("9", PhoneConstants.phone0035,"6007","9227");
         }
 
 
@@ -69,7 +69,7 @@ public class AppiumTools {
 
 
     @SneakyThrows
-    public static AndroidDriver process(String platformVersion,String deviceName, String port){
+    public static AndroidDriver process(String platformVersion,String deviceName, String port, String systemPort){
        //1.添加配置，创建DesiredCapabilities对象
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         //添加操作系统配置
@@ -78,6 +78,10 @@ public class AppiumTools {
         desiredCapabilities.setCapability("platformVersion", platformVersion);
         //指定测试设备的名称
         desiredCapabilities.setCapability("deviceName", deviceName);
+        //指定测试设备的udid
+        desiredCapabilities.setCapability("udid", deviceName);
+        //指定通讯端口
+        desiredCapabilities.setCapability("systemPort", systemPort);
         //自动化测试引擎
         desiredCapabilities.setCapability("automationName", "Appium");
 
@@ -86,6 +90,7 @@ public class AppiumTools {
         log.info(url);
         AndroidDriver driver =  new AndroidDriver(new URL(url),desiredCapabilities);
         driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        Thread.sleep(1000);
         return  driver;
     }
 

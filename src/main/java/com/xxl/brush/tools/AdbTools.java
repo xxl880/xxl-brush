@@ -12,6 +12,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * todo 模拟手机操作
@@ -182,12 +183,14 @@ public class AdbTools {
     }
 
 
+
+
     /**
      *  todo 初始化手机
       * @param robot
      * @param robotCode
      */
-    public static String initMobile(Robot robot,String robotCode){
+    public static String initMobile(Robot robot, String robotCode){
         log.info("robotCode:{}" + robotCode);
         String androidId = "";
         if (robotCode.equals("phone001")) {
@@ -258,10 +261,47 @@ public class AdbTools {
 
     }
 
+    /**
+     * todo 21.获取电脑连接手机的androidid
+     * @return
+     */
+    public static java.util.List getAndroidId(){
+        java.util.List<String> list=new ArrayList<>();
+        String screen = "adb devices";
+        boolean bool = false;
+        BufferedReader br = null;
+        try {
+            Process p = Runtime.getRuntime().exec(screen);
+            br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line = null;
+            StringBuilder sb = new StringBuilder();
+            while ((line = br.readLine()) != null) {
+                if(line.contains("device")&&!line.contains("devices")){
+                     list.add(line.replace("device","").trim());
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally{
+            if (br != null)
+            {
+                try {
+                    br.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return (java.util.List) list;
+    }
+
+
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        boolean bool = screen(PhoneConstants.phone002);
-        System.out.println(bool);
+        getAndroidId();
 
 
     }

@@ -19,14 +19,14 @@ public class AppiumWindow {
 
     public void init(int port,AppiumWindow appiumWindow){
         if(!appiumWindow.checkIfServerIsRunnning(port)) {
-            appiumWindow.startServer();
+            appiumWindow.startServer(port);
           /*  appiumWindow.stopServer();*/
         } else {
             log.info("Appium Server already running on Port - " + port);
         }
     }
 
-    public void startServer() {
+    public void startServer(int port) {
 //Set Capabilities
         cap = new DesiredCapabilities();
         cap.setCapability("noReset", "false");
@@ -34,7 +34,7 @@ public class AppiumWindow {
 //Build the Appium service
         builder = new AppiumServiceBuilder();
         builder.withIPAddress("127.0.0.1");
-        builder.usingPort(4723);
+        builder.usingPort(port);
         builder.withCapabilities(cap);
 
 //Start the server with the builder

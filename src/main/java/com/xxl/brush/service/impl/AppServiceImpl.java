@@ -4,6 +4,7 @@ import com.xxl.brush.app.*;
 import com.xxl.brush.app.medias.*;
 import com.xxl.brush.app.news.*;
 import com.xxl.brush.app.sports.*;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.service.AppService;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.AppiumWindow;
@@ -30,8 +31,17 @@ public class AppServiceImpl implements AppService {
 	@SneakyThrows
 	@Override
 	public void start(String robotCode){
-		AppiumWindow appiumWindow = new AppiumWindow();
-		appiumWindow.init(4723,appiumWindow);
+
+		if(robotCode.equals("phone001")){
+			AppiumWindow appiumWindow = new AppiumWindow();
+			appiumWindow.init(6000,appiumWindow);
+		}else if(robotCode.equals("phone002")){
+			AppiumWindow appiumWindow = new AppiumWindow();
+			appiumWindow.init(6001,appiumWindow);
+		}else if(robotCode.equals("phone003")){
+			AppiumWindow appiumWindow = new AppiumWindow();
+			appiumWindow.init(4723,appiumWindow);
+		}
 
 		Robot robot = new Robot();
 		//-综合
