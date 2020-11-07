@@ -31,16 +31,22 @@ public class AppServiceImpl implements AppService {
 	@SneakyThrows
 	@Override
 	public void start(String robotCode){
-
+		AppiumWindow appiumWindow001 = null;
 		if(robotCode.equals("phone001")){
-			AppiumWindow appiumWindow = new AppiumWindow();
-			appiumWindow.init(6000,appiumWindow);
+			appiumWindow001 = new AppiumWindow();
+			appiumWindow001.init(6000,9220, appiumWindow001);
 		}else if(robotCode.equals("phone002")){
-			AppiumWindow appiumWindow = new AppiumWindow();
-			appiumWindow.init(6001,appiumWindow);
+			AppiumWindow appiumWindow002 = new AppiumWindow();
+			appiumWindow002.init(6001,9221,appiumWindow002);
 		}else if(robotCode.equals("phone003")){
-			AppiumWindow appiumWindow = new AppiumWindow();
-			appiumWindow.init(4723,appiumWindow);
+			AppiumWindow appiumWindow003 = new AppiumWindow();
+			appiumWindow003.init(4723,9222,appiumWindow003);
+		}else if(robotCode.equals("phone0031")){
+			AppiumWindow appiumWindow0031 = new AppiumWindow();
+			appiumWindow0031.init(6003,9223,appiumWindow0031);
+		}else if(robotCode.equals("phone0032")){
+			AppiumWindow appiumWindow0032 = new AppiumWindow();
+			appiumWindow0032.init(6004,9224,appiumWindow0032);
 		}
 
 		Robot robot = new Robot();

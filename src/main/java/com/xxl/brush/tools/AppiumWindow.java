@@ -17,19 +17,20 @@ public class AppiumWindow {
     private DesiredCapabilities cap;
 
 
-    public void init(int port,AppiumWindow appiumWindow){
+    public void init(int port,int systemPort,AppiumWindow appiumWindow){
         if(!appiumWindow.checkIfServerIsRunnning(port)) {
-            appiumWindow.startServer(port);
+            appiumWindow.startServer(port,systemPort);
           /*  appiumWindow.stopServer();*/
         } else {
             log.info("Appium Server already running on Port - " + port);
         }
     }
 
-    public void startServer(int port) {
+    public void startServer(int port,int systemPort) {
 //Set Capabilities
         cap = new DesiredCapabilities();
         cap.setCapability("noReset", "false");
+        cap.setCapability("systemPort",systemPort);
 
 //Build the Appium service
         builder = new AppiumServiceBuilder();

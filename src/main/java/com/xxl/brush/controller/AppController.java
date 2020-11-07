@@ -24,6 +24,9 @@ public class AppController {
         appService.start("phone001");
         appService.start("phone002");
         appService.start("phone003");
+        appService.start("phone0031");
+        appService.start("phone0032");
+
         return BaseResponse.newSuccess();
     }
 
