@@ -16,7 +16,7 @@ public class PhoneConstants {
     //小米6x 手机号-联通（16601978081）
     public static final String phone0032 = "a1b28da";
 
-
+    //小米6x 手机号-移动（16601978081）
     public static final String phone0033 = "";
 
     public static final String phone0034 = "";

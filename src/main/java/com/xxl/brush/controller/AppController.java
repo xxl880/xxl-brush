@@ -21,11 +21,11 @@ public class AppController {
     @GetMapping("start")
     @ApiOperation("羊毛")
     public BaseResponse start() throws AWTException {
-        appService.start("phone001");
-        appService.start("phone002");
-        appService.start("phone003");
-        appService.start("phone0031");
-        appService.start("phone0032");
+       appService.start("phone001");
+      /*  appService.start("phone002");
+        appService.start("phone003");*/
+       /* appService.start("phone0031");*/
+     /*   appService.start("phone0033");*/
 
         return BaseResponse.newSuccess();
     }

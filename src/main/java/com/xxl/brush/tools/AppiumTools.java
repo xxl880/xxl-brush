@@ -90,7 +90,6 @@ public class AppiumTools {
         log.info(url);
         AndroidDriver driver =  new AndroidDriver(new URL(url),desiredCapabilities);
         driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-        Thread.sleep(1000);
         return  driver;
     }
 
