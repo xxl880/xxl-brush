@@ -41,6 +41,7 @@ public class App快手极速 {
             log.info("4.清除");
             AdbTools.clear(driver);
             clear(robot,driver);
+
             handle2(robot, androidId, driver);
 
             try {

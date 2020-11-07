@@ -21,11 +21,11 @@ public class AppController {
     @GetMapping("circulate")
     @ApiOperation("羊毛")
     public BaseResponse circulate() throws AWTException {
-      /*  appService.circulate("phone001");*/
-        //appService.circulate("phone002");
-        appService.circulate("phone003");
-       /* appService.circulate("phone0031");
-        appService.circulate("phone0032");*/
+        appService.circulate("phone001");
+        appService.circulate("phone002");
+         appService.circulate("phone003");
+        appService.circulate("phone0031");
+        appService.circulate("phone0032");
         return BaseResponse.newSuccess();
     }
 
