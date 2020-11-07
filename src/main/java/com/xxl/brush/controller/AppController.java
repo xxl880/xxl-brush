@@ -18,60 +18,14 @@ public class AppController {
     @Autowired
     private AppService appService;
 
-    @GetMapping("start")
-    @ApiOperation("羊毛")
-    public BaseResponse start() throws AWTException {
-       appService.start("phone001");
-      /*  appService.start("phone002");
-        appService.start("phone003");*/
-       /* appService.start("phone0031");*/
-     /*   appService.start("phone0033");*/
-
-        return BaseResponse.newSuccess();
-    }
-
-    @GetMapping("section1")
-    @ApiOperation("羊毛")
-    public BaseResponse section1() throws AWTException {
-       appService.section1("phone001");
-        appService.section1("phone002");
-        appService.section1("phone003");
-        return BaseResponse.newSuccess();
-    }
-
-    @GetMapping("section2")
-    @ApiOperation("羊毛")
-    public BaseResponse section2() throws AWTException {
-       appService.section2("phone001");
-        appService.section2("phone002");
-        appService.section2("phone003");
-        return BaseResponse.newSuccess();
-    }
-
-    @GetMapping("section3")
-    @ApiOperation("羊毛")
-    public BaseResponse section3() throws AWTException {
-      /*  appService.section3("phone001");
-        appService.section3("phone002");*/
-        appService.section3("phone003");
-        return BaseResponse.newSuccess();
-    }
-
-    @GetMapping("section4")
-    @ApiOperation("羊毛")
-    public BaseResponse section4() throws AWTException {
-      /*  appService.section4("phone001");
-        appService.section4("phone002");*/
-        appService.section4("phone003");
-        return BaseResponse.newSuccess();
-    }
-
     @GetMapping("circulate")
     @ApiOperation("羊毛")
     public BaseResponse circulate() throws AWTException {
         appService.circulate("phone001");
         appService.circulate("phone002");
         appService.circulate("phone003");
+        appService.circulate("phone0031");
+        appService.circulate("phone0032");
         return BaseResponse.newSuccess();
     }
 
