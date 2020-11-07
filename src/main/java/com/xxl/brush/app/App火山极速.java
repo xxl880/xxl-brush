@@ -51,6 +51,9 @@ public class App火山极速 {
             handle1(robot,androidId,driver);
             handle6(robot,androidId,driver);
             handle9(robot,androidId,driver);
+            handle20(robot,androidId,driver);
+            handle21(robot,androidId,driver);
+            handle11(robot,androidId,driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -209,7 +212,7 @@ public class App火山极速 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
         log.info("火山极速-开宝箱");
         try {
-            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
             wl2.click();
 
@@ -218,7 +221,6 @@ public class App火山极速 {
 
             robot.delay(36000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("火山极速-开宝箱异常");
@@ -357,7 +359,7 @@ public class App火山极速 {
 
 
     /**
-     * todo 20.摇钱树
+     * todo 21.摇钱树
      * @param robot
      */
     public static void handle21(Robot robot,String androidId,  AndroidDriver driver){

@@ -50,7 +50,7 @@ public class AppServiceImpl implements AppService {
 		}
 		Robot robot = new Robot();
 		//-综合
-		App抖音极速.circulate(robot,robotCode);
+	/*	App抖音极速.circulate(robot,robotCode);*/
 		App火山极速.circulate(robot,robotCode);
 		App快手极速.circulate(robot,robotCode);
 		App今日头条.circulate(robot,robotCode);
