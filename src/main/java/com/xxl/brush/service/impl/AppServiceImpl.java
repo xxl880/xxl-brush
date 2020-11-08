@@ -30,84 +30,74 @@ public class AppServiceImpl implements AppService {
 	@Async
 	@SneakyThrows
 	@Override
-	public void circulate(String robotCode){
-		AppiumWindow appiumWindow001 = null;
-		if(robotCode.equals("phone001")){
-			appiumWindow001 = new AppiumWindow();
-			appiumWindow001.init(6000,9220, appiumWindow001);
-		}else if(robotCode.equals("phone002")){
-			AppiumWindow appiumWindow002 = new AppiumWindow();
-			appiumWindow002.init(6001,9221,appiumWindow002);
-		}else if(robotCode.equals("phone003")){
-			AppiumWindow appiumWindow003 = new AppiumWindow();
-			appiumWindow003.init(4723,9222,appiumWindow003);
-		}else if(robotCode.equals("phone0031")){
-			AppiumWindow appiumWindow0031 = new AppiumWindow();
-			appiumWindow0031.init(6003,9223,appiumWindow0031);
-		}else if(robotCode.equals("phone0032")){
-			AppiumWindow appiumWindow0032 = new AppiumWindow();
-			appiumWindow0032.init(6004,9224,appiumWindow0032);
-		}
+	public void circulate(String androidId,int portSeq){
 		Robot robot = new Robot();
+
+		AppiumWindow appiumWindow = new AppiumWindow();
+		int port = 4723+ portSeq;
+		int systemPort = 9000+ portSeq;
+
+		appiumWindow.init(port,systemPort, appiumWindow);
+
 		//-综合
-		App抖音极速.circulate(robot,robotCode);
-		App火山极速.circulate(robot,robotCode);
-		App快手极速.circulate(robot,robotCode);
-		App今日头条.circulate(robot,robotCode);
-		App趣头条.circulate(robot,robotCode);
-		AppQQ阅读.circulate(robot,robotCode);
-		App火山.circulate(robot,robotCode);
-		AppNOW直播.circulate(robot,robotCode);
-		App搜狗.circulate(robot,robotCode);
-		App拼多多.circulate(robot,robotCode);
-		App微博.circulate(robot,robotCode);
+		App抖音极速.circulate(robot,androidId, port, systemPort);
+		App火山极速.circulate(robot,androidId, port, systemPort);
+		App快手极速.circulate(robot,androidId, port, systemPort);
+		App今日头条.circulate(robot,androidId, port, systemPort);
+		App趣头条.circulate(robot,androidId, port, systemPort);
+		AppQQ阅读.circulate(robot,androidId, port, systemPort);
+		App火山.circulate(robot,androidId, port, systemPort);
+		AppNOW直播.circulate(robot,androidId, port, systemPort);
+		App搜狗.circulate(robot,androidId, port, systemPort);
+		App拼多多.circulate(robot,androidId, port, systemPort);
+		App微博.circulate(robot,androidId, port, systemPort);
 
 		//综合
-		App书旗.circulate(robot,robotCode);
-		App番茄.circulate(robot,robotCode);
-		App奇热.circulate(robot,robotCode);
-		App抖音火山.circulate(robot,robotCode);
-		App晴象浏览器.circulate(robot,robotCode);
-		App米读.circulate(robot,robotCode);
-		App必看.circulate(robot,robotCode);
-		App牛角.circulate(robot,robotCode);
-		App2345浏览器.circulate(robot,robotCode);
+		App书旗.circulate(robot,androidId, port, systemPort);
+		App番茄.circulate(robot,androidId, port, systemPort);
+		App奇热.circulate(robot,androidId, port, systemPort);
+		App抖音火山.circulate(robot,androidId, port, systemPort);
+		App晴象浏览器.circulate(robot,androidId, port, systemPort);
+		App米读.circulate(robot,androidId, port, systemPort);
+		App必看.circulate(robot,androidId, port, systemPort);
+		App牛角.circulate(robot,androidId, port, systemPort);
+		App2345浏览器.circulate(robot,androidId, port, systemPort);
 
 		/*//-视频
-		App刷宝.circulate(robot,robotCode);
-		App小吃货.circulate(robot,robotCode);
-		App火火.circulate(robot,robotCode);
-		App红包.circulate(robot,robotCode);
-		App彩蛋.circulate(robot,robotCode);
-		App热火.circulate(robot,robotCode);
-		App长豆.circulate(robot,robotCode);
+		App刷宝.circulate(robot,androidId, port, systemPort);
+		App小吃货.circulate(robot,androidId, port, systemPort);
+		App火火.circulate(robot,androidId, port, systemPort);
+		App红包.circulate(robot,androidId, port, systemPort);
+		App彩蛋.circulate(robot,androidId, port, systemPort);
+		App热火.circulate(robot,androidId, port, systemPort);
+		App长豆.circulate(robot,androidId, port, systemPort);
 
 		//-新闻
-		App微鲤看看.circulate(robot,robotCode);
-		App快看点.circulate(robot,robotCode);
-		App悦头条.circulate(robot,robotCode);
-		App惠头条.circulate(robot,robotCode);
-		App有料看看.circulate(robot,robotCode);
-		App点点.circulate(robot,robotCode);
-		App聚看点.circulate(robot,robotCode);
-		App蚂蚁看点.circulate(robot,robotCode);
-		App赚钱阅文赚.circulate(robot,robotCode);
-		App趣故事.circulate(robot,robotCode);
+		App微鲤看看.circulate(robot,androidId, port, systemPort);
+		App快看点.circulate(robot,androidId, port, systemPort);
+		App悦头条.circulate(robot,androidId, port, systemPort);
+		App惠头条.circulate(robot,androidId, port, systemPort);
+		App有料看看.circulate(robot,androidId, port, systemPort);
+		App点点.circulate(robot,androidId, port, systemPort);
+		App聚看点.circulate(robot,androidId, port, systemPort);
+		App蚂蚁看点.circulate(robot,androidId, port, systemPort);
+		App赚钱阅文赚.circulate(robot,androidId, port, systemPort);
+		App趣故事.circulate(robot,androidId, port, systemPort);
 
 		//-走路
-		App一起来走路.circulate(robot,robotCode);
-		App乐步.circulate(robot,robotCode);
-		App多多步.circulate(robot,robotCode);
-		App多宝.circulate(robot,robotCode);
-		App步多多.circulate(robot,robotCode);
-		App步数赚零钱.circulate(robot,robotCode);
-		App步步多.circulate(robot,robotCode);
-		App步步宝.circulate(robot,robotCode);
-		App计步赚钱.circulate(robot,robotCode);
-		App走走赚.circulate(robot,robotCode);
-		App走路赚钱.circulate(robot,robotCode);
+		App一起来走路.circulate(robot,androidId, port, systemPort);
+		App乐步.circulate(robot,androidId, port, systemPort);
+		App多多步.circulate(robot,androidId, port, systemPort);
+		App多宝.circulate(robot,androidId, port, systemPort);
+		App步多多.circulate(robot,androidId, port, systemPort);
+		App步数赚零钱.circulate(robot,androidId, port, systemPort);
+		App步步多.circulate(robot,androidId, port, systemPort);
+		App步步宝.circulate(robot,androidId, port, systemPort);
+		App计步赚钱.circulate(robot,androidId, port, systemPort);
+		App走走赚.circulate(robot,androidId, port, systemPort);
+		App走路赚钱.circulate(robot,androidId, port, systemPort);
 */
-
+		appiumWindow.stopServer();
 
 	}
 

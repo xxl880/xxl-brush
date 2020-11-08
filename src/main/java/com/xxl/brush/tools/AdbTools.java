@@ -28,7 +28,7 @@ public class AdbTools {
         try {
             log.info(operateData);
             Runtime.getRuntime().exec(operateData);
-            robot.delay(600);
+            robot.delay(2000);
         }catch (Exception e){
 
         }
@@ -188,31 +188,9 @@ public class AdbTools {
     /**
      *  todo 初始化手机
       * @param robot
-     * @param robotCode
+     * @param androidId
      */
-    public static String initMobile(Robot robot, String robotCode){
-        log.info("robotCode:{}" + robotCode);
-        String androidId = "";
-        if (robotCode.equals("phone001")) {
-            androidId = PhoneConstants.phone001;
-        } else if (robotCode.equals("phone002")) {
-            androidId = PhoneConstants.phone002;
-        } else if (robotCode.equals("phone003")) {
-            androidId = PhoneConstants.phone003;
-        } else if (robotCode.equals("phone0031")) {
-            androidId = PhoneConstants.phone0031;
-        } else if (robotCode.equals("phone0032")) {
-            androidId = PhoneConstants.phone0032;
-        } else if (robotCode.equals("phone0033")) {
-            androidId = PhoneConstants.phone0033;
-        } else if (robotCode.equals("phone0034")) {
-            androidId = PhoneConstants.phone0034;
-        } else if (robotCode.equals("phone0035")) {
-            androidId = PhoneConstants.phone0035;
-        }
-
-        if(StringUtils.isBlank(androidId)) return androidId;
-
+    public static void initMobile(Robot robot, String androidId){
         if(!AdbTools.screen(androidId)) {
             log.info("0.唤醒手机屏幕");
             String operateScreen = "adb -s " + androidId + " shell input keyevent 26";
@@ -234,9 +212,7 @@ public class AdbTools {
             operateDelete = AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2080));
         } else if (androidId.equals(PhoneConstants.phone002)) {
             operateDelete = AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2000));
-        } else if (androidId.equals(PhoneConstants.phone003)||androidId.equals(PhoneConstants.phone0031)
-                ||androidId.equals(PhoneConstants.phone0032)||androidId.equals(PhoneConstants.phone0033)
-                ||androidId.equals(PhoneConstants.phone0034)||androidId.equals(PhoneConstants.phone0035)) {
+        } else{
             operateDelete = AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1860));
         }
         process(robot, operateDelete);
@@ -244,7 +220,6 @@ public class AdbTools {
         log.info("0.返回主界面");
         process(robot, operateHome);
 
-        return androidId;
     }
 
 

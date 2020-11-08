@@ -9,7 +9,7 @@ public interface AppService {
     /**
      * todo 6-循环收取金币大于200金币
      */
-    public void circulate(String robotCode);
+    public void circulate(String androidId,int portSeq);
 
 
 

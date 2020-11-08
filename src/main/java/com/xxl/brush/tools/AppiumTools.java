@@ -4,6 +4,7 @@ import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.service.impl.AppServiceImpl;
 import io.appium.java_client.android.AndroidDriver;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.LoggerFactory;
 
@@ -17,24 +18,24 @@ public class AppiumTools {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(AppiumTools.class);
 
 /*
-    public static void start(String robotCode){
+    public static void start(String androidId){
         try {
             String appiumCode = null;
-            if (robotCode.equals("phone001")) {
+            if (androidId.equals("phone001")) {
                 appiumCode = "appium -p 6000 -bp 8000 -U "+PhoneConstants.phone001;
-            } else if (robotCode.equals("phone002")) {
+            } else if (androidId.equals("phone002")) {
                 appiumCode = "appium -p 6001 -bp 8001 -U "+PhoneConstants.phone002;
-            } else if (robotCode.equals("phone003")) {
+            } else if (androidId.equals("phone003")) {
                 appiumCode = "appium -p 6002 -bp 8002 -U "+PhoneConstants.phone003;
-            } else if (robotCode.equals("phone0031")) {
+            } else if (androidId.equals("phone0031")) {
                 appiumCode = "appium -p 6003 -bp 8003 -U "+PhoneConstants.phone0031;
-            } else if (robotCode.equals("phone0032")) {
+            } else if (androidId.equals("phone0032")) {
                 appiumCode = "appium -p 6004 -bp 8004 -U "+PhoneConstants.phone0032;
-            } else if (robotCode.equals("phone0033")) {
+            } else if (androidId.equals("phone0033")) {
                 appiumCode = "appium -p 6005 -bp 8005 -U "+PhoneConstants.phone0033;
-            } else if (robotCode.equals("phone0034")) {
+            } else if (androidId.equals("phone0034")) {
                 appiumCode = "appium -p 6006 -bp 8006 -U "+PhoneConstants.phone0034;
-            } else if (robotCode.equals("phone0035")) {
+            } else if (androidId.equals("phone0035")) {
                 appiumCode = "appium -p 6007 -bp 8007 -U "+PhoneConstants.phone0035;
             }
             Runtime.getRuntime().exec(appiumCode);
@@ -43,27 +44,13 @@ public class AppiumTools {
 
 
 
-    public static AndroidDriver init(String robotCode){
+    public static AndroidDriver init(String androidId,int port, int systemPort){
         AndroidDriver driver = null;
-        if(robotCode.equals("phone001")){
-            driver = process("9", PhoneConstants.phone001,"6000","9220");
-        }else if(robotCode.equals("phone002")){
-            driver = process("10", PhoneConstants.phone002,"6001","9221");
-        }else if(robotCode.equals("phone003")){
-            driver = process("9", PhoneConstants.phone003,"4723","9222");
-        }else if(robotCode.equals("phone0031")){
-            driver = process("9", PhoneConstants.phone0031,"6003","9223");
-        }else if(robotCode.equals("phone0032")){
-            driver = process("9", PhoneConstants.phone0032,"6004","9224");
-        }else if(robotCode.equals("phone0033")){
-            driver = process("9", PhoneConstants.phone0033,"6005","9225");
-        }else if(robotCode.equals("phone0034")){
-            driver = process("9", PhoneConstants.phone0034,"6006","9226");
-        }else if(robotCode.equals("phone0035")){
-            driver = process("9", PhoneConstants.phone0035,"6007","9227");
+        String platformVersion = "9";
+        if(androidId.equals(PhoneConstants.phone002)){
+            platformVersion = "10";
         }
-
-
+        driver = process(String.valueOf(platformVersion), androidId,String.valueOf(port),String.valueOf(systemPort));
       return driver;
     }
 

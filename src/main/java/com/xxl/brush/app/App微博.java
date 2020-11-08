@@ -29,18 +29,18 @@ public class App微博 {
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
      */
-    public static void circulate(Robot robot,String robotCode){
+    public static void circulate(Robot robot,String androidId,int port,int systemPort){
         try {
             log.info("********************************微博操作********************************************");
 
             log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
+             AdbTools.initMobile(robot, androidId);
 
             log.info("2.启动app");
             AdbTools.startup(robot, androidId, AppConstants.startup微博);
 
             log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
+            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
             AdbTools.clear(driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"首页\")");

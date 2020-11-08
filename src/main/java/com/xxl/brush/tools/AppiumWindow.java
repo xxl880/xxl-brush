@@ -38,8 +38,8 @@ public class AppiumWindow {
         builder.withIPAddress("127.0.0.1");
         builder.usingPort(port);
         builder.withCapabilities(cap);
-/*        builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
-        builder.withArgument(GeneralServerFlag.LOG_LEVEL,"error");*/
+        builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
+        builder.withArgument(GeneralServerFlag.LOG_LEVEL,"error");
 //Start the server with the builder
         service = AppiumDriverLocalService.buildService(builder);
         service.start();

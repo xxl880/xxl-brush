@@ -32,18 +32,18 @@ public class App2345浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     @SneakyThrows
-    public static void circulate(Robot robot, String robotCode){
+    public static void circulate(Robot robot,String androidId,int port,int systemPort){
         try {
             log.info("********************************App2345浏览器操作********************************************");
 
             log.info("1.初始化手机");
-            String androidId = AdbTools.initMobile(robot, robotCode);
+             AdbTools.initMobile(robot, androidId);
 
             log.info("2.启动app");
             AdbTools.startup(robot, androidId, AppConstants.startup2345);
 
             log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(robotCode);
+            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
 
             AdbTools.clear(driver);
             appClear(robot, androidId, driver);
