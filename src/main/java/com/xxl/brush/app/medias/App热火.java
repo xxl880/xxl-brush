@@ -146,7 +146,7 @@ public class App热火 {
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 if (a == RandomTools.init(6)) {
                     AdbTools.process(robot, AdbTools.upPage(androidId));
                 }

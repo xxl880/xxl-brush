@@ -115,7 +115,7 @@ public class App有料看看 {
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
             wl1.click();
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
 
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
@@ -158,7 +158,7 @@ public class App有料看看 {
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
                 AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 for(int i=0;i<6;i++) {
                     robot.delay(RandomTools.init(15000));
                     AdbTools.process(robot, AdbTools.down(androidId));

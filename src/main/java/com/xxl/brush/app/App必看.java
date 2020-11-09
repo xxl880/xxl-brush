@@ -41,9 +41,9 @@ public class App必看 {
             AdbTools.clear(driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书城\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl.getLocation().getY()));
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
             }
 
             handle1(robot, androidId, driver);
@@ -163,13 +163,13 @@ public class App必看 {
             robot.delay(1000);
             AdbTools.process(robot, AdbTools.downPage(androidId));
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1000));
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"立即阅读\")");
             wl3.click();
 
             for(int i=0;i<60;i++) {
                 robot.delay(RandomTools.init(6000));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 1000, 140));
             }
 
 
@@ -261,7 +261,7 @@ public class App必看 {
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"幸运大转盘\")");
             wl2.click();
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl3.getLocation().getY() + wl3.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540), wl3.getLocation().getY() + wl3.getLocation().getY())));
 
 
         }catch (Exception e){

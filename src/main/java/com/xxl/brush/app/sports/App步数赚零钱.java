@@ -41,13 +41,13 @@ public class App步数赚零钱 {
             try {
                 clear(robot,androidId,driver);
                 WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.szwx.cfbsz:id/id_tab\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(400), String.valueOf(wl.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 400, wl.getLocation().getY()));
             }catch (Exception e){ }
 
             try {
                 clear(robot,androidId,driver);
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.szwx.cfbsz:id/id_tab\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(130), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 130, wl1.getLocation().getY()));
             }catch (Exception e){ }
 
             handle8(robot,androidId,driver);

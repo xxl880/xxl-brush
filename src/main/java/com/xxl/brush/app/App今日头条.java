@@ -43,9 +43,9 @@ public class App今日头条 {
 
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(wl.getLocation().getY() + 20)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 760, wl.getLocation().getY() + 20));
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(760), String.valueOf(1960)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 760, 1960));
             }
 
             handle1(robot, androidId, driver);
@@ -160,7 +160,7 @@ public class App今日头条 {
             wl2.click();
             robot.delay(2000);
             AdbTools.process(robot, AdbTools.downPage(androidId));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(160), String.valueOf(1580)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 160, 1580));
             try {
                 WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"立即阅读\")");
                 wl3.click();
@@ -170,7 +170,7 @@ public class App今日头条 {
                     wl4.click();
                 }catch (Exception e1){
                     AdbTools.process(robot, AdbTools.down(androidId));
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(160), String.valueOf(1580)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 160, 1580));
                     WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"阅读\")");
                     wl5.click();
                 }
@@ -189,7 +189,7 @@ public class App今日头条 {
                     }
                 }catch (Exception e){}
 
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1030), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 1030, 600));
             }
 
         }catch (Exception e){
@@ -452,13 +452,13 @@ public class App今日头条 {
             wl2.click();
             robot.delay(6000);
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(950), String.valueOf(960)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(950), String.valueOf(870)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(470)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(400)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 950, 960));
+            AdbTools.process(robot, AdbTools.tap(androidId, 950, 870));
+            AdbTools.process(robot, AdbTools.tap(androidId, 1000, 470));
+            AdbTools.process(robot, AdbTools.tap(androidId, 1000, 400));
 
             WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.bytedance.article.lite.plugin.appbrand:id/microapp_m_titlebar_capsule_more\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl4.getLocation().getY()+120)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, wl4.getLocation().getY()+120));
             wl4.click();
             robot.delay(2000);
             wl4.click();
@@ -493,18 +493,18 @@ public class App今日头条 {
             wl2.click();
             robot.delay(6000);
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(800)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(880)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(470)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(460)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 800));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 880));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 470));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 460));
            for(int i=0;i<3;i++) {
-               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(300)));
-               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
-               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(12360)));
+               AdbTools.process(robot, AdbTools.tap(androidId, 970, 300));
+               AdbTools.process(robot, AdbTools.tap(androidId, 540, 1260));
+               AdbTools.process(robot, AdbTools.tap(androidId, 540, 12360));
                robot.delay(18000);
                AdbTools.process(robot, operateBack);
-               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
-               AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1360)));
+               AdbTools.process(robot, AdbTools.tap(androidId, 540, 1260));
+               AdbTools.process(robot, AdbTools.tap(androidId, 540, 1360));
            }
 
         }catch (Exception e){
@@ -534,19 +534,19 @@ public class App今日头条 {
             wl2.click();
             robot.delay(6000);
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(800)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(880)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(470)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(460)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 800));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 880));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 470));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 460));
 
             for(int i=0;i<3;i++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(300)));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(12360)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 970, 300));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1260));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1260));
                 robot.delay(18000);
                 AdbTools.process(robot, operateBack);
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1360)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1260));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1360));
             }
 
         }catch (Exception e){

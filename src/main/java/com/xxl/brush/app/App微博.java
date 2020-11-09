@@ -46,7 +46,7 @@ public class App微博 {
                 WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"首页\")");
                 wl.click();
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
             }
 
             handle4(robot, androidId, driver);
@@ -104,7 +104,7 @@ public class App微博 {
                 wl1.clear();
             }catch (Exception e){}
             WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"今天\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(wl.getLocation().getX()+50), String.valueOf(wl.getLocation().getY()+60)));
+            AdbTools.process(robot, AdbTools.tap(androidId, wl.getLocation().getX()+50, wl.getLocation().getY()+60));
 
         }catch (Exception e){
             log.info("微博-签到异常");

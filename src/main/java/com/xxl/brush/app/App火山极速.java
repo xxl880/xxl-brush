@@ -44,7 +44,7 @@ public class App火山极速 {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"红包\")");
                 wl.click();
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(680), String.valueOf(2140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 680, 2140));
             }
 
             clear(robot,androidId,driver);
@@ -372,7 +372,7 @@ public class App火山极速 {
             wl2.click();
             robot.delay(8000);
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1100)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1100));
 
             AdbTools.process(robot, operateBack);
 

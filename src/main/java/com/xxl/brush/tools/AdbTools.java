@@ -109,7 +109,7 @@ public class AdbTools {
     /**
      * todo 向下滑动，正常操作
      */
-    public static String tap(String androidId, String x, String y){
+    public static String tap(String androidId, int x, int y){
         String tap = "adb -s "+androidId +" shell input tap " + x + " " + y;
         return  tap;
     }
@@ -118,7 +118,7 @@ public class AdbTools {
     /**
      * todo 刮奖，正常操作
      */
-    public static String tapDraw(String androidId, String x, String y){
+    public static String tapDraw(String androidId, int x, int y){
         int y1 = 1000+Integer.valueOf(y);
 
         String draw = "adb -s "+androidId +" shell input swipe "+ x + " " + y + " " + x +" " +y1;
@@ -209,11 +209,11 @@ public class AdbTools {
         if (androidId.equals(PhoneConstants.phone001)) {
             operateDispath = "adb -s " + androidId + " shell input tap 770 2280";
             process(robot, operateDispath);
-            operateDelete = AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2080));
+            operateDelete = AdbTools.tap(androidId, 540, 2080);
         } else if (androidId.equals(PhoneConstants.phone002)) {
-            operateDelete = AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2000));
+            operateDelete = AdbTools.tap(androidId, 540, 2000);
         } else{
-            operateDelete = AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1860));
+            operateDelete = AdbTools.tap(androidId, 540, 1860);
         }
         process(robot, operateDelete);
 

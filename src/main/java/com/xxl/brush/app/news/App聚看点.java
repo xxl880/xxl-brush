@@ -45,7 +45,7 @@ public class App聚看点 {
                 WebElement wl = driver.findElementByAndroidUIAutomator("resourceId(\"com.jifen.qukan:id/afk\")");
                 wl.click();
             }catch (Exception e){
-                //AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1641)));
+                //AdbTools.process(robot, AdbTools.tap(androidId, 540), 1641)));
             }
 
             handle8(robot,androidId,driver);
@@ -56,7 +56,7 @@ public class App聚看点 {
                 wl.click();
             }catch (Exception e){
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl1.getLocation().getY()));
             }
             handle2(robot,androidId,driver);
 
@@ -67,7 +67,7 @@ public class App聚看点 {
                 wl.click();
             }catch (Exception e){
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 755, wl1.getLocation().getY()));
             }
             handle18(robot,androidId,driver);
             handle61(robot,androidId,driver);
@@ -147,7 +147,7 @@ public class App聚看点 {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, wl1.getLocation().getY()));
 
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
@@ -187,7 +187,7 @@ public class App聚看点 {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1000));
 
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {

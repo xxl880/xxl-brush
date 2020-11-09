@@ -47,7 +47,7 @@ public class AppQQ阅读 {
                 wl.click();
             } catch (Exception e) {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"精选\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(93), String.valueOf(wl.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 93, wl.getLocation().getY()));
             }
 
             try {
@@ -165,7 +165,7 @@ public class AppQQ阅读 {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领300金币\")");
             wl.click();
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 800));
 
             for(int i=0;i<10;i++) {
                 robot.delay(31000);
@@ -190,7 +190,7 @@ public class AppQQ阅读 {
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去精选\")");
             wl.click();
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1260)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1260));
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"加书架\")");
             wl1.click();

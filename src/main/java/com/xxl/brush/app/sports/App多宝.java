@@ -355,7 +355,7 @@ public class App多宝 {
                 robot.delay(2000);
                 wl.click();
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/gv_card\")");
-                AdbTools.process(robot, AdbTools.tapDraw(androidId, String.valueOf(wl2.getLocation().getX()+20), String.valueOf(wl2.getLocation().getY()+20)));
+                AdbTools.process(robot, AdbTools.tapDraw(androidId, wl2.getLocation().getX()+20, wl2.getLocation().getY()+20));
                 robot.delay(5000);
                 try {
                     WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.lotus.town.news:id/iv_type\")");

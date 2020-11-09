@@ -139,11 +139,11 @@ public class App米读 {
             for(int x=0;x<xx;x++){
                 AdbTools.process(robot, AdbTools.down(androidId));
             }
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1500)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1500));
 
             for(int i=0;i<60;i++) {
                 robot.delay(RandomTools.init(6000));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 1000, 140));
             }
 
         }catch (Exception e){

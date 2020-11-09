@@ -42,7 +42,7 @@ public class App番茄 {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.RadioButton\").text(\"福利\")");
                 wl.click();
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
             }
 
             handle1(robot,androidId,driver);
@@ -101,7 +101,7 @@ public class App番茄 {
             wl.click();*/
 
           /*  WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/anc\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540), wl1.getLocation().getY())));
             robot.delay(32000);*/
            // AdbTools.process(robot, operateBack);
 
@@ -152,7 +152,7 @@ public class App番茄 {
             AdbTools.process(robot, AdbTools.upPage(androidId));
             AdbTools.process(robot, AdbTools.upPage(androidId));
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(800), String.valueOf(1000)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 800, 1000));
 
             WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/aq_\")");
             wl4.click();

@@ -45,16 +45,16 @@ public class App搜狗 {
                 WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
                 wl.click();
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1960)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1960));
             }
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
                 wl.click();
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1960)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1960));
             }
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(900), String.valueOf(160)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 900, 160));
 
             handle1(robot,androidId,driver);
             handle20(robot,androidId,driver);
@@ -174,7 +174,7 @@ public class App搜狗 {
                     wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"继续阅读\")");
                 }
                 wl2.click();
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1000));
                 int x = RandomTools.init(8);
                 for (int a = 0; a < x; a++) {
                     robot.delay(RandomTools.init(15000));
@@ -370,12 +370,12 @@ public class App搜狗 {
                     list.add("suijiyingbian");
                     list.add("chujiubuxin");
                     list.add("haogaowuyuan");
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(136)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 136));
                     AdbTools.process(robot, AdbTools.text(androidId, list.get(RandomTools.init(23))));
                     robot.delay(1000);
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(136)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 1000, 136));
                     robot.delay(1000);
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(680)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 680));
             }
 
           }

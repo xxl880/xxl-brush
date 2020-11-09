@@ -177,7 +177,7 @@ public class App快看点 {
 
             for(int i=0;i<20;i++) {
                 WebElement wl5 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"今日剩余\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl5.getLocation().getY() + 160)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl5.getLocation().getY() + 160));
                 robot.delay(36000);
 
                 try {

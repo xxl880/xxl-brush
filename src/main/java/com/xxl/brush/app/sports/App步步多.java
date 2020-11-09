@@ -170,7 +170,7 @@ public class App步步多 {
             wl.click();
 
             AdbTools.process(robot, AdbTools.down(androidId));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1200)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1200));
             for(int i=0;i<6;i++){
                 AdbTools.process(robot, AdbTools.down(androidId));
             }

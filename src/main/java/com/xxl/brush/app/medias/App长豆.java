@@ -44,7 +44,7 @@ public class App长豆 {
             handle2(robot,androidId,driver);
 
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, wl.getLocation().getY()));
 
             handle6(robot,androidId,driver);
             handle20(robot,androidId,driver);

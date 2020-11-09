@@ -46,7 +46,7 @@ public class App步步宝 {
                 wl.click();
             }catch (Exception e){
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl1.getLocation().getY()));
             }
             handle2(robot,androidId,driver);
 
@@ -57,7 +57,7 @@ public class App步步宝 {
                 wl.click();
             }catch (Exception e){
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 755, wl1.getLocation().getY()));
             }
             handle18(robot,androidId,driver);
             handle6(robot,androidId,driver);
@@ -158,7 +158,7 @@ public class App步步宝 {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
 
             int x = RandomTools.init(16);
             for (int a = 0; a < x; a++) {
@@ -191,7 +191,7 @@ public class App步步宝 {
                 wle.click();
                 for (int a = 0; a < 3; a++) {
                     AdbTools.process(robot, AdbTools.down(androidId));
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                     robot.delay(2000);
                     for(int i=0;i<6;i++){
                         robot.delay(RandomTools.init(6000)+18000);
@@ -461,7 +461,7 @@ public class App步步宝 {
                 robot.delay(1000);
                 wl.click();
                 WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.meituo.bububao:id/screatchview\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(wl3.getLocation().getX()+20), String.valueOf(wl3.getLocation().getY()+20)));
+                AdbTools.process(robot, AdbTools.tap(androidId, wl3.getLocation().getX()+20, wl3.getLocation().getY()+20));
                 robot.delay(2000);
                 WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"金币翻倍\")");
                 wl4.click();

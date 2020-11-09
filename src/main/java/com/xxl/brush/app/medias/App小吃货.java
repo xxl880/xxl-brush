@@ -173,10 +173,10 @@ public class App小吃货 {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(130)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 130));
             robot.delay(2000);
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(160), String.valueOf(350)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 160, 350));
             robot.delay(1000);
 
             robot.delay(32000);

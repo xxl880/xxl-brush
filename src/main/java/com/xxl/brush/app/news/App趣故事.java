@@ -149,7 +149,7 @@ public class App趣故事 {
             robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1000));
 
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
@@ -193,7 +193,7 @@ public class App趣故事 {
                 WebElement wl2 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.FrameLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[5]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]");
                 wl2.click();
                 }catch (Exception e){}
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 for(int a=0;a<8;a++){
                     AdbTools.process(robot, AdbTools.down(androidId));
                     robot.delay(3000);
@@ -231,7 +231,7 @@ public class App趣故事 {
                 WebElement wl2 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.FrameLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[5]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]");
                 wl2.click();
                 }catch (Exception e){}
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 for(int a=0;a<8;a++){
                     AdbTools.process(robot, AdbTools.down(androidId));
                     robot.delay(5000);
@@ -269,7 +269,7 @@ public class App趣故事 {
                     WebElement wl2 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.FrameLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[5]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]");
                     wl2.click();
                 }catch (Exception e){}
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 for(int a=0;a<8;a++){
                     AdbTools.process(robot, AdbTools.down(androidId));
                     robot.delay(3000);
@@ -308,7 +308,7 @@ public class App趣故事 {
                     WebElement wl2 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.FrameLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[5]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]");
                     wl2.click();
                 }catch (Exception e){}
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 for(int a=0;a<8;a++){
                     AdbTools.process(robot, AdbTools.down(androidId));
                     robot.delay(3000);
@@ -347,7 +347,7 @@ public class App趣故事 {
                     WebElement wl2 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.FrameLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[5]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]");
                     wl2.click();
                 }catch (Exception e){}
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 for(int a=0;a<8;a++){
                     AdbTools.process(robot, AdbTools.down(androidId));
                     robot.delay(3000);

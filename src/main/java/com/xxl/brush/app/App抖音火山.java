@@ -40,13 +40,13 @@ public class App抖音火山 {
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
 
             AdbTools.clear(driver);
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
 
             handle2(robot, androidId, driver);
 
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(80), String.valueOf(wl.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 80, wl.getLocation().getY()));
             }catch (Exception e){ }
 
             handle1(robot,androidId,driver);

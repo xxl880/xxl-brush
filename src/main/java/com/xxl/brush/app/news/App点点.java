@@ -118,7 +118,7 @@ public class App点点 {
             wl1.click();
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 robot.delay(RandomTools.init(6000));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 for (int i=0;i<6;i++) {
@@ -156,7 +156,7 @@ public class App点点 {
             wl1.click();
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 robot.delay(RandomTools.init(6000));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 for (int i=0;i<6;i++) {
@@ -185,7 +185,7 @@ public class App点点 {
                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"百度新闻\").fromParent(text(\"去完成\"))");
                wl1.click();
                for (int a = 0; a < 6; a++) {
-                   AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                   AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                    robot.delay(RandomTools.init(6000));
                    AdbTools.process(robot, AdbTools.upPage(androidId));
                    for (int i = 0; i < 6; i++) {
@@ -200,7 +200,7 @@ public class App点点 {
                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"趣闻社\").fromParent(text(\"去完成\"))");
                wl2.click();
                for (int a = 0; a < 6; a++) {
-                   AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                   AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                    robot.delay(RandomTools.init(6000));
                    AdbTools.process(robot, AdbTools.upPage(androidId));
                    for (int i = 0; i < 6; i++) {
@@ -215,7 +215,7 @@ public class App点点 {
               WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每日看点\").fromParent(text(\"去完成\"))");
               wl3.click();
               for (int a = 0; a < 6; a++) {
-                  AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                  AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                   robot.delay(RandomTools.init(6000));
                   AdbTools.process(robot, AdbTools.upPage(androidId));
                   for (int i = 0; i < 6; i++) {
@@ -230,7 +230,7 @@ public class App点点 {
               WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"精选头条\").fromParent(text(\"去完成\"))");
               wl4.click();
               for (int a = 0; a < 6; a++) {
-                  AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                  AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                   robot.delay(RandomTools.init(6000));
                   AdbTools.process(robot, AdbTools.upPage(androidId));
                   for (int i = 0; i < 6; i++) {
@@ -246,7 +246,7 @@ public class App点点 {
             WebElement wl6 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"1.9包邮\").fromParent(text(\"去完成\"))");
             wl6.click();
             for (int a = 0; a < 6; a++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 robot.delay(RandomTools.init(6000));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 for (int i = 0; i < 6; i++) {
@@ -261,7 +261,7 @@ public class App点点 {
             WebElement wl7 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利互动\").fromParent(text(\"去完成\"))");
             wl7.click();
             for (int a = 0; a < 6; a++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 robot.delay(RandomTools.init(6000));
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 for (int i = 0; i < 6; i++) {

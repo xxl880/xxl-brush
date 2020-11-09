@@ -64,7 +64,7 @@ public class App趣头条 {
                 wl.click();
             } catch (Exception e) {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 755, wl1.getLocation().getY()));
             }
             init(robot,driver);
             handle18(robot, androidId, driver);
@@ -78,7 +78,7 @@ public class App趣头条 {
                 wl.click();
             } catch (Exception e) {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl1.getLocation().getY()));
             }
             handle2(robot, androidId, driver);
 
@@ -161,7 +161,7 @@ public class App趣头条 {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, wl1.getLocation().getY()));
 
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
@@ -200,7 +200,7 @@ public class App趣头条 {
         try {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1000)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1000));
 
             try{
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.FrameLayout\").childSelector(className(\"android.widget.ImageView\")).fromParent(className(\"android.view.View\"))");

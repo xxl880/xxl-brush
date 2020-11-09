@@ -129,7 +129,7 @@ public class App蚂蚁看点 {
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
                 AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"取消\")");
                 wl2.click();
                 robot.delay(RandomTools.init(36000));
@@ -222,7 +222,7 @@ public class App蚂蚁看点 {
                         WebElement wl21 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"close200713\")");
                         wl21.click();
                     }catch (Exception e11){}
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1500)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1500));
                     AdbTools.process(robot, AdbTools.down(androidId));
                     robot.delay(RandomTools.init(6000));
                     AdbTools.process(robot, operateBack);

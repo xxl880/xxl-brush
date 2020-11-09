@@ -237,7 +237,7 @@ public class App喜马拉雅 {
             wl2.click();
 
             WebElement  wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"填写收货地址\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl3.getLocation().getY()+300)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, wl3.getLocation().getY()+300));
             robot.delay(32000);
 
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";

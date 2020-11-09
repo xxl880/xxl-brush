@@ -176,7 +176,7 @@ public class App微鲤看看 {
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(9000));
                 AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(660)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 660));
                 for(int i=0;i<8;i++) {
                     robot.delay(RandomTools.init(15000));
                     AdbTools.process(robot, AdbTools.down(androidId));
@@ -386,7 +386,7 @@ public class App微鲤看看 {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去搜索+400\")");
                 wl2.click();
                 robot.delay(1000);
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(660)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 660));
                 for (int i = 0; i < 8; i++) {
                     robot.delay(2000);
                     AdbTools.process(robot, AdbTools.down(androidId));
@@ -398,7 +398,7 @@ public class App微鲤看看 {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去搜索+500\")");
                 wl2.click();
                 robot.delay(1000);
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(660)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 660));
                 for (int i = 0; i < 8; i++) {
                     robot.delay(2000);
                     AdbTools.process(robot, AdbTools.down(androidId));
@@ -410,7 +410,7 @@ public class App微鲤看看 {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去搜索+600\")");
                 wl2.click();
                 robot.delay(1000);
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(660)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 660));
                 for (int i = 0; i < 8; i++) {
                     robot.delay(2000);
                     AdbTools.process(robot, AdbTools.down(androidId));

@@ -101,7 +101,7 @@ public class App书旗 {
                     wl1.click();
                 } catch (Exception e) {
                     WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"看视频补签领\")");
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+                    AdbTools.process(robot, AdbTools.tap(androidId,  540, wl1.getLocation().getY()));
                 }
                 robot.delay(32000);
                 robot.delay(32000);

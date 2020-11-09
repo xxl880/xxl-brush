@@ -184,7 +184,7 @@ public class App多多步 {
             AdbTools.process(robot, AdbTools.upPage(androidId));
             AdbTools.process(robot, AdbTools.upPage(androidId));
             WebElement  wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看完视频，并点击视频下方按钮\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(880), String.valueOf(wl1.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 880, wl1.getLocation().getY()));
             robot.delay(32000);
 
             try{
@@ -561,9 +561,9 @@ public class App多多步 {
         }catch (Exception e){}
         int a = RandomTools.init(12);
         for(int i=0;i<a ;i++) {
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(400)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 400));
             WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"net.rjkfw.ddb:id/mGridView\")");
-            AdbTools.process(robot, AdbTools.tapDraw(androidId, String.valueOf(wl5.getLocation().getX() + 20), String.valueOf(wl5.getLocation().getY() + 20)));
+            AdbTools.process(robot, AdbTools.tapDraw(androidId, wl5.getLocation().getX() + 20, wl5.getLocation().getY() + 20));
             robot.delay(2000);
 
             try {

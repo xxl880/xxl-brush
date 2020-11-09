@@ -142,7 +142,7 @@ public class App2345浏览器 {
             robot.delay(1000);
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\") .text(\"/推荐\")");
             wl1.click();
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
@@ -176,7 +176,7 @@ public class App2345浏览器 {
             robot.delay(1000);
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\") .text(\"/小视频\")");
             wl1.click();
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(270), String.valueOf(600)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
@@ -217,7 +217,7 @@ public class App2345浏览器 {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 List<WebElement> wls = driver.findElementsByAndroidUIAutomator("className(\"android.widget.TextView\") .text(\"阅读可领金币\")");
 
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf( wls.get(0).getLocation().getY()+200)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wls.get(0).getLocation().getY()+200));
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, operateBack);
                 AdbTools.process(robot, operateBack);
@@ -259,7 +259,7 @@ public class App2345浏览器 {
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(8000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 for(int i=0;i<6;i++){
                     robot.delay(RandomTools.init(6000));
                     AdbTools.process(robot, AdbTools.down(androidId));
@@ -294,7 +294,7 @@ public class App2345浏览器 {
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(8000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1600));
                 WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"开始阅读\")");
                 wl3.click();
                 robot.delay(2000);
@@ -524,9 +524,9 @@ public class App2345浏览器 {
                 wl3.click();
                 AdbTools.process(robot, AdbTools.text(androidId, list.get(RandomTools.init(23))));
                 robot.delay(1000);
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(1000), String.valueOf(wl3.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 1000, wl3.getLocation().getY()));
                 robot.delay(1000);
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(680)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 680));
             }
 
         }catch (Exception e){}

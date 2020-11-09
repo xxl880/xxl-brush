@@ -44,7 +44,7 @@ public class App赚钱 {
                 wl.click();
             }catch (Exception e){
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl1.getLocation().getY()));
             }
 
             handle2(robot,androidId,driver);
@@ -55,7 +55,7 @@ public class App赚钱 {
                 wl.click();
             }catch (Exception e){
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(755), String.valueOf(wl1.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 755, wl1.getLocation().getY()));
             }
 
             handle18(robot,androidId,driver);
@@ -137,7 +137,7 @@ public class App赚钱 {
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"视频\")");
             wl1.click();
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 800));
 
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
@@ -203,7 +203,7 @@ public class App赚钱 {
                 AdbTools.process(robot, AdbTools.down(androidId));
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每篇最多可得480金币\")");
             }
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl2.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, wl2.getLocation().getY()));
             robot.delay(32000);
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sljh.zqxsp:id/tt_video_ad_close_layout\")");
@@ -344,7 +344,7 @@ public class App赚钱 {
                 AdbTools.process(robot, AdbTools.down(androidId));
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每天首次分享加800金币\").fromParent(text(\"去分享\"))");
             }
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl2.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, wl2.getLocation().getY()));
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"朋友圈分享\")");
             wl3.click();
@@ -393,15 +393,15 @@ public class App赚钱 {
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"每天分享3条视频可得1600金币\").fromParent(textContains(\"已分享\"))");
             }
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(970), String.valueOf(wl2.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, wl2.getLocation().getY()));
 
             robot.delay(2000);
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 800));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 800));
             robot.delay(12000);
             AdbTools.process(robot, AdbTools.downPage(androidId));
 
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(800)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 800));
             WebElement wl5 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"分享3条得\")");
             wl5.click();
 

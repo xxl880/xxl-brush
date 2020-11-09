@@ -45,7 +45,7 @@ public class App晴象浏览器 {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
                 wl.click();
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
             }
 
             handle1(robot,androidId,driver);
@@ -530,7 +530,7 @@ public class App晴象浏览器 {
 
 
             WebElement wl32 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"奖励\")");
-            AdbTools.process(robot, AdbTools.tapDraw(androidId, String.valueOf(wl32.getLocation().getX()+10), String.valueOf(wl32.getLocation().getY()+80)));
+            AdbTools.process(robot, AdbTools.tapDraw(androidId, wl32.getLocation().getX()+10, wl32.getLocation().getY()+80));
 
             robot.delay(2000);
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频金币翻倍\")");

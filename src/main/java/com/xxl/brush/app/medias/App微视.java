@@ -96,7 +96,7 @@ public class App微视 {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, wl1.getLocation().getY()));
 
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");

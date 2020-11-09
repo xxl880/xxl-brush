@@ -51,9 +51,9 @@ public class App抖音极速 {
             handle2(robot, androidId, driver);
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl.getLocation().getY() + 20)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl.getLocation().getY() + 20));
             }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(2140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
             }
 
             handle1(robot, androidId, driver);

@@ -51,7 +51,7 @@ public class AppNOW直播 {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tencent.now:id/pl\")");
                 wl1.click();
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(990), String.valueOf(1000)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 990, 1000));
             }
 
             handle1(robot, androidId, driver);
@@ -93,7 +93,7 @@ public class AppNOW直播 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("NOW直播-签到");
         try {
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(1680)));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1680));
         }catch (Exception e){
             log.info("NOW直播-签到异常");
         }

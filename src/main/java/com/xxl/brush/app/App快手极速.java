@@ -48,7 +48,7 @@ public class App快手极速 {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
                 wl.click();
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(90), String.valueOf(440)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 90, 440));
             }
 
             handle1(robot, androidId, driver);
@@ -321,7 +321,7 @@ public class App快手极速 {
             AdbTools.process(robot, AdbTools.downPage(androidId));
             AdbTools.process(robot, AdbTools.downPage(androidId));
             WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
-            AdbTools.process(robot,AdbTools.tap(androidId,"880",String.valueOf(wl3.getLocation().getY())));
+            AdbTools.process(robot,AdbTools.tap(androidId,880,wl3.getLocation().getY()));
             for(int i=0;i<10;i++) {
                 int a = RandomTools.init(6000);
                 robot.delay(30000+a);

@@ -135,7 +135,7 @@ public class App悦头条 {
             wl.click();
             int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 for (int i=0;i<6;i++) {

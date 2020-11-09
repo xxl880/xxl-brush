@@ -166,7 +166,7 @@ public class App奇热 {
             for (int a = 0; a < 3; a++) {
                 robot.delay(RandomTools.init(2000));
                 AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(200)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 200));
                 for(int i=0;i<3;i++){
                     robot.delay(RandomTools.init(2000));
                     AdbTools.process(robot, AdbTools.down(androidId));
@@ -306,11 +306,11 @@ public class App奇热 {
             wl2.click();
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qixiao.qrxs:id/turntable\")");
-            AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl3.getLocation().getY() + wl3.getLocation().getY())));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, wl3.getLocation().getY() + wl3.getLocation().getY()));
 
             try {
                 WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qixiao.qrxs:id/turntable\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl4.getLocation().getY() + 400)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl4.getLocation().getY() + 400));
                 WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.qixiao.qrxs:id/xm_iv_close\")");
                 wl5.click();
 

@@ -156,7 +156,7 @@ public class App计步赚钱 {
             }catch (Exception e){}
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看视频广告，领取金币\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(930), String.valueOf(wl.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 930, wl.getLocation().getY()));
                 robot.delay(32000);
             }catch (Exception e){}
             quit(robot,androidId,driver);
@@ -273,7 +273,7 @@ public class App计步赚钱 {
             }catch (Exception e){}
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"分享成功后返回app得金币\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(930), String.valueOf(wl2.getLocation().getY())));
+                AdbTools.process(robot, AdbTools.tap(androidId, 930, wl2.getLocation().getY()));
 
                 WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"发送我的邀请\")");
                 wl3.click();

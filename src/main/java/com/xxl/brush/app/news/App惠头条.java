@@ -155,7 +155,7 @@ public class App惠头条 {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 for (int i = 0; i < 5; i++) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                     robot.delay(RandomTools.init(9000));
                     AdbTools.process(robot, AdbTools.down(androidId));
                 }
@@ -203,7 +203,7 @@ public class App惠头条 {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 for (int i = 0; i < 5; i++) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                     robot.delay(RandomTools.init(9000));
                     AdbTools.process(robot, AdbTools.down(androidId));
                 }
@@ -250,7 +250,7 @@ public class App惠头条 {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 for (int i = 0; i < 6; i++) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                     robot.delay(RandomTools.init(9000));
                     AdbTools.process(robot, AdbTools.down(androidId));
                 }
@@ -298,7 +298,7 @@ public class App惠头条 {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 for (int i = 0; i < 6; i++) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                     robot.delay(RandomTools.init(5000));
                     AdbTools.process(robot, AdbTools.down(androidId));
                 }
@@ -345,7 +345,7 @@ public class App惠头条 {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 for (int i = 0; i < 6; i++) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(600)));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 600));
                     robot.delay(RandomTools.init(9000));
                     AdbTools.process(robot, AdbTools.down(androidId));
                 }

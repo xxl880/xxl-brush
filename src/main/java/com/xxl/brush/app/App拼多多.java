@@ -45,7 +45,7 @@ public class App拼多多 {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
                 wl.click();
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(110), String.valueOf(2140)));
+                AdbTools.process(robot, AdbTools.tap(androidId, 110, 2140));
             }
 
             handle1(robot, androidId, driver);

@@ -435,7 +435,7 @@ public class App追看 {
             robot.delay(2000);
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"奖励\")");
-            AdbTools.process(robot, AdbTools.tapDraw(androidId, String.valueOf(wl3.getLocation().getX()+10), String.valueOf(wl3.getLocation().getY()+120)));
+            AdbTools.process(robot, AdbTools.tapDraw(androidId, wl3.getLocation().getX()+10, wl3.getLocation().getY()+120));
 
             WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"领额外奖励\")");
             wl4.click();
