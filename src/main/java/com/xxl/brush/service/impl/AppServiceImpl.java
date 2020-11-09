@@ -1,16 +1,10 @@
 package com.xxl.brush.service.impl;
 
 import com.xxl.brush.app.*;
-import com.xxl.brush.app.medias.*;
-import com.xxl.brush.app.news.*;
-import com.xxl.brush.app.sports.*;
-import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.service.AppService;
-import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.AppiumWindow;
 import lombok.SneakyThrows;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -48,9 +42,9 @@ public class AppServiceImpl implements AppService {
 		App火山极速.circulate(robot,androidId, port, systemPort);
 		App快手极速.circulate(robot,androidId, port, systemPort);
 	    App今日头条.circulate(robot,androidId, port, systemPort);
-		App趣头条.circulate(robot,androidId, port, systemPort);*/
-		AppQQ阅读.circulate(robot,androidId, port, systemPort);
-		App火山.circulate(robot,androidId, port, systemPort);
+		App趣头条.circulate(robot,androidId, port, systemPort);
+		AppQQ阅读.circulate(robot,androidId, port, systemPort);*/
+		App火山小说.circulate(robot,androidId, port, systemPort);
 		AppNOW直播.circulate(robot,androidId, port, systemPort);
 		App搜狗.circulate(robot,androidId, port, systemPort);
 		App拼多多.circulate(robot,androidId, port, systemPort);
