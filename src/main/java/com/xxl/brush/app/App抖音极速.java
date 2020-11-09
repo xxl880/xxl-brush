@@ -229,7 +229,7 @@ public class App抖音极速 {
 
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
             wl2.click();
-
+            robot.delay(1000);
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 1290));
             }else{
