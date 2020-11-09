@@ -40,7 +40,7 @@ public class AppServiceImpl implements AppService {
 		appiumWindow.init(port,systemPort, appiumWindow);
 
 		//-综合
-		App抖音极速.circulate(robot,androidId, port, systemPort);
+	 	App抖音极速.circulate(robot,androidId, port, systemPort);
 		App火山极速.circulate(robot,androidId, port, systemPort);
 		App快手极速.circulate(robot,androidId, port, systemPort);
 		App今日头条.circulate(robot,androidId, port, systemPort);
@@ -61,7 +61,7 @@ public class AppServiceImpl implements AppService {
 		App米读.circulate(robot,androidId, port, systemPort);
 		App必看.circulate(robot,androidId, port, systemPort);
 		App牛角.circulate(robot,androidId, port, systemPort);
-		App2345浏览器.circulate(robot,androidId, port, systemPort);
+/*		App2345浏览器.circulate(robot,androidId, port, systemPort);*/
 
 		/*//-视频
 		App刷宝.circulate(robot,androidId, port, systemPort);

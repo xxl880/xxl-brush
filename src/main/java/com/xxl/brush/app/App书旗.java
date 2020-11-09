@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 
 /**
  * todo App书旗小说
@@ -56,7 +57,10 @@ public class App书旗 {
 
      */
     public static void quit(Robot robot, AndroidDriver driver){
-
+        try {
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close_layout\")");
+            wl2.click();
+        }catch (Exception e){ }
     }
 
 
@@ -80,32 +84,31 @@ public class App书旗 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("书旗小说-签到");
-        try {
-            robot.delay(1000);
-            WebElement wl =  null;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0) {
             try {
-                AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"每日签到轻松得海量金币\")");
-                wl.click();
-            }catch (Exception e){}
-
-
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频奖励立即翻倍\")");
-            wl1.click();
-            robot.delay(59000);
-
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close_layout\")");
-                wl2.click();
-            }catch (Exception e){
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-                AdbTools.process(robot, operateBack);
+                WebElement wl = null;
+                try {
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"每日签到轻松得海量金币\")");
+                    wl.click();
+                } catch (Exception e) {
+                }
+
+                try {
+                    WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频奖励立即翻倍\")");
+                    wl1.click();
+                } catch (Exception e) {
+                    WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"看视频补签领\")");
+                    AdbTools.process(robot, AdbTools.tap(androidId, String.valueOf(540), String.valueOf(wl1.getLocation().getY())));
+                }
+                robot.delay(32000);
+                robot.delay(32000);
+                quit(robot, driver);
+            } catch (Exception e) {
+                log.info("书旗小说-签到异常");
             }
-
-
-        }catch (Exception e){
-            log.info("书旗小说-签到异常");
         }
     }
 
@@ -117,20 +120,14 @@ public class App书旗 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("书旗小说-看广告");
         try{
-                robot.delay(1000);
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"快速得百万金币\")");
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"快速得百万金币\")");
+            for(int i=0;i<10;i++) {
                 wl2.click();
                 robot.delay(32000);
+                quit(robot,driver);
+            }
 
-                try {
-                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close_layout\")");
-                    wl3.click();
-                } catch (Exception e) {
-                    String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-                    AdbTools.process(robot, operateBack);
-                }
         }catch (Exception e){
             log.info("书旗小说-看广告异常");
         }

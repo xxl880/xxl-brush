@@ -29,7 +29,7 @@ public class App抖音极速 {
 
     /**
      * todo 循环(用户行为-开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
-     * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
+     * 以category分类定位，再点击用户行为,用一category下e不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort){
