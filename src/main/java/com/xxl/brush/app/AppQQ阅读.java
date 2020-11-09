@@ -1,6 +1,7 @@
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 
 /**
  * todo AppQQ阅读
@@ -42,25 +44,17 @@ public class AppQQ阅读 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
             AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书架\")");
-                wl.click();
-            } catch (Exception e) {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"精选\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, 93, wl.getLocation().getY()));
+
+            int y = 1950;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                y = 2140;
             }
-
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"本周阅读/分钟\")");
-                wl.click();
-            } catch (Exception e) {
-
-            }
-
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 450));
             handle9(robot, androidId, driver);
             handle6(robot, androidId, driver);
+
+            AdbTools.process(robot, AdbTools.tap(androidId, 320, y));
             handle5(robot, androidId, driver);
-            handle51(robot, androidId, driver);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -98,6 +92,7 @@ public class AppQQ阅读 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
          log.info("QQ阅读-签到");
         try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             try {
                 WebElement wl = null;
                 try {
@@ -117,7 +112,7 @@ public class AppQQ阅读 {
             wl1.click();
             robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("QQ阅读-签到异常");
@@ -153,50 +148,33 @@ public class AppQQ阅读 {
 
 
     /**
-     * todo 5.看小说
+     * todo 5看小说-加入书架
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
         log.info("QQ阅读-看小说");
-        try {
-            robot.delay(1000);
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领300金币\")");
-            wl.click();
-
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, 800));
-
-            for(int i=0;i<10;i++) {
-                robot.delay(31000);
-                AdbTools.process(robot, AdbTools.left(androidId));
-            }
-
-        }catch (Exception e){
-            log.info("QQ阅读-看小说异常");
+        int hour = LocalDateTime.now().getHour();
+        int y = 1950;
+        if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+            y = 2140;
         }
-    }
+        if(hour==22) {
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 630));
 
+                AdbTools.process(robot, AdbTools.tap(androidId, 930, y));
+                robot.delay(1000);
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
+                for(int i=0;i<60;i++){
+                    AdbTools.process(robot, AdbTools.tap(androidId, 1030, 1560));
+                    robot.delay(RandomTools.init(6000));
+                }
 
-    /**
-     * todo 5.1看小说-加入书架
-     * @param robot
-     */
-    public static void handle51(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("QQ阅读-看小说");
-        try {
-            robot.delay(1000);
-            AdbTools.process(robot, AdbTools.down(androidId));
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去精选\")");
-            wl.click();
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1260));
-
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"加书架\")");
-            wl1.click();
-
-        }catch (Exception e){
-            log.info("QQ阅读-看小说异常");
+            } catch (Exception e) {
+                log.info("QQ阅读-看小说异常");
+            }
         }
     }
 
@@ -207,23 +185,18 @@ public class AppQQ阅读 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("QQ阅读-看广告");
         try{
-            robot.delay(1000);
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-
-            WebElement wl2 = null;
-            try{
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频拿大额金币\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频拿大额金币\")");
-            }
-            wl2.click();
-            robot.delay(59000);
-
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.process(robot, AdbTools.down(androidId));
+            WebElement  wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频拿大额金币\").fromParent(text(\"马上看\"))");
+            int y = wl2.getLocation().getY();
+            for(int i=0;i<10;i++) {
+                robot.delay(4000);
+                AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
+                robot.delay(59000);
+                AdbTools.process(robot, operateBack);
+            }
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("QQ阅读-看广告异常");
@@ -257,7 +230,6 @@ public class AppQQ阅读 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
         log.info("QQ阅读-开宝箱");
         try {
-            robot.delay(1000);
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
             wl2.click();
 
