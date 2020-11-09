@@ -38,15 +38,21 @@ public class AppNOW直播 {
 
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
+
+            try {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"微信登录\")");
+                wl2.click();
+            } catch (Exception e) { }
+
+            robot.delay(2000);
+
             AdbTools.clear(driver);
             appClear(robot, androidId, driver);
 
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
                 wl.click();
-            } catch (Exception e) {
-
-            }
+            } catch (Exception e) { }
             try {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tencent.now:id/pl\")");
                 wl1.click();
