@@ -59,13 +59,14 @@ public class App趣头条 {
             handle8(robot, androidId, driver);
             handle4(robot, androidId, driver);
 
-            AdbTools.process(robot, AdbTools.tap(androidId, 755, y));
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
             handle2(robot, androidId, driver);
 
             AdbTools.process(robot, AdbTools.tap(androidId, 755, y));
             handle1(robot, androidId, driver);
             handle9(robot, androidId, driver);
             handle6(robot, androidId, driver);
+            AdbTools.process(robot, AdbTools.tap(androidId, 755, y));
             handle61(robot, androidId, driver);
             handle11(robot, androidId, driver);
             handle18(robot, androidId, driver);
@@ -127,8 +128,6 @@ public class App趣头条 {
     }
 
 
-
-
     /**
      * todo 1.签到
      * @param robot
@@ -167,7 +166,12 @@ public class App趣头条 {
                 wl2.click();
             }catch (Exception e){}
 
-            int x = RandomTools.init(8);
+            try{
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.FrameLayout\").childSelector(className(\"android.widget.ImageView\")).fromParent(className(\"android.view.View\"))");
+                wl1.click();
+            }catch (Exception e){}
+
+            int x = RandomTools.init(8)+6;
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
@@ -206,7 +210,7 @@ public class App趣头条 {
                 wl1.click();
             }catch (Exception e){}
 
-            int x = RandomTools.init(8);
+            int x = RandomTools.init(8)+6;
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.down(androidId));
@@ -223,25 +227,29 @@ public class App趣头条 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
-        log.info("趣头条-看小说");
-        try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
-            wl2.click();
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==2) {
+            log.info("趣头条-看小说");
             try {
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
+                AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即领取\")");
-                wl3.click();
-                robot.delay(1000);
-            }catch (Exception e){}
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"看小说\")");
+                wl2.click();
+                try {
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即领取\")");
+                    wl3.click();
+                    robot.delay(1000);
+                } catch (Exception e) {
+                }
 
-            AdbTools.process(robot, operateBack);
+                AdbTools.process(robot, operateBack);
 
-        }catch (Exception e){
-            log.info("趣头条-看小说异常");
+            } catch (Exception e) {
+                log.info("趣头条-看小说异常");
+            }
         }
     }
 
@@ -255,18 +263,28 @@ public class App趣头条 {
         try{
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"看视频领金币\")");
-            if(!CollectionUtils.isEmpty(wls)){
-                wls.get(0).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-                wls.get(1).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-                wls.get(2).click();
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
+            try {
+                List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"看视频领金币\")");
+                if (!CollectionUtils.isEmpty(wls)) {
+                    wls.get(0).click();
+                    robot.delay(36000);
+                    AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
+                    AdbTools.process(robot, operateBack);
+                    wls.get(1).click();
+                    robot.delay(36000);
+                    AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
+                    AdbTools.process(robot, operateBack);
+                    wls.get(2).click();
+                    robot.delay(36000);
+                    AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
+                    AdbTools.process(robot, operateBack);
+                }
+            }catch (Exception e){
+                List<WebElement> wls1 = driver.findElementsByAndroidUIAutomator("new UiSelector().textStartsWith(\"体验\")");
+                for(WebElement web:wls1){
+                    web.click();
+                    AdbTools.process(robot, operateBack);
+                }
             }
 
         }catch (Exception e){
@@ -301,8 +319,8 @@ public class App趣头条 {
                 }
             }
             wl2.click();
-            robot.delay(32000);
-
+            robot.delay(36000);
+            AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
             quit(robot,driver);
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
@@ -337,8 +355,9 @@ public class App趣头条 {
             robot.delay(3000);
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textStartsWith(\"再领\")");
             wl2.click();
-            robot.delay(32000);
+            robot.delay(36000);
 
+            AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
             quit(robot,driver);
             AdbTools.process(robot, operateBack);
 
@@ -362,8 +381,10 @@ public class App趣头条 {
             wl2.click();
             robot.delay(36000);
 
+            AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
             quit(robot,driver);
             AdbTools.process(robot, operateBack);
+
         }catch (Exception e){
             log.info("趣头条-开宝箱异常");
         }
@@ -385,33 +406,45 @@ public class App趣头条 {
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver){
         log.info("趣头条-睡觉");
-        try{
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            init(robot, androidId, driver);
-            WebElement wl2 = null;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==22) {
             try {
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
-            }catch (Exception e){
-                try {
-                    AdbTools.process(robot, AdbTools.down(androidId));
-                    AdbTools.process(robot, AdbTools.down(androidId));
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
-                }catch (Exception e1){
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                int y = 1860;
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    y = 2060;
                 }
+                init(robot, androidId, driver);
+                WebElement wl2 = null;
+                try {
+                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
+                } catch (Exception e) {
+                    try {
+                        AdbTools.process(robot, AdbTools.down(androidId));
+                        AdbTools.process(robot, AdbTools.down(androidId));
+                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
+                    } catch (Exception e1) {
+                        AdbTools.process(robot, AdbTools.upPage(androidId));
+                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"睡觉赚金币\")");
+                    }
+                }
+                wl2.click();
+                try {
+                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"我醒来啦\")");
+                    wl3.click();
+                    wl3.click();
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1200));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1290));
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
+                }
+
+                quit(robot, driver);
+                AdbTools.process(robot, operateBack);
+
+            } catch (Exception e) {
+                log.info("趣头条-睡觉");
             }
-            wl2.click();
-
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-            wl3.click();
-            robot.delay(32000);
-
-            quit(robot,driver);
-            AdbTools.process(robot, operateBack);
-
-        }catch (Exception e){
-            log.info("趣头条-睡觉");
         }
     }
 
@@ -474,31 +507,36 @@ public class App趣头条 {
      */
     public static void handle18(Robot robot,String androidId,  AndroidDriver driver){
         log.info("趣头条-摇钱树");
-        try{
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            init(robot, androidId, driver);
-            WebElement wl2 = null;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==20) {
             try {
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
-            }catch (Exception e){
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                init(robot, androidId, driver);
+                WebElement wl2 = null;
                 try {
-                    AdbTools.process(robot, AdbTools.down(androidId));
-                    AdbTools.process(robot, AdbTools.down(androidId));
                     wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
-                }catch (Exception we){
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
+                } catch (Exception e) {
+                    try {
+                        AdbTools.process(robot, AdbTools.down(androidId));
+                        AdbTools.process(robot, AdbTools.down(androidId));
+                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
+                    } catch (Exception we) {
+                        AdbTools.process(robot, AdbTools.upPage(androidId));
+                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"摇钱树领金币\")");
+                    }
                 }
+                wl2.click();
+                for (int i = 0; i < 5; i++) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1660));
+                    robot.delay(32000);
+                    AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
+                    quit(robot, driver);
+                    AdbTools.process(robot, operateBack);
+                }
+
+            } catch (Exception e) {
+                log.info("趣头条-摇钱树");
             }
-            wl2.click();
-
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1660));
-            robot.delay(20000);
-
-            quit(robot,driver);
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("趣头条-摇钱树");
         }
     }
 

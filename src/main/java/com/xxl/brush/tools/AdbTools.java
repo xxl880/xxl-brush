@@ -50,6 +50,20 @@ public class AdbTools {
     }
 
 
+
+    /**
+     * todo 唤醒app
+     * 命令：查看当前app启动 （adb shell dumpsys window | findstr mCurrentFocus）
+     * 命令2：启动报错时使用写日志方式找到主类 （adb logcat>D:/app.txt） 使用ctrl+c中断，查看mainActivity
+     */
+    @SneakyThrows
+    public static void wakeup(Robot robot,String androidId, String operateData){
+        log.info("******************启动app**************");
+        String operate = " adb -s " + androidId + " shell am start -n " + operateData;
+        Runtime.getRuntime().exec(operate);
+        robot.delay(2000);
+    }
+
     /**
      * todo 向下滑动，正常操作
      */
