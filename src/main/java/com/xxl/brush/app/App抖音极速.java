@@ -263,7 +263,7 @@ public class App抖音极速 {
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver){
         log.info("抖音极速-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==23) {
+        if(hour==22) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -297,7 +297,7 @@ public class App抖音极速 {
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver){
         log.info("抖音极速-走路");
         int hour = LocalDateTime.now().getHour();
-       if(hour==23) {
+       if(hour==20) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -368,7 +368,7 @@ public class App抖音极速 {
     public static void handle16(Robot robot,String androidId,  AndroidDriver driver){
         log.info("抖音极速-吃饭");
          int hour = LocalDateTime.now().getHour();
-      if(hour==8||hour==12||hour==19||hour==23) {
+      if(hour==8||hour==12||hour==18||hour==22) {
              try {
                  String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                  WebElement wl2 = null;

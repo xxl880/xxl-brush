@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 
 /**
  * todo App火山小说
@@ -157,21 +158,24 @@ public class App火山小说 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("火山小说-看广告");
-        try{
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\") .text(\"看视频\")");
-            int y = wl2.getLocation().getY();
-            for(int i=0;i<3;i++) {
-                robot.delay(3000);
-                AdbTools.process(robot, AdbTools.tap(androidId, 930, y));
-                robot.delay(32000);
-                AdbTools.process(robot, operateBack);
-            }
+        int hour = LocalDateTime.now().getHour();
+        if(hour==14) {
+            try {
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\") .text(\"看视频\")");
+                int y = wl2.getLocation().getY();
+                for (int i = 0; i < 3; i++) {
+                    robot.delay(3000);
+                    AdbTools.process(robot, AdbTools.tap(androidId, 930, y));
+                    robot.delay(32000);
+                    AdbTools.process(robot, operateBack);
+                }
 
-        }catch (Exception e){
-            log.info("火山小说-看广告异常");
+            } catch (Exception e) {
+                log.info("火山小说-看广告异常");
+            }
         }
 
     }
@@ -235,27 +239,29 @@ public class App火山小说 {
      */
     public static void handle10(Robot robot,String androidId,  AndroidDriver driver){
         log.info("火山小说-抽奖");
-        try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去抽奖\")");
-            wl2.click();
+        int hour = LocalDateTime.now().getHour();
+        if(hour==16) {
+            try {
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去抽奖\")");
+                wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"抽奖\")");
-            int x = wl3.getLocation().getX();
-            int y = wl3.getLocation().getY();
-            for(int i=0;i<10;i++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, x, y));
-                robot.delay(36000);
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"抽奖\")");
+                int x = wl3.getLocation().getX();
+                int y = wl3.getLocation().getY();
+                for (int i = 0; i < 10; i++) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, x, y));
+                    robot.delay(36000);
+                    AdbTools.process(robot, operateBack);
+                    robot.delay(6000);
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1200));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1310));
+                }
+
                 AdbTools.process(robot, operateBack);
-                robot.delay(6000);
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1200));
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1310));
+            } catch (Exception e) {
+                log.info("火山小说-抽奖异常");
             }
-
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("火山小说-抽奖异常");
         }
     }
 
