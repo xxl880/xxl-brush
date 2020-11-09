@@ -40,7 +40,7 @@ public class InstallServiceImpl implements InstallService {
 				String installStr = "adb -s " + androidId + " install " +file1.getAbsolutePath();
 				AdbTools.process(robot, installStr);
 				robot.delay(2000);
-				AdbTools.process(robot,AdbTools.tap(androidId,"300","1890"));
+				AdbTools.process(robot,AdbTools.tap(androidId,300,1890));
                 robot.delay(20000);
 			}
 		}

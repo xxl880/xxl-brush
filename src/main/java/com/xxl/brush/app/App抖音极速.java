@@ -1,6 +1,7 @@
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * todo App抖音
@@ -49,16 +51,24 @@ public class App抖音极速 {
             clear(robot,driver);
 
             handle2(robot, androidId, driver);
-            try {
+
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
+            }else{
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1950));
+            }
+        /*    try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, wl.getLocation().getY() + 20));
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
-            }
+            }*/
 
             handle1(robot, androidId, driver);
+
             handle9(robot,androidId,driver);
             handle6(robot,androidId,driver);
+
             handle12(robot,androidId,driver);
             handle16(robot,androidId,driver);
             handle11(robot,androidId,driver);
@@ -100,8 +110,8 @@ public class App抖音极速 {
         try {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"签到\").childSelector(textContains(\"金币\"))");
-                wl.click();
+                List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"签到\")");
+                wls.get(1).click();
             }catch (Exception e){}
 
             try {
@@ -111,7 +121,7 @@ public class App抖音极速 {
 
             WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
             wl2.click();
-            robot.delay(30000);
+            robot.delay(36000);
 
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
@@ -220,8 +230,14 @@ public class App抖音极速 {
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
             wl2.click();
 
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1290));
+            }else{
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1190));
+            }
+/*
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
-            wl3.click();
+            wl3.click();*/
             robot.delay(36000);
 
             AdbTools.process(robot, operateBack);
