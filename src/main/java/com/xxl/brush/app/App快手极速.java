@@ -128,7 +128,7 @@ public class App快手极速 {
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
         log.info("快手极速-看视频");
         try {
-            int x = RandomTools.init(8);
+            int x = RandomTools.init(6)+6;
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));

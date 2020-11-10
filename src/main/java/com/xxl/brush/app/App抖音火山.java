@@ -106,7 +106,7 @@ public class App抖音火山 {
         log.info("抖音火山-看视频");
         try {
 
-            int x = RandomTools.init(8);
+            int x = RandomTools.init(8)+6;
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
