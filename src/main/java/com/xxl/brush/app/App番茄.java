@@ -170,13 +170,15 @@ public class App番茄 {
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.tap(androidId, 990, 136));
             }
-            WebElement wl45 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"微信\")");
-            wl45.click();
-            AdbTools.process(robot, operateBack);
+            try {
+                WebElement wl45 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"微信\")");
+                wl45.click();
+                AdbTools.process(robot, operateBack);
+            }catch (Exception e){}
 
             AdbTools.process(robot, AdbTools.tap(androidId, 850, 430));
             for(int i=0;i<50;i++){
-                AdbTools.process(robot, AdbTools.tap(androidId, 990, 136));
+                AdbTools.process(robot, AdbTools.tap(androidId, 1050, 800));
                 robot.delay(RandomTools.init(6000)+8000);
             }
 
