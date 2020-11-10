@@ -38,13 +38,13 @@ public class AppServiceImpl implements AppService {
 		appiumWindow.init(port,systemPort, appiumWindow);
 
 	 	//-综合
-/*	 	App抖音极速.circulate(robot,androidId, port, systemPort);
+    	App抖音极速.circulate(robot,androidId, port, systemPort);
 		App火山极速.circulate(robot,androidId, port, systemPort);
 		App快手极速.circulate(robot,androidId, port, systemPort);
 	    App今日头条.circulate(robot,androidId, port, systemPort);
 		App趣头条.circulate(robot,androidId, port, systemPort);
 		AppQQ阅读.circulate(robot,androidId, port, systemPort);
-		App火山小说.circulate(robot,androidId, port, systemPort);*/
+		App火山小说.circulate(robot,androidId, port, systemPort);
 		AppNOW直播.circulate(robot,androidId, port, systemPort);
 		App搜狗.circulate(robot,androidId, port, systemPort);
 		App拼多多.circulate(robot,androidId, port, systemPort);

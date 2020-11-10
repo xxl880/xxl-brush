@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,40 +97,50 @@ public class App搜狗 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("搜狗-签到");
-        try {
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==2) {
             try {
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第1次\")");
-                wl1.click();
-            }catch (Exception e){}
-            try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第2次\")");
-                wl2.click();
-            }catch (Exception e){}
-            try {
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第3次\")");
-                wl3.click();
-            }catch (Exception e){}
-            try {
-                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第4次\")");
-                wl4.click();
-            }catch (Exception e){}
-            try {
-                WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第5次\")");
-                wl5.click();
-            }catch (Exception e){}
-            try {
-                WebElement wl6 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第6次\")");
-                wl6.click();
-            }catch (Exception e){}
-            try {
-                WebElement wl7 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"次最高可领98元\")");
-                wl7.click();
-            }catch (Exception e){}
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                try {
+                    WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第1次\")");
+                    wl1.click();
+                } catch (Exception e) {
+                }
+                try {
+                    WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第2次\")");
+                    wl2.click();
+                } catch (Exception e) {
+                }
+                try {
+                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第3次\")");
+                    wl3.click();
+                } catch (Exception e) {
+                }
+                try {
+                    WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第4次\")");
+                    wl4.click();
+                } catch (Exception e) {
+                }
+                try {
+                    WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第5次\")");
+                    wl5.click();
+                } catch (Exception e) {
+                }
+                try {
+                    WebElement wl6 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第6次\")");
+                    wl6.click();
+                } catch (Exception e) {
+                }
+                try {
+                    WebElement wl7 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"次最高可领98元\")");
+                    wl7.click();
+                } catch (Exception e) {
+                }
 
-        }catch (Exception e){
-            log.info("搜狗-签到异常");
+            } catch (Exception e) {
+                log.info("搜狗-签到异常");
+            }
         }
     }
 
@@ -159,7 +170,6 @@ public class App搜狗 {
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver){
         log.info("搜狗-看新闻");
         try {
-            robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             AdbTools.process(robot, AdbTools.upPage(androidId));
