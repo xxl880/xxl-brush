@@ -1,6 +1,7 @@
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
@@ -42,17 +43,16 @@ public class App微博 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
             AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"首页\")");
-                wl.click();
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
+            int y =  1950;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+               y = 2140;
             }
 
+            AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
             handle4(robot, androidId, driver);
 
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sina.weibo:id/redpacketSave\")");
-            wl2.click();
+            AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
+            AdbTools.process(robot, AdbTools.tap(androidId, 900, 136));
 
             handle1(robot, androidId, driver);
             handle41(robot, androidId, driver);
@@ -83,7 +83,10 @@ public class App微博 {
 
      */
     public static void clear(Robot robot, AndroidDriver driver){
-
+        try {
+            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"关注@微博任务\")");
+            wl1.clear();
+        }catch (Exception e){}
     }
 
 
@@ -98,11 +101,7 @@ public class App微博 {
         log.info("微博-签到");
         try {
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            try {
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"关注@微博任务\")");
-                wl1.clear();
-            }catch (Exception e){}
+            clear(robot,driver);
             WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"今天\")");
             AdbTools.process(robot, AdbTools.tap(androidId, wl.getLocation().getX()+50, wl.getLocation().getY()+60));
 
@@ -148,7 +147,7 @@ public class App微博 {
             WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.sina.weibo:id/floating_window\")");
             wl2.click();
 
-            int x = RandomTools.init(8)+6;
+            int x = RandomTools.init(8)+12;
             for (int a = 0; a < x; a++) {
                 robot.delay(RandomTools.init(15000));
                 AdbTools.process(robot, AdbTools.down(androidId));

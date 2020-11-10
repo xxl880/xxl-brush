@@ -61,6 +61,11 @@ public class App书旗 {
             WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close_layout\")");
             wl2.click();
         }catch (Exception e){ }
+
+        try {
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close\")");
+            wl3.click();
+        }catch (Exception e){ }
     }
 
 
@@ -122,9 +127,11 @@ public class App书旗 {
         try{
             AdbTools.process(robot, AdbTools.upPage(androidId));
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"快速得百万金币\")");
+            int x = wl2.getLocation().getX();
+            int y = wl2.getLocation().getY();
             for(int i=0;i<10;i++) {
-                wl2.click();
-                robot.delay(32000);
+                AdbTools.process(robot, AdbTools.tap(androidId, x, y));
+                robot.delay(36000);
                 quit(robot,driver);
             }
 
@@ -228,7 +235,23 @@ public class App书旗 {
      * @param robot
      */
     public static void handle17(Robot robot,String androidId,  AndroidDriver driver){
+        log.info("书旗小说-分享");
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2) {
+            try {
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                AdbTools.process(robot, AdbTools.downPage(androidId));
 
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去分享\")");
+                wl1.click();
+
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"微信好友\")");
+                wl2.click();
+                AdbTools.process(robot, operateBack);
+            } catch (Exception e) {
+                log.info("书旗小说-分享异常");
+            }
+        }
     }
 
     /**
