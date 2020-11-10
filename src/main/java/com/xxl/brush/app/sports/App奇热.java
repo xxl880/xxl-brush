@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.sports;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
