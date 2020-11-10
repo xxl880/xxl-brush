@@ -1,6 +1,7 @@
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
@@ -41,18 +42,15 @@ public class App晴象浏览器 {
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
             AdbTools.clear(driver);
 
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"钱包\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
+            robot.delay(4000);
+            int y = 1950;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                y = 2140;
             }
-
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, y));
             handle1(robot,androidId,driver);
 
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"浏览器\")");
-            wl2.click();
-
+            AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
             handle8(robot,androidId,driver);
             handle81(robot,androidId,driver);
             handle82(robot,androidId,driver);
@@ -76,8 +74,17 @@ public class App晴象浏览器 {
      * @param robot
 
      */
-    public static void quit(Robot robot, AndroidDriver driver){
-
+    public static void quit(Robot robot, AndroidDriver driver, String androidId){
+        int y = 110;
+        int y1 = 1830;
+        if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+            y = 180;
+            y1 = 1930;
+        }
+        AdbTools.process(robot, AdbTools.tap(androidId, 960, y));
+        robot.delay(4000);
+        AdbTools.process(robot, AdbTools.tap(androidId, 540, y1));
+        robot.delay(1000);
     }
 
 
@@ -100,20 +107,16 @@ public class App晴象浏览器 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("App晴象浏览器-签到");
         try {
-            robot.delay(1000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频金币翻倍\")");
             wl1.click();
             robot.delay(59000);
-
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
-            wl2.click();
-
+            quit(robot,driver,androidId);
+            robot.delay(4000);
             WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
             wl3.click();
 
-            AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("App晴象浏览器-签到异常");
         }
@@ -206,7 +209,7 @@ public class App晴象浏览器 {
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
         log.info("App晴象浏览器-左上方红包");
         try {
-            robot.delay(1000);
+            robot.delay(2000);
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
             AdbTools.process(robot, AdbTools.upPage(androidId));
@@ -219,15 +222,9 @@ public class App晴象浏览器 {
                 wl144.click();
             }catch (Exception e){}
 
-            try {
-                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/tt_video_ad_close\")");
-                wl4.click();
-            }catch (Exception e){}
+            quit(robot,driver,androidId);
 
-            try {
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tiantian.browser.android.search:id/count_down_btn\")");
-                wl3.click();
-            }catch (Exception e){}
+
 
         }catch (Exception e){
             log.info("App晴象浏览器-左上方红包异常");

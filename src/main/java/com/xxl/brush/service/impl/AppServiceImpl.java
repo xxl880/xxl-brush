@@ -52,9 +52,9 @@ public class AppServiceImpl implements AppService {
 		App微博.circulate(robot,androidId, port, systemPort);*/
 
 		//综合
-		/*App书旗.circulate(robot,androidId, port, systemPort);*/
+		/*App书旗.circulate(robot,androidId, port, systemPort);
 		App番茄.circulate(robot,androidId, port, systemPort);
-		App抖音火山.circulate(robot,androidId, port, systemPort);
+		App抖音火山.circulate(robot,androidId, port, systemPort);*/
 		App晴象浏览器.circulate(robot,androidId, port, systemPort);
 		App米读.circulate(robot,androidId, port, systemPort);
 		App必看.circulate(robot,androidId, port, systemPort);
