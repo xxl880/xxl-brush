@@ -40,6 +40,7 @@ public class App抖音火山 {
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
 
             AdbTools.clear(driver);
+            clear(robot,driver);
             AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
 
             handle2(robot, androidId, driver);
@@ -74,7 +75,10 @@ public class App抖音火山 {
 
      */
     public static void clear(Robot robot, AndroidDriver driver){
-
+        try {
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"立即升级\")");
+            wl.click();
+        }catch (Exception e){ }
     }
 
 
