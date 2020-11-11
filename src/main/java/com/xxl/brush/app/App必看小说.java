@@ -159,13 +159,12 @@ public class App必看小说 {
                 y = 2140;
             }
             AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
-
+            robot.delay(2000);
             AdbTools.process(robot, AdbTools.tap(androidId, 150, 1620));
             robot.delay(2000);
             AdbTools.process(robot, AdbTools.tap(androidId, 970, y));
 
             for(int i=0;i<120;i++) {
-                robot.delay(RandomTools.init(1000));
                 AdbTools.process(robot, AdbTools.tap(androidId, 1020, 600));
             }
 
