@@ -9,6 +9,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,41 +32,58 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void circulate(String androidId,int portSeq){
 		Robot robot = new Robot();
-
 		AppiumWindow appiumWindow = new AppiumWindow();
+
 		int port = 4724+ portSeq;
 		int systemPort = 9000+ portSeq;
 
 		appiumWindow.init(port,systemPort, appiumWindow);
 
+
+		LocalDateTime startTime = LocalDateTime.now();
+		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 	 	//-综合
      	App抖音极速.circulate(robot,androidId, port, systemPort);
 		App火山极速.circulate(robot,androidId, port, systemPort);
 		App快手极速.circulate(robot,androidId, port, systemPort);
 	    App今日头条.circulate(robot,androidId, port, systemPort);
 		App趣头条.circulate(robot,androidId, port, systemPort);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		log.info("*****************运行多长时间*************"+duration.toMinutes());
 		AppQQ阅读.circulate(robot,androidId, port, systemPort);
 		App火山小说.circulate(robot,androidId, port, systemPort);
 		AppNOW直播.circulate(robot,androidId, port, systemPort);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		log.info("*****************运行多长时间*************"+duration.toMinutes());
 		App搜狗.circulate(robot,androidId, port, systemPort);
 		App拼多多.circulate(robot,androidId, port, systemPort);
 		App微博.circulate(robot,androidId, port, systemPort);
-
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		log.info("*****************运行多长时间*************"+duration.toMinutes());
 		//综合
 		App书旗.circulate(robot,androidId, port, systemPort);
 		App番茄.circulate(robot,androidId, port, systemPort);
 		App抖音火山.circulate(robot,androidId, port, systemPort);
 		App晴象浏览器.circulate(robot,androidId, port, systemPort);
 		App晴象浏览器.circulate1(robot,androidId, port, systemPort);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		log.info("*****************运行多长时间*************"+duration.toMinutes());
 		App晴象浏览器.circulate2(robot,androidId, port, systemPort);
 		App晴象浏览器.circulate3(robot,androidId, port, systemPort);
 		App晴象浏览器.circulate4(robot,androidId, port, systemPort);
 		App晴象浏览器.circulate5(robot,androidId, port, systemPort);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		log.info("*****************运行多长时间*************"+duration.toMinutes());
+
 		App晴象浏览器.circulate6(robot,androidId, port, systemPort);
 		App晴象浏览器.circulate7(robot,androidId, port, systemPort);
 		App米读.circulate(robot,androidId, port, systemPort);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		log.info("*****************运行多长时间*************"+duration.toMinutes());
 		App必看小说.circulate(robot,androidId, port, systemPort);
 		App牛角.circulate(robot,androidId, port, systemPort);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		log.info("*****************运行多长时间*************"+duration.toMinutes());
 /*		App2345浏览器.circulate(robot,androidId, port, systemPort);*/
 
 		/*//-视频

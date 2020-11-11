@@ -101,6 +101,10 @@ public class App趣头条 {
             WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.kuaishou.nebula:id/login_dialog_cancel\")");
             wl11.click();
         }catch (Exception e){}
+        try{
+            WebElement wl12 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.jifen.qukan:id/afk\")");
+            wl12.click();
+        }catch (Exception e){}
     }
 
     /**

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 
 /**
  * todo App快手
@@ -325,23 +326,29 @@ public class App快手极速 {
      */
     public static void handle20(Robot robot,String androidId,  AndroidDriver driver){
         log.info("快手极速-直播");
-        try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2) {
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
+                AdbTools.process(robot, AdbTools.tap(androidId, 880, wl3.getLocation().getY()));
+                try{
+                    WebElement wl34 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"我知道了\")");
+                    wl34.click();
+                }catch (Exception e){}
 
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
-            AdbTools.process(robot,AdbTools.tap(androidId,880,wl3.getLocation().getY()));
-            for(int i=0;i<10;i++) {
-                int a = RandomTools.init(6000);
-                robot.delay(30000+a);
-                AdbTools.process(robot, AdbTools.downPage(androidId));
+                for (int i = 0; i < 10; i++) {
+                    int a = RandomTools.init(6000);
+                    robot.delay(30000 + a);
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                }
+
+            } catch (Exception e) {
+                log.info("快手极速-直播异常");
             }
-
-        }catch (Exception e){
-            log.info("快手极速-直播异常");
         }
     }
 
