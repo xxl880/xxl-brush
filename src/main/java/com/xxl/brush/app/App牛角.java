@@ -1,6 +1,7 @@
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import io.appium.java_client.android.AndroidDriver;
@@ -142,22 +143,28 @@ public class App牛角 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("App牛角小说-看广告");
         try{
-            robot.delay(1000);
             WebElement wl2 = null;
+            AdbTools.process(robot, AdbTools.upPage(androidId));
             try{
-                AdbTools.process(robot, AdbTools.up(androidId));
-                AdbTools.process(robot, AdbTools.up(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去观看\")");
             }catch (Exception e){
                 AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.down(androidId));
                 wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去观看\")");
             }
-            wl2.click();
-            robot.delay(32000);
+            int x = wl2.getLocation().getX();
+            int y = wl2.getLocation().getY();
+            for(int i=0;i<3;i++) {
+                AdbTools.process(robot, AdbTools.tap(androidId, x, y));
+                robot.delay(36000);
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    AdbTools.process(robot, AdbTools.tap(androidId, 970, 180));
+                }else{
+                    AdbTools.process(robot, AdbTools.tap(androidId, 970, 90));
+                }
+            }
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("App牛角小说-看广告异常");
         }
@@ -180,14 +187,13 @@ public class App牛角 {
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
         log.info("App牛角小说-领红包");
         try{
-            robot.delay(1000);
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取\")");
             wl2.click();
 
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"分享领取\")");
             wl3.click();
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("App牛角小说-领红包异常");

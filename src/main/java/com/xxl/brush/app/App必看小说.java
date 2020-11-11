@@ -1,6 +1,7 @@
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
@@ -18,8 +19,8 @@ import java.awt.*;
 
 
 
-public class App必看 {
-    private static Logger log = LoggerFactory.getLogger(App必看.class);
+public class App必看小说 {
+    private static Logger log = LoggerFactory.getLogger(App必看小说.class);
 
     /**
      * todo 循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
@@ -39,12 +40,16 @@ public class App必看 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
             AdbTools.clear(driver);
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"书城\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, wl.getLocation().getY()));
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
+            clear(robot,driver);
+
+            int y = 1950;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                y = 2140;
             }
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
+            AdbTools.process(robot, AdbTools.tap(androidId, 830, 660));
+            AdbTools.process(robot, AdbTools.tap(androidId, 830, 690));
+            AdbTools.process(robot, AdbTools.tap(androidId, 830, 710));
 
             handle1(robot, androidId, driver);
 
@@ -75,7 +80,10 @@ public class App必看 {
 
      */
     public static void clear(Robot robot, AndroidDriver driver){
-
+         try{
+             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.lwby.breader.ad:id/iv_operation_event_close\")");
+             wl1.click();
+         }catch (Exception e){}
     }
 
 
@@ -87,23 +95,19 @@ public class App必看 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("App必看小说-签到");
         try {
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
             WebElement wl =  null;
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
                 wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-            }
+            }catch (Exception e){}
             wl.click();
 
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
             wl1.click();
-            robot.delay(32000);
+            robot.delay(36000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("App必看小说-签到异常");
@@ -145,33 +149,23 @@ public class App必看 {
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
         log.info("必看小说-看小说");
         try{
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            WebElement wl2 = null;
-            try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去阅读\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去阅读\")");
-            }
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去阅读\")");
             wl2.click();
 
-            robot.delay(1000);
-            AdbTools.process(robot, AdbTools.downPage(androidId));
-
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1000));
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"立即阅读\")");
-            wl3.click();
-
-            for(int i=0;i<60;i++) {
-                robot.delay(RandomTools.init(6000));
-                AdbTools.process(robot, AdbTools.tap(androidId, 1000, 140));
+            int y = 1950;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                y = 2140;
             }
+            AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
 
+            AdbTools.process(robot, AdbTools.tap(androidId, 150, 1620));
+            robot.delay(2000);
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, y));
+
+            for(int i=0;i<120;i++) {
+                robot.delay(RandomTools.init(1000));
+                AdbTools.process(robot, AdbTools.tap(androidId, 1020, 600));
+            }
 
         }catch (Exception e){
             log.info("必看小说-看小说异常");
@@ -187,17 +181,22 @@ public class App必看 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("App必看小说-看广告");
         try{
-            robot.delay(1000);
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
             AdbTools.process(robot, AdbTools.upPage(androidId));
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"视频赚\")");
-            wl2.click();
+            int x = wl2.getLocation().getX();
+            int y = wl2.getLocation().getY();
 
-            robot.delay(32000);
+            for(int i=0;i<5;i++){
+                robot.delay(1000);
+                AdbTools.process(robot, AdbTools.tap(androidId, x, y));
+                robot.delay(36000);
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 960, 180));
+                } else {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 960, 100));
+                }
+            }
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("App必看小说-看广告异常");
         }
@@ -234,12 +233,15 @@ public class App必看 {
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"开宝箱\")");
             wl2.click();
 
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"看广告\")");
+            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textStartsWith(\"看广告\")");
             wl3.click();
-            robot.delay(32000);
+            robot.delay(36000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.process(robot, AdbTools.tap(androidId, 960, 180));
+            }else {
+                AdbTools.process(robot, AdbTools.tap(androidId, 960, 100));
+            }
         }catch (Exception e){
             log.info("App必看小说-开宝箱异常");
         }

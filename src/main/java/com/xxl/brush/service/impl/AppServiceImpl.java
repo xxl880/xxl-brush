@@ -1,7 +1,6 @@
 package com.xxl.brush.service.impl;
 
 import com.xxl.brush.app.*;
-import com.xxl.brush.app.sports.App奇热;
 import com.xxl.brush.service.AppService;
 import com.xxl.brush.tools.AppiumWindow;
 import lombok.SneakyThrows;
@@ -62,10 +61,9 @@ public class AppServiceImpl implements AppService {
 		App晴象浏览器.circulate4(robot,androidId, port, systemPort);
 		App晴象浏览器.circulate5(robot,androidId, port, systemPort);
 		App晴象浏览器.circulate6(robot,androidId, port, systemPort);
-		App晴象浏览器.circulate7(robot,androidId, port, systemPort);*/
-
-		App米读.circulate(robot,androidId, port, systemPort);
-		App必看.circulate(robot,androidId, port, systemPort);
+		App晴象浏览器.circulate7(robot,androidId, port, systemPort);
+		App米读.circulate(robot,androidId, port, systemPort);*/
+		App必看小说.circulate(robot,androidId, port, systemPort);
 		App牛角.circulate(robot,androidId, port, systemPort);
 /*		App2345浏览器.circulate(robot,androidId, port, systemPort);*/
 
