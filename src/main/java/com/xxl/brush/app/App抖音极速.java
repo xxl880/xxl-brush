@@ -93,6 +93,7 @@ public class App抖音极速 {
      */
     public static void clear(Robot robot,AndroidDriver driver){
         try{
+            robot.delay(3000);
             WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"以后再说\")");
             wl11.click();
         }catch (Exception e){}
