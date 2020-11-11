@@ -164,7 +164,7 @@ public class App趣头条 {
         log.info("趣头条-看视频");
         try {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
+             robot.delay(2000);
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
                 wl2.click();
