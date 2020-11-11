@@ -1,6 +1,7 @@
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 
 /**
  * todo App米读小说
@@ -40,8 +42,12 @@ public class App米读 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
             AdbTools.clear(driver);
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
-            wl.click();
+
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.process(robot, AdbTools.tap(androidId, 670, 2140));
+            }else{
+                AdbTools.process(robot, AdbTools.tap(androidId, 670, 1950));
+            }
 
             handle1(robot,androidId,driver);
             handle5(robot,androidId,driver);
@@ -80,20 +86,14 @@ public class App米读 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("米读小说-签到");
-        try {
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement   wl = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
-            wl.click();
-
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"再领100金币\")");
-            wl1.click();
-            robot.delay(32000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("米读小说-签到异常");
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1) {
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.tap(androidId, 890, 360));
+            } catch (Exception e) {
+                log.info("米读小说-签到异常");
+            }
         }
     }
 
@@ -132,18 +132,18 @@ public class App米读 {
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
         log.info("米读小说-看小说");
         try {
-            robot.delay(1000);
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"全部\")");
-            wl.click();
-            int xx = RandomTools.init(10);
-            for(int x=0;x<xx;x++){
-                AdbTools.process(robot, AdbTools.down(androidId));
-            }
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1500));
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+
+            AdbTools.process(robot, AdbTools.tap(androidId, 850, 760));
+            robot.delay(36000);
+            AdbTools.process(robot, operateBack);
+
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, 1720));
 
             for(int i=0;i<60;i++) {
                 robot.delay(RandomTools.init(6000));
-                AdbTools.process(robot, AdbTools.tap(androidId, 1000, 140));
+                AdbTools.process(robot, AdbTools.tap(androidId, 1000, 600));
             }
 
         }catch (Exception e){
