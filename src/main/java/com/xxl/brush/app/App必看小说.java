@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 
 /**
  * todo AppApp必看小说
@@ -180,25 +181,28 @@ public class App必看小说 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
         log.info("App必看小说-看广告");
-        try{
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"视频赚\")");
-            int x = wl2.getLocation().getX();
-            int y = wl2.getLocation().getY();
+        int hour = LocalDateTime.now().getHour();
+        if(hour==2||hour==3) {
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"视频赚\")");
+                int x = wl2.getLocation().getX();
+                int y = wl2.getLocation().getY();
 
-            for(int i=0;i<5;i++){
-                robot.delay(1000);
-                AdbTools.process(robot, AdbTools.tap(androidId, x, y));
-                robot.delay(36000);
-                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, 960, 180));
-                } else {
-                    AdbTools.process(robot, AdbTools.tap(androidId, 960, 100));
+                for (int i = 0; i < 5; i++) {
+                    robot.delay(1000);
+                    AdbTools.process(robot, AdbTools.tap(androidId, x, y));
+                    robot.delay(36000);
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 960, 180));
+                    } else {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 960, 100));
+                    }
                 }
-            }
 
-        }catch (Exception e){
-            log.info("App必看小说-看广告异常");
+            } catch (Exception e) {
+                log.info("App必看小说-看广告异常");
+            }
         }
 
     }
