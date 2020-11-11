@@ -95,23 +95,27 @@ public class App必看小说 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
         log.info("App必看小说-签到");
-        try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            WebElement wl =  null;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1) {
             try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-            }catch (Exception e){}
-            wl.click();
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
-            wl1.click();
-            robot.delay(36000);
+                WebElement wl = null;
+                try {
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                    wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                } catch (Exception e) {
+                }
+                wl.click();
 
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("App必看小说-签到异常");
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
+                wl1.click();
+                robot.delay(36000);
+
+                AdbTools.process(robot, operateBack);
+            } catch (Exception e) {
+                log.info("App必看小说-签到异常");
+            }
         }
     }
 
@@ -150,9 +154,6 @@ public class App必看小说 {
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
         log.info("必看小说-看小说");
         try{
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去阅读\")");
-            wl2.click();
-
             int y = 1950;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                 y = 2140;
