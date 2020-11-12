@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.util.Map;
 
 /**
  * todo App微鲤看看新闻
@@ -27,7 +28,7 @@ public class App微鲤看看 {
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
      */
-    public static void circulate(Robot robot,String androidId,int port,int systemPort){
+    public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String, String> map){
         try{
             log.info("********************************微鲤看看操作********************************************");
 
@@ -43,19 +44,19 @@ public class App微鲤看看 {
             try {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"我的\")");
                 wl1.click();
-                handle8(robot, androidId, driver);
+                handle8(robot, androidId, driver, map);
             }catch (Exception e){}
 
-            handle2(robot,androidId,driver);
-            handle4(robot,androidId,driver);
+            handle2(robot, androidId, driver, map);
+            handle4(robot, androidId, driver, map);
 
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"cn.weli.story:id/iv_tab_2\")");
                 wl2.click();
             }catch (Exception e){  }
-            handle20(robot,androidId,driver);
-            handle21(robot,androidId,driver);
-            handle6(robot,androidId,driver);
+            handle20(robot, androidId, driver, map);
+            handle21(robot, androidId, driver, map);
+            handle6(robot, androidId, driver, map);
         }catch (Exception e){}
 
     }
@@ -92,7 +93,7 @@ public class App微鲤看看 {
      * @param robot
 
      */
-    public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
        log.info("微鲤看看-签到");
         try {
             WebElement wl =  null;
@@ -123,7 +124,7 @@ public class App微鲤看看 {
      * todo 2.看视频
      * @param robot
      */
-    public static void handle2(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle2(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
         log.info("微鲤看看-看视频");
         try {
             robot.delay(1000);
@@ -155,7 +156,7 @@ public class App微鲤看看 {
      * todo 3.看小视频
      * @param robot
      */
-    public static void handle3(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle3(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -164,7 +165,7 @@ public class App微鲤看看 {
      * todo 4.看新闻
      * @param robot
      */
-    public static void handle4(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle4(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
         log.info("微鲤看看-看新闻");
         try {
             robot.delay(1000);
@@ -193,7 +194,7 @@ public class App微鲤看看 {
      * todo 5.看小说
      * @param robot
      */
-    public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -202,7 +203,7 @@ public class App微鲤看看 {
      * todo 6.看广告
      * @param robot
      */
-    public static void handle6(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
         log.info("微鲤看看-看广告");
         try{
             robot.delay(1000);
@@ -232,7 +233,7 @@ public class App微鲤看看 {
      * todo 7.玩游戏
      * @param robot
      */
-    public static void handle7(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle7(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -241,7 +242,7 @@ public class App微鲤看看 {
      * todo 8.领红包(操作流程：1-点击红包，2-看广告)
      * @param robot
      */
-    public static void handle8(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle8(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
         log.info("微鲤看看-领红包");
         try {
             robot.delay(1000);
@@ -268,7 +269,7 @@ public class App微鲤看看 {
      * todo 9.开宝箱
      * @param robot
      */
-    public static void handle9(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -277,7 +278,7 @@ public class App微鲤看看 {
      * todo 10.抽奖
      * @param robot
      */
-    public static void handle10(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle10(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -286,7 +287,7 @@ public class App微鲤看看 {
      * todo 11.睡觉
      * @param robot
      */
-    public static void handle11(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -294,7 +295,7 @@ public class App微鲤看看 {
      * todo 12.走路
      * @param robot
      */
-    public static void handle12(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
 
     }
@@ -304,7 +305,7 @@ public class App微鲤看看 {
      * todo 13.喝水
      * @param robot
      */
-    public static void handle13(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle13(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -313,7 +314,7 @@ public class App微鲤看看 {
      * todo 14.充电
      * @param robot
      */
-    public static void handle14(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle14(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -321,7 +322,7 @@ public class App微鲤看看 {
      * todo 15.听歌曲
      * @param robot
      */
-    public static void handle15(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle15(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -329,7 +330,7 @@ public class App微鲤看看 {
      * todo 16.吃饭
      * @param robot
      */
-    public static void handle16(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
 
 
@@ -339,7 +340,7 @@ public class App微鲤看看 {
      * todo 17.分享
      * @param robot
      */
-    public static void handle17(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle17(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -347,7 +348,7 @@ public class App微鲤看看 {
      * todo 18.摇钱树
      * @param robot
      */
-    public static void handle18(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle18(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -355,7 +356,7 @@ public class App微鲤看看 {
      * todo 19.刮奖
      * @param robot
      */
-    public static void handle19(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle19(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
 
     }
 
@@ -364,7 +365,7 @@ public class App微鲤看看 {
      * todo 20.搜索
      * @param robot
      */
-    public static void handle20(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
         log.info("微鲤看看-搜索");
         try {
             robot.delay(1000);
@@ -428,7 +429,7 @@ public class App微鲤看看 {
      * todo 21.分享
      * @param robot
      */
-    public static void handle21(Robot robot,String androidId,  AndroidDriver driver){
+    public static void handle21(Robot robot,String androidId,  AndroidDriver driver, Map<String,String> map){
         log.info("微鲤看看-分享");
         try {
             robot.delay(1000);
