@@ -191,7 +191,7 @@ public class App抖音极速 {
             AdbTools.process(robot, AdbTools.upPage(androidId));
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
             wl2.click();
-            robot.delay(36000);
+            robot.delay(42000);
 
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
@@ -239,7 +239,7 @@ public class App抖音极速 {
 /*
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看广告视频再赚\")");
             wl3.click();*/
-            robot.delay(36000);
+            robot.delay(42000);
 
             AdbTools.process(robot, operateBack);
         }catch (Exception e){

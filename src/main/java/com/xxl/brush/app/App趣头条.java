@@ -55,17 +55,21 @@ public class App趣头条 {
             AdbTools.process(robot, AdbTools.tap(androidId, 970, y));
             handle5(robot, androidId, driver);
 
+            robot.delay(1000);
             AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
             handle8(robot, androidId, driver);
             handle4(robot, androidId, driver);
 
+            robot.delay(1000);
             AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
             handle2(robot, androidId, driver);
 
+            robot.delay(1000);
             AdbTools.process(robot, AdbTools.tap(androidId, 755, y));
             handle1(robot, androidId, driver);
             handle9(robot, androidId, driver);
             handle6(robot, androidId, driver);
+            robot.delay(1000);
             AdbTools.process(robot, AdbTools.tap(androidId, 755, y));
             handle61(robot, androidId, driver);
             handle11(robot, androidId, driver);
@@ -140,7 +144,7 @@ public class App趣头条 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver){
        log.info("趣头条-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==2) {
+        if(hour==0||hour==1||hour==2) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -232,7 +236,7 @@ public class App趣头条 {
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==2) {
+        if(hour==0||hour==1||hour==2) {
             log.info("趣头条-看小说");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
