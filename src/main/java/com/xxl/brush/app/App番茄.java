@@ -50,7 +50,6 @@ public class App番茄 {
             AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
 
             handle1(robot, androidId, driver, map);
-
             handle9(robot, androidId, driver, map);
             handle6(robot, androidId, driver, map);
             handle5(robot, androidId, driver, map);
@@ -64,15 +63,12 @@ public class App番茄 {
      * @param robot
 
      */
-    public static void quit(Robot robot, AndroidDriver driver){
-        try {
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/tt_video_ad_close_layout\")");
-            wl1.click();
-        }catch (Exception e){ }
-        try {
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/tt_video_ad_close\")");
-            wl2.click();
-        }catch (Exception e){ }
+    public static void quit(Robot robot, String androidId, AndroidDriver driver){
+        if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 180));
+        }else {
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 100));
+        }
     }
 
     /**
@@ -143,48 +139,38 @@ public class App番茄 {
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("番茄小说-看小说");
-        try{
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            int y = 1950;
-            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                y = 2140;
-            }
-            AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            robot.delay(2000);
-            AdbTools.process(robot, AdbTools.tap(androidId, 170, 620));
-            robot.delay(3000);
-
-            //加入书架
-            try{
-                WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/aq_\")");
-                wl4.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, 870, 136));
-            }
-            robot.delay(2000);
-            //分享
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2) {
             try {
-                WebElement wl46 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.dragon.read:id/aot\")");
-                wl46.click();
-            }catch (Exception e){
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                int y = 1950;
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    y = 2140;
+                }
+                AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
+
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                robot.delay(2000);
+                AdbTools.process(robot, AdbTools.tap(androidId, 170, 660));
+                robot.delay(3000);
+
+                log.info("加入书架");
+                if (androidId.equals(PhoneConstants.phone002)) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 750, 136));
+                } else {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 870, 136));
+                }
+                robot.delay(5000);
+
+                log.info("分享");
                 AdbTools.process(robot, AdbTools.tap(androidId, 990, 136));
-            }
-            try {
                 WebElement wl45 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"微信\")");
                 wl45.click();
                 AdbTools.process(robot, operateBack);
-            }catch (Exception e){}
 
-            AdbTools.process(robot, AdbTools.tap(androidId, 850, 430));
-            for(int i=0;i<50;i++){
-                AdbTools.process(robot, AdbTools.tap(androidId, 1050, 800));
-                robot.delay(RandomTools.init(6000)+8000);
+            } catch (Exception e) {
+                log.info("番茄小说-看小说异常");
             }
-
-        }catch (Exception e){
-            log.info("番茄小说-看小说异常");
         }
     }
 
@@ -195,31 +181,36 @@ public class App番茄 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("番茄小说-看广告");
-        try{
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = null;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2) {
             try {
-                AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.down(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"立即观看\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.down(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"立即观看\")");
-            }
-            int x = wl2.getLocation().getX();
-            int y = wl2.getLocation().getY();
-            for(int i=0;i<10;i++) {
-                robot.delay(2000);
-                AdbTools.process(robot, AdbTools.tap(androidId, x, y));
-                robot.delay(36000);
-                quit(robot,driver);
-            }
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                WebElement wl2 = null;
+                try {
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"立即观看\")");
+                } catch (Exception e) {
+                    try {
+                        AdbTools.process(robot, AdbTools.down(androidId));
+                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"立即观看\")");
+                    } catch (Exception e2) {
+                        AdbTools.process(robot, AdbTools.down(androidId));
+                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"立即观看\")");
+                    }
+                }
+                int y = wl2.getLocation().getY();
+                for (int i = 0; i < 10; i++) {
+                    robot.delay(1000);
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
+                    robot.delay(36000);
+                    quit(robot, androidId, driver);
+                }
 
-        }catch (Exception e){
-            log.info("番茄小说-看广告异常");
+            } catch (Exception e) {
+                log.info("番茄小说-看广告异常");
+            }
         }
-
     }
 
     /**
@@ -258,8 +249,8 @@ public class App番茄 {
             }else {
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 1210));
             }
-            robot.delay(59000);
-            quit(robot,driver);
+            robot.delay(46000);
+            quit(robot, androidId, driver);
 
         }catch (Exception e){
             log.info("番茄小说-开宝箱异常");

@@ -67,15 +67,6 @@ public class App书旗 {
             AdbTools.process(robot, AdbTools.tap(androidId, 100, 100));
             AdbTools.process(robot, AdbTools.tap(androidId, 970, 100));
         }
-     /*   try {
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close_layout\")");
-            wl2.click();
-        }catch (Exception e){ }
-
-        try {
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close\")");
-            wl3.click();
-        }catch (Exception e){ }*/
     }
 
 
