@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -86,18 +87,21 @@ public class App拼多多 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("拼多多-签到");
-        try {
-            AdbTools.process(robot, AdbTools.upPage(androidId));
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2) {
             try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"签到领钱\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 830));
-            }
-            robot.delay(12000);
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                try {
+                    WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"签到领钱\")");
+                    wl.click();
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 830));
+                }
+                robot.delay(12000);
 
-        }catch (Exception e){
-            log.info("拼多多-签到异常");
+            } catch (Exception e) {
+                log.info("拼多多-签到异常");
+            }
         }
     }
 
