@@ -41,10 +41,10 @@ public class AppServiceImpl implements AppService {
 		LocalDateTime startTime = LocalDateTime.now();
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 	 	//-综合
-/*        App抖音极速.circulate(robot,androidId, port, systemPort, map);
+/*    	App抖音极速.circulate(robot,androidId, port, systemPort, map);
 		App火山极速.circulate(robot,androidId, port, systemPort, map);
 		App快手极速.circulate(robot,androidId, port, systemPort, map);
-	    App今日头条.circulate(robot,androidId, port, systemPort, map);
+	    App今日头条.circulate(robot,androidId, port, systemPort, map);*/
 		App趣头条.circulate(robot,androidId, port, systemPort, map);
 		AppQQ阅读.circulate(robot,androidId, port, systemPort, map);
 		App火山小说.circulate(robot,androidId, port, systemPort, map);
@@ -55,21 +55,56 @@ public class AppServiceImpl implements AppService {
 		//综合
 		App书旗.circulate(robot,androidId, port, systemPort, map);
 		App番茄.circulate(robot,androidId, port, systemPort, map);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			return;
+		}
 		App抖音火山.circulate(robot,androidId, port, systemPort, map);
 		App米读.circulate(robot,androidId, port, systemPort, map);
-		App必看小说.circulate(robot,androidId, port, systemPort, map);*/
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			return;
+		}
+		App必看小说.circulate(robot,androidId, port, systemPort, map);
 		App牛角.circulate(robot,androidId, port, systemPort, map);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+          return;
+		}
 		log.info("*****************运行多长时间*************"+duration.toMinutes());
 /*		App2345浏览器.circulate(robot,androidId, port, systemPort, map);*/
 
 		App晴象浏览器.circulate(robot,androidId, port, systemPort, map);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			return;
+		}
 		App晴象浏览器.circulate1(robot,androidId, port, systemPort, map);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			return;
+		}
 		App晴象浏览器.circulate2(robot,androidId, port, systemPort, map);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			return;
+		}
 		App晴象浏览器.circulate3(robot,androidId, port, systemPort, map);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			return;
+		}
 		App晴象浏览器.circulate4(robot,androidId, port, systemPort, map);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			return;
+		}
 		App晴象浏览器.circulate5(robot,androidId, port, systemPort, map);
 		App晴象浏览器.circulate6(robot,androidId, port, systemPort, map);
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			return;
+		}
 		App晴象浏览器.circulate7(robot,androidId, port, systemPort, map);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		log.info("*****************运行多长时间*************"+duration.toMinutes());

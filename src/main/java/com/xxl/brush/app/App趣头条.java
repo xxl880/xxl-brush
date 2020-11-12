@@ -48,6 +48,8 @@ public class App趣头条 {
             log.info("4.清除");
             AdbTools.clear(driver);
 
+            clear(robot,androidId,driver);
+
             int y = 1960;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                 y = 2140;
@@ -101,7 +103,8 @@ public class App趣头条 {
      * @param robot
 
      */
-    public static void clear(Robot robot, AndroidDriver driver){
+    public static void clear(Robot robot, String androidId, AndroidDriver driver){
+        String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
         try{
             WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.kuaishou.nebula:id/login_dialog_cancel\")");
             wl11.click();
@@ -110,6 +113,9 @@ public class App趣头条 {
             WebElement wl12 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.jifen.qukan:id/afk\")");
             wl12.click();
         }catch (Exception e){}
+
+        AdbTools.process(robot, operateBack);
+
     }
 
     /**
@@ -178,6 +184,11 @@ public class App趣头条 {
             try{
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.FrameLayout\").childSelector(className(\"android.widget.ImageView\")).fromParent(className(\"android.view.View\"))");
                 wl1.click();
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看视频再\")");
+                wl2.click();
+                robot.delay(46000);
+                AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
+                quit(robot,driver);
             }catch (Exception e){}
 
             int x = RandomTools.init(8)+6;
@@ -217,6 +228,11 @@ public class App趣头条 {
             try{
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.FrameLayout\").childSelector(className(\"android.widget.ImageView\")).fromParent(className(\"android.view.View\"))");
                 wl1.click();
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看视频再\")");
+                wl2.click();
+                robot.delay(46000);
+                AdbTools.wakeup(robot, androidId, AppConstants.startup趣头条);
+                quit(robot,driver);
             }catch (Exception e){}
 
             int x = RandomTools.init(8)+6;

@@ -88,9 +88,12 @@ public class App拼多多 {
         log.info("拼多多-签到");
         try {
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"现金签到\")");
-            wl.click();
+            try {
+                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"签到领钱\")");
+                wl.click();
+            }catch (Exception e){
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 830));
+            }
             robot.delay(12000);
 
         }catch (Exception e){

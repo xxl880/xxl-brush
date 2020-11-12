@@ -119,7 +119,6 @@ public class App今日头条 {
                 robot.delay(32000);
 
                 AdbTools.process(robot, operateBack);
-
             } catch (Exception e) {
                 log.info("今日头条-签到异常");
             }
