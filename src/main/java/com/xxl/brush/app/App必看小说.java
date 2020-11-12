@@ -51,7 +51,7 @@ public class App必看小说 {
             AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
             AdbTools.process(robot, AdbTools.tap(androidId, 830, 660));
             AdbTools.process(robot, AdbTools.tap(androidId, 830, 690));
-            AdbTools.process(robot, AdbTools.tap(androidId, 830, 710));
+
 
             handle1(robot, androidId, driver, map);
 
@@ -97,7 +97,7 @@ public class App必看小说 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App必看小说-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1) {
+        if(hour==0||hour==1||hour==2) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -154,25 +154,27 @@ public class App必看小说 {
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("必看小说-看小说");
-        try{
-            int y = 1950;
-            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                y = 2140;
-            }
-            AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
-            robot.delay(2000);
-            AdbTools.process(robot, AdbTools.tap(androidId, 150, 1620));
-            robot.delay(2000);
-            AdbTools.process(robot, AdbTools.tap(androidId, 970, y));
+        int hour = LocalDateTime.now().getHour();
+        if(hour==2||hour==3) {
+            try {
+                int y = 1950;
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    y = 2140;
+                }
+                AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
+                robot.delay(2000);
+                AdbTools.process(robot, AdbTools.tap(androidId, 150, 1310));
+                robot.delay(2000);
+                AdbTools.process(robot, AdbTools.tap(androidId, 970, y));
 
-            for(int i=0;i<120;i++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, 1020, 600));
-            }
+                for (int i = 0; i < 60; i++) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 1020, 600));
+                }
 
-        }catch (Exception e){
-            log.info("必看小说-看小说异常");
+            } catch (Exception e) {
+                log.info("必看小说-看小说异常");
+            }
         }
-
     }
 
 
@@ -183,7 +185,7 @@ public class App必看小说 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App必看小说-看广告");
         int hour = LocalDateTime.now().getHour();
-        if(hour==2||hour==3) {
+        if(hour==0||hour==1||hour==2) {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"视频赚\")");
@@ -234,7 +236,12 @@ public class App必看小说 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App必看小说-开宝箱");
         try {
-            robot.delay(1000);
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.process(robot, AdbTools.tap(androidId, 830, 760));
+            }else{
+                AdbTools.process(robot, AdbTools.tap(androidId, 830, 690));
+            }
+
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"开宝箱\")");
             wl2.click();
 

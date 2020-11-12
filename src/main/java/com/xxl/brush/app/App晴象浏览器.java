@@ -276,6 +276,8 @@ public class App晴象浏览器 {
             y1 = 1890;
         }
         AdbTools.process(robot, AdbTools.tap(androidId, 960, y));
+        robot.delay(1000);
+        AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
     }
 
 

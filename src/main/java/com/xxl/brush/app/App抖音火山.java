@@ -122,9 +122,9 @@ public class App抖音火山 {
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("抖音火山-看视频");
         try {
-            int x = RandomTools.init(8)+8;
+            int x = RandomTools.init(8)+12;
             for (int a = 0; a < x; a++) {
-                robot.delay(RandomTools.init(6000));
+                robot.delay(RandomTools.init(8000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
                 if (a == RandomTools.init(8)) {
                     AdbTools.process(robot, AdbTools.upPage(androidId));
