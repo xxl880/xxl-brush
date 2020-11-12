@@ -67,12 +67,12 @@ public class App抖音极速 {
 
             handle1(robot, androidId, driver, map);
 
-            handle9(robot, androidId, driver, map, map);
-            handle6(robot, androidId, driver, map, map);
+            handle9(robot, androidId, driver, map);
+            handle6(robot, androidId, driver, map);
 
-            handle12(robot, androidId, driver, map, map);
-            handle16(robot, androidId, driver, map, map);
-            handle11(robot, androidId, driver, map, map);
+            handle12(robot, androidId, driver, map);
+            handle16(robot, androidId, driver, map);
+            handle11(robot, androidId, driver, map);
 
         }catch (Exception e){
             e.printStackTrace();

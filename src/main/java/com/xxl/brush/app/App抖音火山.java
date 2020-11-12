@@ -46,9 +46,9 @@ public class App抖音火山 {
 
             handle2(robot, androidId, driver, map);
 
-            handle1(robot, androidId, driver, map,map);
+            handle1(robot, androidId, driver, map);
 
-            handle6(robot, androidId, driver, map,map);
+            handle6(robot, androidId, driver, map);
 
         }catch (Exception e){
             e.printStackTrace();
