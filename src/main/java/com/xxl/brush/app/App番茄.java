@@ -140,7 +140,7 @@ public class App番茄 {
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("番茄小说-看小说");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
+        if(hour==2||hour==3) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 int y = 1950;

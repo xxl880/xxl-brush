@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -41,13 +42,11 @@ public class App抖音火山 {
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
 
             AdbTools.clear(driver);
-            clear(robot,driver);
+            clear(robot,androidId,driver);
             AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
-
             handle2(robot, androidId, driver, map);
-
+            clear(robot,androidId,driver);
             handle1(robot, androidId, driver, map);
-
             handle6(robot, androidId, driver, map);
 
         }catch (Exception e){
@@ -72,16 +71,17 @@ public class App抖音火山 {
      * @param robot
 
      */
-    public static void clear(Robot robot, AndroidDriver driver){
+    public static void clear(Robot robot, String androidId, AndroidDriver driver){
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"立即 升级\")");
+            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textStartsWith(\"立即\")");
             wl.click();
-            robot.delay(6000);
+            robot.delay(12000);
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"继续安装\")");
             wl2.click();
-            robot.delay(12000);
+            robot.delay(27000);
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"完成\")");
             wl3.click();
+            AdbTools.wakeup(robot, androidId, AppConstants.startup抖音火山);
         }catch (Exception e){ }
     }
 
@@ -94,18 +94,23 @@ public class App抖音火山 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("抖音火山-签到");
-        try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ss.android.ugc.live:id/blj\")");
-            wl1.click();
-            robot.delay(3000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看广告视频再赚\")");
-            wl2.click();
-            robot.delay(32000);
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2) {
+            try {
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("抖音火山-签到异常");
+                AdbTools.process(robot, AdbTools.tap(androidId, 990, 290));
+                robot.delay(2000);
+                try {
+                    WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看广告视频再赚\")");
+                    wl2.click();
+                    robot.delay(32000);
+                } catch (Exception e) {
+                }
+                AdbTools.process(robot, operateBack);
+            } catch (Exception e) {
+                log.info("抖音火山-签到异常");
+            }
         }
     }
 
@@ -119,9 +124,9 @@ public class App抖音火山 {
         try {
             int x = RandomTools.init(8)+8;
             for (int a = 0; a < x; a++) {
-                robot.delay(RandomTools.init(15000));
+                robot.delay(RandomTools.init(6000));
                 AdbTools.process(robot, AdbTools.downPage(androidId));
-                if (a == RandomTools.init(6)) {
+                if (a == RandomTools.init(8)) {
                     AdbTools.process(robot, AdbTools.upPage(androidId));
                 }
             }
@@ -167,13 +172,13 @@ public class App抖音火山 {
         try {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ss.android.ugc.live:id/blj\")");
-            wl1.click();
-            robot.delay(3000);
+            AdbTools.process(robot, AdbTools.tap(androidId, 990, 290));
+            robot.delay(2000);
 
             WebElement w2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"去领取\")");
             w2.click();
             robot.delay(32000);
+            AdbTools.process(robot, operateBack);
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("抖音火山-看广告异常");

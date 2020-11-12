@@ -29,9 +29,7 @@ public class AdbTools {
             log.info(operateData);
             Runtime.getRuntime().exec(operateData);
             robot.delay(2000);
-        }catch (Exception e){
-
-        }
+        }catch (Exception e){}
     }
 
 
