@@ -56,8 +56,8 @@ public class AppServiceImpl implements AppService {
 		App书旗.circulate(robot,androidId, port, systemPort, map);
 		App番茄.circulate(robot,androidId, port, systemPort, map);
 		App抖音火山.circulate(robot,androidId, port, systemPort, map);
-		App米读.circulate(robot,androidId, port, systemPort, map);*/
-		App必看小说.circulate(robot,androidId, port, systemPort, map);
+		App米读.circulate(robot,androidId, port, systemPort, map);
+		App必看小说.circulate(robot,androidId, port, systemPort, map);*/
 		App牛角.circulate(robot,androidId, port, systemPort, map);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		log.info("*****************运行多长时间*************"+duration.toMinutes());

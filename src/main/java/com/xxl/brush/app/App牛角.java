@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -37,12 +38,16 @@ public class App牛角 {
 
             log.info("2.启动app");
             AdbTools.startup(robot, androidId, AppConstants.startup牛角);
-
+            robot.delay(6000);
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
             AdbTools.clear(driver);
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
-            wl.click();
+
+            int y = 1950;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                y = 2140;
+            }
+            AdbTools.process(robot, AdbTools.tap(androidId, 670, y));
 
             handle1(robot, androidId, driver, map);
             handle8(robot, androidId, driver, map);
@@ -83,17 +88,19 @@ public class App牛角 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App牛角小说-签到");
         try {
-            AdbTools.process(robot, AdbTools.upPage(androidId));
+            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+
             AdbTools.process(robot, AdbTools.upPage(androidId));
             WebElement   wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到领奖\")");
-
             wl.click();
 
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"再领一次\")");
-            wl1.click();
+            int y = 1310;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                y = 1410;
+            }
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
             robot.delay(32000);
 
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("App牛角小说-签到异常");
@@ -143,31 +150,40 @@ public class App牛角 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App牛角小说-看广告");
-        try{
-            WebElement wl2 = null;
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            try{
-                AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.down(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去观看\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.down(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去观看\")");
-            }
-            int x = wl2.getLocation().getX();
-            int y = wl2.getLocation().getY();
-            for(int i=0;i<3;i++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, x, y));
-                robot.delay(36000);
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    AdbTools.process(robot, AdbTools.tap(androidId, 970, 180));
-                }else{
-                    AdbTools.process(robot, AdbTools.tap(androidId, 970, 90));
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2||hour==3) {
+            try {
+                WebElement wl2 = null;
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                try {
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去观看\")");
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去观看\")");
                 }
-            }
+                int x = wl2.getLocation().getX();
+                int y = wl2.getLocation().getY();
+                for (int i = 0; i < 3; i++) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, x, y));
+                    robot.delay(36000);
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 970, 180));
+                    } else {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 970, 90));
+                    }
+                    robot.delay(2000);
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 1110));
+                    } else {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 990));
+                    }
 
-        }catch (Exception e){
-            log.info("App牛角小说-看广告异常");
+                }
+            } catch (Exception e) {
+                log.info("App牛角小说-看广告异常");
+            }
         }
 
     }
@@ -189,12 +205,11 @@ public class App牛角 {
         log.info("App牛角小说-领红包");
         try{
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取\")");
-            wl2.click();
-
+            AdbTools.process(robot, AdbTools.tap(androidId, 1010, 125));
+            robot.delay(1000);
             WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"分享领取\")");
             wl3.click();
-
+            robot.delay(1000);
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
             log.info("App牛角小说-领红包异常");

@@ -204,8 +204,8 @@ public class App晴象浏览器 {
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                 y = 2140;
             }
-
             AdbTools.process(robot, AdbTools.tap(androidId, 110, y));
+
             handle84(robot, androidId, driver, map);
         }catch (Exception e){
             e.printStackTrace();
@@ -276,8 +276,10 @@ public class App晴象浏览器 {
             y1 = 1890;
         }
         AdbTools.process(robot, AdbTools.tap(androidId, 960, y));
-        robot.delay(1000);
-        AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
+        if(androidId.equals(PhoneConstants.phone001)) {
+            robot.delay(1000);
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, y1));
+        }
     }
 
 
