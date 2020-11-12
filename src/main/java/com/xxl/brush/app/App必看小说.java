@@ -97,7 +97,7 @@ public class App必看小说 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App必看小说-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
+        if(hour==0||hour==1||hour==2||hour==3) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -185,7 +185,7 @@ public class App必看小说 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App必看小说-看广告");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
+        if(hour==0||hour==1||hour==2||hour==3) {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"视频赚\")");
