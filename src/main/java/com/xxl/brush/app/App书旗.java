@@ -1,6 +1,7 @@
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppiumTools;
 import io.appium.java_client.android.AndroidDriver;
@@ -45,6 +46,7 @@ public class App书旗 {
 
             handle1(robot, androidId, driver, map);
             handle6(robot, androidId, driver, map);
+            handle17(robot, androidId, driver, map);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,8 +59,15 @@ public class App书旗 {
      * @param robot
 
      */
-    public static void quit(Robot robot, AndroidDriver driver){
-        try {
+    public static void quit(Robot robot,String androidId, AndroidDriver driver){
+        if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+            AdbTools.process(robot, AdbTools.tap(androidId, 100, 170));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 170));
+        }else {
+            AdbTools.process(robot, AdbTools.tap(androidId, 100, 100));
+            AdbTools.process(robot, AdbTools.tap(androidId, 970, 100));
+        }
+     /*   try {
             WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close_layout\")");
             wl2.click();
         }catch (Exception e){ }
@@ -66,7 +75,7 @@ public class App书旗 {
         try {
             WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.shuqi.controller:id/tt_video_ad_close\")");
             wl3.click();
-        }catch (Exception e){ }
+        }catch (Exception e){ }*/
     }
 
 
@@ -75,7 +84,7 @@ public class App书旗 {
      * @param robot
 
      */
-    public static void clear(Robot robot, AndroidDriver driver){
+    public static void clear(Robot robot, String androidId, AndroidDriver driver){
         try{
             WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"取消\")");
             wl.click();
@@ -111,7 +120,7 @@ public class App书旗 {
                 }
                 robot.delay(32000);
                 robot.delay(32000);
-                quit(robot, driver);
+                quit(robot,androidId, driver);
             } catch (Exception e) {
                 log.info("书旗小说-签到异常");
             }
@@ -128,12 +137,14 @@ public class App书旗 {
         try{
             AdbTools.process(robot, AdbTools.upPage(androidId));
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"快速得百万金币\")");
-            int x = wl2.getLocation().getX();
             int y = wl2.getLocation().getY();
             for(int i=0;i<10;i++) {
-                AdbTools.process(robot, AdbTools.tap(androidId, x, y));
+                robot.delay(1000);
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
                 robot.delay(36000);
-                quit(robot,driver);
+                quit(robot,androidId,driver);
+             /*   AdbTools.wakeup(robot, androidId, AppConstants.startup书旗);
+                quit(robot,androidId,driver);*/
             }
 
         }catch (Exception e){

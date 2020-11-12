@@ -58,10 +58,10 @@ public class AdbTools {
      */
     @SneakyThrows
     public static void wakeup(Robot robot,String androidId, String operateData){
-        log.info("******************启动app**************");
+        log.info("******************唤醒app**************");
         String operate = " adb -s " + androidId + " shell am start -n " + operateData;
         Runtime.getRuntime().exec(operate);
-        robot.delay(2000);
+        robot.delay(1000);
     }
 
     /**

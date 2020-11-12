@@ -41,7 +41,7 @@ public class AppServiceImpl implements AppService {
 		LocalDateTime startTime = LocalDateTime.now();
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 	 	//-综合
-        App抖音极速.circulate(robot,androidId, port, systemPort, map);
+/*        App抖音极速.circulate(robot,androidId, port, systemPort, map);
 		App火山极速.circulate(robot,androidId, port, systemPort, map);
 		App快手极速.circulate(robot,androidId, port, systemPort, map);
 	    App今日头条.circulate(robot,androidId, port, systemPort, map);
@@ -51,13 +51,17 @@ public class AppServiceImpl implements AppService {
 		AppNOW直播.circulate(robot,androidId, port, systemPort, map);
 		App搜狗.circulate(robot,androidId, port, systemPort, map);
 		App拼多多.circulate(robot,androidId, port, systemPort, map);
-		App微博.circulate(robot,androidId, port, systemPort, map);
+		App微博.circulate(robot,androidId, port, systemPort, map);*/
 		//综合
 		App书旗.circulate(robot,androidId, port, systemPort, map);
 		App番茄.circulate(robot,androidId, port, systemPort, map);
 		App抖音火山.circulate(robot,androidId, port, systemPort, map);
+		App米读.circulate(robot,androidId, port, systemPort, map);
+		App必看小说.circulate(robot,androidId, port, systemPort, map);
+		App牛角.circulate(robot,androidId, port, systemPort, map);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		log.info("*****************运行多长时间*************"+duration.toMinutes());
+/*		App2345浏览器.circulate(robot,androidId, port, systemPort, map);*/
 
 		App晴象浏览器.circulate(robot,androidId, port, systemPort, map);
 		App晴象浏览器.circulate1(robot,androidId, port, systemPort, map);
@@ -69,12 +73,6 @@ public class AppServiceImpl implements AppService {
 		App晴象浏览器.circulate7(robot,androidId, port, systemPort, map);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		log.info("*****************运行多长时间*************"+duration.toMinutes());
-		App米读.circulate(robot,androidId, port, systemPort, map);
-		App必看小说.circulate(robot,androidId, port, systemPort, map);
-		App牛角.circulate(robot,androidId, port, systemPort, map);
-		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
-		log.info("*****************运行多长时间*************"+duration.toMinutes());
-/*		App2345浏览器.circulate(robot,androidId, port, systemPort, map);*/
 
 		/*//-视频
 		App刷宝.circulate(robot,androidId, port, systemPort, map);
