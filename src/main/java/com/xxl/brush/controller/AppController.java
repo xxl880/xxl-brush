@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/app")
@@ -24,10 +26,13 @@ public class AppController {
     @GetMapping("circulate")
     @ApiOperation("羊毛")
     public BaseResponse circulate() throws AWTException {
+        //增加全局map事件处理，用于保存数据
+        Map<String,Integer> map = new HashMap<String,Integer>();
+
         List<String> list = AdbTools.getAndroidId();
         if(!CollectionUtils.isEmpty(list)){
             for(String androidId:list){
-                appService.circulate(androidId,list.indexOf(androidId));
+                appService.circulate(androidId,list.indexOf(androidId),map);
             }
         }
   /*      appService.circulate("phone001");*/

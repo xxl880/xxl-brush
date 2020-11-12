@@ -21,8 +21,7 @@ import java.util.Map;
 @Service
 public class AppServiceImpl implements AppService {
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(AppServiceImpl.class);
-	//增加全局map事件处理，用于保存数据
-	Map<String,String> map = new HashMap<String,String>();
+
 
 	/**
 	 * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
@@ -30,7 +29,7 @@ public class AppServiceImpl implements AppService {
 	@Async
 	@SneakyThrows
 	@Override
-	public void circulate(String androidId,int portSeq){
+	public void circulate(String androidId,int portSeq,Map<String,Integer> map){
 		Robot robot = new Robot();
 		AppiumWindow appiumWindow = new AppiumWindow();
 
