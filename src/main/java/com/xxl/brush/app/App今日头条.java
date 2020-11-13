@@ -152,9 +152,9 @@ public class App今日头条 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("今日头条-看小说");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1) {
+        if(hour==3||hour==4) {
+            log.info("今日头条-看小说");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 

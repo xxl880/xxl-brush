@@ -30,7 +30,8 @@ public class App书旗 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
             try {
                 log.info("********************************书旗小说操作********************************************");
 
@@ -52,6 +53,7 @@ public class App书旗 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
     }
 
 
@@ -135,8 +137,6 @@ public class App书旗 {
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
                 robot.delay(36000);
                 quit(robot,androidId,driver);
-             /*   AdbTools.wakeup(robot, androidId, AppConstants.startup书旗);
-                quit(robot,androidId,driver);*/
             }
 
         }catch (Exception e){
@@ -239,7 +239,9 @@ public class App书旗 {
      * @param robot
      */
     public static void handle17(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("书旗小说-分享");
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
+            log.info("书旗小说-分享");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 AdbTools.process(robot, AdbTools.downPage(androidId));
@@ -253,6 +255,7 @@ public class App书旗 {
             } catch (Exception e) {
                 log.info("书旗小说-分享异常");
             }
+        }
     }
 
     /**

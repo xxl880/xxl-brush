@@ -334,63 +334,66 @@ public class App搜狗 {
      * @param robot
      */
     public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("搜狗-搜索");
-        try {
-            robot.delay(1000);
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6||hour==12) {
+            log.info("搜狗-搜索");
             try {
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取红包\")");
-                wl1.click();
-            }catch (Exception e){
-                WebElement wl2 = null;
+                robot.delay(1000);
+
+                AdbTools.process(robot, AdbTools.upPage(androidId));
                 try {
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去搜索\")");
-                }catch (Exception e1){
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"继续搜索\")");
+                    WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取红包\")");
+                    wl1.click();
+                } catch (Exception e) {
+                    WebElement wl2 = null;
+                    try {
+                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去搜索\")");
+                    } catch (Exception e1) {
+                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"继续搜索\")");
+                    }
+                    wl2.click();
+
+                    for (int i = 0; i < 6; i++) {
+                        List<String> list = new ArrayList();
+                        list.add("ligangjianying");
+                        list.add("jianqianyankai");
+                        list.add("tianjingdiyi");
+                        list.add("detianduhou");
+                        list.add("chuitousanqi");
+                        list.add("moshouchenggui");
+                        list.add("gangbiziyong");
+                        list.add("lijingtuzhi");
+                        list.add("xinkuangshenyi");
+                        list.add("duoduobiren");
+                        list.add("haogaowuyuan");
+                        list.add("heaikeqin");
+                        list.add("jianfengshiduo");
+                        list.add("yuanmuqiuyu");
+                        list.add("kuizhirenkou");
+                        list.add("laojianjuhua");
+                        list.add("maogusongran");
+                        list.add("mingguanjiuzhou");
+                        list.add("ouxinlixue");
+                        list.add("rencaijiji");
+                        list.add("ruyuanyichuang");
+                        list.add("ruobujingfeng");
+                        list.add("sesanbanlan");
+                        list.add("bixinliyi");
+                        list.add("suijiyingbian");
+                        list.add("chujiubuxin");
+                        list.add("haogaowuyuan");
+                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 136));
+                        AdbTools.process(robot, AdbTools.text(androidId, list.get(RandomTools.init(23))));
+                        robot.delay(1000);
+                        AdbTools.process(robot, AdbTools.tap(androidId, 1000, 136));
+                        robot.delay(1000);
+                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 680));
+                    }
+
                 }
-                wl2.click();
-
-                for(int i=0;i<6;i++) {
-                    List<String> list = new ArrayList();
-                    list.add("ligangjianying");
-                    list.add("jianqianyankai");
-                    list.add("tianjingdiyi");
-                    list.add("detianduhou");
-                    list.add("chuitousanqi");
-                    list.add("moshouchenggui");
-                    list.add("gangbiziyong");
-                    list.add("lijingtuzhi");
-                    list.add("xinkuangshenyi");
-                    list.add("duoduobiren");
-                    list.add("haogaowuyuan");
-                    list.add("heaikeqin");
-                    list.add("jianfengshiduo");
-                    list.add("yuanmuqiuyu");
-                    list.add("kuizhirenkou");
-                    list.add("laojianjuhua");
-                    list.add("maogusongran");
-                    list.add("mingguanjiuzhou");
-                    list.add("ouxinlixue");
-                    list.add("rencaijiji");
-                    list.add("ruyuanyichuang");
-                    list.add("ruobujingfeng");
-                    list.add("sesanbanlan");
-                    list.add("bixinliyi");
-                    list.add("suijiyingbian");
-                    list.add("chujiubuxin");
-                    list.add("haogaowuyuan");
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 136));
-                    AdbTools.process(robot, AdbTools.text(androidId, list.get(RandomTools.init(23))));
-                    robot.delay(1000);
-                    AdbTools.process(robot, AdbTools.tap(androidId, 1000, 136));
-                    robot.delay(1000);
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 680));
+            } catch (Exception e) {
+                log.info("搜狗-搜索异常");
             }
-
-          }
-        }catch (Exception e){
-            log.info("搜狗-搜索异常");
         }
     }
 

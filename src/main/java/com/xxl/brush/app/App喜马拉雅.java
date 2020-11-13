@@ -149,9 +149,6 @@ public class App喜马拉雅 {
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("喜马拉雅-看新闻");
         try {
-            robot.delay(1000);
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
             WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").textContains(\"去阅读\")");
             wl1.click();
 
@@ -163,7 +160,7 @@ public class App喜马拉雅 {
                     AdbTools.process(robot, AdbTools.down(androidId));
                 }
             }
-            AdbTools.process(robot, operateBack);
+            AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
             log.info("趣头条-喜马拉雅异常");
         }

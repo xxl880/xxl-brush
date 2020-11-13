@@ -32,7 +32,7 @@ public class AppQQ阅读 {
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-
+        if(hour==0||hour==1||hour==6) {
             try {
                 log.info("********************************QQ阅读操作********************************************");
 
@@ -60,7 +60,7 @@ public class AppQQ阅读 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+        }
     }
 
 
@@ -146,24 +146,29 @@ public class AppQQ阅读 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("QQ阅读-看小说");
-        int y = 1950;
-        if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){y = 2140; }
-        try {
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, 630));
-
-            AdbTools.process(robot, AdbTools.tap(androidId, 930, y));
-            robot.delay(1000);
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
-            for(int i=0;i<60;i++){
-                AdbTools.process(robot, AdbTools.tap(androidId, 1030, 1560));
-                robot.delay(RandomTools.init(6000));
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
+            log.info("QQ阅读-看小说");
+            int y = 1950;
+            if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                y = 2140;
             }
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 630));
 
-        } catch (Exception e) {
-            log.info("QQ阅读-看小说异常");
+                AdbTools.process(robot, AdbTools.tap(androidId, 930, y));
+                robot.delay(1000);
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
+                for (int i = 0; i < 60; i++) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 1030, 1560));
+                    robot.delay(RandomTools.init(6000));
+                }
+
+            } catch (Exception e) {
+                log.info("QQ阅读-看小说异常");
+            }
         }
     }
 
@@ -172,21 +177,24 @@ public class AppQQ阅读 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("QQ阅读-看广告");
-        try {
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频拿大额金币\").fromParent(text(\"马上看\"))");
-            int y = wl2.getLocation().getY();
-            for (int i = 0; i < 10; i++) {
-                robot.delay(3000);
-                AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
-                robot.delay(59000);
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
+            log.info("QQ阅读-看广告");
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频拿大额金币\").fromParent(text(\"马上看\"))");
+                int y = wl2.getLocation().getY();
+                for (int i = 0; i < 10; i++) {
+                    robot.delay(3000);
+                    AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
+                    robot.delay(59000);
+                    AdbTools.process(robot, AdbTools.back(androidId));
+                }
                 AdbTools.process(robot, AdbTools.back(androidId));
+            } catch (Exception e) {
+                log.info("QQ阅读-看广告异常");
             }
-            AdbTools.process(robot, AdbTools.back(androidId));
-        } catch (Exception e) {
-            log.info("QQ阅读-看广告异常");
         }
     }
 

@@ -177,6 +177,8 @@ public class App快手极速 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2||hour==3||hour==4||hour==5) {
             log.info("快手极速-看广告");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -197,7 +199,7 @@ public class App快手极速 {
             } catch (Exception e) {
                 log.info("快手极速-看广告异常");
             }
-
+        }
     }
 
     /**
@@ -329,28 +331,31 @@ public class App快手极速 {
      * @param robot
      */
     public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("快手极速-直播");
-        try {
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl3 = null;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2||hour==3||hour==4||hour==5) {
+            log.info("快手极速-直播");
             try {
-                AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.down(androidId));
-                wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.down(androidId));
-                wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
-            }
-            AdbTools.process(robot, AdbTools.tap(androidId, 880, wl3.getLocation().getY()));
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                WebElement wl3 = null;
+                try {
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
+                }
+                AdbTools.process(robot, AdbTools.tap(androidId, 880, wl3.getLocation().getY()));
 
-            for (int i = 0; i < 10; i++) {
-                int a = RandomTools.init(6000);
-                robot.delay(30000 + a);
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-            }
+                for (int i = 0; i < 10; i++) {
+                    int a = RandomTools.init(6000);
+                    robot.delay(30000 + a);
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                }
 
-        } catch (Exception e) {
-            log.info("快手极速-直播异常");
+            } catch (Exception e) {
+                log.info("快手极速-直播异常");
+            }
         }
     }
 
