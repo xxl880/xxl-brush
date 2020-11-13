@@ -3,6 +3,7 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
@@ -31,8 +32,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
+        AppTools.appSonTime();
             try {
                 log.info("********************************App晴象浏览器操作********************************************");
 
@@ -55,7 +55,7 @@ public class App晴象浏览器 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+
     }
 
 
@@ -65,9 +65,8 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate1(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==12) {
-            try {
+        AppTools.appSonTime();
+        try {
                 log.info("********************************App晴象浏览器操作********************************************");
 
                 log.info("1.初始化手机");
@@ -90,7 +89,6 @@ public class App晴象浏览器 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
     /**
@@ -99,6 +97,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate2(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+        AppTools.appSonTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -130,6 +129,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate3(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+        AppTools.appSonTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -162,6 +162,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate4(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+        AppTools.appSonTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -193,6 +194,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate5(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+        AppTools.appSonTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -224,6 +226,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate6(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+        AppTools.appSonTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -249,6 +252,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate7(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+        AppTools.appSonTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 

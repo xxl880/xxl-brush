@@ -30,8 +30,7 @@ public class AppNOW直播 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==12||hour==18) {
+            AppTools.appSonTime();
             try {
                 log.info("********************************NOW直播操作********************************************");
 
@@ -71,7 +70,6 @@ public class AppNOW直播 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
 
     }
 

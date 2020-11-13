@@ -3,6 +3,7 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
@@ -30,8 +31,7 @@ public class App牛角 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==12||hour==18) {
+        AppTools.appSonTime();
             try {
                 log.info("********************************App牛角小说操作********************************************");
                 log.info("1.初始化手机");
@@ -57,7 +57,6 @@ public class App牛角 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
 
@@ -88,8 +87,6 @@ public class App牛角 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
             log.info("App牛角小说-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -109,7 +106,6 @@ public class App牛角 {
             } catch (Exception e) {
                 log.info("App牛角小说-签到异常");
             }
-        }
     }
 
 
@@ -155,8 +151,6 @@ public class App牛角 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App牛角小说-看广告");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
             try {
                 WebElement wl2 = null;
                 AdbTools.process(robot, AdbTools.upPage(androidId));
@@ -189,7 +183,6 @@ public class App牛角 {
             } catch (Exception e) {
                 log.info("App牛角小说-看广告异常");
             }
-        }
 
     }
 

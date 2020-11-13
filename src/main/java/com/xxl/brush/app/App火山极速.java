@@ -3,6 +3,7 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
@@ -27,9 +28,8 @@ public class App火山极速 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==6||hour==11||hour==12||hour==14||hour==16||hour==18||hour==19||hour==21||hour==22||hour==23) {
-            try {
+        AppTools.appTime();
+        try {
                 log.info("********************************火山极速操作********************************************");
                 log.info("1.初始化手机");
                 AdbTools.initMobile(robot, androidId);
@@ -63,7 +63,6 @@ public class App火山极速 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
 
@@ -104,8 +103,6 @@ public class App火山极速 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山极速-签到");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6||hour==12) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -117,7 +114,6 @@ public class App火山极速 {
             } catch (Exception e) {
                 log.info("火山极速-签到异常");
             }
-        }
     }
 
 
@@ -253,7 +249,7 @@ public class App火山极速 {
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山极速-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==22||hour==23) {
+        if(hour==22) {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
@@ -347,8 +343,6 @@ public class App火山极速 {
      */
     public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山极速-晒收入");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==12||hour==22) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -370,7 +364,6 @@ public class App火山极速 {
             } catch (Exception e) {
                 log.info("火山极速-晒收入异常");
             }
-        }
     }
 
 

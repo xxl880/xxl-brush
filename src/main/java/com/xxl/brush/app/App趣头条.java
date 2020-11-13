@@ -2,10 +2,7 @@ package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
-import com.xxl.brush.tools.AdbTools;
-import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.AppiumWindow;
-import com.xxl.brush.tools.RandomTools;
+import com.xxl.brush.tools.*;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -34,9 +31,8 @@ public class App趣头条 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==6||hour==11||hour==12||hour==14||hour==16||hour==18||hour==19||hour==20||hour==21||hour==23) {
-            try {
+        AppTools.appTime();
+             try {
                 log.info("********************************趣头条操作********************************************");
                 log.info("1.初始化手机");
                 AdbTools.initMobile(robot, androidId);
@@ -83,7 +79,6 @@ public class App趣头条 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
 
@@ -153,7 +148,6 @@ public class App趣头条 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
             log.info("趣头条-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -166,7 +160,6 @@ public class App趣头条 {
             } catch (Exception e) {
                 log.info("趣头条-签到异常");
             }
-        }
     }
 
 
@@ -255,8 +248,6 @@ public class App趣头条 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6||hour==20||hour==23) {
             log.info("趣头条-看小说");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -278,7 +269,6 @@ public class App趣头条 {
             } catch (Exception e) {
                 log.info("趣头条-看小说异常");
             }
-        }
     }
 
 

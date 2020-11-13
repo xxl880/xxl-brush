@@ -3,6 +3,7 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.MobileElement;
@@ -37,8 +38,7 @@ public class App抖音极速 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot, String androidId, int port, int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==6||hour==11||hour==12||hour==14||hour==16||hour==18||hour==19||hour==20||hour==21||hour==23) {
+        AppTools.appTime();
             try {
                 log.info("********************************抖音极速操作********************************************");
                 log.info("1.初始化手机");
@@ -73,7 +73,6 @@ public class App抖音极速 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
 
@@ -105,8 +104,6 @@ public class App抖音极速 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6||hour==12) {
             log.info("抖音极速-签到");
             try {
                 try {
@@ -129,7 +126,6 @@ public class App抖音极速 {
             } catch (Exception e) {
                 log.info("抖音极速-签到异常");
             }
-        }
     }
 
 
@@ -300,7 +296,7 @@ public class App抖音极速 {
      */
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
        int hour = LocalDateTime.now().getHour();
-       if(hour==20) {
+       if(hour==22) {
            log.info("抖音极速-走路");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -370,8 +366,6 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-      int hour = LocalDateTime.now().getHour();
-      if(hour==8||hour==9||hour==11||hour==12||hour==18||hour==19||hour==22||hour==23) {
           log.info("抖音极速-吃饭");
              try {
                  String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -392,8 +386,6 @@ public class App抖音极速 {
              } catch (Exception e) {
                  log.info("抖音极速-吃饭异常");
              }
-         }
-
     }
 
     /**

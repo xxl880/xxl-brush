@@ -31,8 +31,7 @@ public class App今日头条 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==6||hour==11||hour==12||hour==14||hour==16||hour==18||hour==19||hour==21||hour==22||hour==23) {
+          AppTools.appTime();
             try {
                 log.info("********************************今日头条操作********************************************");
 
@@ -68,7 +67,6 @@ public class App今日头条 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
 
@@ -156,7 +154,6 @@ public class App今日头条 {
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==6) {
             log.info("今日头条-看小说");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -209,7 +206,6 @@ public class App今日头条 {
             } catch (Exception e) {
                 log.info("今日头条-看小说异常");
             }
-        }
     }
 
 
@@ -279,7 +275,7 @@ public class App今日头条 {
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("今日头条-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==23) {
+        if(hour==22) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 WebElement wl2 = null;

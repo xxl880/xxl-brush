@@ -3,6 +3,7 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
@@ -30,8 +31,7 @@ public class App番茄 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6||hour==12||hour==18) {
+        AppTools.appSonTime();
             try {
                 log.info("********************************番茄小说操作********************************************");
 
@@ -58,7 +58,6 @@ public class App番茄 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
     /**
@@ -90,8 +89,6 @@ public class App番茄 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
             log.info("番茄小说-签到");
             try {
                 robot.delay(2000);
@@ -105,7 +102,6 @@ public class App番茄 {
             } catch (Exception e) {
                 log.info("番茄小说-签到异常");
             }
-        }
     }
 
 
@@ -142,8 +138,6 @@ public class App番茄 {
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("番茄小说-看小说");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==1||hour==6) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 int y = 1950;
@@ -174,7 +168,6 @@ public class App番茄 {
             } catch (Exception e) {
                 log.info("番茄小说-看小说异常");
             }
-        }
     }
 
 
@@ -184,8 +177,6 @@ public class App番茄 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("番茄小说-看广告");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6||hour==12) {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 WebElement wl2 = null;
@@ -213,7 +204,6 @@ public class App番茄 {
             } catch (Exception e) {
                 log.info("番茄小说-看广告异常");
             }
-        }
     }
 
     /**

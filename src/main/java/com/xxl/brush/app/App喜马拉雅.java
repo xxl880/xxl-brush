@@ -2,6 +2,7 @@ package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
@@ -29,8 +30,7 @@ public class App喜马拉雅 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==12||hour==18) {
+        AppTools.appSonTime();
             try {
                 log.info("********************************喜马拉雅小说操作********************************************");
 
@@ -54,7 +54,6 @@ public class App喜马拉雅 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
 
