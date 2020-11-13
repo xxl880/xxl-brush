@@ -253,7 +253,7 @@ public class App趣头条 {
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
+        if(hour==0||hour==1||hour==14||hour==15) {
             log.info("趣头条-看小说");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
