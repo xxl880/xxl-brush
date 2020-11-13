@@ -29,33 +29,36 @@ public class App火山小说 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        try{
-            log.info("********************************火山小说操作********************************************");
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==12||hour==18) {
+            try {
+                log.info("********************************火山小说操作********************************************");
 
-            log.info("1.初始化手机");
-             AdbTools.initMobile(robot,androidId);
+                log.info("1.初始化手机");
+                AdbTools.initMobile(robot, androidId);
 
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup火山小说);
+                log.info("2.启动app");
+                AdbTools.startup(robot, androidId, AppConstants.startup火山小说);
 
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
-            AdbTools.clear(driver);
-            int y = 1950;
-            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                y = 2140;
+                log.info("3.启动appium");
+                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+                AdbTools.clear(driver);
+                int y = 1950;
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    y = 2140;
+                }
+                AdbTools.process(robot, AdbTools.tap(androidId, 130, y));
+                handle8(robot, androidId, driver, map);
+
+                AdbTools.process(robot, AdbTools.tap(androidId, 670, y));
+                handle1(robot, androidId, driver, map);
+                handle6(robot, androidId, driver, map);
+                handle10(robot, androidId, driver, map);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            AdbTools.process(robot, AdbTools.tap(androidId, 130, y));
-            handle8(robot, androidId, driver, map);
-
-            AdbTools.process(robot, AdbTools.tap(androidId, 670, y));
-            handle1(robot, androidId, driver, map);
-            handle6(robot, androidId, driver, map);
-            handle10(robot, androidId, driver, map);
-
-
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
@@ -92,7 +95,7 @@ public class App火山小说 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
+        if(hour==0||hour==1||hour==6||hour==12) {
             log.info("火山小说-签到");
             try {
                 WebElement wl = null;

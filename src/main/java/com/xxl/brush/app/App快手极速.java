@@ -30,43 +30,46 @@ public class App快手极速 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        try{
-            log.info("********************************快手极速操作********************************************");
-            log.info("1.初始化手机");
-             AdbTools.initMobile(robot, androidId);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup快手);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
-
-            log.info("4.清除");
-            AdbTools.clear(driver);
-            clear(robot,driver);
-
-            handle2(robot, androidId, driver, map);
-
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2||hour==6||hour==11||hour==12||hour==14||hour==16||hour==18||hour==19||hour==21||hour==22||hour==23) {
             try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
-                wl.click();
-            } catch (Exception e) {
-                 if(androidId.equals(PhoneConstants.phone001)){
-                    AdbTools.process(robot, AdbTools.tap(androidId, 100, 810));
-                }else if(androidId.equals(PhoneConstants.phone002)){
-                    AdbTools.process(robot, AdbTools.tap(androidId, 100, 650));
-                }else{
-                    AdbTools.process(robot, AdbTools.tap(androidId, 90, 440));
+                log.info("********************************快手极速操作********************************************");
+                log.info("1.初始化手机");
+                AdbTools.initMobile(robot, androidId);
+
+                log.info("2.启动app");
+                AdbTools.startup(robot, androidId, AppConstants.startup快手);
+
+                log.info("3.启动appium");
+                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+
+                log.info("4.清除");
+                AdbTools.clear(driver);
+                clear(robot, driver);
+
+                handle2(robot, androidId, driver, map);
+
+                try {
+                    WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
+                    wl.click();
+                } catch (Exception e) {
+                    if (androidId.equals(PhoneConstants.phone001)) {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 100, 810));
+                    } else if (androidId.equals(PhoneConstants.phone002)) {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 100, 650));
+                    } else {
+                        AdbTools.process(robot, AdbTools.tap(androidId, 90, 440));
+                    }
                 }
+
+                handle1(robot, androidId, driver, map);
+                handle6(robot, androidId, driver, map);
+                handle9(robot, androidId, driver, map);
+                handle20(robot, androidId, driver, map);
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            handle1(robot, androidId, driver, map);
-            handle6(robot, androidId, driver, map);
-            handle9(robot, androidId, driver, map);
-            handle20(robot, androidId, driver, map);
-
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
@@ -178,7 +181,7 @@ public class App快手极速 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==3||hour==4||hour==5) {
+        if(hour==0||hour==6||hour==12||hour==22) {
             log.info("快手极速-看广告");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -332,7 +335,7 @@ public class App快手极速 {
      */
     public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==3||hour==4||hour==5) {
+        if(hour==0||hour==1||hour==6||hour==12||hour==18||hour==22) {
             log.info("快手极速-直播");
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));

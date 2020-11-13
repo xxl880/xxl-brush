@@ -33,6 +33,8 @@ public class App微博 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2||hour==12||hour==18||hour==22) {
             try {
                 log.info("********************************微博操作********************************************");
 
@@ -65,6 +67,7 @@ public class App微博 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
     }
 
 
@@ -101,7 +104,7 @@ public class App微博 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
+        if(hour==0||hour==1||hour==2) {
             log.info("微博-签到");
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));

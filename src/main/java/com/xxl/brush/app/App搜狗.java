@@ -31,7 +31,8 @@ public class App搜狗 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2||hour==6||hour==12||hour==19||hour==20||hour==21) {
             try {
                 log.info("********************************搜狗操作********************************************");
                 log.info("1.初始化手机");
@@ -64,6 +65,7 @@ public class App搜狗 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
 
     }
 
@@ -97,7 +99,7 @@ public class App搜狗 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
+        if(hour==0||hour==1||hour==6||hour==12) {
             log.info("搜狗-签到");
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));

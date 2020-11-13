@@ -30,7 +30,7 @@ public class App拼多多 {
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
+        if(hour==0||hour==1||hour==6||hour==12) {
             try {
                 log.info("********************************拼多多操作********************************************");
                 log.info("1.初始化手机");

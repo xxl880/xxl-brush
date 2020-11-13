@@ -29,28 +29,31 @@ public class App抖音火山 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        try{
-            log.info("********************************抖音火山操作********************************************");
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2||hour==6||hour==11||hour==12||hour==14||hour==16||hour==18||hour==19||hour==20||hour==21||hour==23) {
+            try {
+                log.info("********************************抖音火山操作********************************************");
 
-            log.info("1.初始化手机");
-             AdbTools.initMobile(robot,androidId);
+                log.info("1.初始化手机");
+                AdbTools.initMobile(robot, androidId);
 
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup抖音火山);
+                log.info("2.启动app");
+                AdbTools.startup(robot, androidId, AppConstants.startup抖音火山);
 
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
+                log.info("3.启动appium");
+                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
 
-            AdbTools.clear(driver);
-            clear(robot,androidId,driver);
-            AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
-            handle2(robot, androidId, driver, map);
-            clear(robot,androidId,driver);
-            handle1(robot, androidId, driver, map);
-            handle6(robot, androidId, driver, map);
+                AdbTools.clear(driver);
+                clear(robot, androidId, driver);
+                AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
+                handle2(robot, androidId, driver, map);
+                clear(robot, androidId, driver);
+                handle1(robot, androidId, driver, map);
+                handle6(robot, androidId, driver, map);
 
-        }catch (Exception e){
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -94,7 +97,7 @@ public class App抖音火山 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
+        if(hour==0||hour==1||hour==6||hour==12) {
             log.info("抖音火山-签到");
             try {
                 AdbTools.process(robot, AdbTools.tap(androidId, 990, 290));

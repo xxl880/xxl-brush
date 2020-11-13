@@ -31,7 +31,7 @@ public class App书旗 {
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
+        if(hour==0||hour==12||hour==18) {
             try {
                 log.info("********************************书旗小说操作********************************************");
 
@@ -94,7 +94,6 @@ public class App书旗 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
             log.info("书旗小说-签到");
             try {
                 WebElement wl = null;
@@ -118,7 +117,6 @@ public class App书旗 {
             } catch (Exception e) {
                 log.info("书旗小说-签到异常");
             }
-        }
     }
 
 
@@ -240,7 +238,6 @@ public class App书旗 {
      */
     public static void handle17(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==6) {
             log.info("书旗小说-分享");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -255,7 +252,6 @@ public class App书旗 {
             } catch (Exception e) {
                 log.info("书旗小说-分享异常");
             }
-        }
     }
 
     /**
