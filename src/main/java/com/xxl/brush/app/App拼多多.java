@@ -30,10 +30,9 @@ public class App拼多多 {
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
+        if(hour==0||hour==1||hour==6) {
             try {
                 log.info("********************************拼多多操作********************************************");
-
                 log.info("1.初始化手机");
                 AdbTools.initMobile(robot, androidId);
 
@@ -89,8 +88,7 @@ public class App拼多多 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("拼多多-签到");
-
+            log.info("拼多多-签到");
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 try {

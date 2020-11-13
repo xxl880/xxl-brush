@@ -40,7 +40,8 @@ public class AppServiceImpl implements AppService {
 
 		LocalDateTime startTime = LocalDateTime.now();
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
-	 	//-综合
+
+		//综合A
      	App抖音极速.circulate(robot,androidId, port, systemPort, map);
 		App火山极速.circulate(robot,androidId, port, systemPort, map);
 		App快手极速.circulate(robot,androidId, port, systemPort, map);
@@ -52,27 +53,28 @@ public class AppServiceImpl implements AppService {
 		App搜狗.circulate(robot,androidId, port, systemPort, map);
 		App拼多多.circulate(robot,androidId, port, systemPort, map);
 		App微博.circulate(robot,androidId, port, systemPort, map);
-		//综合
+
+		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
+		if(duration.toMinutes()>55){
+			log.info("*****************运行多长时间*************"+duration.toMinutes());
+			return;
+		}
+
+		//综合B
 		App书旗.circulate(robot,androidId, port, systemPort, map);
 		App番茄.circulate(robot,androidId, port, systemPort, map);
-		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
-		if(duration.toMinutes()>55){
-			return;
-		}
 		App抖音火山.circulate(robot,androidId, port, systemPort, map);
 		App米读.circulate(robot,androidId, port, systemPort, map);
-		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
-		if(duration.toMinutes()>55){
-			return;
-		}
 		App必看小说.circulate(robot,androidId, port, systemPort, map);
 		App牛角.circulate(robot,androidId, port, systemPort, map);
+
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		if(duration.toMinutes()>55){
+		  log.info("*****************运行多长时间*************"+duration.toMinutes());
           return;
 		}
-		log.info("*****************运行多长时间*************"+duration.toMinutes());
-/*		App2345浏览器.circulate(robot,androidId, port, systemPort, map);*//*
+
+/*		App2345浏览器.circulate(robot,androidId, port, systemPort, map);*/
 
 		App晴象浏览器.circulate(robot,androidId, port, systemPort, map);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
@@ -107,7 +109,7 @@ public class AppServiceImpl implements AppService {
 		}
 		App晴象浏览器.circulate7(robot,androidId, port, systemPort, map);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
-		log.info("*****************运行多长时间*************"+duration.toMinutes());*/
+		log.info("*****************运行多长时间*************"+duration.toMinutes());
 
 		/*//-视频
 		App刷宝.circulate(robot,androidId, port, systemPort, map);

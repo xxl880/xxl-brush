@@ -2,6 +2,7 @@ package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -28,44 +30,48 @@ public class AppNOW直播 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        try {
-            log.info("********************************NOW直播操作********************************************");
-
-            log.info("1.初始化手机");
-             AdbTools.initMobile(robot, androidId);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startupNOW直播);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
-
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
             try {
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"微信登录\")");
-                wl2.click();
-            } catch (Exception e) { }
+                log.info("********************************NOW直播操作********************************************");
 
-            robot.delay(2000);
+                log.info("1.初始化手机");
+                AdbTools.initMobile(robot, androidId);
 
-            AdbTools.clear(driver);
-            appClear(robot, androidId, driver, map);
+                log.info("2.启动app");
+                AdbTools.startup(robot, androidId, AppConstants.startupNOW直播);
 
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                wl.click();
-            } catch (Exception e) { }
-            try {
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tencent.now:id/pl\")");
-                wl1.click();
+                log.info("3.启动appium");
+                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+
+                try {
+                    WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"微信登录\")");
+                    wl2.click();
+                } catch (Exception e) {
+                }
+
+                robot.delay(2000);
+
+                AdbTools.clear(driver);
+                appClear(robot, androidId, driver, map);
+
+                try {
+                    WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                    wl.click();
+                } catch (Exception e) {
+                }
+                try {
+                    WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.tencent.now:id/pl\")");
+                    wl1.click();
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 990, 1000));
+                }
+
+                handle1(robot, androidId, driver, map);
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, 990, 1000));
+                e.printStackTrace();
             }
-
-            handle1(robot, androidId, driver, map);
-        }catch (Exception e){
-            e.printStackTrace();
         }
-
 
     }
 

@@ -3,6 +3,7 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
@@ -29,27 +30,28 @@ public class App书旗 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        try {
-            log.info("********************************书旗小说操作********************************************");
 
-            log.info("1.初始化手机");
-             AdbTools.initMobile(robot, androidId);
+            try {
+                log.info("********************************书旗小说操作********************************************");
 
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup书旗);
+                log.info("1.初始化手机");
+                AdbTools.initMobile(robot, androidId);
 
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
-            AdbTools.clear(driver);
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
-            wl.click();
+                log.info("2.启动app");
+                AdbTools.startup(robot, androidId, AppConstants.startup书旗);
 
-            handle1(robot, androidId, driver, map);
-            handle6(robot, androidId, driver, map);
-            handle17(robot, androidId, driver, map);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+                log.info("3.启动appium");
+                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+                AdbTools.clear(driver);
+                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"福利\")");
+                wl.click();
+
+                handle1(robot, androidId, driver, map);
+                handle6(robot, androidId, driver, map);
+                handle17(robot, androidId, driver, map);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
 
@@ -89,11 +91,10 @@ public class App书旗 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("书旗小说-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0) {
+        if(hour==0||hour==1||hour==6) {
+            log.info("书旗小说-签到");
             try {
-                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 WebElement wl = null;
                 try {
                     AdbTools.process(robot, AdbTools.downPage(androidId));
@@ -107,11 +108,11 @@ public class App书旗 {
                     wl1.click();
                 } catch (Exception e) {
                     WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"看视频补签领\")");
-                    AdbTools.process(robot, AdbTools.tap(androidId,  540, wl1.getLocation().getY()));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, wl1.getLocation().getY()));
                 }
                 robot.delay(32000);
                 robot.delay(32000);
-                quit(robot,androidId, driver);
+                quit(robot, androidId, driver);
             } catch (Exception e) {
                 log.info("书旗小说-签到异常");
             }
@@ -239,8 +240,6 @@ public class App书旗 {
      */
     public static void handle17(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("书旗小说-分享");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 AdbTools.process(robot, AdbTools.downPage(androidId));
@@ -254,7 +253,6 @@ public class App书旗 {
             } catch (Exception e) {
                 log.info("书旗小说-分享异常");
             }
-        }
     }
 
     /**

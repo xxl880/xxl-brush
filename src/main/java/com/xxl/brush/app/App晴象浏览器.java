@@ -32,7 +32,7 @@ public class App晴象浏览器 {
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==3) {
+        if(hour==0||hour==1||hour==6) {
             try {
                 log.info("********************************App晴象浏览器操作********************************************");
 

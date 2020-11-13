@@ -32,7 +32,6 @@ public class App牛角 {
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
         try{
             log.info("********************************App牛角小说操作********************************************");
-
             log.info("1.初始化手机");
              AdbTools.initMobile(robot,androidId);
 
@@ -86,24 +85,27 @@ public class App牛角 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("App牛角小说-签到");
-        try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
+            log.info("App牛角小说-签到");
+            try {
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement   wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到领奖\")");
-            wl.click();
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到领奖\")");
+                wl.click();
 
-            int y = 1310;
-            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                y = 1410;
+                int y = 1310;
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    y = 1410;
+                }
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
+                robot.delay(32000);
+
+                AdbTools.process(robot, operateBack);
+            } catch (Exception e) {
+                log.info("App牛角小说-签到异常");
             }
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
-            robot.delay(32000);
-
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("App牛角小说-签到异常");
         }
     }
 
@@ -151,7 +153,7 @@ public class App牛角 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App牛角小说-看广告");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==3) {
+        if(hour==0||hour==1||hour==6) {
             try {
                 WebElement wl2 = null;
                 AdbTools.process(robot, AdbTools.upPage(androidId));

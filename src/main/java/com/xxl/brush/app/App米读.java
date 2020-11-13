@@ -86,9 +86,9 @@ public class App米读 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("米读小说-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1) {
+        if(hour==0||hour==1||hour==6) {
+            log.info("米读小说-签到");
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.tap(androidId, 890, 360));

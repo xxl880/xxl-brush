@@ -149,9 +149,9 @@ public class App趣头条 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-       log.info("趣头条-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
+        if(hour==0||hour==1||hour==6) {
+            log.info("趣头条-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 

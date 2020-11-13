@@ -3,6 +3,7 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.android.AndroidDriver;
@@ -50,13 +51,6 @@ public class App今日头条 {
                 AdbTools.process(robot, AdbTools.tap(androidId, 760, 1950));
             }
 
-         /*   try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                AdbTools.process(robot, AdbTools.tap(androidId, 760, wl.getLocation().getY() + 20));
-            } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, 760, 1960));
-            }*/
-
             handle1(robot, androidId, driver, map);
 
             handle9(robot, androidId, driver, map);
@@ -102,9 +96,9 @@ public class App今日头条 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-       log.info("今日头条-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1) {
+        if(hour==0||hour==1||hour==6) {
+            log.info("今日头条-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 try {
@@ -250,23 +244,16 @@ public class App今日头条 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("今日头条-开宝箱");
         try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"treasure-box-enable-1.da338c08\")");
-            wl2.click();
-
-            robot.delay(1000);
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.process(robot, AdbTools.tap(androidId, 930, 1950));
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 1440));
             }else{
+                AdbTools.process(robot, AdbTools.tap(androidId, 930, 1440));
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 1340));
             }
-         /*   WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看完视频再领\")");
-            wl3.click();*/
-
             robot.delay(32000);
 
-            AdbTools.process(robot, operateBack);
+            AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
             log.info("今日头条-开宝箱异常");
         }

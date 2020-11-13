@@ -87,9 +87,9 @@ public class App番茄 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("番茄小说-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
+        if(hour==0||hour==1||hour==6) {
+            log.info("番茄小说-签到");
             try {
                 robot.delay(2000);
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";

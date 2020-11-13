@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -28,6 +29,7 @@ public class App喜马拉雅 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+
         try {
             log.info("********************************喜马拉雅小说操作********************************************");
 
@@ -82,39 +84,42 @@ public class App喜马拉雅 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("喜马拉雅小说-签到");
-        try {
-            WebElement wl =  null;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
+            log.info("喜马拉雅小说-签到");
             try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                WebElement wl = null;
+                try {
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                    wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                }
+                wl.click();
+
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"看视频再领\")");
+                wl1.click();
+                robot.delay(32000);
+
+                try {
+                    WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ximalaya.ting.lite:id/tt_video_ad_close\")");
+                    wl2.click();
+
+                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ximalaya.ting.lite:id/main_iv_close\")");
+                    wl3.click();
+                } catch (Exception e) {
+                    String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                    AdbTools.process(robot, operateBack);
+                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ximalaya.ting.lite:id/main_iv_close\")");
+                    wl3.click();
+                }
+
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
+                log.info("喜马拉雅小说-签到异常");
             }
-            wl.click();
-
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"看视频再领\")");
-            wl1.click();
-            robot.delay(32000);
-
-            try{
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ximalaya.ting.lite:id/tt_video_ad_close\")");
-                wl2.click();
-
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ximalaya.ting.lite:id/main_iv_close\")");
-                wl3.click();
-            }catch (Exception e){
-                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-                AdbTools.process(robot, operateBack);
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.ximalaya.ting.lite:id/main_iv_close\")");
-                wl3.click();
-            }
-
-        }catch (Exception e){
-            log.info("喜马拉雅小说-签到异常");
         }
     }
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,9 @@ import java.util.Map;
 @Component
 public class AppSchedule {
   private static final Logger log = LoggerFactory.getLogger(AppSchedule.class);
+    //增加全局map事件处理，用于保存数据
+    Map<String,Integer> map = new HashMap<String,Integer>();
+
 
     @Autowired
     private AppService appService;
@@ -34,9 +38,10 @@ public class AppSchedule {
      //@Scheduled(cron = "0 01 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * ?")
     public void circulate() throws AWTException {
         log.info("********************循环收取金币 定时器启动**************************");
-        //增加全局map事件处理，用于保存数据
-        Map<String,Integer> map = new HashMap<String,Integer>();
-
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0) {
+           map.clear();
+        }
         List<String> list = AdbTools.getAndroidId();
         if(!CollectionUtils.isEmpty(list)){
             for(String androidId:list){

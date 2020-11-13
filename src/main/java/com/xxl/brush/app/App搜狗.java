@@ -31,41 +31,40 @@ public class App搜狗 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        try{
-            log.info("********************************搜狗操作********************************************");
 
-            log.info("1.初始化手机");
-             AdbTools.initMobile(robot,androidId);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup搜狗);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
-            AdbTools.clear(driver);
             try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1960));
+                log.info("********************************搜狗操作********************************************");
+                log.info("1.初始化手机");
+                AdbTools.initMobile(robot, androidId);
+
+                log.info("2.启动app");
+                AdbTools.startup(robot, androidId, AppConstants.startup搜狗);
+
+                log.info("3.启动appium");
+                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+                AdbTools.clear(driver);
+                try {
+                    WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
+                    wl.click();
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1960));
+                }
+                try {
+                    WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
+                    wl.click();
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1960));
+                }
+                AdbTools.process(robot, AdbTools.tap(androidId, 900, 160));
+
+                handle1(robot, androidId, driver, map);
+                handle20(robot, androidId, driver, map);
+                handle4(robot, androidId, driver, map);
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1960));
-            }
 
-            AdbTools.process(robot, AdbTools.tap(androidId, 900, 160));
-
-            handle1(robot, androidId, driver, map);
-            handle20(robot, androidId, driver, map);
-
-            handle4(robot, androidId, driver, map);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -97,9 +96,9 @@ public class App搜狗 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("搜狗-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==2) {
+        if(hour==0||hour==1||hour==6) {
+            log.info("搜狗-签到");
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.upPage(androidId));

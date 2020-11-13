@@ -102,7 +102,7 @@ public class App火山极速 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山极速-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1) {
+        if(hour==0||hour==1||hour==6) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 

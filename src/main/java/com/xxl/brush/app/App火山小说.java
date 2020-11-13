@@ -91,28 +91,31 @@ public class App火山小说 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("火山小说-签到");
-        try {
-            WebElement wl =  null;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
+            log.info("火山小说-签到");
             try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"签到领金币\")");
+                WebElement wl = null;
+                try {
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                    wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"签到领金币\")");
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"签到领金币\")");
+                }
+                wl.click();
+
+                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频再领+100金币\")");
+                wl1.click();
+                robot.delay(59000);
+
+                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+                AdbTools.process(robot, operateBack);
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"签到领金币\")");
+                log.info("火山小说-签到异常");
             }
-            wl.click();
-
-            WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看视频再领+100金币\")");
-            wl1.click();
-            robot.delay(59000);
-
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("火山小说-签到异常");
         }
     }
 
@@ -159,8 +162,6 @@ public class App火山小说 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山小说-看广告");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==14) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 AdbTools.process(robot, AdbTools.downPage(androidId));
@@ -177,7 +178,6 @@ public class App火山小说 {
             } catch (Exception e) {
                 log.info("火山小说-看广告异常");
             }
-        }
 
     }
 
@@ -240,8 +240,6 @@ public class App火山小说 {
      */
     public static void handle10(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山小说-抽奖");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==16) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"去抽奖\")");
@@ -263,7 +261,6 @@ public class App火山小说 {
             } catch (Exception e) {
                 log.info("火山小说-抽奖异常");
             }
-        }
     }
 
 

@@ -102,26 +102,30 @@ public class App抖音极速 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("抖音极速-签到");
-        try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==6) {
+            log.info("抖音极速-签到");
             try {
-                List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"签到\")");
-                wls.get(1).click();
-            }catch (Exception e){}
+                try {
+                    List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"签到\")");
+                    wls.get(1).click();
+                } catch (Exception e) {
+                }
 
-            try {
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
-                wl1.click();
-            }catch (Exception e){}
+                try {
+                    WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
+                    wl1.click();
+                } catch (Exception e) {
+                }
 
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
-            wl2.click();
-            robot.delay(36000);
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
+                wl2.click();
+                robot.delay(36000);
 
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("抖音极速-签到异常");
+                AdbTools.process(robot, AdbTools.back(androidId));
+            } catch (Exception e) {
+                log.info("抖音极速-签到异常");
+            }
         }
     }
 
@@ -258,9 +262,9 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("抖音极速-睡觉");
         int hour = LocalDateTime.now().getHour();
         if(hour==22) {
+            log.info("抖音极速-睡觉");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -292,9 +296,9 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("抖音极速-走路");
-        int hour = LocalDateTime.now().getHour();
+       int hour = LocalDateTime.now().getHour();
        if(hour==20) {
+           log.info("抖音极速-走路");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -363,9 +367,9 @@ public class App抖音极速 {
      * @param robot
      */
     public static void handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("抖音极速-吃饭");
       int hour = LocalDateTime.now().getHour();
-      if(hour==8||hour==12||hour==18||hour==22) {
+      if(hour==8||hour==9||hour==11||hour==12||hour==18||hour==19||hour==22||hour==23) {
+          log.info("抖音极速-吃饭");
              try {
                  String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                  WebElement wl2 = null;

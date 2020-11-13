@@ -30,38 +30,38 @@ public class App必看小说 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        try {
-            log.info("********************************App必看小说操作********************************************");
+            try {
+                log.info("********************************App必看小说操作********************************************");
 
-            log.info("1.初始化手机");
-             AdbTools.initMobile(robot, androidId);
+                log.info("1.初始化手机");
+                AdbTools.initMobile(robot, androidId);
 
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup必看);
+                log.info("2.启动app");
+                AdbTools.startup(robot, androidId, AppConstants.startup必看);
 
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
-            AdbTools.clear(driver);
-            clear(robot,driver);
+                log.info("3.启动appium");
+                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+                AdbTools.clear(driver);
+                clear(robot, driver);
 
-            int y = 1950;
-            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                y = 2140;
+                int y = 1950;
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    y = 2140;
+                }
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
+                AdbTools.process(robot, AdbTools.tap(androidId, 830, 660));
+                AdbTools.process(robot, AdbTools.tap(androidId, 830, 690));
+
+
+                handle1(robot, androidId, driver, map);
+
+                handle9(robot, androidId, driver, map);
+                handle6(robot, androidId, driver, map);
+
+                handle5(robot, androidId, driver, map);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
-            AdbTools.process(robot, AdbTools.tap(androidId, 830, 660));
-            AdbTools.process(robot, AdbTools.tap(androidId, 830, 690));
-
-
-            handle1(robot, androidId, driver, map);
-
-            handle9(robot, androidId, driver, map);
-            handle6(robot, androidId, driver, map);
-
-            handle5(robot, androidId, driver, map);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -95,12 +95,10 @@ public class App必看小说 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        log.info("App必看小说-签到");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==3) {
+        if(hour==0||hour==1||hour==6) {
+            log.info("App必看小说-签到");
             try {
-                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
                 WebElement wl = null;
                 try {
                     AdbTools.process(robot, AdbTools.upPage(androidId));
@@ -113,7 +111,7 @@ public class App必看小说 {
                 wl1.click();
                 robot.delay(36000);
 
-                AdbTools.process(robot, operateBack);
+                AdbTools.process(robot, AdbTools.back(androidId));
             } catch (Exception e) {
                 log.info("App必看小说-签到异常");
             }
@@ -154,8 +152,6 @@ public class App必看小说 {
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("必看小说-看小说");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==2||hour==3) {
             try {
                 int y = 1950;
                 if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
@@ -174,7 +170,6 @@ public class App必看小说 {
             } catch (Exception e) {
                 log.info("必看小说-看小说异常");
             }
-        }
     }
 
 
@@ -184,8 +179,6 @@ public class App必看小说 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("App必看小说-看广告");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==3) {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"视频赚\")");
@@ -206,7 +199,6 @@ public class App必看小说 {
             } catch (Exception e) {
                 log.info("App必看小说-看广告异常");
             }
-        }
 
     }
 
