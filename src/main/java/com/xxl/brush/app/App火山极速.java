@@ -48,14 +48,6 @@ public class App火山极速 {
             }else{
                 AdbTools.process(robot, AdbTools.tap(androidId, 680, 1950));
             }
-
-           /* try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"红包\")");
-                wl.click();
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.tap(androidId, 680, 2140));
-            }*/
-
             clear(robot, androidId, driver);
 
             handle1(robot, androidId, driver, map);
@@ -181,20 +173,19 @@ public class App火山极速 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山极速-看广告");
         try{
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            AdbTools.process(robot, AdbTools.upPage(androidId));
 
-            WebElement wl2 = null;
-            try{
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频赚海量金币\")");
-            }catch (Exception e){
-                AdbTools.process(robot, AdbTools.down(androidId));
-                wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频赚海量金币\")");
+            String ykey = androidId+"火山极速-广告-y";
+            Integer y = map.get(ykey);
+            if(null==y) {
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频赚海量金币\")");
+                y = wl2.getLocation().getY();
+                map.put(ykey,y);
             }
-            wl2.click();
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
             robot.delay(36000);
 
-            AdbTools.process(robot, operateBack);
+            AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
             log.info("火山极速-看广告异常");
         }
@@ -227,21 +218,16 @@ public class App火山极速 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山极速-开宝箱");
         try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
-            wl2.click();
-
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.process(robot, AdbTools.tap(androidId, 930, 1900));
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 1450));
             }else{
+                AdbTools.process(robot, AdbTools.tap(androidId, 930, 1700));
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 1340));
             }
-         /*   WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"看视频 金币翻8倍\")");
-            wl3.click();
-*/
             robot.delay(36000);
 
-            AdbTools.process(robot, operateBack);
+            AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
             log.info("火山极速-开宝箱异常");
         }
@@ -266,17 +252,18 @@ public class App火山极速 {
         int hour = LocalDateTime.now().getHour();
         if(hour==22||hour==23) {
             try {
-                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"睡觉赚金币\")");
                 wl2.click();
 
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").textContains(\"睡觉\")");
-                wl3.click();
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 2050));
+                }else{
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1850));
+                }
 
-                AdbTools.process(robot, operateBack);
+                AdbTools.process(robot, AdbTools.back(androidId));
             } catch (Exception e) {
                 log.info("火山极速-睡觉异常");
             }
@@ -391,17 +378,23 @@ public class App火山极速 {
     public static void handle21(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山极速-摇钱树");
         try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
             AdbTools.process(robot, AdbTools.upPage(androidId));
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"摇钱树\")");
             wl2.click();
             robot.delay(8000);
-
             AdbTools.process(robot, AdbTools.tap(androidId, 540, 1100));
 
-            AdbTools.process(robot, operateBack);
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.process(robot, AdbTools.tap(androidId, 900, 1850));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1850));
+                AdbTools.process(robot, AdbTools.tap(androidId, 880, 1240));
+            }else{
+                AdbTools.process(robot, AdbTools.tap(androidId, 900, 1750));
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1750));
+                AdbTools.process(robot, AdbTools.tap(androidId, 880, 1050));
+            }
 
+            AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
             log.info("火山极速-摇钱树异常");
         }

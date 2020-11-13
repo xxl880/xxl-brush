@@ -182,7 +182,7 @@ public class App抖音极速 {
         log.info("抖音极速-看广告");
         try{
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            String ykey = androidId+"抖音-广告-y";
+            String ykey = androidId+"抖音极速-广告-y";
             Integer y = map.get(ykey);
             if(null==y){
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
