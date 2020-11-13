@@ -45,6 +45,7 @@ public class AppQQ阅读 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
             AdbTools.clear(driver);
+            clear(robot,androidId,driver);
 
             int y = 1950;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
@@ -78,8 +79,13 @@ public class AppQQ阅读 {
      * @param robot
 
      */
-    public static void clear(Robot robot, AndroidDriver driver){
+    public static void clear(Robot robot, String androidId, AndroidDriver driver){
+        try {
+            WebElement  wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"安装\")");
+            wl.click();
 
+            AdbTools.process(robot, AdbTools.back(androidId));
+        }catch (Exception e ){}
     }
 
 
@@ -93,28 +99,11 @@ public class AppQQ阅读 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
          log.info("QQ阅读-签到");
         try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-            try {
-                WebElement wl = null;
-                try {
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
-                    wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-                } catch (Exception e) {
-                    AdbTools.process(robot, AdbTools.downPage(androidId));
-                    AdbTools.process(robot, AdbTools.downPage(androidId));
-                    wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
-                }
-                wl.click();
-            }catch (Exception e ){}
-
-            robot.delay(2000);
             WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看小视频再领\")");
             wl1.click();
             robot.delay(32000);
 
-
-            AdbTools.process(robot, operateBack);
+            AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
             log.info("QQ阅读-签到异常");
         }
@@ -185,22 +174,23 @@ public class AppQQ阅读 {
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("QQ阅读-看广告");
-        try{
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
-            AdbTools.process(robot, AdbTools.down(androidId));
-            WebElement  wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频拿大额金币\").fromParent(text(\"马上看\"))");
-            int y = wl2.getLocation().getY();
-            for(int i=0;i<10;i++) {
-                robot.delay(4000);
-                AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
-                robot.delay(59000);
-                AdbTools.process(robot, operateBack);
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==14||hour==15) {
+            try {
+                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.process(robot, AdbTools.down(androidId));
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"看视频拿大额金币\").fromParent(text(\"马上看\"))");
+                int y = wl2.getLocation().getY();
+                for (int i = 0; i < 10; i++) {
+                    robot.delay(3000);
+                    AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
+                    robot.delay(59000);
+                    AdbTools.process(robot, AdbTools.back(androidId));
+                }
+                AdbTools.process(robot, AdbTools.back(androidId));
+            } catch (Exception e) {
+                log.info("QQ阅读-看广告异常");
             }
-            AdbTools.process(robot, operateBack);
-        }catch (Exception e){
-            log.info("QQ阅读-看广告异常");
         }
 
     }
