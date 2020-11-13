@@ -60,9 +60,6 @@ public class App快手极速 {
                 }
             }
 
-
-
-
             handle1(robot, androidId, driver, map);
             handle6(robot, androidId, driver, map);
             handle9(robot, androidId, driver, map);
@@ -184,10 +181,12 @@ public class App快手极速 {
             AdbTools.process(robot, AdbTools.down(androidId));
             AdbTools.process(robot, AdbTools.down(androidId));
             WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
+            int x = wl2.getLocation().getX();
+            int y = wl2.getLocation().getY();
            for(int i=0;i<10;i++) {
                int a = RandomTools.init(12000);
                robot.delay(a);
-               wl2.click();
+               AdbTools.process(robot, AdbTools.tap(androidId, x, y));
                robot.delay(30000+a);
                AdbTools.process(robot, operateBack);
            }
@@ -331,15 +330,16 @@ public class App快手极速 {
         if(hour==0||hour==1||hour==2) {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.down(androidId));
-                AdbTools.process(robot, AdbTools.down(androidId));
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
+                WebElement wl3 = null;
+                try {
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
+                }catch (Exception e){
+                    AdbTools.process(robot, AdbTools.down(androidId));
+                    wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
+                }
                 AdbTools.process(robot, AdbTools.tap(androidId, 880, wl3.getLocation().getY()));
-                try{
-                    WebElement wl34 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"我知道了\")");
-                    wl34.click();
-                }catch (Exception e){}
 
                 for (int i = 0; i < 10; i++) {
                     int a = RandomTools.init(6000);

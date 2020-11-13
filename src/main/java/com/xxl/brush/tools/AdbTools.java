@@ -66,7 +66,7 @@ public class AdbTools {
      * todo 向下滑动，正常操作
      */
    public static String down(String androidId){
-       String downDraw = "adb -s "+androidId +" shell input swipe 540 900 540 600";
+       String downDraw = "adb -s "+androidId +" shell input swipe 540 1000 540 600";
 
        return  downDraw;
    }
