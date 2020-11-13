@@ -29,31 +29,34 @@ public class App拼多多 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        try {
-            log.info("********************************拼多多操作********************************************");
-
-            log.info("1.初始化手机");
-             AdbTools.initMobile(robot, androidId);
-
-            log.info("2.启动app");
-            AdbTools.startup(robot, androidId, AppConstants.startup拼多多);
-
-            log.info("3.启动appium");
-            AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
-            AdbTools.clear(driver);
-            appClear(robot, androidId, driver, map);
-
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==1||hour==2) {
             try {
-                WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
-                wl.click();
+                log.info("********************************拼多多操作********************************************");
+
+                log.info("1.初始化手机");
+                AdbTools.initMobile(robot, androidId);
+
+                log.info("2.启动app");
+                AdbTools.startup(robot, androidId, AppConstants.startup拼多多);
+
+                log.info("3.启动appium");
+                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+                AdbTools.clear(driver);
+                appClear(robot, androidId, driver, map);
+
+                try {
+                    WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"首页\")");
+                    wl.click();
+                } catch (Exception e) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 110, 2140));
+                }
+
+                handle1(robot, androidId, driver, map);
+
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, 110, 2140));
+                e.printStackTrace();
             }
-
-            handle1(robot, androidId, driver, map);
-
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
@@ -87,8 +90,7 @@ public class App拼多多 {
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("拼多多-签到");
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2) {
+
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 try {
@@ -98,11 +100,11 @@ public class App拼多多 {
                     AdbTools.process(robot, AdbTools.tap(androidId, 540, 830));
                 }
                 robot.delay(12000);
+                AdbTools.process(robot, AdbTools.tap(androidId, 540, 830));
 
             } catch (Exception e) {
                 log.info("拼多多-签到异常");
             }
-        }
     }
 
 

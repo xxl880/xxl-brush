@@ -126,6 +126,15 @@ public class AdbTools {
         return  tap;
     }
 
+    /**
+     * todo 退回，正常操作
+     */
+    public static String back(String androidId){
+        String downDraw = "adb -s " + androidId + " shell input keyevent BACK";
+
+        return  downDraw;
+    }
+
 
     /**
      * todo 刮奖，正常操作

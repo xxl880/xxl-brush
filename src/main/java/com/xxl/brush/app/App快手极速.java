@@ -46,21 +46,21 @@ public class App快手极速 {
             clear(robot,driver);
 
             handle2(robot, androidId, driver, map);
-/*
+
             try {
                 WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textContains(\"/6\")");
                 wl.click();
             } catch (Exception e) {
-                AdbTools.process(robot, AdbTools.tap(androidId, 90, 440));
-            }*/
-
-            if(androidId.equals(PhoneConstants.phone001)){
-                AdbTools.process(robot, AdbTools.tap(androidId, 100, 810));
-            }else if(androidId.equals(PhoneConstants.phone002)){
-                AdbTools.process(robot, AdbTools.tap(androidId, 100, 650));
-            }else{
-                AdbTools.process(robot, AdbTools.tap(androidId, 90, 440));
+                 if(androidId.equals(PhoneConstants.phone001)){
+                    AdbTools.process(robot, AdbTools.tap(androidId, 100, 810));
+                }else if(androidId.equals(PhoneConstants.phone002)){
+                    AdbTools.process(robot, AdbTools.tap(androidId, 100, 650));
+                }else{
+                    AdbTools.process(robot, AdbTools.tap(androidId, 90, 440));
+                }
             }
+
+
 
 
             handle1(robot, androidId, driver, map);

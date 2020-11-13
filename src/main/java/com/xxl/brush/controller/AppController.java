@@ -19,6 +19,9 @@ import java.util.Map;
 @RequestMapping(value = "/app")
 @Api(tags = "app-控制器")
 public class AppController {
+    //增加全局map事件处理，用于保存数据
+    Map<String,Integer> map = new HashMap<String,Integer>();
+
 
     @Autowired
     private AppService appService;
@@ -26,9 +29,6 @@ public class AppController {
     @GetMapping("circulate")
     @ApiOperation("羊毛")
     public BaseResponse circulate() throws AWTException {
-        //增加全局map事件处理，用于保存数据
-        Map<String,Integer> map = new HashMap<String,Integer>();
-
         List<String> list = AdbTools.getAndroidId();
         if(!CollectionUtils.isEmpty(list)){
             for(String androidId:list){

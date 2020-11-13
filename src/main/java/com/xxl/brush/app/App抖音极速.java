@@ -7,6 +7,7 @@ import com.xxl.brush.tools.AppiumTools;
 import com.xxl.brush.tools.RandomTools;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.swagger.models.auth.In;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,11 +48,12 @@ public class App抖音极速 {
             log.info("3.启动appium");
             AndroidDriver driver = AppiumTools.init(androidId,port,systemPort);
 
+            handle2(robot, androidId, driver, map);
+
             log.info("4.清除");
             AdbTools.clear(driver);
             clear(robot,driver,map);
 
-            handle2(robot, androidId, driver, map);
 
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
@@ -179,14 +181,17 @@ public class App抖音极速 {
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("抖音极速-看广告");
         try{
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
-            AdbTools.process(robot, AdbTools.tap(androidId, wl2.getLocation().getX(), wl2.getLocation().getY()));
-            robot.delay(42000);
-
-            AdbTools.process(robot, operateBack);
+            String ykey = androidId+"抖音-广告-y";
+            Integer y = map.get(ykey);
+            if(null==y){
+                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
+                y = wl2.getLocation().getY();
+                map.put(ykey,y);
+            }
+            AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
+            robot.delay(38000);
+            AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
             log.info("抖音极速-看广告异常");
         }
@@ -219,19 +224,20 @@ public class App抖音极速 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("抖音极速-开宝箱");
         try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
-            wl2.click();
-            robot.delay(1000);
+            int y = 1860;
+            int y1 = 1190;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1290));
-            }else{
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1190));
+                y = 2050;
+                y1 = 1290;
             }
-            robot.delay(42000);
+        /*    WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");*/
+            AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
 
-            AdbTools.process(robot, operateBack);
+            robot.delay(1000);
+            AdbTools.process(robot, AdbTools.tap(androidId, 540, y1));
+            robot.delay(38000);
+
+            AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
             log.info("抖音极速-开宝箱异常");
         }
