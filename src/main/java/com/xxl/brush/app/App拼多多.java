@@ -91,6 +91,11 @@ public class App拼多多 {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 try {
+                    WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"好的\")");
+                    wl1.click();
+                    robot.delay(1000);
+                }catch (Exception e){}
+                try {
                     WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().description(\"签到领钱\")");
                     wl.click();
                 } catch (Exception e) {

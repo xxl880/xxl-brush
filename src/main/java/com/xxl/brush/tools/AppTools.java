@@ -25,10 +25,10 @@ public class AppTools {
      *
      */
     public static void appTime(){
-        int hour = LocalDateTime.now().getHour();
+     /*   int hour = LocalDateTime.now().getHour();
         if(hour!=0||hour!=1||hour!=2||hour!=3||hour!=7||hour!=8||hour!=11||hour!=12||hour!=18||hour!=19||hour!=21||hour!=22) {
             return;
-        }
+        }*/
     }
 
     /**
@@ -36,10 +36,10 @@ public class AppTools {
      *
      */
     public static void appSonTime(){
-        int hour = LocalDateTime.now().getHour();
+    /*    int hour = LocalDateTime.now().getHour();
         if(hour!=0||hour!=1||hour!=12||hour!=22) {
             return;
-        }
+        }*/
     }
 
     /**

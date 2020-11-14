@@ -151,7 +151,7 @@ public class App趣头条 {
             log.info("趣头条-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
+                robot.delay(4000);
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
                 wl1.click();
                 robot.delay(36000);

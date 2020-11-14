@@ -33,7 +33,7 @@ public class AppServiceImpl implements AppService {
 		Robot robot = new Robot();
 		AppiumWindow appiumWindow = new AppiumWindow();
 
-		int port = 4724+ portSeq;
+		int port = 4723+ portSeq;
 		int systemPort = 9000+ portSeq;
 
 		appiumWindow.init(port,systemPort, appiumWindow);
