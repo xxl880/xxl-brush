@@ -30,7 +30,7 @@ public class App书旗 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
             try {
                 log.info("********************************书旗小说操作********************************************");
 

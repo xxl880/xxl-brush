@@ -38,7 +38,7 @@ public class App抖音极速 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot, String androidId, int port, int systemPort, Map<String,Integer> map){
-        AppTools.appTime();
+
             try {
                 log.info("********************************抖音极速操作********************************************");
                 log.info("1.初始化手机");
@@ -104,6 +104,7 @@ public class App抖音极速 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        AppTools.appTime();
             log.info("抖音极速-签到");
             try {
                 try {
@@ -185,14 +186,9 @@ public class App抖音极速 {
         log.info("抖音极速-看广告");
         try{
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            String ykey = androidId+"抖音极速-广告-y";
-            Integer y = map.get(ykey);
-            if(null==y){
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
-                y = wl2.getLocation().getY();
-                map.put(ykey,y);
-            }
-            AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
+            AdbTools.process(robot, AdbTools.upPage(androidId));
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
+            AdbTools.process(robot, AdbTools.tap(androidId, 880, wl2.getLocation().getY()));
             robot.delay(38000);
             AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
@@ -227,6 +223,7 @@ public class App抖音极速 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("抖音极速-开宝箱");
         try {
+            robot.delay(2000);
             int y = 1860;
             int y1 = 1190;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
@@ -296,7 +293,7 @@ public class App抖音极速 {
      */
     public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
        int hour = LocalDateTime.now().getHour();
-       if(hour==22) {
+       if(hour==23) {
            log.info("抖音极速-走路");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";

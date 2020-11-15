@@ -70,7 +70,7 @@ public class AppiumTools {
         //指定通讯端口
         desiredCapabilities.setCapability("systemPort", systemPort);
         //自动化测试引擎
-        desiredCapabilities.setCapability("automationName", "Appium");
+        desiredCapabilities.setCapability("automationName", "UiAutomator2");
 
         //2.创建驱动...URL是appium的固定地址；指定appium通讯的地址，将相对应的配置传入到驱动里边
         String url = "http://127.0.0.1:"+port+"/wd/hub";

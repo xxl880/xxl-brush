@@ -31,7 +31,7 @@ public class App必看小说 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
             try {
                 log.info("********************************App必看小说操作********************************************");
 
@@ -97,7 +97,6 @@ public class App必看小说 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
             log.info("App必看小说-签到");
             try {
                 WebElement wl = null;

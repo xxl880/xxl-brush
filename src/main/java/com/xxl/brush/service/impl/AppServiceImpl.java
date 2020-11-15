@@ -146,7 +146,7 @@ public class AppServiceImpl implements AppService {
 		App走走赚.circulate(robot,androidId, port, systemPort, map);
 		App走路赚钱.circulate(robot,androidId, port, systemPort, map);
 */
-		appiumWindow.stopServer();
+/*		appiumWindow.stopServer();*/
 
 	}
 

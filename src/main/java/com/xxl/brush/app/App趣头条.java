@@ -147,7 +147,7 @@ public class App趣头条 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
+        AppTools.appTime();
             log.info("趣头条-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -248,6 +248,7 @@ public class App趣头条 {
      * @param robot
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        AppTools.appTime();
             log.info("趣头条-看小说");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";

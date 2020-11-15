@@ -31,7 +31,7 @@ public class App快手极速 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appTime();
+
             try {
                 log.info("********************************快手极速操作********************************************");
                 log.info("1.初始化手机");
@@ -102,7 +102,8 @@ public class App快手极速 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-            log.info("快手极速-签到");
+        AppTools.appTime();
+        log.info("快手极速-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 robot.delay(1000);
@@ -176,7 +177,7 @@ public class App快手极速 {
      * @param robot
      */
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-            log.info("快手极速-看广告");
+        AppTools.appTime();
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
 
@@ -184,12 +185,11 @@ public class App快手极速 {
                 AdbTools.process(robot, AdbTools.down(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
-                int x = wl2.getLocation().getX();
                 int y = wl2.getLocation().getY();
                 for (int i = 0; i < 10; i++) {
                     int a = RandomTools.init(12000);
                     robot.delay(a);
-                    AdbTools.process(robot, AdbTools.tap(androidId, x, y));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 930, y));
                     robot.delay(30000 + a);
                     AdbTools.process(robot, operateBack);
                 }
@@ -327,7 +327,7 @@ public class App快手极速 {
      * @param robot
      */
     public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
+        AppTools.appTime();
             log.info("快手极速-直播");
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));

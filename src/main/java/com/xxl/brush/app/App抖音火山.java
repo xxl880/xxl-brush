@@ -30,7 +30,7 @@ public class App抖音火山 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appTime();
+
             try {
                 log.info("********************************抖音火山操作********************************************");
 
@@ -95,7 +95,8 @@ public class App抖音火山 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-            log.info("抖音火山-签到");
+        AppTools.appTime();
+        log.info("抖音火山-签到");
             try {
                 AdbTools.process(robot, AdbTools.tap(androidId, 990, 290));
                 robot.delay(2000);

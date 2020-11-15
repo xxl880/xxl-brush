@@ -31,7 +31,7 @@ public class App番茄 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
             try {
                 log.info("********************************番茄小说操作********************************************");
 

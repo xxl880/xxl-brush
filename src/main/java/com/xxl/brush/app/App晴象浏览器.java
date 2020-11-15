@@ -32,7 +32,6 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
             try {
                 log.info("********************************App晴象浏览器操作********************************************");
 
@@ -65,7 +64,6 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate1(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
         try {
                 log.info("********************************App晴象浏览器操作********************************************");
 
@@ -97,7 +95,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate2(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -129,7 +127,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate3(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -162,7 +160,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate4(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -194,7 +192,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate5(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -226,7 +224,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate6(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 
@@ -252,7 +250,7 @@ public class App晴象浏览器 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate7(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appSonTime();
+        AppTools.appTime();
         try{
             log.info("********************************App晴象浏览器操作********************************************");
 

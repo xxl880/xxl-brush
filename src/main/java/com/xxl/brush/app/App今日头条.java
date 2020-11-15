@@ -31,7 +31,6 @@ public class App今日头条 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-          AppTools.appTime();
             try {
                 log.info("********************************今日头条操作********************************************");
 
@@ -97,8 +96,7 @@ public class App今日头条 {
 
      */
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==1||hour==2||hour==6) {
+        AppTools.appTime();
             log.info("今日头条-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -117,7 +115,6 @@ public class App今日头条 {
             } catch (Exception e) {
                 log.info("今日头条-签到异常");
             }
-        }
     }
 
 
@@ -243,6 +240,7 @@ public class App今日头条 {
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("今日头条-开宝箱");
         try {
+            robot.delay(2000);
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                 AdbTools.process(robot, AdbTools.tap(androidId, 930, 1950));
                 AdbTools.process(robot, AdbTools.tap(androidId, 540, 1440));
