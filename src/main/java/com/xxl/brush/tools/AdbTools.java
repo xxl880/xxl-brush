@@ -155,6 +155,33 @@ public class AdbTools {
         return  text;
     }
 
+    /**
+     * todo 手机截图
+     */
+    public static void screencap(String androidId){
+        try {
+            String text = "adb -s " + androidId + " shell screencap -p /sdcard/" + androidId + ".jpg";
+            Runtime.getRuntime().exec(text);
+            Thread.sleep(1000);
+            log.info(text);
+            log.info("手机截图---图片名称"+androidId+".jpg");
+        }catch (Exception e){}
+    }
+
+    /**
+     * todo 手机截图推送电脑目录
+     */
+    public static void pull(String androidId){
+        try {
+            String text = "adb -s " + androidId + " pull /sdcard/" + androidId + ".jpg" +" D:/image";
+            Runtime.getRuntime().exec(text);
+
+            Thread.sleep(1000);
+            log.info(text);
+            log.info("手机截图推送电脑---图片名称"+androidId+".jpg");
+        }catch (Exception e){}
+    }
+
     /***
      * todo 获取手机屏幕是否需要点亮(android9->)
      * android9 adb shell dumpsys window policy |find "mScreenOnFully" 判断 mAwake=truemScreenOnEarly=true mScreenOnFully=true
@@ -297,7 +324,7 @@ public class AdbTools {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        getAndroidId();
+        pull("Q7PDU19906007551");
 
 
     }

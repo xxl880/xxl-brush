@@ -26,7 +26,7 @@ public class AppTools {
      */
     public static void appTime(){
         int hour = LocalDateTime.now().getHour();
-        if(hour!=0||hour!=1||hour!=2||hour!=11||hour!=12||hour!=18) {
+        if(hour!=0||hour!=1||hour!=2) {
             return;
         }
     }
@@ -41,6 +41,8 @@ public class AppTools {
             return;
         }
     }
+
+
 
 
 }

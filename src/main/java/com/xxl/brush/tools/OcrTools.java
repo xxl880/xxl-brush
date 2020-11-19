@@ -124,6 +124,12 @@ public class OcrTools {
         }catch (Exception e){}
     }*/
 
+    /**
+     * todo 获取手机截图出现字符坐标
+     * @param imagePath
+     * @param banners
+     * @return
+     */
     public static Map<String, Integer> getWordsMap(String imagePath, java.util.List<String> banners){
         Map<String, Integer> map = new HashMap<>();
         try {
@@ -151,6 +157,38 @@ public class OcrTools {
         return map;
     }
 
+
+    /**
+     * todo 获取手机截图出现单个字符坐标
+     * @param banner
+     * @return
+     */
+    public static Integer getWordsInt(String androidId, String banner){
+        try {
+            AdbTools.screencap(androidId);
+            AdbTools.pull(androidId);
+            ITesseract instance = init();
+            File imageFile = new File("D:\\image\\"+androidId+".jpg");
+            //按照每个字取词
+            int pageIteratorLevel = ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE;
+            log.info("PageIteratorLevel: " + Utils.getConstantName(pageIteratorLevel, ITessAPI.TessPageIteratorLevel.class));
+            BufferedImage bi = ImageIO.read(imageFile);
+            java.util.List<Word> result = instance.getWords(bi, pageIteratorLevel);
+
+            //print the complete result
+            for (Word word : result) {
+                String bannerOcr = word.toString().replace(" ","");
+                    if(bannerOcr.contains(banner)){
+                        int y = word.getBoundingBox().y+50;
+                        log.info("OCR识别字段："+banner+" Y轴坐标："+y);
+                         return y;
+                }
+
+            }
+        }catch (Exception e){}
+
+        return null;
+    }
 
 
     public static void main(String[] args) {
