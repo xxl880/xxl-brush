@@ -140,8 +140,9 @@ public class OcrTools {
                 String bannerOcr = word.toString().replace(" ","");
                 for(String banner:banners){
                     if(bannerOcr.contains(banner)){
-                        log.info("OCR识别字段："+banner+" Y轴坐标："+word.getBoundingBox().y);
-                        map.put(banner,Integer.valueOf(word.getBoundingBox().y));
+                        int y = word.getBoundingBox().y+50;
+                        log.info("OCR识别字段："+banner+" Y轴坐标："+y);
+                        map.put(banner,y);
                     }
                 }
 
