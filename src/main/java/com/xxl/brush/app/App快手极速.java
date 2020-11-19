@@ -2,10 +2,7 @@ package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
-import com.xxl.brush.tools.AdbTools;
-import com.xxl.brush.tools.AppTools;
-import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
+import com.xxl.brush.tools.*;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -14,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,25 +62,10 @@ public class App快手极速 {
                     }
                 }
 
-                if(handle1(robot, androidId, driver, map)){
-
-/*                    handle1(robot, androidId, driver, map);*/
-                }
-
-                if(handle6(robot, androidId, driver, map)){
-
-                    handle6(robot, androidId, driver, map);
-                }
-
-                if(handle9(robot, androidId, driver, map)){
-
-                    handle9(robot, androidId, driver, map);
-                }
-
-                if(handle20(robot, androidId, driver, map)){
-
-                    handle20(robot, androidId, driver, map);
-                }
+                handle1(robot, androidId, driver, map);
+                handle6(robot, androidId, driver, map);
+                handle9(robot, androidId, driver, map);
+                handle20(robot, androidId, driver, map);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -194,29 +178,27 @@ public class App快手极速 {
      * todo 6.看广告
      * @param robot
      */
-    public static boolean handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        boolean bool = false;
-        AppTools.appTime();
+    public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0) {
             try {
-                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").textContains(\"task_icon_list_video\").fromParent(textContains(\"福利\"))");
-                int y = wl2.getLocation().getY();
-                for (int i = 0; i < 10; i++) {
-                    int a = RandomTools.init(12000);
-                    robot.delay(a);
-                    AdbTools.process(robot, AdbTools.tap(androidId, 930, y));
-                    robot.delay(30000 + a);
-                    AdbTools.process(robot, operateBack);
+                Integer y = OcrTools.getWordsInt(androidId, "1000金币悬赏任务");
+                if (null != y) {
+                    for (int i = 0; i < 10; i++) {
+                        int a = RandomTools.init(12000);
+                        robot.delay(a);
+                        AdbTools.process(robot, AdbTools.tap(androidId, 930, y+50));
+                        robot.delay(30000 + a);
+                        AdbTools.process(robot, AdbTools.back(androidId));
+                    }
                 }
             } catch (Exception e) {
-                bool = true;
                 log.info("快手极速-看广告异常");
             }
-            return bool;
+        }
     }
 
     /**
@@ -350,50 +332,46 @@ public class App快手极速 {
      * todo 20.直播
      * @param robot
      */
-    public static boolean handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        boolean bool = false;
-        AppTools.appTime();
+    public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==22) {
             log.info("快手极速-直播");
             try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                WebElement wl3 = null;
-                try {
-                    AdbTools.process(robot, AdbTools.down(androidId));
-                    AdbTools.process(robot, AdbTools.down(androidId));
-                    wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
-                } catch (Exception e) {
-                    AdbTools.process(robot, AdbTools.down(androidId));
-                    wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").text(\"看直播领金币\")");
+                AdbTools.process(robot, AdbTools.downPage(androidId));
+                Integer y = OcrTools.getWordsInt(androidId,"观看精彩直播得100金币");
+                if(null!=y) {
+                    AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
+                }else{
+                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                    Integer y1 = OcrTools.getWordsInt(androidId,"观看精彩直播得100金币");
+                    if(null!=y1){
+                        AdbTools.process(robot, AdbTools.tap(androidId, 880, y1));
+                    }
                 }
-                AdbTools.process(robot, AdbTools.tap(androidId, 880, wl3.getLocation().getY()));
-
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 11; i++) {
                     int a = RandomTools.init(6000);
                     robot.delay(30000 + a);
                     AdbTools.process(robot, AdbTools.downPage(androidId));
                 }
 
             } catch (Exception e) {
-                bool = true;
                 log.info("快手极速-直播异常");
             }
-            return  bool;
+        }
     }
 
 
+    /**
+     * todo 获取横幅广告
+     * @return
+     */
+    public static java.util.List getBanner(){
+        List<String> list = new ArrayList<>();
+        list.add("1000金币悬赏任务");
+        list.add("观看精彩直播得100金币");
 
-/*
-
-    public static void main(String args[]) throws AWTException {
-        Robot robot = new Robot();
-       //  handle(robot,"phone003");
-        AndroidDriver driver = AppiumTools.init("phone003");
-        log.info(driver.getPageSource());
-        robot.delay(3000);
-        WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"HGGPyDxR67B6PpvwC+B+CeSgKklEgAAAABJRU5ErkJggg==\")");
-        wl4.click();
+        return list;
     }
-*/
 
 
 }
