@@ -64,8 +64,8 @@ public class App快手极速 {
 
                 handle1(robot, androidId, driver, map);
                 handle6(robot, androidId, driver, map);
-                handle9(robot, androidId, driver, map);
                 handle20(robot, androidId, driver, map);
+                handle9(robot, androidId, driver, map);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -224,22 +224,13 @@ public class App快手极速 {
      * todo 9.开宝箱
      * @param robot
      */
-    public static boolean handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        boolean bool = false;
+    public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("快手极速-开宝箱");
         try {
-            robot.delay(1000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"开宝箱得金币\")");
-            wl2.click();
-
-            WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Image\").text(\"HGGPyDxR67B6PpvwC+B+CeSgKklEgAAAABJRU5ErkJggg==\")");
-            wl4.click();
-
+            AdbTools.process(robot, AdbTools.tap(androidId, 900, 1550));
         }catch (Exception e){
-            bool = true;
             log.info("快手极速-开宝箱异常");
         }
-        return bool;
     }
 
 
@@ -334,7 +325,7 @@ public class App快手极速 {
      */
     public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==22) {
+        if(hour==0) {
             log.info("快手极速-直播");
             try {
                 AdbTools.process(robot, AdbTools.downPage(androidId));
