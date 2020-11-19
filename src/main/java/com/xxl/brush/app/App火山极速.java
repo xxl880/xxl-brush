@@ -40,8 +40,8 @@ public class App火山极速 {
                 log.info("3.启动appium");
                 AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
 
-               /* handle2(robot, androidId, driver, map);
-*/
+               handle2(robot, androidId, driver, map);
+
                 log.info("4.清除");
                 AdbTools.clear(driver);
 
@@ -53,7 +53,7 @@ public class App火山极速 {
                     AdbTools.process(robot, AdbTools.tap(androidId, 680, 1950));
                 }
                 clear(robot, androidId, driver);
-/*
+
                 handle1(robot, androidId, driver, map);
 
                 handle6(robot, androidId, driver, map);
@@ -62,7 +62,7 @@ public class App火山极速 {
 
                 handle20(robot, androidId, driver, map);
 
-                handle21(robot, androidId, driver, map);*/
+                handle21(robot, androidId, driver, map);
 
                 handle11(robot, androidId, driver, map);
 
