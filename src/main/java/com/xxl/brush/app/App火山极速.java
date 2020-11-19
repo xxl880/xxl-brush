@@ -40,8 +40,8 @@ public class App火山极速 {
                 log.info("3.启动appium");
                 AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
 
-                handle2(robot, androidId, driver, map);
-
+               /* handle2(robot, androidId, driver, map);
+*/
                 log.info("4.清除");
                 AdbTools.clear(driver);
 
@@ -53,7 +53,7 @@ public class App火山极速 {
                     AdbTools.process(robot, AdbTools.tap(androidId, 680, 1950));
                 }
                 clear(robot, androidId, driver);
-
+/*
                 handle1(robot, androidId, driver, map);
 
                 handle6(robot, androidId, driver, map);
@@ -62,7 +62,7 @@ public class App火山极速 {
 
                 handle20(robot, androidId, driver, map);
 
-                handle21(robot, androidId, driver, map);
+                handle21(robot, androidId, driver, map);*/
 
                 handle11(robot, androidId, driver, map);
 
@@ -248,7 +248,7 @@ public class App火山极速 {
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("火山极速-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==6||hour==20) {
+        if(hour==6||hour==22) {
             int yy = 1850;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                yy = 2050;
@@ -256,7 +256,7 @@ public class App火山极速 {
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 AdbTools.process(robot, AdbTools.down(androidId));
-                Integer y = OcrTools.getWordsInt(androidId,"睡觉赚金币");
+                Integer y = OcrTools.getWordsInt(androidId,"觉赚金币");
                 if(null!=y){
                     AdbTools.process(robot, AdbTools.tap(androidId, 220, y));
                     AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));

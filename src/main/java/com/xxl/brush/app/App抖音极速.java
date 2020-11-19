@@ -47,8 +47,8 @@ public class App抖音极速 {
 
                 log.info("3.启动appium");
                 AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
-
-                handle2(robot, androidId, driver, map);
+/*
+                handle2(robot, androidId, driver, map);*/
 
                 log.info("4.清除");
                 AdbTools.clear(driver);
@@ -61,11 +61,13 @@ public class App抖音极速 {
                     AdbTools.process(robot, AdbTools.tap(androidId, 540, 1950));
                 }
 
-                handle1(robot, androidId, driver, map);
+           /*     handle1(robot, androidId, driver, map);
 
                 handle9(robot, androidId, driver, map);
 
                 handle6(robot, androidId, driver, map);
+*/
+                handle11(robot, androidId, driver, map);
 
                 handle12(robot, androidId, driver, map);
 
@@ -312,7 +314,7 @@ public class App抖音极速 {
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==6||hour==20) {
+        if(hour==6||hour==22) {
             log.info("抖音极速-睡觉");
             int yy = 1850;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
