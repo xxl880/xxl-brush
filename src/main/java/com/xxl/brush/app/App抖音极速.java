@@ -177,7 +177,7 @@ public class App抖音极速 {
      */
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==19) {
+        if(hour==20) {
             log.info("抖音极速-看小说");
             try {
                 int appy =1950;
