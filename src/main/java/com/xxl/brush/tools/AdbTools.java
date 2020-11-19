@@ -162,7 +162,7 @@ public class AdbTools {
         try {
             String text = "adb -s " + androidId + " shell screencap -p /sdcard/" + androidId + ".jpg";
             Runtime.getRuntime().exec(text);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
             log.info(text);
             log.info("手机截图---图片名称"+androidId+".jpg");
         }catch (Exception e){}
@@ -176,7 +176,7 @@ public class AdbTools {
             String text = "adb -s " + androidId + " pull /sdcard/" + androidId + ".jpg" +" D:/image";
             Runtime.getRuntime().exec(text);
 
-            Thread.sleep(1000);
+            Thread.sleep(3000);
             log.info(text);
             log.info("手机截图推送电脑---图片名称"+androidId+".jpg");
         }catch (Exception e){}

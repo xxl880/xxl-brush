@@ -312,23 +312,33 @@ public class App抖音极速 {
      */
     public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
-        if(hour==22) {
+        if(hour==6||hour==20) {
             log.info("抖音极速-睡觉");
+            int yy = 1850;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                yy = 2050;
+            }
             try {
                 AdbTools.process(robot, AdbTools.upPage(androidId));
                 Integer y = OcrTools.getWordsInt(androidId,"睡觉赚金币");
                 if(null!=y){
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 2050));
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 2050));
+                    AdbTools.process(robot, AdbTools.tap(androidId, 220, y));
+                    if(hour==6){
+                        AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));
+                        AdbTools.process(robot, AdbTools.back(androidId));
+                    }
+                    AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));
                     AdbTools.process(robot, AdbTools.back(androidId));
                 }else{
                     AdbTools.process(robot, AdbTools.downPage(androidId));
                     Integer y1 = OcrTools.getWordsInt(androidId,"睡觉赚金币");
                     if(null!=y1) {
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, y1));
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 2050));
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 2050));
+                        AdbTools.process(robot, AdbTools.tap(androidId, 220, y1));
+                        if(hour==6){
+                            AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));
+                            AdbTools.process(robot, AdbTools.back(androidId));
+                        }
+                        AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));
                         AdbTools.process(robot, AdbTools.back(androidId));
                     }
                 }
