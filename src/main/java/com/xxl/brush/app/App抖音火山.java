@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -46,10 +47,19 @@ public class App抖音火山 {
                 AdbTools.clear(driver);
                 clear(robot, androidId, driver);
                 AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
+
                 handle2(robot, androidId, driver, map);
+
                 clear(robot, androidId, driver);
-                handle1(robot, androidId, driver, map);
-                handle6(robot, androidId, driver, map);
+                if(handle1(robot, androidId, driver, map)){
+                    driver.runAppInBackground(Duration.ofSeconds(3));
+                    handle1(robot, androidId, driver, map);
+                }
+
+                if(handle6(robot, androidId, driver, map)){
+                    driver.runAppInBackground(Duration.ofSeconds(3));
+                    handle6(robot, androidId, driver, map);
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -94,7 +104,8 @@ public class App抖音火山 {
      * @param robot
 
      */
-    public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         AppTools.appTime();
         log.info("抖音火山-签到");
             try {
@@ -108,8 +119,10 @@ public class App抖音火山 {
                 }
                 AdbTools.process(robot, AdbTools.back(androidId));
             } catch (Exception e) {
+                bool = true;
                 log.info("抖音火山-签到异常");
             }
+            return bool;
     }
 
 
@@ -165,7 +178,8 @@ public class App抖音火山 {
      * todo 6.看广告
      * @param robot
      */
-    public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("抖音火山-看广告");
         try {
             String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -179,8 +193,10 @@ public class App抖音火山 {
             AdbTools.process(robot, operateBack);
             AdbTools.process(robot, operateBack);
         }catch (Exception e){
+            bool = true;
             log.info("抖音火山-看广告异常");
         }
+        return bool;
     }
 
     /**

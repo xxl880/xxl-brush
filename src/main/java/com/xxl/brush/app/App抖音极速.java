@@ -2,10 +2,7 @@ package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
-import com.xxl.brush.tools.AdbTools;
-import com.xxl.brush.tools.AppTools;
-import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
+import com.xxl.brush.tools.*;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.swagger.models.auth.In;
@@ -17,10 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * todo App抖音
@@ -64,11 +62,16 @@ public class App抖音极速 {
                 }
 
                 handle1(robot, androidId, driver, map);
+
                 handle9(robot, androidId, driver, map);
+
                 handle6(robot, androidId, driver, map);
+
                 handle12(robot, androidId, driver, map);
+
                 handle16(robot, androidId, driver, map);
-                handle11(robot, androidId, driver, map);
+
+                handle1(robot, androidId, driver, map);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -103,7 +106,8 @@ public class App抖音极速 {
      * @param robot
 
      */
-    public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         AppTools.appTime();
             log.info("抖音极速-签到");
             try {
@@ -125,8 +129,10 @@ public class App抖音极速 {
 
                 AdbTools.process(robot, AdbTools.back(androidId));
             } catch (Exception e) {
-                log.info("抖音极速-签到异常");
+               bool = true;
+               log.info("抖音极速-签到异常");
             }
+            return bool;
     }
 
 
@@ -182,19 +188,21 @@ public class App抖音极速 {
      * todo 6.看广告
      * @param robot
      */
-    public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("抖音极速-看广告");
         try{
             AdbTools.process(robot, AdbTools.upPage(androidId));
             AdbTools.process(robot, AdbTools.upPage(androidId));
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .text(\"每20分钟完成一次广告任务，单日最高可赚21960金币\").fromParent(text(\"去领取\"))");
+            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\") .textContains(\"每20分钟完成一次广告任务\").fromParent(text(\"去领取\"))");
             AdbTools.process(robot, AdbTools.tap(androidId, 880, wl2.getLocation().getY()));
             robot.delay(38000);
             AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
+            bool = true;
             log.info("抖音极速-看广告异常");
         }
-
+          return  bool;
     }
 
     /**
@@ -220,7 +228,8 @@ public class App抖音极速 {
      * todo 9.开宝箱
      * @param robot
      */
-    public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("抖音极速-开宝箱");
         try {
             robot.delay(2000);
@@ -239,8 +248,10 @@ public class App抖音极速 {
 
             AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
+             bool = true;
             log.info("抖音极速-开宝箱异常");
         }
+        return bool;
     }
 
 
@@ -257,7 +268,8 @@ public class App抖音极速 {
      * todo 11.睡觉
      * @param robot
      */
-    public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         int hour = LocalDateTime.now().getHour();
         if(hour==22) {
             log.info("抖音极速-睡觉");
@@ -281,17 +293,19 @@ public class App抖音极速 {
 
                 AdbTools.process(robot, operateBack);
             } catch (Exception e) {
+                bool = true;
                 log.info("抖音极速-睡觉异常");
             }
         }
-
+          return  bool;
     }
 
     /**
      * todo 12.走路
      * @param robot
      */
-    public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
        int hour = LocalDateTime.now().getHour();
        if(hour==23) {
            log.info("抖音极速-走路");
@@ -326,9 +340,11 @@ public class App抖音极速 {
                 }
                 AdbTools.process(robot, operateBack);
             } catch (Exception e) {
+                 bool = true;
                 log.info("抖音极速-走路异常");
             }
        }
+        return bool;
 
     }
 
@@ -362,8 +378,9 @@ public class App抖音极速 {
      * todo 16.吃饭
      * @param robot
      */
-    public static void handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
           log.info("抖音极速-吃饭");
+          boolean bool = false;
              try {
                  String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                  WebElement wl2 = null;
@@ -381,8 +398,10 @@ public class App抖音极速 {
 
                  AdbTools.process(robot, operateBack);
              } catch (Exception e) {
+                 bool = true;
                  log.info("抖音极速-吃饭异常");
              }
+             return bool;
     }
 
     /**
@@ -410,14 +429,29 @@ public class App抖音极速 {
     }
 
 
+    /**
+     * todo 获取横幅广告
+     * @return
+     */
+    public static List getBanner(){
+        List<String> list = new ArrayList<>();
+        list.add("首次邀请好友");
+        list.add("限时任务赚金币");
+        list.add("扫码立得现金");
+        list.add("看视频,赚金币");
+        list.add("睡觉赚金币");
+        list.add("走路赚金币");
+        list.add("看小说赚金币");
+        list.add("玩游戏赚钱");
+        list.add("签到");
+        list.add("0.3元提现");
+
+        return list;
+    }
 
 
-
-
-    public static void main(String args[]) throws AWTException {
-        int hour = LocalDateTime.now().getHour();
-        System.out.println(hour);
-
+    public static void main(String[] args) {
+        OcrTools.getWordsMap("D:\\\\image\\\\666.jpg", getBanner());
     }
 
 

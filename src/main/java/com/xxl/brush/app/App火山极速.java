@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -52,14 +53,36 @@ public class App火山极速 {
                 }
                 clear(robot, androidId, driver);
 
-                handle1(robot, androidId, driver, map);
+                if(handle1(robot, androidId, driver, map)){
+                    driver.runAppInBackground(Duration.ofSeconds(3));
+                    handle1(robot, androidId, driver, map);
+                }
 
-                handle6(robot, androidId, driver, map);
-                handle9(robot, androidId, driver, map);
+                if(handle6(robot, androidId, driver, map)){
+                    driver.runAppInBackground(Duration.ofSeconds(3));
+                    handle6(robot, androidId, driver, map);
+                }
 
-                handle20(robot, androidId, driver, map);
-                handle21(robot, androidId, driver, map);
-                handle11(robot, androidId, driver, map);
+                if(handle9(robot, androidId, driver, map)){
+                    driver.runAppInBackground(Duration.ofSeconds(3));
+                    handle9(robot, androidId, driver, map);
+                }
+
+                if(handle20(robot, androidId, driver, map)){
+                    driver.runAppInBackground(Duration.ofSeconds(3));
+                    handle20(robot, androidId, driver, map);
+                }
+
+                if(handle21(robot, androidId, driver, map)){
+                    driver.runAppInBackground(Duration.ofSeconds(3));
+                    handle21(robot, androidId, driver, map);
+                }
+
+                if(handle11(robot, androidId, driver, map)){
+                    driver.runAppInBackground(Duration.ofSeconds(3));
+                    handle11(robot, androidId, driver, map);
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -101,7 +124,8 @@ public class App火山极速 {
      * @param robot
 
      */
-    public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         AppTools.appTime();
         log.info("火山极速-签到");
             try {
@@ -113,8 +137,10 @@ public class App火山极速 {
 
                 AdbTools.process(robot, operateBack);
             } catch (Exception e) {
+                bool = true;
                 log.info("火山极速-签到异常");
             }
+            return bool;
     }
 
 
@@ -170,7 +196,8 @@ public class App火山极速 {
      * todo 6.看广告
      * @param robot
      */
-    public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("火山极速-看广告");
         try{
             AdbTools.process(robot, AdbTools.upPage(androidId));
@@ -187,9 +214,10 @@ public class App火山极速 {
 
             AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
+            bool = true;
             log.info("火山极速-看广告异常");
         }
-
+        return bool;
     }
 
     /**
@@ -215,7 +243,8 @@ public class App火山极速 {
      * todo 9.开宝箱
      * @param robot
      */
-    public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("火山极速-开宝箱");
         try {
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
@@ -229,8 +258,10 @@ public class App火山极速 {
 
             AdbTools.process(robot, AdbTools.back(androidId));
         }catch (Exception e){
+            bool = true;
             log.info("火山极速-开宝箱异常");
         }
+        return bool;
     }
 
 
@@ -247,7 +278,8 @@ public class App火山极速 {
      * todo 11.睡觉
      * @param robot
      */
-    public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("火山极速-睡觉");
         int hour = LocalDateTime.now().getHour();
         if(hour==22) {
@@ -265,9 +297,11 @@ public class App火山极速 {
 
                 AdbTools.process(robot, AdbTools.back(androidId));
             } catch (Exception e) {
+                bool = true;
                 log.info("火山极速-睡觉异常");
             }
         }
+        return  bool;
     }
 
     /**
@@ -342,7 +376,8 @@ public class App火山极速 {
      * todo 20.晒收入
      * @param robot
      */
-    public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         int hour = LocalDateTime.now().getHour();
         if(hour==3||hour==4) {
             log.info("火山极速-晒收入");
@@ -365,9 +400,11 @@ public class App火山极速 {
                     AdbTools.process(robot, operateBack);
                 }
             } catch (Exception e) {
+                 bool = true ;
                 log.info("火山极速-晒收入异常");
             }
         }
+        return bool;
     }
 
 
@@ -375,7 +412,8 @@ public class App火山极速 {
      * todo 21.摇钱树
      * @param robot
      */
-    public static void handle21(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle21(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         int hour = LocalDateTime.now().getHour();
         if(hour==5||hour==6) {
             log.info("火山极速-摇钱树");
@@ -398,9 +436,11 @@ public class App火山极速 {
 
                 AdbTools.process(robot, AdbTools.back(androidId));
             } catch (Exception e) {
+                bool = true;
                 log.info("火山极速-摇钱树异常");
             }
         }
+        return  bool;
     }
 
 /*

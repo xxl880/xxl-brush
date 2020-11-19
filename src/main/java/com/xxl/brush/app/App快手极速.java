@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -62,10 +63,25 @@ public class App快手极速 {
                     }
                 }
 
-                handle1(robot, androidId, driver, map);
-                handle6(robot, androidId, driver, map);
-                handle9(robot, androidId, driver, map);
-                handle20(robot, androidId, driver, map);
+                if(handle1(robot, androidId, driver, map)){
+
+/*                    handle1(robot, androidId, driver, map);*/
+                }
+
+                if(handle6(robot, androidId, driver, map)){
+
+                    handle6(robot, androidId, driver, map);
+                }
+
+                if(handle9(robot, androidId, driver, map)){
+
+                    handle9(robot, androidId, driver, map);
+                }
+
+                if(handle20(robot, androidId, driver, map)){
+
+                    handle20(robot, androidId, driver, map);
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -101,7 +117,8 @@ public class App快手极速 {
      * @param robot
 
      */
-    public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         AppTools.appTime();
         log.info("快手极速-签到");
             try {
@@ -114,13 +131,14 @@ public class App快手极速 {
                     wl3.click();
                     robot.delay(1000);
                     AdbTools.process(robot, operateBack);
-                    return;
                 } catch (Exception e) {
                 }
 
             } catch (Exception e) {
+                bool = true;
                 log.info("快手极速-签到异常");
             }
+            return bool;
     }
 
 
@@ -176,7 +194,8 @@ public class App快手极速 {
      * todo 6.看广告
      * @param robot
      */
-    public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         AppTools.appTime();
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -194,8 +213,10 @@ public class App快手极速 {
                     AdbTools.process(robot, operateBack);
                 }
             } catch (Exception e) {
+                bool = true;
                 log.info("快手极速-看广告异常");
             }
+            return bool;
     }
 
     /**
@@ -221,7 +242,8 @@ public class App快手极速 {
      * todo 9.开宝箱
      * @param robot
      */
-    public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("快手极速-开宝箱");
         try {
             robot.delay(1000);
@@ -232,8 +254,10 @@ public class App快手极速 {
             wl4.click();
 
         }catch (Exception e){
+            bool = true;
             log.info("快手极速-开宝箱异常");
         }
+        return bool;
     }
 
 
@@ -326,7 +350,8 @@ public class App快手极速 {
      * todo 20.直播
      * @param robot
      */
-    public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         AppTools.appTime();
             log.info("快手极速-直播");
             try {
@@ -349,8 +374,10 @@ public class App快手极速 {
                 }
 
             } catch (Exception e) {
+                bool = true;
                 log.info("快手极速-直播异常");
             }
+            return  bool;
     }
 
 

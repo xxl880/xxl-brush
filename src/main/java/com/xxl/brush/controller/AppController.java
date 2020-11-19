@@ -35,11 +35,6 @@ public class AppController {
                 appService.circulate(androidId,list.indexOf(androidId),map);
             }
         }
-  /*      appService.circulate("phone001");*/
-    //    appService.circulate("phone002");
-
-        /*  appService.circulate("phone0031");
-        appService.circulate("phone0032");*/
         return BaseResponse.newSuccess();
     }
 

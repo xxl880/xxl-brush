@@ -270,7 +270,8 @@ public class App今日头条 {
      * todo 11.睡觉
      * @param robot
      */
-    public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("今日头条-睡觉");
         int hour = LocalDateTime.now().getHour();
         if(hour==22) {
@@ -308,18 +309,19 @@ public class App今日头条 {
 
 
             } catch (Exception e) {
+                bool = true;
                 log.info("今日头条-睡觉异常");
             }
        }
-
-
+        return  bool;
     }
 
     /**
      * todo 12.走路
      * @param robot
      */
-    public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean  bool = false;
         log.info("今日头条-走路");
         int hour = LocalDateTime.now().getHour();
         if(hour==21||hour==22) {
@@ -354,9 +356,11 @@ public class App今日头条 {
                 }
                 AdbTools.process(robot, operateBack);
             } catch (Exception e) {
+                bool = true;
                 log.info("今日头条-走路异常");
             }
         }
+        return  bool;
     }
 
 
@@ -389,7 +393,8 @@ public class App今日头条 {
      * todo 16.吃饭
      * @param robot
      */
-    public static void handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+        boolean bool = false;
         log.info("今日头条-吃饭");
         int hour = LocalDateTime.now().getHour();
        if(hour==8||hour==12||hour==18||hour==22) {
@@ -416,13 +421,12 @@ public class App今日头条 {
                 AdbTools.process(robot, operateBack);
                 AdbTools.process(robot, operateBack);
             } catch (Exception e) {
+                bool = true;
                 log.info("今日头条-吃饭异常");
             }
 
         }
-
-
-
+       return  bool;
     }
 
     /**
