@@ -48,11 +48,11 @@ public class App抖音极速 {
                 log.info("3.启动appium");
                 AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
 
-               /* handle2(robot, androidId, driver, map);
+                handle2(robot, androidId, driver, map);
 
                 log.info("4.清除");
                 AdbTools.clear(driver);
-                clear(robot, driver, map);*/
+                clear(robot, driver, map);
 
 
                 if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
@@ -61,11 +61,11 @@ public class App抖音极速 {
                     AdbTools.process(robot, AdbTools.tap(androidId, 540, 1950));
                 }
 
-             /*   handle1(robot, androidId, driver, map);
+                handle1(robot, androidId, driver, map);
 
-                handle9(robot, androidId, driver, map);*/
+                handle9(robot, androidId, driver, map);
 
-             /*   handle6(robot, androidId, driver, map);*/
+                handle6(robot, androidId, driver, map);
 
                 handle12(robot, androidId, driver, map);
 
@@ -106,8 +106,7 @@ public class App抖音极速 {
      * @param robot
 
      */
-    public static boolean handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        boolean bool = false;
+    public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         AppTools.appTime();
             log.info("抖音极速-签到");
             try {
@@ -128,10 +127,8 @@ public class App抖音极速 {
 
                 AdbTools.process(robot, AdbTools.back(androidId));
             } catch (Exception e) {
-               bool = true;
                log.info("抖音极速-签到异常");
             }
-            return bool;
     }
 
 
@@ -354,7 +351,7 @@ public class App抖音极速 {
                 Integer y = OcrTools.getWordsInt(androidId,"走路赚金币");
                 if(null!=y){
                     AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
-                    robot.delay(2000);
+                    robot.delay(1000);
                     AdbTools.process(robot, AdbTools.tap(androidId, 540, 970));
                     AdbTools.process(robot, AdbTools.back(androidId));
                 }else{
@@ -362,7 +359,7 @@ public class App抖音极速 {
                     Integer y1 = OcrTools.getWordsInt(androidId,"走路赚金币");
                     if(null!=y1) {
                         AdbTools.process(robot, AdbTools.tap(androidId, 540, y1));
-                        robot.delay(2000);
+                        robot.delay(1000);
                         AdbTools.process(robot, AdbTools.tap(androidId, 540, 970));
                         AdbTools.process(robot, AdbTools.back(androidId));
                     }
