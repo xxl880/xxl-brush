@@ -188,8 +188,7 @@ public class App抖音极速 {
      * todo 6.看广告
      * @param androidId
      */
-    public static boolean handle6(String androidId){
-        boolean bool = false;
+    public static void handle6(String androidId){
         log.info("抖音极速-看广告");
         try{
             AdbTools.upPage(androidId);
@@ -201,10 +200,8 @@ public class App抖音极速 {
             }
 
         }catch (Exception e){
-            bool = true;
             log.info("抖音极速-看广告异常");
         }
-          return  bool;
     }
 
     /**
@@ -230,8 +227,7 @@ public class App抖音极速 {
      * todo 9.开宝箱
      * @param androidId
      */
-    public static boolean handle9(String androidId){
-        boolean bool = false;
+    public static void handle9(String androidId){
         log.info("抖音极速-开宝箱");
         try {
             Thread.sleep(2000);
@@ -249,10 +245,8 @@ public class App抖音极速 {
 
              AdbTools.back(androidId);
         }catch (Exception e){
-             bool = true;
             log.info("抖音极速-开宝箱异常");
         }
-        return bool;
     }
 
 
