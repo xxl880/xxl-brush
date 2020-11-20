@@ -3,19 +3,8 @@ package com.xxl.brush.app;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.*;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.swagger.models.auth.In;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.awt.*;
-import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
@@ -24,9 +13,6 @@ import java.util.List;
  * todo App抖音
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
-
-
-
 public class App抖音极速 {
     private static Logger log = LoggerFactory.getLogger(App抖音极速.class);
 
@@ -35,45 +21,33 @@ public class App抖音极速 {
      * 以category分类定位，再点击用户行为,用一category下e不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
      */
-    public static void circulate(Robot robot, String androidId, int port, int systemPort, Map<String,Integer> map){
-
+    public static void circulate(String androidId){
             try {
                 log.info("********************************抖音极速操作********************************************");
                 log.info("1.初始化手机");
-                AdbTools.initMobile(robot, androidId);
+                AdbTools.initMobile(androidId);
 
                 log.info("2.启动app");
-                AdbTools.startup(robot, androidId, AppConstants.startup抖音);
+                AdbTools.startup(androidId, AppConstants.startup抖音);
 
-                log.info("3.启动appium");
-                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+                handle2(androidId);
 
-                handle2(robot, androidId, driver, map);
-
-                log.info("4.清除");
-                AdbTools.clear(driver);
-                clear(robot, driver, map);
-
+                log.info("3.清除");
+                clear(androidId);
 
                 if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 2140));
+                    AdbTools.tap(androidId, 540, 2140);
                 } else {
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1950));
+                    AdbTools.tap(androidId, 540, 1950);
                 }
 
-                handle1(robot, androidId, driver, map);
-
-                handle9(robot, androidId, driver, map);
-
-                handle6(robot, androidId, driver, map);
-
-                handle11(robot, androidId, driver, map);
-
-                handle12(robot, androidId, driver, map);
-
-                handle16(robot, androidId, driver, map);
-
-                handle5(robot, androidId, driver, map);
+                handle1(androidId);
+                handle9(androidId);
+                handle6(androidId);
+                handle11(androidId);
+                handle12(androidId);
+                handle16(androidId);
+                handle5(androidId);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -83,70 +57,53 @@ public class App抖音极速 {
 
     /**
      * todo 退出
-     * @param robot
+     * @param androidId
      */
-    public static void quit(Robot robot,AndroidDriver driver, Map<String,Integer> map){
+    public static void quit(String androidId){
 
     }
 
     /**
      * todo 清除
-     * @param robot
+     * @param androidId
      */
-    public static void clear(Robot robot,AndroidDriver driver, Map<String,Integer> map){
-        try{
-            robot.delay(3000);
-            WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"以后再说\")");
-            wl11.click();
-        }catch (Exception e){}
+    public static void clear(String androidId){
+
 
     }
 
 
     /**
      * todo 1.签到
-     * @param robot
+     * @param androidId
 
      */
-    public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle1(String androidId){
         AppTools.appTime();
-            log.info("抖音极速-签到");
-            try {
-                try {
-                    List<WebElement> wls = driver.findElementsByAndroidUIAutomator("new UiSelector().text(\"签到\")");
-                    wls.get(1).click();
-                } catch (Exception e) {  }
+        log.info("抖音极速-签到");
+        try {
 
-                try {
-                    WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"立即签到\")");
-                    wl1.click();
-                } catch (Exception e) {
-                }
 
-                WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"看广告视频再赚\")");
-                wl2.click();
-                robot.delay(36000);
-
-                AdbTools.process(robot, AdbTools.back(androidId));
-            } catch (Exception e) {
-               log.info("抖音极速-签到异常");
-            }
+            AdbTools.back(androidId);
+        } catch (Exception e) {
+           log.info("抖音极速-签到异常");
+        }
     }
 
 
     /**
      * todo 2.看视频
-     * @param robot
+     * @param androidId
      */
-    public static void handle2(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle2(String androidId){
         log.info("抖音极速-看视频");
         try {
             int x = RandomTools.init(6)+6;
             for (int a = 0; a < x; a++) {
-                robot.delay(RandomTools.init(15000));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
-                if (a == RandomTools.init(6)) {
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                Thread.sleep(RandomTools.init(15000));
+                    AdbTools.downPage(androidId);
+                if (a == RandomTools.init(6)) { 
+                    AdbTools.upPage(androidId);
                 }
             }
         }catch (Exception e){
@@ -157,27 +114,27 @@ public class App抖音极速 {
 
     /**
      * todo 3.看小视频
-     * @param robot
+     * @param androidId
      */
-    public static void handle3(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle3(String androidId){
 
     }
 
 
     /**
      * todo 4.看新闻
-     * @param robot
+     * @param androidId
      */
-    public static void handle4(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle4(String androidId){
 
     }
 
 
     /**
      * todo 5.看小说
-     * @param robot
+     * @param androidId
      */
-    public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle5(String androidId){
         int hour = LocalDateTime.now().getHour();
         if(hour==20) {
             log.info("抖音极速-看小说");
@@ -186,37 +143,37 @@ public class App抖音极速 {
                 if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                     appy = 2140;
                 }
-                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.upPage(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"看小说赚金币");
                 if(null!=y){
-                    robot.delay(2000);
-                    AdbTools.process(robot, AdbTools.tap(androidId, 220, y));
-                    robot.delay(2000);
-                    AdbTools.process(robot, AdbTools.tap(androidId, 170, 1700));
+                    Thread.sleep(2000);
+                    AdbTools.tap(androidId, 220, y);
+                    Thread.sleep(2000);
+                    AdbTools.tap(androidId, 170, 1700);
 
-                    AdbTools.process(robot, AdbTools.tap(androidId, 880, appy));
+                    AdbTools.tap(androidId, 880, appy);
                     for(int i=0;i<60;i++) {
-                        robot.delay(RandomTools.init(6000));
-                        AdbTools.process(robot, AdbTools.tap(androidId, 1060, 1200));
+                        Thread.sleep(RandomTools.init(6000));
+                        AdbTools.tap(androidId, 1060, 1200);
                     }
-                    AdbTools.process(robot, AdbTools.back(androidId));
-                    AdbTools.process(robot, AdbTools.back(androidId));
-                    AdbTools.process(robot, AdbTools.back(androidId));
+                    AdbTools.back(androidId);
+                    AdbTools.back(androidId);
+                    AdbTools.back(androidId);
                 }else{
-                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.downPage(androidId);
                     Integer y1 = OcrTools.getWordsInt(androidId,"看小说赚金币");
                     if(null!=y1) {
-                        AdbTools.process(robot, AdbTools.tap(androidId, 220, y1));
-                        AdbTools.process(robot, AdbTools.tap(androidId, 170, 1700));
-                        robot.delay(2000);
-                        AdbTools.process(robot, AdbTools.tap(androidId, 880, appy));
+                        AdbTools.tap(androidId, 220, y1);
+                        AdbTools.tap(androidId, 170, 1700);
+                        Thread.sleep(2000);
+                        AdbTools.tap(androidId, 880, appy);
                         for(int i=0;i<60;i++) {
-                            robot.delay(RandomTools.init(6000));
-                            AdbTools.process(robot, AdbTools.tap(androidId, 1060, 1200));
+                            Thread.sleep(RandomTools.init(6000));
+                            AdbTools.tap(androidId, 1060, 1200);
                         }
-                        AdbTools.process(robot, AdbTools.back(androidId));
-                        AdbTools.process(robot, AdbTools.back(androidId));
-                        AdbTools.process(robot, AdbTools.back(androidId));
+                        AdbTools.back(androidId);
+                        AdbTools.back(androidId);
+                        AdbTools.back(androidId);
                     }
                 }
 
@@ -229,18 +186,18 @@ public class App抖音极速 {
 
     /**
      * todo 6.看广告
-     * @param robot
+     * @param androidId
      */
-    public static boolean handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle6(String androidId){
         boolean bool = false;
         log.info("抖音极速-看广告");
         try{
-            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.upPage(androidId);
             Integer y = OcrTools.getWordsInt(androidId,"限时任务赚金币");
             if(null!=y){
-                AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
-                robot.delay(38000);
-                AdbTools.process(robot, AdbTools.back(androidId));
+                AdbTools.tap(androidId, 880, y);
+                Thread.sleep(38000);
+                AdbTools.back(androidId);
             }
 
         }catch (Exception e){
@@ -252,18 +209,18 @@ public class App抖音极速 {
 
     /**
      * todo 7.玩游戏
-     * @param robot
+     * @param androidId
      */
-    public static void handle7(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle7(String androidId){
 
     }
 
 
     /**
      * todo 8.领红包(操作流程：1-点击红包，2-看广告)
-     * @param robot
+     * @param androidId
      */
-    public static void handle8(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle8(String androidId){
 
     }
 
@@ -271,26 +228,26 @@ public class App抖音极速 {
 
     /**
      * todo 9.开宝箱
-     * @param robot
+     * @param androidId
      */
-    public static boolean handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static boolean handle9(String androidId){
         boolean bool = false;
         log.info("抖音极速-开宝箱");
         try {
-            robot.delay(2000);
+            Thread.sleep(2000);
             int y = 1860;
             int y1 = 1190;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                 y = 2050;
                 y1 = 1290;
             }
-            AdbTools.process(robot, AdbTools.tap(androidId, 880, y));
+            AdbTools.tap(androidId, 880, y);
 
-            robot.delay(1000);
-            AdbTools.process(robot, AdbTools.tap(androidId, 540, y1));
-            robot.delay(38000);
+            Thread.sleep(1000);
+            AdbTools.tap(androidId, 540, y1);
+            Thread.sleep(38000);
 
-            AdbTools.process(robot, AdbTools.back(androidId));
+             AdbTools.back(androidId);
         }catch (Exception e){
              bool = true;
             log.info("抖音极速-开宝箱异常");
@@ -301,18 +258,18 @@ public class App抖音极速 {
 
     /**
      * todo 10.抽奖
-     * @param robot
+     * @param androidId
      */
-    public static void handle10(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle10(String androidId){
 
     }
 
 
     /**
      * todo 11.睡觉
-     * @param robot
+     * @param androidId
      */
-    public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle11(String androidId){
         int hour = LocalDateTime.now().getHour();
         if(hour==6||hour==22) {
             log.info("抖音极速-睡觉");
@@ -321,27 +278,27 @@ public class App抖音极速 {
                 yy = 2050;
             }
             try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.upPage(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"睡觉赚金币");
                 if(null!=y){
-                    AdbTools.process(robot, AdbTools.tap(androidId, 220, y));
+                    AdbTools.tap(androidId, 220, y);
                     if(hour==6){
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));
-                        AdbTools.process(robot, AdbTools.back(androidId));
+                         AdbTools.tap(androidId, 540, yy);
+                         AdbTools.back(androidId);
                     }
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));
-                    AdbTools.process(robot, AdbTools.back(androidId));
+                    AdbTools.tap(androidId, 540, yy);
+                    AdbTools.back(androidId);
                 }else{
-                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.downPage(androidId);
                     Integer y1 = OcrTools.getWordsInt(androidId,"睡觉赚金币");
                     if(null!=y1) {
-                        AdbTools.process(robot, AdbTools.tap(androidId, 220, y1));
+                        AdbTools.tap(androidId, 220, y1);
                         if(hour==6){
-                            AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));
-                            AdbTools.process(robot, AdbTools.back(androidId));
+                            AdbTools.tap(androidId, 540, yy);
+                            AdbTools.back(androidId);
                         }
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, yy));
-                        AdbTools.process(robot, AdbTools.back(androidId));
+                        AdbTools.tap(androidId, 540, yy);
+                        AdbTools.back(androidId);
                     }
                 }
 
@@ -353,27 +310,27 @@ public class App抖音极速 {
 
     /**
      * todo 12.走路
-     * @param robot
+     * @param androidId
      */
-    public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle12(String androidId){
        int hour = LocalDateTime.now().getHour();
        if(hour==23) {
            log.info("抖音极速-走路");
             try {
                 Integer y = OcrTools.getWordsInt(androidId,"走路赚金币");
                 if(null!=y){
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, y));
-                    robot.delay(1000);
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 970));
-                    AdbTools.process(robot, AdbTools.back(androidId));
+                    AdbTools.tap(androidId, 540, y);
+                    Thread.sleep(1000);
+                    AdbTools.tap(androidId, 540, 970);
+                    AdbTools.back(androidId);
                 }else{
-                    AdbTools.process(robot, AdbTools.downPage(androidId));
+                    AdbTools.downPage(androidId);
                     Integer y1 = OcrTools.getWordsInt(androidId,"走路赚金币");
                     if(null!=y1) {
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, y1));
-                        robot.delay(1000);
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 970));
-                        AdbTools.process(robot, AdbTools.back(androidId));
+                        AdbTools.tap(androidId, 540, y1);
+                        Thread.sleep(1000);
+                        AdbTools.tap(androidId, 540, 970);
+                        AdbTools.back(androidId);
                     }
                 }
             } catch (Exception e) {
@@ -386,52 +343,39 @@ public class App抖音极速 {
 
     /**
      * todo 13.喝水
-     * @param robot
+     * @param androidId
      */
-    public static void handle13(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle13(String androidId){
 
     }
 
 
     /**
      * todo 14.充电
-     * @param robot
+     * @param androidId
      */
-    public static void handle14(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle14(String androidId){
 
     }
 
     /**
      * todo 15.听歌曲
-     * @param robot
+     * @param androidId
      */
-    public static void handle15(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle15(String androidId){
 
     }
 
     /**
      * todo 16.吃饭
-     * @param robot
+     * @param androidId
      */
-    public static void handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle16(String androidId){
         int hour = LocalDateTime.now().getHour();
         if(hour==8||hour==12||hour==18||hour==22) {
             log.info("抖音极速-吃饭");
             try {
-                WebElement wl2 = null;
-                try {
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"限时福利，每天饭点领补贴\").fromParent(text(\"去领取\"))");
-                } catch (Exception e) {
-                    AdbTools.process(robot, AdbTools.downPage(androidId));
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"限时福利，每天饭点领补贴\").fromParent(text(\"去领取\"))");
-                }
-                wl2.click();
-
-                WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"领取\")");
-                wl3.click();
-
-                AdbTools.process(robot, AdbTools.back(androidId));
+                AdbTools.back(androidId);
             } catch (Exception e) {
                 log.info("抖音极速-吃饭异常");
             }
@@ -440,25 +384,25 @@ public class App抖音极速 {
 
     /**
      * todo 17.分享
-     * @param robot
+     * @param androidId
      */
-    public static void handle17(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle17(String androidId){
 
     }
 
     /**
      * todo 18.摇钱树
-     * @param robot
+     * @param androidId
      */
-    public static void handle18(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle18(String androidId){
 
     }
 
     /**
      * todo 19.刮奖
-     * @param robot
+     * @param androidId
      */
-    public static void handle19(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+    public static void handle19(String androidId){
 
     }
 

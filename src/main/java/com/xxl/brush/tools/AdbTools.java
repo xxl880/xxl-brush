@@ -24,11 +24,11 @@ public class AdbTools {
      * todo 常规操作(传过来数据 点击输入并回车操作)
      *
      */
-    public static void process(Robot robot, String operateData){
+    public static void process(String operate){
         try {
-            log.info(operateData);
-            Runtime.getRuntime().exec(operateData);
-            robot.delay(2000);
+            log.info(operate);
+            Runtime.getRuntime().exec(operate);
+            Thread.sleep(2000);
         }catch (Exception e){}
     }
 
@@ -39,12 +39,11 @@ public class AdbTools {
      * 命令2：启动报错时使用写日志方式找到主类 （adb logcat>D:/app.txt） 使用ctrl+c中断，查看mainActivity
      */
     @SneakyThrows
-    public static void startup(Robot robot,String androidId, String operateData){
+    public static void startup(String androidId, String operateData){
         log.info("******************启动app**************");
-             robot.delay(6000);
-            String operate = " adb -s " + androidId + " shell am start -n " + operateData;
-            Runtime.getRuntime().exec(operate);
-            robot.delay(6000);
+        String operate = " adb -s " + androidId + " shell am start -n " + operateData;
+        process(operate);
+        Thread.sleep(12000);
     }
 
 
@@ -55,131 +54,124 @@ public class AdbTools {
      * 命令2：启动报错时使用写日志方式找到主类 （adb logcat>D:/app.txt） 使用ctrl+c中断，查看mainActivity
      */
     @SneakyThrows
-    public static void wakeup(Robot robot,String androidId, String operateData){
+    public static void wakeup(String androidId, String operateData){
         log.info("******************唤醒app**************");
         String operate = " adb -s " + androidId + " shell am start -n " + operateData;
-        Runtime.getRuntime().exec(operate);
-        robot.delay(1000);
+        process(operate);
     }
 
     /**
      * todo 向下滑动，正常操作
      */
-   public static String down(String androidId){
-       String downDraw = "adb -s "+androidId +" shell input swipe 540 1000 540 600";
-
-       return  downDraw;
+    @SneakyThrows
+   public static void down(String androidId){
+       String operate = "adb -s "+androidId +" shell input swipe 540 1000 540 600";
+       process(operate);
    }
 
     /**
      * todo 向上滑动，返回操作
      */
-    public static String up(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 540 600 540 900";
-
-        return  downDraw;
+    @SneakyThrows
+    public static void up(String androidId){
+        String operate = "adb -s "+androidId +" shell input swipe 540 600 540 900";
+        process(operate);
     }
 
     /**
      * todo 向左滑动，返回操作
      */
-    public static String left(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 1000 1000 60 1000";
-
-        return  downDraw;
+    @SneakyThrows
+    public static void left(String androidId){
+        String operate = "adb -s "+androidId +" shell input swipe 1000 1000 60 1000";
+        process(operate);
     }
 
     /**
      * todo 向右滑动，返回操作
      */
-    public static String right(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 60 1000 1000 1000";
-
-        return  downDraw;
+    @SneakyThrows
+    public static void right(String androidId){
+        String operate = "adb -s "+androidId +" shell input swipe 60 1000 1000 1000";
+        process(operate);
     }
 
 
     /**
      * todo 向下滑动，正常操作
      */
-    public static String downPage(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 540 1600 540 400";
-
-        return  downDraw;
+    @SneakyThrows
+    public static void downPage(String androidId){
+        String operate = "adb -s "+androidId +" shell input swipe 540 1600 540 400";
+        process(operate);
     }
 
     /**
      * todo 向上滑动，返回操作
      */
-    public static String upPage(String androidId){
-        String downDraw = "adb -s "+androidId +" shell input swipe 540 400 540 1600";
-
-        return  downDraw;
+    @SneakyThrows
+    public static void upPage(String androidId){
+        String operate = "adb -s "+androidId +" shell input swipe 540 400 540 1600";
+        process(operate);
     }
 
 
     /**
      * todo 向下滑动，正常操作
      */
-    public static String tap(String androidId, int x, int y){
-        String tap = "adb -s "+androidId +" shell input tap " + x + " " + y;
-        return  tap;
+    @SneakyThrows
+    public static void tap(String androidId, int x, int y){
+        String operate = "adb -s "+androidId +" shell input tap " + x + " " + y;
+        process(operate);
     }
 
     /**
      * todo 退回，正常操作
      */
-    public static String back(String androidId){
-        String downDraw = "adb -s " + androidId + " shell input keyevent BACK";
-
-        return  downDraw;
+    @SneakyThrows
+    public static void back(String androidId){
+        String operate = "adb -s " + androidId + " shell input keyevent BACK";
+        process(operate);
     }
 
 
     /**
      * todo 刮奖，正常操作
      */
-    public static String tapDraw(String androidId, int x, int y){
+    @SneakyThrows
+    public static void tapDraw(String androidId, int x, int y){
         int y1 = 1000+Integer.valueOf(y);
-
-        String draw = "adb -s "+androidId +" shell input swipe "+ x + " " + y + " " + x +" " +y1;
-
-        return draw;
+        String operate = "adb -s "+androidId +" shell input swipe "+ x + " " + y + " " + x +" " +y1;
+        process(operate);
     }
 
     /**
      * todo 输入正常操作
      */
-    public static String text(String androidId, String str){
-        String text = "adb -s "+androidId +" shell input text " + str;
-        return  text;
+    @SneakyThrows
+    public static void text(String androidId, String str){
+        String operate = "adb -s "+androidId +" shell input text " + str;
+        process(operate);
     }
 
     /**
      * todo 手机截图
      */
+    @SneakyThrows
     public static void screencap(String androidId){
-        try {
-            String text = "adb -s " + androidId + " shell screencap -p /sdcard/" + androidId + ".jpg";
-            Runtime.getRuntime().exec(text);
-            Thread.sleep(3000);
-            log.info(text);
-            log.info("手机截图---图片名称"+androidId+".jpg");
-        }catch (Exception e){}
+        String operate = "adb -s " + androidId + " shell screencap -p /sdcard/" + androidId + ".jpg";
+        process(operate);
+        Thread.sleep(2000);
     }
 
     /**
      * todo 手机截图推送电脑目录
      */
+    @SneakyThrows
     public static void pull(String androidId){
-        try {
-            String text = "adb -s " + androidId + " pull /sdcard/" + androidId + ".jpg" +" D:/image";
-            Runtime.getRuntime().exec(text);
-
-            Thread.sleep(3000);
-            log.info(text);
-            log.info("手机截图推送电脑---图片名称"+androidId+".jpg");
-        }catch (Exception e){}
+        String operate = "adb -s " + androidId + " pull /sdcard/" + androidId + ".jpg" +" D:/image";
+        process(operate);
+        Thread.sleep(2000);
     }
 
     /***
@@ -235,38 +227,36 @@ public class AdbTools {
 
     /**
      *  todo 初始化手机
-      * @param robot
      * @param androidId
      */
-    public static void initMobile(Robot robot, String androidId){
+    public static void initMobile( String androidId){
         if(!AdbTools.screen(androidId)) {
             log.info("0.唤醒手机屏幕");
             String operateScreen = "adb -s " + androidId + " shell input keyevent 26";
-            process(robot, operateScreen);
+            process(operateScreen);
         }
         log.info("0.返回主界面");
         String operateHome = "adb -s " + androidId + " shell input keyevent 3";
-        process(robot, operateHome);
+        process(operateHome);
 
         log.info("0.调取缓存");
         String operateDispath = "adb -s " + androidId + " shell input keyevent 82";
-        process(robot, operateDispath);
+        process(operateDispath);
 
         log.info("0.删除缓存");
         String operateDelete = "";
         if (androidId.equals(PhoneConstants.phone001)) {
             operateDispath = "adb -s " + androidId + " shell input tap 770 2280";
-            process(robot, operateDispath);
-            operateDelete = AdbTools.tap(androidId, 540, 2080);
+            process(operateDispath);
+            AdbTools.tap(androidId, 540, 2080);
         } else if (androidId.equals(PhoneConstants.phone002)) {
-            operateDelete = AdbTools.tap(androidId, 540, 2000);
+           AdbTools.tap(androidId, 540, 2000);
         } else{
-            operateDelete = AdbTools.tap(androidId, 540, 1860);
+           AdbTools.tap(androidId, 540, 1860);
         }
-        process(robot, operateDelete);
 
         log.info("0.返回主界面");
-        process(robot, operateHome);
+        process(operateHome);
 
     }
 

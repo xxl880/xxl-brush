@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -99,19 +101,17 @@ public class App今日头条 {
         AppTools.appTime();
             log.info("今日头条-签到");
             try {
-                String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 try {
                     WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"签到\")");
                     wl.click();
-                } catch (Exception e) {
-                }
+                } catch (Exception e) { }
 
                 robot.delay(2000);
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看视频再\")");
                 wl1.click();
                 robot.delay(32000);
 
-                AdbTools.process(robot, operateBack);
+                AdbTools.process(robot, AdbTools.back(androidId));
             } catch (Exception e) {
                 log.info("今日头条-签到异常");
             }
@@ -530,8 +530,8 @@ public class App今日头条 {
                     wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"种菜赚金币\")");
                 }
                 wl2.click();
-                robot.delay(6000);
 
+                robot.delay(6000);
                 AdbTools.process(robot, AdbTools.tap(androidId, 970, 800));
                 AdbTools.process(robot, AdbTools.tap(androidId, 970, 880));
                 AdbTools.process(robot, AdbTools.tap(androidId, 970, 470));
@@ -570,13 +570,25 @@ public class App今日头条 {
     }
 
 
-/*
-    public static void main(String args[]) throws AWTException {
-        Robot robot = new Robot();
-         handle(robot,"phone003");
+    /**
+     * todo 获取横幅广告
+     * @return
+     */
+    public static java.util.List getBanner(){
+        List<String> list = new ArrayList<>();
+        list.add("看小说赚金币");
+        list.add("限时任务赚金币");
+        list.add("扫码立得现金");
+        list.add("看视频,赚金币");
+        list.add("睡觉赚金币");
+        list.add("走路赚金币");
+        list.add("看小说赚金币");
+        list.add("玩游戏赚钱");
+        list.add("签到");
+        list.add("0.3元提现");
 
+        return list;
     }
-*/
 
 
 }

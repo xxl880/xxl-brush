@@ -36,10 +36,10 @@ public class App搜狗 {
             try {
                 log.info("********************************搜狗操作********************************************");
                 log.info("1.初始化手机");
-                AdbTools.initMobile(robot, androidId);
+                AdbTools.initMobile(androidId);
 
                 log.info("2.启动app");
-                AdbTools.startup(robot, androidId, AppConstants.startup搜狗);
+                AdbTools.startup(androidId, AppConstants.startup搜狗);
 
                 log.info("3.启动appium");
                 AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
@@ -48,15 +48,15 @@ public class App搜狗 {
                     WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
                     wl.click();
                 } catch (Exception e) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1960));
+                    AdbTools.tap(androidId, 540, 1960);
                 }
                 try {
                     WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
                     wl.click();
                 } catch (Exception e) {
-                    AdbTools.process(robot, AdbTools.tap(androidId, 540, 1960));
+                   AdbTools.tap(androidId, 540, 1960);
                 }
-                AdbTools.process(robot, AdbTools.tap(androidId, 900, 160));
+                AdbTools.tap(androidId, 900, 160);
 
                 handle1(robot, androidId, driver, map);
                 handle20(robot, androidId, driver, map);
@@ -99,8 +99,8 @@ public class App搜狗 {
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
             log.info("搜狗-签到");
             try {
-                AdbTools.process(robot, AdbTools.upPage(androidId));
-                AdbTools.process(robot, AdbTools.upPage(androidId));
+                AdbTools.upPage(androidId);
+                AdbTools.upPage(androidId);
                 try {
                     WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第1次\")");
                     wl1.click();
@@ -168,9 +168,7 @@ public class App搜狗 {
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("搜狗-看新闻");
         try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
-
-            AdbTools.process(robot, AdbTools.upPage(androidId));
+            AdbTools.upPage(androidId);
             try {
                 WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取红包\")");
                 wl1.click();
@@ -182,13 +180,13 @@ public class App搜狗 {
                     wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"继续阅读\")");
                 }
                 wl2.click();
-                AdbTools.process(robot, AdbTools.tap(androidId, 540, 1000));
+                AdbTools.tap(androidId, 540, 1000);
                 int x = RandomTools.init(8);
                 for (int a = 0; a < x; a++) {
                     robot.delay(RandomTools.init(15000));
-                    AdbTools.process(robot, AdbTools.down(androidId));
+                    AdbTools.down(androidId);
                 }
-                AdbTools.process(robot, operateBack);
+                AdbTools.back(androidId);
             }
         }catch (Exception e){
             log.info("搜狗-看新闻异常");
@@ -336,7 +334,7 @@ public class App搜狗 {
             try {
                 robot.delay(1000);
 
-                AdbTools.process(robot, AdbTools.upPage(androidId));
+               AdbTools.upPage(androidId);
                 try {
                     WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取红包\")");
                     wl1.click();
@@ -378,12 +376,12 @@ public class App搜狗 {
                         list.add("suijiyingbian");
                         list.add("chujiubuxin");
                         list.add("haogaowuyuan");
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 136));
-                        AdbTools.process(robot, AdbTools.text(androidId, list.get(RandomTools.init(23))));
+                        AdbTools.tap(androidId, 540, 136);
+                        AdbTools.text(androidId, list.get(RandomTools.init(23)));
                         robot.delay(1000);
-                        AdbTools.process(robot, AdbTools.tap(androidId, 1000, 136));
+                        AdbTools.tap(androidId, 1000, 136);
                         robot.delay(1000);
-                        AdbTools.process(robot, AdbTools.tap(androidId, 540, 680));
+                        AdbTools.tap(androidId, 540, 680);
                     }
 
                 }
