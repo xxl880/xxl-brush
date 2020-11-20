@@ -36,11 +36,11 @@ public class App火山极速 {
                 log.info("2.启动app");
                 AdbTools.startup(androidId, AppConstants.startup火山);
 
-                handle2(androidId);
+             /*   handle2(androidId);*/
 
                 log.info("3.清除");
                 clear(androidId);
-               
+
                 if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
                     AdbTools.tap(androidId, 680, 2140);
                 } else {
@@ -49,17 +49,14 @@ public class App火山极速 {
                 log.info("3.清除");
                 clear(androidId);
 
-                handle1(androidId);
-
+             /*   handle1(androidId);
                 handle6(androidId);
-
                 handle9(androidId);
-
+                handle11(androidId);*/
                 handle20(androidId);
-
                 handle21(androidId);
+                handle22(androidId);
 
-                handle11(androidId);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -86,10 +83,8 @@ public class App火山极速 {
      */
     public static void clear(String androidId){
         try {
-           /* WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.app.Dialog\").childSelector(text(\"sentinelEnd\"))");
-            wl.click();
-            Thread.sleep(1000);*/
-            AdbTools.back(androidId);
+
+            Thread.sleep(1000);
         }catch (Exception e){   }
 
     }
@@ -102,12 +97,11 @@ public class App火山极速 {
 
      */
     public static void handle1(String androidId){
-        AppTools.appTime();
+        if(AppTools.appTime())return;
         log.info("火山极速-签到");
             try {
 
 
-                AdbTools.back(androidId);
             } catch (Exception e) {
                 log.info("火山极速-签到异常");
             }
@@ -123,7 +117,9 @@ public class App火山极速 {
         try {
             int x = RandomTools.init(6)+6;
             for (int a = 0; a < x; a++) {
-                Thread.sleep(RandomTools.init(15000));
+                Thread.sleep(15000+RandomTools.init(2000));
+                AdbTools.tap(androidId,150,1300);
+                AdbTools.back(androidId);
                 AdbTools.downPage(androidId);
                 if (a == RandomTools.init(6)) {
                     AdbTools.upPage(androidId);
@@ -339,24 +335,21 @@ public class App火山极速 {
      */
     public static void handle20(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==3||hour==4) {
+        if(hour==4||hour==14) {
             log.info("火山极速-晒收入");
             try {
-                AdbTools.upPage(androidId);
-                AdbTools.upPage(androidId);
-                AdbTools.upPage(androidId);
-                AdbTools.upPage(androidId);
-                AdbTools.upPage(androidId);
-              /*  WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"晒收入\")");
-                wl2.click();*/
-                for (int i = 0; i < 3; i++) {
-                    /*WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"微信\")");
-                    wl3.click();
-
-                    WebElement wl4 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去粘贴\")");
-                    wl4.click();*/
-                    AdbTools.back(androidId);
+                AdbTools.downPage(androidId);
+                AdbTools.downPage(androidId);
+                Integer y = OcrTools.getWordsInt(androidId,"每次奖励200金币,每天3次");
+                if(null!=y){
+                    AdbTools.tap(androidId,540,y-50);
+                    for (int i = 0; i < 3; i++) {
+                        AdbTools.tap(androidId,540,1220);//微信
+                        AdbTools.tap(androidId,540,1360);//去粘贴
+                        AdbTools.back(androidId);
+                    }
                 }
+
             } catch (Exception e) {
                 log.info("火山极速-晒收入异常");
             }
@@ -370,30 +363,85 @@ public class App火山极速 {
      */
     public static void handle21(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==5||hour==6) {
+        if(hour==1||hour==15) {
             log.info("火山极速-摇钱树");
             try {
                 AdbTools.upPage(androidId);
-             /*   WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"摇钱树\")");
-                wl2.click();
-                Thread.sleep(8000);
-                AdbTools.process(AdbTools.tap(androidId, 540, 1100));
-
-                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
-                    AdbTools.process(AdbTools.tap(androidId, 900, 1850));
-                    AdbTools.process(AdbTools.tap(androidId, 540, 1850));
-                    AdbTools.process(AdbTools.tap(androidId, 880, 1240));
-                } else {
-                    AdbTools.process(AdbTools.tap(androidId, 900, 1750));
-                    AdbTools.process(AdbTools.tap(androidId, 540, 1750));
-                    AdbTools.process(AdbTools.tap(androidId, 880, 1050));
+                AdbTools.upPage(androidId);
+                Integer y = OcrTools.getWordsInt(androidId,"钱树");
+                if(null!=y) {
+                    AdbTools.tap(androidId,220,y);
+                    Thread.sleep(8000);
+                    AdbTools.tap(androidId, 540, 1100);
+                    Thread.sleep(1000);
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        AdbTools.tap(androidId, 900, 1850);
+                        AdbTools.tap(androidId, 540, 1850);
+                        AdbTools.tap(androidId, 880, 1240);
+                    } else {
+                        AdbTools.tap(androidId, 900, 1750);
+                        AdbTools.tap(androidId, 540, 1750);
+                        AdbTools.tap(androidId, 880, 1050);
+                    }
+                    AdbTools.back(androidId);
                 }
-*/
-                AdbTools.back(androidId);
             } catch (Exception e) {
                 log.info("火山极速-摇钱树异常");
             }
         }
+    }
+
+
+    /**
+     * todo 22.种菜赚金币
+     * @param androidId
+     */
+
+    public static void handle22(String androidId){
+        log.info("火山极速-种菜赚金币");
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==4||hour==16) {
+            try {
+                AdbTools.upPage(androidId);
+                AdbTools.upPage(androidId);
+                Integer y = OcrTools.getWordsInt(androidId,"种菜赚钱");
+                if(null!=y) {
+                    AdbTools.tap(androidId,680,y);
+                    Thread.sleep(6000);
+                    AdbTools.tap(androidId, 970, 800);
+                    AdbTools.tap(androidId, 970, 880);
+                    AdbTools.tap(androidId, 970, 470);
+                    AdbTools.tap(androidId, 970, 460);
+                    for (int i = 0; i < 2; i++) {
+                        AdbTools.tap(androidId, 970, 300);
+                        AdbTools.tap(androidId, 540, 1260);
+                        AdbTools.tap(androidId, 540, 1360);
+                        Thread.sleep(2000);
+                    }
+                    AdbTools.tap(androidId, 973, 950);
+                    AdbTools.tap(androidId, 950, 840);
+                    AdbTools.tap(androidId, 950, 930);
+                    AdbTools.tap(androidId, 950, 2000);
+                    AdbTools.tap(androidId, 950, 2140);
+                    AdbTools.tap(androidId, 950, 2000);
+                    AdbTools.tap(androidId, 950, 2140);
+                    AdbTools.tap(androidId, 950, 2000);
+                    AdbTools.tap(androidId, 950, 2140);
+                    AdbTools.tap(androidId, 950, 2000);
+                    AdbTools.tap(androidId, 950, 2140);
+
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        AdbTools.tap(androidId, 990, 140);
+                    } else {
+                        AdbTools.tap(androidId, 1000, 130);
+                    }
+
+                    AdbTools.back(androidId);
+                }
+            } catch (Exception e) {
+                log.info("火山极速-种菜赚金币异常");
+            }
+       }
     }
 
     /**
@@ -402,6 +450,8 @@ public class App火山极速 {
      */
     public static java.util.List getBanner(){
         List<String> list = new ArrayList<>();
+        list.add("钱树");
+        list.add("种菜赚钱");
         list.add("首次邀请好友");
         list.add("0.5元微信提现");
         list.add("看视频赚海量金币");

@@ -24,11 +24,13 @@ public class AppTools {
      * todo 基础服务时间
      *
      */
-    public static void appTime(){
+    public static boolean appTime(){
+        boolean bool = false;
         int hour = LocalDateTime.now().getHour();
         if(hour!=0||hour!=1||hour!=2) {
-            return;
+          bool = true;
         }
+        return bool;
     }
 
     /**
@@ -40,6 +42,16 @@ public class AppTools {
         if(hour!=4||hour!=5||hour!=6) {
             return;
         }
+    }
+
+    public static void main(String[] args) {
+        int hour = LocalDateTime.now().getHour();
+        System.out.println(hour);
+        if(hour!=0||hour!=1||hour!=2) {
+            System.out.println(33333);
+            return;
+        }
+        System.out.println(11111);
     }
 
 

@@ -79,12 +79,12 @@ public class App抖音极速 {
 
      */
     public static void handle1(String androidId){
-        AppTools.appTime();
+        if(AppTools.appTime())return;
         log.info("抖音极速-签到");
         try {
 
 
-            AdbTools.back(androidId);
+
         } catch (Exception e) {
            log.info("抖音极速-签到异常");
         }
@@ -195,7 +195,7 @@ public class App抖音极速 {
             AdbTools.upPage(androidId);
             Integer y = OcrTools.getWordsInt(androidId,"限时任务赚金币");
             if(null!=y){
-                AdbTools.tap(androidId, 880, y);
+                AdbTools.tap(androidId, 220, y);
                 Thread.sleep(38000);
                 AdbTools.back(androidId);
             }
@@ -375,7 +375,7 @@ public class App抖音极速 {
         if(hour==8||hour==12||hour==18||hour==22) {
             log.info("抖音极速-吃饭");
             try {
-                AdbTools.back(androidId);
+
             } catch (Exception e) {
                 log.info("抖音极速-吃饭异常");
             }
