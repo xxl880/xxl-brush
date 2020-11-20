@@ -36,7 +36,7 @@ public class App火山极速 {
                 log.info("2.启动app");
                 AdbTools.startup(androidId, AppConstants.startup火山);
 
-             /*   handle2(androidId);*/
+                handle2(androidId);
 
                 log.info("3.清除");
                 clear(androidId);
@@ -49,10 +49,10 @@ public class App火山极速 {
                 log.info("3.清除");
                 clear(androidId);
 
-             /*   handle1(androidId);
+                handle1(androidId);
                 handle6(androidId);
                 handle9(androidId);
-                handle11(androidId);*/
+                handle11(androidId);
                 handle20(androidId);
                 handle21(androidId);
                 handle22(androidId);

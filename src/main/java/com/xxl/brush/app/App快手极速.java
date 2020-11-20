@@ -35,7 +35,7 @@ public class App快手极速 {
                 log.info("3.清除");
                 clear(androidId);
 
-              /*  handle2(androidId);*/
+                handle2(androidId);
 
                 if (androidId.equals(PhoneConstants.phone001)) {
                    AdbTools.tap(androidId, 100, 810);
