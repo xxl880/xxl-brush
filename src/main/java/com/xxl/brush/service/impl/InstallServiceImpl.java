@@ -1,13 +1,7 @@
 package com.xxl.brush.service.impl;
 
-import com.xxl.brush.app.*;
-import com.xxl.brush.app.medias.*;
-import com.xxl.brush.app.news.*;
-import com.xxl.brush.app.sports.*;
-import com.xxl.brush.service.AppService;
 import com.xxl.brush.service.InstallService;
 import com.xxl.brush.tools.AdbTools;
-import com.xxl.brush.tools.AppiumWindow;
 import lombok.SneakyThrows;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
@@ -38,9 +32,9 @@ public class InstallServiceImpl implements InstallService {
        	if(null!=files){
        		for(File file1:files){
 				String installStr = "adb -s " + androidId + " install " +file1.getAbsolutePath();
-				AdbTools.process(robot, installStr);
+				AdbTools.process(installStr);
 				robot.delay(2000);
-				AdbTools.process(robot,AdbTools.tap(androidId,300,1890));
+				AdbTools.tap(androidId,300,1890);
                 robot.delay(20000);
 			}
 		}

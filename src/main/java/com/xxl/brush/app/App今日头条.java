@@ -1,3 +1,4 @@
+/*
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
@@ -17,21 +18,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * todo App抖音
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
- */
+ *//*
+
 
 
 
 public class App今日头条 {
     private static Logger log = LoggerFactory.getLogger(App今日头条.class);
 
-    /**
+    */
+/**
      * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos
-     */
+     *//*
+
     public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
             try {
                 log.info("********************************今日头条操作********************************************");
@@ -72,31 +77,37 @@ public class App今日头条 {
 
 
 
-    /**
+    */
+/**
      * todo 退出
      * @param robot
 
-     */
+     *//*
+
     public static void quit(Robot robot, AndroidDriver driver){
 
     }
 
 
-    /**
+    */
+/**
      * todo 清除
      * @param robot
 
-     */
+     *//*
+
     public static void clear(Robot robot, AndroidDriver driver){
 
     }
 
 
-    /**
+    */
+/**
      * todo 1.签到
      * @param robot
 
-     */
+     *//*
+
     public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         AppTools.appTime();
             log.info("今日头条-签到");
@@ -118,37 +129,45 @@ public class App今日头条 {
     }
 
 
-    /**
+    */
+/**
      * todo 2.看视频
      * @param robot
-     */
+     *//*
+
     public static void handle2(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
 
-    /**
+    */
+/**
      * todo 3.看小视频
      * @param robot
-     */
+     *//*
+
     public static void handle3(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
 
-    /**
+    */
+/**
      * todo 4.看新闻
      * @param robot
-     */
+     *//*
+
     public static void handle4(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
 
-    /**
+    */
+/**
      * todo 5.看小说
      * @param robot
-     */
+     *//*
+
     public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         int hour = LocalDateTime.now().getHour();
             log.info("今日头条-看小说");
@@ -206,37 +225,45 @@ public class App今日头条 {
     }
 
 
-    /**
+    */
+/**
      * todo 6.看广告
      * @param robot
-     */
+     *//*
+
     public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
-    /**
+    */
+/**
      * todo 7.玩游戏
      * @param robot
-     */
+     *//*
+
     public static void handle7(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
 
-    /**
+    */
+/**
      * todo 8.领红包(操作流程：1-点击红包，2-看广告)
      * @param robot
-     */
+     *//*
+
     public static void handle8(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
 
 
-    /**
+    */
+/**
      * todo 9.开宝箱
      * @param robot
-     */
+     *//*
+
     public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("今日头条-开宝箱");
         try {
@@ -257,19 +284,23 @@ public class App今日头条 {
     }
 
 
-    /**
+    */
+/**
      * todo 10.抽奖
      * @param robot
-     */
+     *//*
+
     public static void handle10(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
 
-    /**
+    */
+/**
      * todo 11.睡觉
      * @param robot
-     */
+     *//*
+
     public static boolean handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         boolean bool = false;
         log.info("今日头条-睡觉");
@@ -316,10 +347,12 @@ public class App今日头条 {
         return  bool;
     }
 
-    /**
+    */
+/**
      * todo 12.走路
      * @param robot
-     */
+     *//*
+
     public static boolean handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         boolean  bool = false;
         log.info("今日头条-走路");
@@ -364,35 +397,43 @@ public class App今日头条 {
     }
 
 
-    /**
+    */
+/**
      * todo 13.喝水
      * @param robot
-     */
+     *//*
+
     public static void handle13(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
 
-    /**
+    */
+/**
      * todo 14.充电
      * @param robot
-     */
+     *//*
+
     public static void handle14(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
-    /**
+    */
+/**
      * todo 15.听歌曲
      * @param robot
-     */
+     *//*
+
     public static void handle15(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
-    /**
+    */
+/**
      * todo 16.吃饭
      * @param robot
-     */
+     *//*
+
     public static boolean handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         boolean bool = false;
         log.info("今日头条-吃饭");
@@ -429,34 +470,42 @@ public class App今日头条 {
        return  bool;
     }
 
-    /**
+    */
+/**
      * todo 17.分享
      * @param robot
-     */
+     *//*
+
     public static void handle17(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
-    /**
+    */
+/**
      * todo 18.摇钱树
      * @param robot
-     */
+     *//*
+
     public static void handle18(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
-    /**
+    */
+/**
      * todo 19.刮奖
      * @param robot
-     */
+     *//*
+
     public static void handle19(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
-    /**
+    */
+/**
      * todo 20.模拟开店赚钱
      * @param robot
-     */
+     *//*
+
     public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("今日头条-模拟开店赚钱");
         int hour = LocalDateTime.now().getHour();
@@ -506,10 +555,12 @@ public class App今日头条 {
 
     }
 
-    /**
+    */
+/**
      * todo 21.种菜赚金币
      * @param robot
-     */
+     *//*
+
     public static void handle21(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
         log.info("今日头条-种菜赚金币");
         int hour = LocalDateTime.now().getHour();
@@ -561,19 +612,23 @@ public class App今日头条 {
     }
 
 
-    /**
+    */
+/**
      * todo 22.搜索
      * @param robot
-     */
+     *//*
+
     public static void handle22(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
 
     }
 
 
-    /**
+    */
+/**
      * todo 获取横幅广告
      * @return
-     */
+     *//*
+
     public static java.util.List getBanner(){
         List<String> list = new ArrayList<>();
         list.add("看小说赚金币");
@@ -594,3 +649,4 @@ public class App今日头条 {
 }
 
 
+*/
