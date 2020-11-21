@@ -43,6 +43,8 @@ public class App今日头条 {
                 AdbTools.tap(androidId, 110, y);
                 handle4( androidId);
 
+                AdbTools.clear(androidId);
+
                 AdbTools.tap(androidId, 760, y);
                 handle1( androidId);
                 handle9( androidId);
@@ -91,16 +93,16 @@ public class App今日头条 {
     public static void handle1(String androidId){
         if(AppTools.appTime())return;
             log.info("今日头条-签到");
-            try {
-
-           /*     WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"看视频再\")");
-                wl1.click();
+        try {
+            Integer y = OcrTools.getWordsInt(androidId,"签到成功");
+            if(null!=y){
+                AdbTools.tap(androidId,540,y+800);
                 Thread.sleep(32000);
-
-                AdbTools.back(androidId);*/
-            } catch (Exception e) {
-                log.info("今日头条-签到异常");
+                AdbTools.back(androidId);
             }
+        } catch (Exception e) {
+            log.info("今日头条-签到异常");
+        }
     }
 
 

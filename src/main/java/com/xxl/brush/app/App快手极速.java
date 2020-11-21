@@ -33,6 +33,7 @@ public class App快手极速 {
                 AdbTools.startup( androidId, AppConstants.startup快手);
 
                 log.info("3.清除");
+                AdbTools.clear(androidId);
                 clear(androidId);
 
                 handle2(androidId);
@@ -87,8 +88,12 @@ public class App快手极速 {
         if(AppTools.appTime())return;
         log.info("快手极速-签到");
         try {
-
-
+            Integer y = OcrTools.getWordsInt(androidId,"今日签到");
+            if(null!=y) {
+                AdbTools.tap(androidId, 540, y + 580);
+                AdbTools.tap(androidId, 540, y + 580);
+                AdbTools.back(androidId);
+            }
         } catch (Exception e) {
             log.info("快手极速-签到异常");
         }

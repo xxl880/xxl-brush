@@ -265,13 +265,11 @@ public class AdbTools {
     /**
      * todo 20.清除
      */
-    public static void clear( AndroidDriver driver){
-        try{
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"设置青少年模式\").fromParent(text(\"我知道了\"))");
-            wl3.click();
-        }catch (Exception e){}
-
-
+    public static void clear( String androidId){
+        Integer y1 = OcrTools.getWordsInt(androidId,"我知道了");
+        if(null!=y1){
+            AdbTools.tap(androidId,540,y1);
+        }
     }
 
     /**

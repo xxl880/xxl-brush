@@ -33,6 +33,7 @@ public class App抖音极速 {
                 handle2(androidId);
 
                 log.info("3.清除");
+                AdbTools.clear(androidId);
                 clear(androidId);
 
                 if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
@@ -68,7 +69,20 @@ public class App抖音极速 {
      * @param androidId
      */
     public static void clear(String androidId){
+        try{
+            Integer y = OcrTools.getWordsInt(androidId,"立即升级");
+            if(null!=y){
+                AdbTools.tap(androidId,740,y);
+                Thread.sleep(6000);
+                Integer yy = OcrTools.getWordsInt(androidId,"继续安装");
+                AdbTools.tap(androidId,740,yy);
+                Thread.sleep(22000);
+                Integer yyy = OcrTools.getWordsInt(androidId,"打开");
+                AdbTools.tap(androidId,740,yyy);
+                Thread.sleep(6000);
+            }
 
+        }catch (Exception e){}
 
     }
 
@@ -82,9 +96,14 @@ public class App抖音极速 {
         if(AppTools.appTime())return;
         log.info("抖音极速-签到");
         try {
-
-
-
+            Integer y = OcrTools.getWordsInt(androidId,"30天");
+            if(null!=y){
+               AdbTools.tap(androidId,540,y+140);
+               Thread.sleep(2000);
+               AdbTools.tap(androidId,540,y+140);
+               Thread.sleep(32000);
+               AdbTools.back(androidId);
+            }
         } catch (Exception e) {
            log.info("抖音极速-签到异常");
         }

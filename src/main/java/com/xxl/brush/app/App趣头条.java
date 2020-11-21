@@ -43,7 +43,7 @@ public class App趣头条 {
                 AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
 
                 log.info("4.清除");
-                AdbTools.clear(driver);
+                AdbTools.clear(androidId);
 
                 clear(androidId, driver);
 

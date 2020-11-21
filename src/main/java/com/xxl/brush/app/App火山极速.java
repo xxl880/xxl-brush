@@ -47,6 +47,7 @@ public class App火山极速 {
                     AdbTools.tap(androidId, 680, 1950);
                 }
                 log.info("3.清除");
+                AdbTools.clear(androidId);
                 clear(androidId);
 
                 handle1(androidId);
@@ -99,12 +100,16 @@ public class App火山极速 {
     public static void handle1(String androidId){
         if(AppTools.appTime())return;
         log.info("火山极速-签到");
-            try {
-
-
-            } catch (Exception e) {
-                log.info("火山极速-签到异常");
+        try {
+            Integer y = OcrTools.getWordsInt(androidId,"看广告再领100金币");
+            if(null!=y){
+                AdbTools.tap(androidId,540,y);
+                Thread.sleep(32000);
+                AdbTools.back(androidId);
             }
+        } catch (Exception e) {
+            log.info("火山极速-签到异常");
+        }
     }
 
 
