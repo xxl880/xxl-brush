@@ -195,7 +195,7 @@ public class OcrTools {
 
 
     public static void main(String[] args) {
-        getWordsInt("a64d4bd","11111111111111111111");
+        getWordsInt(PhoneConstants.phone001,"11111111111111111111");
     }
 
 
