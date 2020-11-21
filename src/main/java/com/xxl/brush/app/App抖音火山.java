@@ -1,11 +1,8 @@
-/*
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
-import com.xxl.brush.tools.AdbTools;
-import com.xxl.brush.tools.AppTools;
-import com.xxl.brush.tools.AppiumTools;
-import com.xxl.brush.tools.RandomTools;
+import com.xxl.brush.constants.PhoneConstants;
+import com.xxl.brush.tools.*;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -16,55 +13,39 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-*/
-/**
- * todo App抖音火山
+ /** todo App抖音火山
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
- *//*
-
-
-
-
+*/
 public class App抖音火山 {
     private static Logger log = LoggerFactory.getLogger(App抖音火山.class);
 
-    */
-/**
-     * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
+/*     * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     *//*
-
-    public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
+     * 传相应的app_code对应的phoneCodeDtos*/
+    public static void circulate(String androidId){
 
             try {
                 log.info("********************************抖音火山操作********************************************");
 
                 log.info("1.初始化手机");
-                AdbTools.initMobile(robot, androidId);
+                AdbTools.initMobile(androidId);
 
                 log.info("2.启动app");
-                AdbTools.startup(robot, androidId, AppConstants.startup抖音火山);
+                AdbTools.startup(androidId, AppConstants.startup抖音火山);
 
-                log.info("3.启动appium");
-                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
+                clear(androidId);
+                log.info("3.清除");
+                AdbTools.clear(androidId);
 
-                AdbTools.clear(driver);
-                clear(robot, androidId, driver);
-                AdbTools.process(robot, AdbTools.tap(androidId, 270, 600));
+                clear(androidId);
+                AdbTools.tap(androidId, 270, 600);
 
-                handle2(robot, androidId, driver, map);
+                handle2(androidId);
 
-                clear(robot, androidId, driver);
-                if(handle1(robot, androidId, driver, map)){
-                    driver.runAppInBackground(Duration.ofSeconds(3));
-                    handle1(robot, androidId, driver, map);
-                }
+                clear(androidId);
+                handle1(androidId);
 
-                if(handle6(robot, androidId, driver, map)){
-                    driver.runAppInBackground(Duration.ofSeconds(3));
-                    handle6(robot, androidId, driver, map);
-                }
+                handle6(androidId);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -73,85 +54,72 @@ public class App抖音火山 {
 
 
 
-    */
 /**
      * todo 退出
-     * @param robot
-
-     *//*
-
-    public static void quit(Robot robot, AndroidDriver driver){
+     * @param
+ * */
+    public static void quit(String androidId){
 
     }
 
 
-    */
 /**
      * todo 清除
-     * @param robot
-
-     *//*
-
-    public static void clear(Robot robot, String androidId, AndroidDriver driver){
+     * @param androidId
+ * */
+    public static void clear(String androidId){
         try {
-            WebElement wl = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").textStartsWith(\"立即\")");
-            wl.click();
-            robot.delay(12000);
-            WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"继续安装\")");
-            wl2.click();
-            robot.delay(27000);
-            WebElement wl3 = driver.findElementByAndroidUIAutomator("className(\"android.widget.Button\").text(\"完成\")");
-            wl3.click();
-            AdbTools.wakeup(robot, androidId, AppConstants.startup抖音火山);
+            Integer yy = OcrTools.getWordsInt(androidId,"以后再说");
+            if(null!=yy){
+                AdbTools.tap(androidId,540, yy);
+                Thread.sleep(2000);
+            }
+
         }catch (Exception e){ }
     }
 
 
 
-    */
-/**
+/*
      * todo 1.签到
-     * @param robot
-
-     *//*
-
-    public static boolean handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-        boolean bool = false;
-        AppTools.appTime();
-        log.info("抖音火山-签到");
+     * @param androidId
+*/
+    public static void handle1(String androidId){
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0) {
+            log.info("抖音火山-签到");
             try {
-                AdbTools.process(robot, AdbTools.tap(androidId, 990, 290));
-                robot.delay(2000);
-                try {
-                    WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().textStartsWith(\"看广告视频再赚\")");
-                    wl2.click();
-                    robot.delay(32000);
-                } catch (Exception e) {
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    AdbTools.tap(androidId, 990, 300);
+                }else {
+                    AdbTools.tap(androidId, 990, 660);
                 }
-                AdbTools.process(robot, AdbTools.back(androidId));
+                Thread.sleep(2000);
+                Integer y = OcrTools.getWordsInt(androidId, "30天");
+                if (null != y) {
+                    AdbTools.tap(androidId, 540, y);
+                    Thread.sleep(36000);
+                    AdbTools.back(androidId);
+                }
             } catch (Exception e) {
-                bool = true;
                 log.info("抖音火山-签到异常");
             }
-            return bool;
+        }
     }
 
 
-    */
 /**
      * todo 2.看视频
-     * @param robot
-     *//*
-
-    public static void handle2(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+     * @param */
+    public static void handle2(String androidId){
         log.info("抖音火山-看视频");
         try {
             int x = RandomTools.init(8)+12;
             for (int a = 0; a < x; a++) {
-                robot.delay(RandomTools.init(8000));
-                AdbTools.process(robot, AdbTools.downPage(androidId));
+                Thread.sleep(RandomTools.init(8000));
+                AdbTools.downPage(androidId);
                 if (a == RandomTools.init(8)) {
-                    AdbTools.process(robot, AdbTools.upPage(androidId));
+                    AdbTools.upPage(androidId);
                 }
             }
         }catch (Exception e){
@@ -160,59 +128,35 @@ public class App抖音火山 {
     }
 
 
-    */
 /**
      * todo 3.看小视频
-     * @param robot
-     *//*
-
-    public static void handle3(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+     * @param */
+    public static void handle3(String androidId){
 
     }
 
-
-    */
-/**
-     * todo 4.看新闻
-     * @param robot
-     *//*
-
-    public static void handle4(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-
-    */
-/**
-     * todo 5.看小说
-     * @param robot
-     *//*
-
-    public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-
-    */
-/**
+/*
      * todo 6.看广告
-     * @param robot
-     *//*
-
-    public static boolean handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+     * @param
+*/
+    public static boolean handle6(String androidId){
         boolean bool = false;
         log.info("抖音火山-看广告");
         try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.tap(androidId, 990, 300);
+            }else {
+                AdbTools.tap(androidId, 990, 660);
+            }
 
-            AdbTools.process(robot, AdbTools.tap(androidId, 990, 290));
-            robot.delay(2000);
-
-            WebElement w2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"去领取\")");
-            w2.click();
-            robot.delay(32000);
-            AdbTools.process(robot, operateBack);
-            AdbTools.process(robot, operateBack);
+            Thread.sleep(2000);
+            Integer y = OcrTools.getWordsInt(androidId,"限时任务赚火苗");
+            if(null!=y){
+                AdbTools.tap(androidId,930,y+20);
+                Thread.sleep(32000);
+                AdbTools.back(androidId);
+                AdbTools.back(androidId);
+            }
         }catch (Exception e){
             bool = true;
             log.info("抖音火山-看广告异常");
@@ -220,162 +164,8 @@ public class App抖音火山 {
         return bool;
     }
 
-    */
-/**
-     * todo 7.玩游戏
-     * @param robot
-     *//*
-
-    public static void handle7(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-
-    */
-/**
-     * todo 8.领红包(操作流程：1-点击红包，2-看广告)
-     * @param robot
-     *//*
-
-    public static void handle8(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-
-
-    */
-/**
-     * todo 9.开宝箱
-     * @param robot
-     *//*
-
-    public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-
-    */
-/**
-     * todo 10.抽奖
-     * @param robot
-     *//*
-
-    public static void handle10(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-
-    */
-/**
-     * todo 11.睡觉
-     * @param robot
-     *//*
-
-    public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-    */
-/**
-     * todo 12.走路
-     * @param robot
-     *//*
-
-    public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-
-    }
-
-
-    */
-/**
-     * todo 13.喝水
-     * @param robot
-     *//*
-
-    public static void handle13(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-
-    */
-/**
-     * todo 14.充电
-     * @param robot
-     *//*
-
-    public static void handle14(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-    */
-/**
-     * todo 15.听歌曲
-     * @param robot
-     *//*
-
-    public static void handle15(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-    */
-/**
-     * todo 16.吃饭
-     * @param robot
-     *//*
-
-    public static void handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-
-
-    }
-
-    */
-/**
-     * todo 17.分享
-     * @param robot
-     *//*
-
-    public static void handle17(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-    */
-/**
-     * todo 18.摇钱树
-     * @param robot
-     *//*
-
-    public static void handle18(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-    */
-/**
-     * todo 19.刮奖
-     * @param robot
-     *//*
-
-    public static void handle19(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
-
-    }
-
-
-
-
-
-*/
-/*
-    public static void main(String args[]) throws AWTException {
-        Robot robot = new Robot();
-         handle(robot,"phone003");
-
-    }
-*//*
-
 
 
 }
 
 
-*/
