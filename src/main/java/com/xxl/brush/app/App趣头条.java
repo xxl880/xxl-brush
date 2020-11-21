@@ -107,7 +107,6 @@ public class App趣头条 {
 
 
     public static void clear( String androidId, AndroidDriver driver){
-        String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
         try{
             WebElement wl11 = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.kuaishou.nebula:id/login_dialog_cancel\")");
             wl11.click();
