@@ -249,7 +249,7 @@ public class App今日头条 {
                 AdbTools.tap(androidId, 930, 1950);
                 AdbTools.tap(androidId, 540, 1440);
             }else{
-                AdbTools.tap(androidId, 930, 1440);
+                AdbTools.tap(androidId, 930, 1740);
                 AdbTools.tap(androidId, 540, 1340);
             }
             Thread.sleep(32000);
