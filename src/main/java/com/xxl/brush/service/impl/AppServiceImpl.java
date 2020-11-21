@@ -42,11 +42,11 @@ public class AppServiceImpl implements AppService {
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 
 		//综合A
-    /* 	App抖音极速.circulate(androidId);*/
-		/*App火山极速.circulate(androidId);*/
-/*		App快手极速.circulate(androidId);*/
-	  	  App今日头条.circulate(androidId);
-		/*	App趣头条.circulate(androidId, port, systemPort, map);
+     	App抖音极速.circulate(androidId);
+		App火山极速.circulate(androidId);
+		App快手极速.circulate(androidId);
+	  	App今日头条.circulate(androidId);
+		App趣头条.circulate(androidId, port, systemPort);
 		AppQQ阅读.circulate(androidId);
 		App火山小说.circulate(androidId);
 		AppNOW直播.circulate(androidId);
@@ -56,10 +56,9 @@ public class AppServiceImpl implements AppService {
 			return;
 		}
 
-
-		App搜狗.circulate(androidId, port, systemPort, map);
-		App拼多多.circulate(androidId, port, systemPort, map);
-		App微博.circulate(androidId, port, systemPort, map);
+		App搜狗.circulate(androidId);
+		App拼多多.circulate(androidId);
+		App微博.circulate(androidId);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		if(duration.toMinutes()>60){
 			log.info("*****************运行多长时间*************"+duration.toMinutes());
@@ -68,9 +67,9 @@ public class AppServiceImpl implements AppService {
 
 
 		//综合B
-		App书旗.circulate(androidId, port, systemPort, map);
-		App番茄.circulate(androidId, port, systemPort, map);
-		App抖音火山.circulate(androidId, port, systemPort, map);
+		App书旗.circulate(androidId);
+		App番茄.circulate(androidId);
+		App抖音火山.circulate(androidId);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		if(duration.toMinutes()>60){
 			log.info("*****************运行多长时间*************"+duration.toMinutes());
@@ -78,42 +77,42 @@ public class AppServiceImpl implements AppService {
 		}
 
 
-		App米读.circulate(androidId, port, systemPort, map);
-		App必看小说.circulate(androidId, port, systemPort, map);
-		App牛角.circulate(androidId, port, systemPort, map);
+		App米读.circulate(androidId);
+		App必看小说.circulate(androidId);
+		App牛角.circulate(androidId);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		if(duration.toMinutes()>60){
 		  log.info("*****************运行多长时间*************"+duration.toMinutes());
           return;
 		}
 
-*//*		App2345浏览器.circulate(androidId, port, systemPort, map);*//*
+/*		App2345浏览器.circulate(androidId);*//*
 
-		App晴象浏览器.circulate(androidId, port, systemPort, map);
-		App晴象浏览器.circulate1(androidId, port, systemPort, map);
+		App晴象浏览器.circulate(androidId);
+		App晴象浏览器.circulate1(androidId);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		if(duration.toMinutes()>60){
 			log.info("*****************运行多长时间*************"+duration.toMinutes());
 			return;
 		}
 
-		App晴象浏览器.circulate2(androidId, port, systemPort, map);
-		App晴象浏览器.circulate3(androidId, port, systemPort, map);
+		App晴象浏览器.circulate2(androidId);
+		App晴象浏览器.circulate3(androidId);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		if(duration.toMinutes()>60){
 			log.info("*****************运行多长时间*************"+duration.toMinutes());
 			return;
 		}
 
-		App晴象浏览器.circulate4(androidId, port, systemPort, map);
-		App晴象浏览器.circulate5(androidId, port, systemPort, map);
+		App晴象浏览器.circulate4(androidId);
+		App晴象浏览器.circulate5(androidId);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		if(duration.toMinutes()>60){
 			log.info("*****************运行多长时间*************"+duration.toMinutes());
 			return;
 		}
-		App晴象浏览器.circulate6(androidId, port, systemPort, map);
-		App晴象浏览器.circulate7(androidId, port, systemPort, map);
+		App晴象浏览器.circulate6(androidId);
+		App晴象浏览器.circulate7(androidId);
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 		if(duration.toMinutes()>60){
 			log.info("*****************运行多长时间*************"+duration.toMinutes());
@@ -121,38 +120,38 @@ public class AppServiceImpl implements AppService {
 		}
 */
 		/*//-视频
-		App刷宝.circulate(androidId, port, systemPort, map);
-		App小吃货.circulate(androidId, port, systemPort, map);
-		App火火.circulate(androidId, port, systemPort, map);
-		App红包.circulate(androidId, port, systemPort, map);
-		App彩蛋.circulate(androidId, port, systemPort, map);
-		App热火.circulate(androidId, port, systemPort, map);
-		App长豆.circulate(androidId, port, systemPort, map);
+		App刷宝.circulate(androidId);
+		App小吃货.circulate(androidId);
+		App火火.circulate(androidId);
+		App红包.circulate(androidId);
+		App彩蛋.circulate(androidId);
+		App热火.circulate(androidId);
+		App长豆.circulate(androidId);
 
 		//-新闻
-		App微鲤看看.circulate(androidId, port, systemPort, map);
-		App快看点.circulate(androidId, port, systemPort, map);
-		App悦头条.circulate(androidId, port, systemPort, map);
-		App惠头条.circulate(androidId, port, systemPort, map);
-		App有料看看.circulate(androidId, port, systemPort, map);
-		App点点.circulate(androidId, port, systemPort, map);
-		App聚看点.circulate(androidId, port, systemPort, map);
-		App蚂蚁看点.circulate(androidId, port, systemPort, map);
-		App赚钱阅文赚.circulate(androidId, port, systemPort, map);
-		App趣故事.circulate(androidId, port, systemPort, map);
+		App微鲤看看.circulate(androidId);
+		App快看点.circulate(androidId);
+		App悦头条.circulate(androidId);
+		App惠头条.circulate(androidId);
+		App有料看看.circulate(androidId);
+		App点点.circulate(androidId);
+		App聚看点.circulate(androidId);
+		App蚂蚁看点.circulate(androidId);
+		App赚钱阅文赚.circulate(androidId);
+		App趣故事.circulate(androidId);
 
 		//-走路
-		App一起来走路.circulate(androidId, port, systemPort, map);
-		App乐步.circulate(androidId, port, systemPort, map);
-		App多多步.circulate(androidId, port, systemPort, map);
-		App多宝.circulate(androidId, port, systemPort, map);
-		App步多多.circulate(androidId, port, systemPort, map);
-		App步数赚零钱.circulate(androidId, port, systemPort, map);
-		App步步多.circulate(androidId, port, systemPort, map);
-		App步步宝.circulate(androidId, port, systemPort, map);
-		App计步赚钱.circulate(androidId, port, systemPort, map);
-		App走走赚.circulate(androidId, port, systemPort, map);
-		App走路赚钱.circulate(androidId, port, systemPort, map);
+		App一起来走路.circulate(androidId);
+		App乐步.circulate(androidId);
+		App多多步.circulate(androidId);
+		App多宝.circulate(androidId);
+		App步多多.circulate(androidId);
+		App步数赚零钱.circulate(androidId);
+		App步步多.circulate(androidId);
+		App步步宝.circulate(androidId);
+		App计步赚钱.circulate(androidId);
+		App走走赚.circulate(androidId);
+		App走路赚钱.circulate(androidId);
 */
 /*		appiumWindow.stopServer();*/
 
