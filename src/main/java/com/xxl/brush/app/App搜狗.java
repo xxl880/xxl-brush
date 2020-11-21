@@ -1,43 +1,30 @@
-/*
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppTools;
-import com.xxl.brush.tools.AppiumTools;
+import com.xxl.brush.tools.OcrTools;
 import com.xxl.brush.tools.RandomTools;
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-*/
-/**
+/*
+*
  * todo App搜狗
- * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
- *//*
-
-
-
-
+ * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)*/
 public class App搜狗 {
     private static Logger log = LoggerFactory.getLogger(App搜狗.class);
 
-    */
 /**
      * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
-     * 传相应的app_code对应的phoneCodeDtos
-     *//*
-
-    public static void circulate(Robot robot,String androidId,int port,int systemPort, Map<String,Integer> map){
-        AppTools.appTime();
+     * 传相应的app_code对应的phoneCodeDtos*/
+    public static void circulate(String androidId){
+        if(AppTools.appTime())return;
             try {
                 log.info("********************************搜狗操作********************************************");
                 log.info("1.初始化手机");
@@ -46,26 +33,19 @@ public class App搜狗 {
                 log.info("2.启动app");
                 AdbTools.startup(androidId, AppConstants.startup搜狗);
 
-                log.info("3.启动appium");
-                AndroidDriver driver = AppiumTools.init(androidId, port, systemPort);
-                AdbTools.clear(driver);
-                try {
-                    WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
-                    wl.click();
-                } catch (Exception e) {
-                    AdbTools.tap(androidId, 540, 1960);
+                log.info("3.清除");
+                AdbTools.clear(androidId);
+
+                int y = 1960;
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    y = 2140;
                 }
-                try {
-                    WebElement wl = driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"sogou.mobile.explorer.speed:id/adz\")");
-                    wl.click();
-                } catch (Exception e) {
-                   AdbTools.tap(androidId, 540, 1960);
-                }
+                AdbTools.tap(androidId, 540, y);
                 AdbTools.tap(androidId, 900, 160);
 
-                handle1(robot, androidId, driver, map);
-                handle20(robot, androidId, driver, map);
-                handle4(robot, androidId, driver, map);
+                handle1(androidId);
+                handle20(androidId);
+                handle4(androidId);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -74,136 +54,109 @@ public class App搜狗 {
     }
 
 
+/*
 
-    */
-/**
+*
      * todo 退出
      * @param robot
-
-     *//*
-
-    public static void quit(Robot robot, AndroidDriver driver){
+*/
+    public static void quit(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 清除
      * @param robot
-
-     *//*
-
-    public static void clear(Robot robot, AndroidDriver driver){
+*/
+    public static void clear(String androidId){
 
     }
 
 
-
-    */
-/**
+/*
+*
      * todo 1.签到
      * @param robot
-
-     *//*
-
-    public static void handle1(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle1(String androidId){
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0) {
             log.info("搜狗-签到");
             try {
                 AdbTools.upPage(androidId);
-                AdbTools.upPage(androidId);
-                try {
-                    WebElement wl1 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第1次\")");
-                    wl1.click();
-                } catch (Exception e) {
-                }
-                try {
-                    WebElement wl2 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第2次\")");
-                    wl2.click();
-                } catch (Exception e) {
-                }
-                try {
-                    WebElement wl3 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第3次\")");
-                    wl3.click();
-                } catch (Exception e) {
-                }
-                try {
-                    WebElement wl4 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第4次\")");
-                    wl4.click();
-                } catch (Exception e) {
-                }
-                try {
-                    WebElement wl5 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第5次\")");
-                    wl5.click();
-                } catch (Exception e) {
-                }
-                try {
-                    WebElement wl6 = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"第6次\")");
-                    wl6.click();
-                } catch (Exception e) {
-                }
-                try {
-                    WebElement wl7 = driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"次最高可领98元\")");
-                    wl7.click();
-                } catch (Exception e) {
+                AdbTools.tap(androidId,180,540);
+                AdbTools.tap(androidId,410,540);
+                AdbTools.tap(androidId,650,540);
+                AdbTools.tap(androidId,880,540);
+
+                AdbTools.tap(androidId,180,840);
+                AdbTools.tap(androidId,410,840);
+                AdbTools.tap(androidId,780,840);
+
+                Integer y = OcrTools.getWordsInt(androidId,"立即查看");
+                if(null!=y){
+                  AdbTools.tap(androidId,540,y);
                 }
 
             } catch (Exception e) {
                 log.info("搜狗-签到异常");
             }
+        }
     }
 
 
-    */
-/**
+/*
+*
      * todo 2.看视频
      * @param robot
-     *//*
-
-    public static void handle2(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle2(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 3.看小视频
      * @param robot
-     *//*
-
-    public static void handle3(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle3(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 4.看新闻
      * @param robot
-     *//*
-
-    public static void handle4(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle4(String androidId){
         log.info("搜狗-看新闻");
         try {
             AdbTools.upPage(androidId);
-            try {
-                WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取红包\")");
-                wl1.click();
-            }catch (Exception e){
-                WebElement wl2 = null;
-                try {
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去阅读\")");
-                }catch (Exception e1){
-                    wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"继续阅读\")");
+            Integer y = OcrTools.getWordsInt(androidId,"认真完整阅读");
+            if(null!=y){
+                AdbTools.tap(androidId,910,y-70);
+                Thread.sleep(2000);
+                for(int i= 0;i<8;i++) {
+                    AdbTools.tap(androidId, 540, 1000);
+                    int x = RandomTools.init(6) + 6;
+                    for (int a = 0; a < x; a++) {
+                        Thread.sleep(RandomTools.init(15000) + 6000);
+                        AdbTools.down(androidId);
+                    }
+                    AdbTools.back(androidId);
                 }
-                wl2.click();
-                AdbTools.tap(androidId, 540, 1000);
-                int x = RandomTools.init(8);
-                for (int a = 0; a < x; a++) {
-                    robot.delay(RandomTools.init(15000));
-                    AdbTools.down(androidId);
+
+                int yy = 1960;
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    yy = 2140;
                 }
-                AdbTools.back(androidId);
+                AdbTools.tap(androidId, 540, yy);
+                AdbTools.tap(androidId, 900, 160);
+                AdbTools.tap(androidId,910,y-70);
             }
         }catch (Exception e){
             log.info("搜狗-看新闻异常");
@@ -211,191 +164,166 @@ public class App搜狗 {
     }
 
 
-    */
-/**
+/*
+*
      * todo 5.看小说
      * @param robot
-     *//*
-
-    public static void handle5(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle5(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 6.看广告
      * @param robot
-     *//*
 
-    public static void handle6(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle6(String androidId){
 
 
     }
 
-    */
-/**
+/*
+*
      * todo 7.玩游戏
      * @param robot
-     *//*
-
-    public static void handle7(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle7(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 8.领红包(操作流程：1-点击红包，2-看广告)
      * @param robot
-     *//*
-
-    public static void handle8(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle8(String androidId){
 
     }
 
 
 
-    */
-/**
+/*
+*
      * todo 9.开宝箱
      * @param robot
-     *//*
 
-    public static void handle9(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle9(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 10.抽奖
      * @param robot
-     *//*
-
-    public static void handle10(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle10(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 11.睡觉
      * @param robot
-     *//*
-
-    public static void handle11(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle11(String androidId){
 
     }
 
-    */
-/**
+/*
+*
      * todo 12.走路
      * @param robot
-     *//*
-
-    public static void handle12(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle12(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 13.喝水
      * @param robot
-     *//*
-
-    public static void handle13(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle13(String androidId){
 
     }
 
 
-    */
-/**
+/*
+*
      * todo 14.充电
      * @param robot
-     *//*
-
-    public static void handle14(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle14(String androidId){
 
     }
 
-    */
-/**
+/*
+*
      * todo 15.听歌曲
      * @param robot
-     *//*
-
-    public static void handle15(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle15(String androidId){
 
     }
 
-    */
-/**
+/*
+*
      * todo 16.吃饭
      * @param robot
-     *//*
-
-    public static void handle16(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle16(String androidId){
 
 
 
     }
 
-    */
-/**
+/*
+*
      * todo 17.分享
      * @param robot
-     *//*
-
-    public static void handle17(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle17(String androidId){
 
     }
 
-    */
-/**
+/*
+*
      * todo 18.摇钱树
      * @param robot
-     *//*
-
-    public static void handle18(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle18(String androidId){
 
     }
 
-    */
-/**
+/*
+*
      * todo 19.刮奖
      * @param robot
-     *//*
-
-    public static void handle19(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle19(String androidId){
 
     }
 
-    */
-/**
+/*
+*
      * todo 20.搜索
      * @param robot
-     *//*
-
-    public static void handle20(Robot robot,String androidId,  AndroidDriver driver, Map<String,Integer> map){
+*/
+    public static void handle20(String androidId){
             log.info("搜狗-搜索");
             try {
-                robot.delay(1000);
-
                AdbTools.upPage(androidId);
-                try {
-                    WebElement wl1 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"领取红包\")");
-                    wl1.click();
-                } catch (Exception e) {
-                    WebElement wl2 = null;
-                    try {
-                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"去搜索\")");
-                    } catch (Exception e1) {
-                        wl2 = driver.findElementByAndroidUIAutomator("className(\"android.view.View\").text(\"继续搜索\")");
-                    }
-                    wl2.click();
-
+                Integer y = OcrTools.getWordsInt(androidId,"去搜索框");
+                if(null!=y){
+                    AdbTools.tap(androidId,910,y-70);
                     for (int i = 0; i < 6; i++) {
                         List<String> list = new ArrayList();
                         list.add("ligangjianying");
@@ -427,12 +355,17 @@ public class App搜狗 {
                         list.add("haogaowuyuan");
                         AdbTools.tap(androidId, 540, 136);
                         AdbTools.text(androidId, list.get(RandomTools.init(23)));
-                        robot.delay(1000);
+                        Thread.sleep(1000);
                         AdbTools.tap(androidId, 1000, 136);
-                        robot.delay(1000);
+                        Thread.sleep(1000);
                         AdbTools.tap(androidId, 540, 680);
                     }
-
+                    int yy = 1960;
+                    if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                        yy = 2140;
+                    }
+                    AdbTools.tap(androidId, 540, yy);
+                    AdbTools.tap(androidId, 900, 160);
                 }
             } catch (Exception e) {
                 log.info("搜狗-搜索异常");
@@ -442,18 +375,7 @@ public class App搜狗 {
 
 
 
-*/
-/*
-    public static void main(String args[]) throws AWTException {
-        Robot robot = new Robot();
-         handle(robot,"phone003");
-
-    }
-*//*
-
-
 
 }
 
 
-*/
