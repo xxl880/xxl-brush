@@ -82,7 +82,7 @@ public class App搜狗 {
 */
     public static void handle1(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0) {
+        if(hour==0||AppTools.isTest()) {
             log.info("搜狗-签到");
             try {
                 AdbTools.upPage(androidId);

@@ -87,7 +87,7 @@ public class App书旗 {
     @SneakyThrows
     public static void handle1(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0){
+        if(hour==0||AppTools.isTest()){
             try{
                 log.info("书旗小说-签到");
                 Integer y = OcrTools.getWordsInt(androidId,"看视频");
@@ -135,7 +135,7 @@ public class App书旗 {
 
     public static void handle17(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==1){
+        if(hour==1||AppTools.isTest()){
             log.info("书旗小说-分享");
             try {
                 AdbTools.downPage(androidId);

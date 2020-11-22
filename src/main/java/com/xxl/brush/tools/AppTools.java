@@ -2,6 +2,7 @@ package com.xxl.brush.tools;
 
 import com.xxl.brush.constants.PhoneConstants;
 import io.appium.java_client.android.AndroidDriver;
+import io.swagger.models.auth.In;
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -21,6 +22,17 @@ public class AppTools {
     private static final Logger log = LoggerFactory.getLogger(AppTools.class);
 
     /**
+     * todo 是否进行测试 true-表示进行测试，任何时间都可以进行运行; false-不进行测试，只有在规定时间内运行
+     * 默认是false
+     * @return
+     */
+    public static boolean isTest(){
+        boolean bool = false;
+
+        return bool;
+    }
+
+    /**
      * todo 基础服务时间
      *
      */
@@ -29,6 +41,9 @@ public class AppTools {
         int hour = LocalDateTime.now().getHour();
         if(hour!=0||hour!=1||hour!=2) {
           bool = true;
+        }
+        if(isTest()){
+            bool= true;
         }
         return bool;
     }

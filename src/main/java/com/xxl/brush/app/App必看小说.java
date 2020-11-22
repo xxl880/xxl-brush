@@ -104,7 +104,7 @@ public class App必看小说 {
      * @param */
     public static void handle5(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==1) {
+        if(hour==1||AppTools.isTest()) {
             log.info("必看小说-看小说");
             try {
                 int y = 1950;

@@ -8,11 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
-
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 /*
 
 *
@@ -157,7 +154,7 @@ public class App趣头条 {
 
 
     public static void handle1(String androidId,  AndroidDriver driver){
-        AppTools.appTime();
+        if(AppTools.appTime())return;
             log.info("趣头条-签到");
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
@@ -181,7 +178,6 @@ public class App趣头条 {
     public static void handle2(String androidId,  AndroidDriver driver){
         log.info("趣头条-看视频");
         try {
-            String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
              Thread.sleep(2000);
             try {
                 WebElement wl2 = driver.findElementByAndroidUIAutomator("className(\"android.widget.TextView\").text(\"继续播放\")");
@@ -260,7 +256,7 @@ public class App趣头条 {
 
 
     public static void handle5(String androidId,  AndroidDriver driver){
-        AppTools.appTime();
+        if(AppTools.appTime())return;
             log.info("趣头条-看小说");
             try {
                 AdbTools.upPage(androidId);
@@ -445,7 +441,7 @@ public class App趣头条 {
     public static void handle11(String androidId,  AndroidDriver driver){
         log.info("趣头条-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==22) {
+        if(hour==22||AppTools.isTest()) {
             try {
                 int y = 1860;
                 if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
@@ -566,7 +562,7 @@ public class App趣头条 {
     public static void handle18(String androidId,  AndroidDriver driver){
         log.info("趣头条-摇钱树");
         int hour = LocalDateTime.now().getHour();
-        if(hour==20) {
+        if(hour==20||AppTools.isTest()) {
             try {
                 String operateBack = "adb -s " + androidId + " shell input keyevent BACK";
                 init(androidId, driver);

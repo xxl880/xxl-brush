@@ -187,7 +187,7 @@ public class AppQQ阅读 {
      */
     public static void handle6(String androidId) {
         int hour = LocalDateTime.now().getHour();
-        if(hour==12) {
+        if(hour==12||AppTools.isTest()) {
             log.info("QQ阅读-看广告");
             try {
                 AdbTools.downPage(androidId);

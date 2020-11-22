@@ -86,7 +86,7 @@ public class App抖音火山 {
 */
     public static void handle1(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0) {
+        if(hour==0||AppTools.isTest()) {
             log.info("抖音火山-签到");
             try {
                 if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){

@@ -75,7 +75,7 @@ public class App微博 {
      * @param */
     public static void handle1(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0) {
+        if(hour==0||AppTools.isTest()) {
             log.info("微博-签到");
             try {
                 int yy = 1950;

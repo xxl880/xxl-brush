@@ -155,7 +155,7 @@ public class App抖音极速 {
      */
     public static void handle5(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==20) {
+        if(hour==20||AppTools.isTest()) {
             log.info("抖音极速-看小说");
             try {
                 int appy =1950;
@@ -284,7 +284,7 @@ public class App抖音极速 {
      */
     public static void handle11(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==6||hour==22) {
+        if(hour==6||hour==22||AppTools.isTest()) {
             log.info("抖音极速-睡觉");
             int yy = 1850;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
@@ -327,7 +327,7 @@ public class App抖音极速 {
      */
     public static void handle12(String androidId){
        int hour = LocalDateTime.now().getHour();
-       if(hour==23) {
+       if(hour==23||AppTools.isTest()) {
            log.info("抖音极速-走路");
             try {
                 Integer y = OcrTools.getWordsInt(androidId,"走路赚金币");
@@ -385,7 +385,7 @@ public class App抖音极速 {
      */
     public static void handle16(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==8||hour==12||hour==18||hour==22) {
+        if(hour==8||hour==12||hour==18||hour==22||AppTools.isTest()) {
             log.info("抖音极速-吃饭");
             try {
 

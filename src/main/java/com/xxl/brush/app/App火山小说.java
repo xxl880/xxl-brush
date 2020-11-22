@@ -83,7 +83,7 @@ public class App火山小说 {
      */
     public static void handle1(String androidId) {
         int hour = LocalDateTime.now().getHour();
-        if(hour==0) {
+        if(hour==0||AppTools.isTest()) {
             log.info("火山小说-签到");
             try {
                 AdbTools.upPage(androidId);
@@ -159,7 +159,7 @@ public class App火山小说 {
      */
     public static void handle6(String androidId) {
         int hour = LocalDateTime.now().getHour();
-        if(hour==1) {
+        if(hour==1||AppTools.isTest()) {
             log.info("火山小说-看广告");
             try {
                 AdbTools.downPage(androidId);

@@ -241,7 +241,7 @@ public class App火山极速 {
     public static void handle11(String androidId){
         log.info("火山极速-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==6||hour==22) {
+        if(hour==6||hour==22||AppTools.isTest()) {
             int yy = 1850;
             if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                yy = 2050;
@@ -340,7 +340,7 @@ public class App火山极速 {
      */
     public static void handle20(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==4||hour==14) {
+        if(hour==4||hour==14||AppTools.isTest()) {
             log.info("火山极速-晒收入");
             try {
                 AdbTools.downPage(androidId);
@@ -368,7 +368,7 @@ public class App火山极速 {
      */
     public static void handle21(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==1||hour==15) {
+        if(hour==1||hour==15||AppTools.isTest()) {
             log.info("火山极速-摇钱树");
             try {
                 AdbTools.upPage(androidId);
@@ -405,7 +405,7 @@ public class App火山极速 {
     public static void handle22(String androidId){
         log.info("火山极速-种菜赚金币");
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==4||hour==16) {
+        if(hour==0||hour==4||hour==16||AppTools.isTest()) {
             try {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);

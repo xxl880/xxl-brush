@@ -1,4 +1,3 @@
-
 package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
@@ -6,7 +5,6 @@ import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.OcrTools;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +25,7 @@ public class AppNOW直播 {
      */
 
     public static void circulate(String androidId) {
-        AppTools.appTime();
+        if(AppTools.appTime())return;
         try {
             log.info("********************************NOW直播操作********************************************");
 

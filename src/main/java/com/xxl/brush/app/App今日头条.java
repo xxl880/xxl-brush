@@ -161,7 +161,7 @@ public class App今日头条 {
 
     public static void handle5(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==10||hour==13||hour==18){
+        if(hour==10||hour==13||hour==18||AppTools.isTest()){
             log.info("今日头条-看小说");
             try {
                 AdbTools.down(androidId);
@@ -283,7 +283,7 @@ public class App今日头条 {
     public static void handle11(String androidId){
         log.info("今日头条-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==8||hour==22) {
+        if(hour==8||hour==22||AppTools.isTest()) {
             try {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
@@ -332,7 +332,7 @@ public class App今日头条 {
         boolean  bool = false;
         log.info("今日头条-走路");
         int hour = LocalDateTime.now().getHour();
-        if(hour==18||hour==23) {
+        if(hour==18||hour==23||AppTools.isTest()) {
             try {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
@@ -409,7 +409,7 @@ public class App今日头条 {
 
     public static void handle16(String androidId){
         int hour = LocalDateTime.now().getHour();
-       if(hour==8||hour==12||hour==18||hour==22) {
+       if(hour==8||hour==12||hour==18||hour==22||AppTools.isTest()) {
            log.info("今日头条-吃饭");
             try {
                 AdbTools.upPage(androidId);
@@ -488,7 +488,7 @@ public class App今日头条 {
     public static void handle20(String androidId){
         log.info("今日头条-模拟开店赚钱");
         int hour = LocalDateTime.now().getHour();
-       if(hour==6||hour==18) {
+       if(hour==6||hour==18||AppTools.isTest()) {
             try {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
@@ -539,7 +539,7 @@ public class App今日头条 {
     public static void handle21(String androidId){
         log.info("今日头条-种菜赚金币");
         int hour = LocalDateTime.now().getHour();
-        if(hour==5||hour==18) {
+        if(hour==5||hour==18||AppTools.isTest()) {
             try {
                 WebElement wl2 = null;
                 AdbTools.upPage(androidId);
