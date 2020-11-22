@@ -86,7 +86,7 @@ public class AppServiceImpl implements AppService {
           return;
 		}
 
-/*		App2345浏览器.circulate(androidId);*//*
+/*		App2345浏览器.circulate(androidId);*/
 
 		App晴象浏览器.circulate(androidId);
 		App晴象浏览器.circulate1(androidId);
@@ -118,7 +118,7 @@ public class AppServiceImpl implements AppService {
 			log.info("*****************运行多长时间*************"+duration.toMinutes());
 			return;
 		}
-*/
+
 		/*//-视频
 		App刷宝.circulate(androidId);
 		App小吃货.circulate(androidId);
