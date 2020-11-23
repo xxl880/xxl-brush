@@ -36,7 +36,7 @@ public class App快手极速 {
                 AdbTools.clear(androidId);
                 clear(androidId);
 
-                handle2(androidId);
+               /* handle2(androidId);*/
 
                 if (androidId.equals(PhoneConstants.phone001)) {
                     AdbTools.tap(androidId, 80, 150);
@@ -122,9 +122,24 @@ public class App快手极速 {
                 }
                 AdbTools.back(androidId);
             }
+
+
             Integer yy = OcrTools.getWordsInt(androidId,"快去签到");
             if(null!=yy) {
                 AdbTools.tap(androidId, 930, yy-30);
+                Thread.sleep(1000);
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    AdbTools.tap(androidId, 540, 1600);
+                }else {
+                    AdbTools.tap(androidId, 540, 1520);
+                }
+                AdbTools.back(androidId);
+            }
+
+            AdbTools.upPage(androidId);
+            Integer yyy = OcrTools.getWordsInt(androidId,"快去签到");
+            if(null!=yyy) {
+                AdbTools.tap(androidId, 930, yyy-30);
                 Thread.sleep(1000);
                 if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                     AdbTools.tap(androidId, 540, 1600);
