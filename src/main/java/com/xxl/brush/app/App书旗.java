@@ -57,11 +57,11 @@ public class App书旗 {
 */
     public static void quit(String androidId){
         if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-            AdbTools.tap(androidId, 100, 170);
-            AdbTools.tap(androidId, 970, 170);
+            AdbTools.tap(androidId, 106, 150);
+            AdbTools.tap(androidId, 975, 150);
         }else {
-            AdbTools.tap(androidId, 100, 100);
-            AdbTools.tap(androidId, 970, 100);
+            AdbTools.tap(androidId, 106, 70);
+            AdbTools.tap(androidId, 975, 70);
         }
     }
 
@@ -86,21 +86,26 @@ public class App书旗 {
 */
     @SneakyThrows
     public static void handle1(String androidId){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==0||AppTools.isTest()){
             try{
                 log.info("书旗小说-签到");
-                Integer y = OcrTools.getWordsInt(androidId,"看视频");
+                Integer y = OcrTools.getWordsInt(androidId,"签到成功");
+                if(null==y){
+                    y = OcrTools.getWordsInt(androidId,"30天");
+                }
+
                 if(null!=y){
-                   AdbTools.tap(androidId,540, y);
-                    Thread.sleep(32000);
+                    if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                        AdbTools.tap(androidId,540, 1560);
+                    }else{
+                        AdbTools.tap(androidId,540, 1420);
+                    }
+                    Thread.sleep(30000);
                     Thread.sleep(32000);
                     quit(androidId);
                 }
             } catch (Exception e) {
                 log.info("书旗小说-签到异常");
             }
-        }
     }
 
 
@@ -111,8 +116,13 @@ public class App书旗 {
     public static void handle6(String androidId){
         log.info("书旗小说-看广告");
         try{
-            AdbTools.upPage(androidId);
+            handle1(androidId);
             Integer y = OcrTools.getWordsInt(androidId,"已有100万");
+            if(null==y){
+                AdbTools.upPage(androidId);
+                y = OcrTools.getWordsInt(androidId,"已有100万");
+            }
+
             if(null!=y){
                 for(int i=0;i<10;i++) {
                     Thread.sleep(1000);
@@ -131,8 +141,6 @@ public class App书旗 {
 
 /*     * todo 17.分享
      * @param robot*/
-
-
     public static void handle17(String androidId){
         int hour = LocalDateTime.now().getHour();
         if(hour==1||AppTools.isTest()){
@@ -143,7 +151,7 @@ public class App书旗 {
                 if(null!=y){
                     AdbTools.tap(androidId,540,y-60);
                     Integer y1 = OcrTools.getWordsInt(androidId,"微信好友");
-                    AdbTools.tap(androidId,190, y1);
+                    AdbTools.tap(androidId,190, y1-130);
                     Thread.sleep(2000);
                     AdbTools.back(androidId);
                 }
