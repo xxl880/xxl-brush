@@ -30,7 +30,7 @@ public class App抖音极速 {
                 log.info("2.启动app");
                 AdbTools.startup(androidId, AppConstants.startup抖音);
 
-                /*handle2(androidId);*/
+                handle2(androidId);
 
                 log.info("3.清除");
                 AdbTools.clear(androidId);
@@ -42,8 +42,8 @@ public class App抖音极速 {
                     AdbTools.tap(androidId, 540, 1950);
                 }
 
-               /* handle1(androidId);*/
-                /* handle9(androidId);*/
+                handle1(androidId);
+                handle9(androidId);
                 handle6(androidId);
                 handle11(androidId);
                 handle12(androidId);
