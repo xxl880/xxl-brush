@@ -251,7 +251,7 @@ public class App抖音极速 {
 
             if(null!=y){
                 AdbTools.tap(androidId, 220, y);
-                Thread.sleep(38000);
+                Thread.sleep(42000);
                 int yy = 90;
                 if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                     yy = 130;
