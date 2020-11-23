@@ -27,7 +27,7 @@ public class AppTools {
      * @return
      */
     public static boolean isTest(){
-        boolean bool = false;
+        boolean bool = true;
 
         return bool;
     }
@@ -43,7 +43,56 @@ public class AppTools {
           bool = true;
         }
         if(isTest()){
-            bool= true;
+            bool= false;
+        }
+        return bool;
+    }
+
+
+    /**
+     * todo 视频时间
+     *
+     */
+    public static boolean appMediasTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=0||hour!=1||hour!=2) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
+    }
+
+    /**
+     * todo 新闻时间
+     *
+     */
+    public static boolean appNewsTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=0||hour!=1||hour!=2) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
+    }
+
+    /**
+     * todo 运动时间
+     *
+     */
+    public static boolean appSportsTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=0||hour!=1||hour!=2) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
         }
         return bool;
     }
