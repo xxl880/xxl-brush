@@ -39,13 +39,36 @@ public class App快手极速 {
                 handle2(androidId);
 
                 if (androidId.equals(PhoneConstants.phone001)) {
-                   AdbTools.tap(androidId, 100, 810);
+                    AdbTools.tap(androidId, 80, 150);
+                    Thread.sleep(2000);
+                    Integer y = OcrTools.getWordsInt(androidId,"去赚钱");
+                    if(null!=y) {
+                        AdbTools.tap(androidId, 540, y);
+                    }else{
+                        AdbTools.tap(androidId, 540, 1000);
+                    }
                 } else if (androidId.equals(PhoneConstants.phone002)) {
                     AdbTools.tap(androidId, 100, 650);
+                    Thread.sleep(2000);
+                    Integer y = OcrTools.getWordsInt(androidId,"去赚钱");
+                    if(null!=y) {
+                        AdbTools.tap(androidId, 540, y);
+                    }else{
+                        AdbTools.tap(androidId, 540, 1000);
+                    }
                 } else {
-                    AdbTools.tap(androidId, 90, 440);
+                    AdbTools.tap(androidId, 60, 150);
+                    Thread.sleep(2000);
+                    Integer y = OcrTools.getWordsInt(androidId,"去赚钱");
+                    if(null!=y) {
+                        AdbTools.tap(androidId, 540, y);
+                    }else{
+                        AdbTools.tap(androidId, 540, 900);
+                    }
+
                 }
-                Thread.sleep(2000);
+
+                Thread.sleep(3000);
                 handle1(androidId);
                 handle6(androidId);
                 handle20(androidId);
@@ -91,9 +114,26 @@ public class App快手极速 {
             Integer y = OcrTools.getWordsInt(androidId,"今日签到");
             if(null!=y) {
                 AdbTools.tap(androidId, 540, y + 580);
-                AdbTools.tap(androidId, 540, y + 580);
+                Thread.sleep(1000);
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    AdbTools.tap(androidId, 540, 1600);
+                }else {
+                    AdbTools.tap(androidId, 540, 1520);
+                }
                 AdbTools.back(androidId);
             }
+            Integer yy = OcrTools.getWordsInt(androidId,"快去签到");
+            if(null!=yy) {
+                AdbTools.tap(androidId, 930, yy-30);
+                Thread.sleep(1000);
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    AdbTools.tap(androidId, 540, 1600);
+                }else {
+                    AdbTools.tap(androidId, 540, 1520);
+                }
+                AdbTools.back(androidId);
+            }
+
         } catch (Exception e) {
             log.info("快手极速-签到异常");
         }
@@ -156,16 +196,35 @@ public class App快手极速 {
         int hour = LocalDateTime.now().getHour();
         if(hour==0||hour==16||AppTools.isTest()) {
             try {
-                AdbTools.upPage(androidId);
-                AdbTools.upPage(androidId);
-                AdbTools.down(androidId);
-                AdbTools.down(androidId);
                 Integer y = OcrTools.getWordsInt(androidId, "1000金币悬赏任务");
+                if(null==y){
+                    y = OcrTools.getWordsInt(androidId, "每次100金币");
+                    if(null!=y){y = y-80;}
+                }
+
+                if(null==y){
+                    AdbTools.upPage(androidId);
+                    y = OcrTools.getWordsInt(androidId, "1000金币悬赏任务");
+                }
+                if(null==y){
+                    y = OcrTools.getWordsInt(androidId, "每次100金币");
+                    if(null!=y){y = y-80;}
+                }
+
+                if(null==y){
+                    AdbTools.downPage(androidId);
+                    y = OcrTools.getWordsInt(androidId, "1000金币悬赏任务");
+                }
+                if(null==y){
+                    y = OcrTools.getWordsInt(androidId, "每次100金币");
+                    if(null!=y){y = y-80;}
+                }
+
                 if (null != y) {
                     for (int i = 0; i < 10; i++) {
-                        int a = RandomTools.init(12000);
+                        int a = RandomTools.init(8000);
                         Thread.sleep(a);
-                        AdbTools.tap(androidId, 930, y+50);
+                        AdbTools.tap(androidId, 930, y);
                         Thread.sleep(30000 + a);
                         AdbTools.back(androidId);
                     }
@@ -304,23 +363,29 @@ public class App快手极速 {
             log.info("快手极速-直播");
             try {
                 AdbTools.downPage(androidId);
-                AdbTools.downPage(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"观看精彩直播得100金币");
-                if(null!=y) {
-                    AdbTools.tap(androidId, 880, y-50);
+                if(null==y) {
+                    y = OcrTools.getWordsInt(androidId,"看直播领");
                 }else{
-                    AdbTools.upPage(androidId);
-                    Integer y1 = OcrTools.getWordsInt(androidId,"观看精彩直播得100金币");
-                    if(null!=y1){
-                        AdbTools.tap(androidId, 880, y1-50);
-                    }
-                }
-                for (int i = 0; i < 11; i++) {
-                    int a = RandomTools.init(6000);
-                    Thread.sleep(30000 + a);
-                    AdbTools.downPage(androidId);
+                    y = y-80;
                 }
 
+                AdbTools.upPage(androidId);
+                if(null==y) {
+                    y = OcrTools.getWordsInt(androidId,"观看精彩直播得100金币");
+                    if(null==y) {
+                        y = OcrTools.getWordsInt(androidId,"看直播领");
+                    }else{
+                        y = y-80;
+                    }
+                }
+                if(null!=y) {
+                    for (int i = 0; i < 11; i++) {
+                        int a = RandomTools.init(6000);
+                        Thread.sleep(30000 + a);
+                        AdbTools.downPage(androidId);
+                    }
+                }
             } catch (Exception e) {
                 log.info("快手极速-直播异常");
             }

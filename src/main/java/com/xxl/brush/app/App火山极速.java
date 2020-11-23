@@ -50,9 +50,9 @@ public class App火山极速 {
                 AdbTools.clear(androidId);
                 clear(androidId);
 
-                handle1(androidId);
+               /* handle1(androidId);
                 handle6(androidId);
-                handle9(androidId);
+                handle9(androidId);*/
                 handle11(androidId);
                 handle20(androidId);
                 handle21(androidId);
