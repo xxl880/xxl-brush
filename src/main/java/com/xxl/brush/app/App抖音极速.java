@@ -43,7 +43,7 @@ public class App抖音极速 {
                 }
 
                /* handle1(androidId);*/
-                 handle9(androidId);
+                /* handle9(androidId);*/
                 handle6(androidId);
                 handle11(androidId);
                 handle12(androidId);
@@ -183,7 +183,7 @@ public class App抖音极速 {
                     if (null == y) {
                         y = OcrTools.getWordsInt(androidId, "每天可赚500金币");
                     }
-                    if (null != y)return;
+                    if (null != y)break;
                 }
 
 
@@ -228,7 +228,7 @@ public class App抖音极速 {
                 if (null == y) {
                     y = OcrTools.getWordsInt(androidId, "每20分钟完成一次");
                 }
-                if (null != y)return;
+                if (null != y)break;
             }
 
             if(null!=y){
@@ -286,7 +286,11 @@ public class App抖音极速 {
             AdbTools.tap(androidId, 540, y1);
             Thread.sleep(38000);
 
-             AdbTools.back(androidId);
+            int yy = 90;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                yy = 130;
+            }
+            AdbTools.tap(androidId,990, yy);
         }catch (Exception e){
             log.info("抖音极速-开宝箱异常");
         }
@@ -330,7 +334,7 @@ public class App抖音极速 {
                     if (null == y) {
                         y = OcrTools.getWordsInt(androidId, "睡觉可以");
                     }
-                    if (null != y)return;
+                    if (null != y)break;
                 }
 
                 if(null!=y){
@@ -373,7 +377,7 @@ public class App抖音极速 {
                     if (null == y) {
                         y = OcrTools.getWordsInt(androidId, "走得越多");
                     }
-                    if (null != y)return;
+                    if (null != y)break;
                 }
 
                 if(null!=y){
@@ -439,7 +443,7 @@ public class App抖音极速 {
                     if (null == y) {
                         y = OcrTools.getWordsInt(androidId, "每天饭点领补贴");
                     }
-                    if (null != y)return;
+                    if (null != y)break;
                 }
 
                 if(null!=y){
