@@ -136,7 +136,7 @@ public class App今日头条 {
     public static void handle4(String androidId){
         log.info("今日头条-看新闻");
         try {
-            int x = RandomTools.init(4);
+            int x = RandomTools.init(8);
             for (int a = 0; a < x; a++) {
                 Thread.sleep(RandomTools.init(2000));
                 AdbTools.tap(androidId, 540, 730);
@@ -328,11 +328,10 @@ public class App今日头条 {
      * @param androidId
      */
 
-    public static boolean handle12(String androidId){
-        boolean  bool = false;
-        log.info("今日头条-走路");
+    public static void handle12(String androidId){
         int hour = LocalDateTime.now().getHour();
         if(hour==18||hour==23||AppTools.isTest()) {
+            log.info("今日头条-走路");
             try {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
@@ -354,23 +353,13 @@ public class App今日头条 {
                 AdbTools.tap(androidId, 220, y);
                 Thread.sleep(2000);
 
-
-/*
-                int yy = 1860;
-                int yyy = 1400;
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    yy = 2050;
-                    yyy = 1500;
-                }*/
                 AdbTools.tap(androidId, 540, 1060);
                 AdbTools.back(androidId);
 
             } catch (Exception e) {
-                bool = true;
                 log.info("今日头条-走路异常");
             }
         }
-        return  bool;
     }
 
 /**

@@ -36,7 +36,7 @@ public class App快手极速 {
                 AdbTools.clear(androidId);
                 clear(androidId);
 
-               /* handle2(androidId);*/
+                handle2(androidId);
 
                 if (androidId.equals(PhoneConstants.phone001)) {
                     AdbTools.tap(androidId, 80, 150);
@@ -112,8 +112,27 @@ public class App快手极速 {
         log.info("快手极速-签到");
         try {
             Integer y = OcrTools.getWordsInt(androidId,"今日签到");
+            int x = 540;
+            if(null!=y){
+                y = y +580;
+            }
+
+            if(null==y){
+                 AdbTools.downPage(androidId);
+                 x = 930;
+                 y = OcrTools.getWordsInt(androidId,"快去签到");
+                 if(null!=y){y = y -30;}
+            }
+
+            if(null==y){
+                AdbTools.upPage(androidId);
+                x = 930;
+                y = OcrTools.getWordsInt(androidId,"快去签到");
+                if(null!=y){y = y -30;}
+            }
+
             if(null!=y) {
-                AdbTools.tap(androidId, 540, y + 580);
+                AdbTools.tap(androidId, x, y);
                 Thread.sleep(1000);
                 if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
                     AdbTools.tap(androidId, 540, 1600);
@@ -124,30 +143,8 @@ public class App快手极速 {
             }
 
 
-            Integer yy = OcrTools.getWordsInt(androidId,"快去签到");
-            if(null!=yy) {
-                AdbTools.tap(androidId, 930, yy-30);
-                Thread.sleep(1000);
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    AdbTools.tap(androidId, 540, 1600);
-                }else {
-                    AdbTools.tap(androidId, 540, 1520);
-                }
-                AdbTools.back(androidId);
-            }
 
-            AdbTools.upPage(androidId);
-            Integer yyy = OcrTools.getWordsInt(androidId,"快去签到");
-            if(null!=yyy) {
-                AdbTools.tap(androidId, 930, yyy-30);
-                Thread.sleep(1000);
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    AdbTools.tap(androidId, 540, 1600);
-                }else {
-                    AdbTools.tap(androidId, 540, 1520);
-                }
-                AdbTools.back(androidId);
-            }
+
 
         } catch (Exception e) {
             log.info("快手极速-签到异常");
