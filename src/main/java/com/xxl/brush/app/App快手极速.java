@@ -371,7 +371,7 @@ public class App快手极速 {
      */
     public static void handle20(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==0||hour==17||AppTools.isTest()) {
+        if(hour==10||hour==18||AppTools.isTest()) {
             log.info("快手极速-直播");
             try {
                 AdbTools.downPage(androidId);

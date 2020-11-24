@@ -30,8 +30,8 @@ public class App抖音极速 {
                 log.info("2.启动app");
                 AdbTools.startup(androidId, AppConstants.startup抖音);
 
-                handle2(androidId);
-
+              /*  handle2(androidId);
+*/
                 log.info("3.清除");
                 AdbTools.clear(androidId);
                 clear(androidId);
@@ -107,17 +107,23 @@ public class App抖音极速 {
             }
 
             if(null!=yy){
-                AdbTools.tap(androidId,540, yy);
+                AdbTools.tap(androidId,270, yy);
+                Integer y = OcrTools.getWordsInt(androidId,"看广告");
+                if(null!=y){
+                    AdbTools.tap(androidId,540, y);
+                    Thread.sleep(32000);
+                    AdbTools.back(androidId);
+                }else{
+                    if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                        AdbTools.tap(androidId,540, 1480);
+                    }else{
+                        AdbTools.tap(androidId,540, 1390);
+                    }
+
+                }
             }
 
-            Integer y = OcrTools.getWordsInt(androidId,"看广告视频再赚");
-            if(null!=y){
-               AdbTools.tap(androidId,540,y+140);
-               Thread.sleep(2000);
-               AdbTools.tap(androidId,540,y+140);
-               Thread.sleep(32000);
-               AdbTools.back(androidId);
-            }
+
         } catch (Exception e) {
            log.info("抖音极速-签到异常");
         }
@@ -227,6 +233,12 @@ public class App抖音极速 {
     public static void handle6(String androidId){
         log.info("抖音极速-看广告");
         try{
+            if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                AdbTools.tap(androidId, 540, 2140);
+            } else {
+                AdbTools.tap(androidId, 540, 1950);
+            }
+
             Integer y = OcrTools.getWordsInt(androidId,"限时任务赚金币");
             if(null==y){
                 y = OcrTools.getWordsInt(androidId,"每20分钟完成一次");
@@ -252,13 +264,9 @@ public class App抖音极速 {
             if(null!=y){
                 AdbTools.tap(androidId, 220, y);
                 Thread.sleep(42000);
-                int yy = 90;
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    yy = 130;
-                }
-                AdbTools.tap(androidId,990, yy);
+                AdbTools.back(androidId);
+
             }
-            Thread.sleep(2000);
         }catch (Exception e){
             log.info("抖音极速-看广告异常");
         }
@@ -302,14 +310,8 @@ public class App抖音极速 {
 
             Thread.sleep(1000);
             AdbTools.tap(androidId, 540, y1);
-            Thread.sleep(38000);
-
-            int yy = 90;
-            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                yy = 130;
-            }
-            AdbTools.tap(androidId,990, yy);
-            Thread.sleep(2000);
+            Thread.sleep(42000);
+            AdbTools.back(androidId);
         }catch (Exception e){
             log.info("抖音极速-开宝箱异常");
         }

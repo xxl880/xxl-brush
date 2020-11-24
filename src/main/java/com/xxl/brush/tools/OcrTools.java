@@ -180,7 +180,8 @@ public class OcrTools {
             for (Word word : result) {
                 String bannerOcr = word.toString().replace(" ","");
                 //log.info("****原始OCR字段****"+bannerOcr+"***原始OCR坐标***"+word.getBoundingBox().y);
-                  log.info("****原始OCR字段****"+bannerOcr);
+                    log.info("****原始OCR字段****"+bannerOcr);
+
                     if(bannerOcr.contains(banner)){
                         int y = word.getBoundingBox().y+50;
                         log.info("OCR识别字段："+banner+" Y轴坐标："+y);
@@ -197,9 +198,10 @@ public class OcrTools {
     public static void main(String[] args) {
 
 
-        getWordsInt(PhoneConstants.phone001,"11111111111111111111");
+        //   getWordsInt(PhoneConstants.phone001,"11111111111111111111");
 
-        // getWordsInt("a314117","11111111111111111111");
+        //getWordsInt("a64d4bd","11111111111111111111");
+        getWordsInt("a314117","11111111111111111111");//6x不带
     }
 
 
