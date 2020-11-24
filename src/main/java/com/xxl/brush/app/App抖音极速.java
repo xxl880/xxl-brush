@@ -75,11 +75,21 @@ public class App抖音极速 {
                 AdbTools.tap(androidId,740,y);
                 Thread.sleep(6000);
                 Integer yy = OcrTools.getWordsInt(androidId,"继续安装");
-                AdbTools.tap(androidId,740,yy);
-                Thread.sleep(22000);
+                if(null!=yy){
+                    AdbTools.tap(androidId,740,yy);
+                    Thread.sleep(16000);
+                }
+                Integer yy1 = OcrTools.getWordsInt(androidId,"安装");
+                if(null!=yy1){
+                    AdbTools.tap(androidId,540,yy);
+                    Thread.sleep(16000);
+                }
+
                 Integer yyy = OcrTools.getWordsInt(androidId,"打开");
-                AdbTools.tap(androidId,740,yyy);
-                Thread.sleep(6000);
+                if(null!=yyy) {
+                    AdbTools.tap(androidId, 740, yyy);
+                    Thread.sleep(6000);
+                }
             }
 
         }catch (Exception e){}
@@ -97,6 +107,12 @@ public class App抖音极速 {
         log.info("抖音极速-签到");
         try {
             Integer yy = OcrTools.getWordsInt(androidId,"签到");
+            if(null==yy){
+                yy = OcrTools.getWordsInt(androidId,"30天");
+                if(null!=yy){
+                    yy = yy + 160;
+                }
+            }
             if(null==yy){
                 AdbTools.upPage(androidId);
                 yy = OcrTools.getWordsInt(androidId,"签到");
@@ -405,6 +421,8 @@ public class App抖音极速 {
                 if(null!=y){
                     AdbTools.tap(androidId, 540, y);
                     Thread.sleep(1000);
+                    AdbTools.tap(androidId, 540, 1320);
+                    AdbTools.tap(androidId, 540, 1360);
                     AdbTools.tap(androidId, 220, 970);
                     Thread.sleep(2000);
                     AdbTools.back(androidId);

@@ -8,7 +8,6 @@ import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.OcrTools;
 import com.xxl.brush.tools.RandomTools;
 import lombok.SneakyThrows;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.time.LocalDateTime;
@@ -17,7 +16,7 @@ import java.util.List;
 
 
 /**
- * todo App抖音
+ * todo App今日头条
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 public class App今日头条 {
@@ -42,14 +41,14 @@ public class App今日头条 {
                      y= 2140;
                 }
                 AdbTools.tap(androidId, 110, y);
-              /*  handle4( androidId);*/
+                handle4( androidId);
 
                 AdbTools.clear(androidId);
                 clear(androidId);
 
                 AdbTools.tap(androidId, 760, y);
                 Thread.sleep(2000);
-             /*   handle1( androidId);*/
+                handle1( androidId);
                 handle9( androidId);
                 handle20( androidId);
                 handle21( androidId);

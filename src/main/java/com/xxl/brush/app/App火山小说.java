@@ -6,8 +6,6 @@ import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.OcrTools;
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.time.LocalDateTime;
@@ -26,7 +24,7 @@ public class App火山小说 {
      * 传相应的app_code对应的phoneCodeDtos
      */
     public static void circulate(String androidId) {
-        AppTools.appTime();
+        if (AppTools.appTime()) return;
         try {
             log.info("********************************火山小说操作********************************************");
 
@@ -96,7 +94,7 @@ public class App火山小说 {
                     if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
                         yy = 1450;
                     }
-                    AdbTools.tap(androidId, 540, y);
+                    AdbTools.tap(androidId, 540, yy);
                     Thread.sleep(59000);
                     AdbTools.back(androidId);
                 }
@@ -159,7 +157,7 @@ public class App火山小说 {
      */
     public static void handle6(String androidId) {
         int hour = LocalDateTime.now().getHour();
-        if(hour==1||AppTools.isTest()) {
+        if(hour==0||AppTools.isTest()) {
             log.info("火山小说-看广告");
             try {
                 AdbTools.downPage(androidId);
@@ -206,7 +204,7 @@ public class App火山小说 {
             if(null!=y) {
                 AdbTools.tap(androidId,540,y-70);
                 Integer yy = OcrTools.getWordsInt(androidId,"每小时领金币奖励");
-                AdbTools.tap(androidId,890,y-100);
+                AdbTools.tap(androidId,890,yy-100);
             }
 
         } catch (Exception e) {

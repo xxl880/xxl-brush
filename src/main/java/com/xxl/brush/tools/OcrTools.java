@@ -198,10 +198,10 @@ public class OcrTools {
     public static void main(String[] args) {
 
 
-        // getWordsInt(PhoneConstants.phone001,"11111111111111111111");
+          getWordsInt(PhoneConstants.phone002,"11111111111111111111");
 
-        // getWordsInt("a64d4bd","11111111111111111111");
-        getWordsInt("a314117","11111111111111111111");//6x不带
+         getWordsInt("a64d4bd","11111111111111111111");
+        //getWordsInt("a314117","11111111111111111111");//6x不带
     }
 
 

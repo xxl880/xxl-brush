@@ -36,7 +36,7 @@ public class App快手极速 {
                 AdbTools.clear(androidId);
                 clear(androidId);
 
-                //handle2(androidId);
+           /*     handle2(androidId);*/
 
                 if (androidId.equals(PhoneConstants.phone001)) {
                     AdbTools.tap(androidId, 80, 150);
@@ -69,8 +69,8 @@ public class App快手极速 {
                 }
 
 
-                handle1(androidId);
-                handle6(androidId);
+             /*   handle1(androidId);
+                handle6(androidId);*/
                 handle20(androidId);
                 handle9(androidId);
 
@@ -206,30 +206,27 @@ public class App快手极速 {
      * @param androidId
      */
     public static void handle6(String androidId){
-        if(AppTools.appTime())return;
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||hour==6||AppTools.isTest()) {
             try {
+                AdbTools.down(androidId);
                 Integer y = OcrTools.getWordsInt(androidId, "1000金币悬赏任务");
-                if(null==y){
+                if (null == y) {
                     y = OcrTools.getWordsInt(androidId, "每次100金币");
-                    if(null!=y){y = y-80;}
+                    if (null != y) {
+                        y = y - 80;
+                    }
                 }
 
-                if(null==y){
-                    AdbTools.upPage(androidId);
-                    y = OcrTools.getWordsInt(androidId, "1000金币悬赏任务");
-                }
-                if(null==y){
-                    y = OcrTools.getWordsInt(androidId, "每次100金币");
-                    if(null!=y){y = y-80;}
-                }
-
-                if(null==y){
+                if (null == y) {
                     AdbTools.downPage(androidId);
                     y = OcrTools.getWordsInt(androidId, "1000金币悬赏任务");
                 }
-                if(null==y){
+                if (null == y) {
                     y = OcrTools.getWordsInt(androidId, "每次100金币");
-                    if(null!=y){y = y-80;}
+                    if (null != y) {
+                        y = y - 80;
+                    }
                 }
 
                 if (null != y) {
@@ -244,6 +241,7 @@ public class App快手极速 {
             } catch (Exception e) {
                 log.info("快手极速-看广告异常");
             }
+        }
     }
 
     /**
@@ -370,9 +368,11 @@ public class App快手极速 {
      */
     public static void handle20(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==10||hour==18||AppTools.isTest()) {
+        if(hour==14||AppTools.isTest()) {
             log.info("快手极速-直播");
             try {
+                Thread.sleep(2000);
+                AdbTools.downPage(androidId);
                 AdbTools.downPage(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"观看精彩直播得100金币");
                 if(null==y) {
@@ -394,7 +394,7 @@ public class App快手极速 {
 
                 if(null!=y) {
                     AdbTools.tap(androidId,930,y);
-                    for (int i = 0; i < 11; i++) {
+                    for (int i = 0; i < 10; i++) {
                         int a = RandomTools.init(6000);
                         Thread.sleep(30000 + a);
                         AdbTools.downPage(androidId);
