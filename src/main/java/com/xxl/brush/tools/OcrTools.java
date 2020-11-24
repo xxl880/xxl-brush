@@ -180,7 +180,7 @@ public class OcrTools {
             for (Word word : result) {
                 String bannerOcr = word.toString().replace(" ","");
                 //log.info("****原始OCR字段****"+bannerOcr+"***原始OCR坐标***"+word.getBoundingBox().y);
-                    log.info("****原始OCR字段****"+bannerOcr);
+                   // log.info("****原始OCR字段****"+bannerOcr);
 
                     if(bannerOcr.contains(banner)){
                         int y = word.getBoundingBox().y+50;
