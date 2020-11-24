@@ -39,20 +39,24 @@ public class AppQQ阅读 {
             AdbTools.clear(androidId);
             clear(androidId);
 
-            Integer y1 = OcrTools.getWordsInt(androidId,"取消");
-            if(null!=y1) {
-                AdbTools.tap(androidId, 820, y1);
-            }
-
             AdbTools.tap(androidId, 540, 450);
             Integer y2 = OcrTools.getWordsInt(androidId,"做任务领现金");
             if(null!=y2) {
                 AdbTools.tap(androidId, 540, y2);
             }
-            handle1(androidId);
-            handle9(androidId);
-            handle6(androidId);
+            Integer y3 = OcrTools.getWordsInt(androidId,"现金福利升级");
+            if(null!=y3) {
+                AdbTools.tap(androidId, 540, y3+760);
+            }
 
+            Integer y4 = OcrTools.getWordsInt(androidId,"看小视频");
+            if(null!=y4) {
+                AdbTools.tap(androidId, 540, y4+300);
+            }
+
+            handle1(androidId);
+            handle6(androidId);
+            handle9(androidId);
             int y = 1950;
             if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
                 y = 2140;
@@ -87,14 +91,8 @@ public class AppQQ阅读 {
         try {
             Integer y = OcrTools.getWordsInt(androidId,"取消");
             if(null!=y) {
-                AdbTools.tap(androidId,600,y);
+                AdbTools.tap(androidId,800,y);
             }
-            int yy = 1630;
-            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                yy = 1740;
-            }
-            AdbTools.tap(androidId,540,yy);
-            AdbTools.back(androidId);
         } catch (Exception e) { }
     }
 
@@ -106,15 +104,20 @@ public class AppQQ阅读 {
      * @param robot
      */
     public static void handle1(String androidId) {
-        log.info("QQ阅读-签到");
-       try {
-           Integer y = OcrTools.getWordsInt(androidId,"打卡成功");
-           if(null!=y){
-               AdbTools.tap(androidId,540,y+780);
-           }
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||AppTools.isTest()) {
+            log.info("QQ阅读-签到");
+            try {
+                Integer y = OcrTools.getWordsInt(androidId, "打卡成功");
+                if (null != y) {
+                    AdbTools.tap(androidId, 540, y + 780);
+                    Thread.sleep(32000);
+                    AdbTools.back(androidId);
+                }
 
-        } catch (Exception e) {
-            log.info("QQ阅读-签到异常");
+            } catch (Exception e) {
+                log.info("QQ阅读-签到异常");
+            }
         }
     }
 
@@ -157,26 +160,28 @@ public class AppQQ阅读 {
      */
     public static void handle5(String androidId) {
         int hour = LocalDateTime.now().getHour();
-        log.info("QQ阅读-看小说");
-        int y = 1950;
-        if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
-            y = 2140;
-        }
-        try {
-            AdbTools.upPage(androidId);
-            AdbTools.upPage(androidId);
-            AdbTools.tap(androidId, 540, 630);
-
-            AdbTools.tap(androidId, 930, y);
-            Thread.sleep(1000);
-            AdbTools.tap(androidId, 540, y);
-            for (int i = 0; i < 60; i++) {
-                AdbTools.tap(androidId, 1030, 1560);
-                Thread.sleep(RandomTools.init(6000));
+        if(hour==18||AppTools.isTest()) {
+            log.info("QQ阅读-看小说");
+            int y = 1950;
+            if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                y = 2140;
             }
+            try {
+                AdbTools.upPage(androidId);
+                AdbTools.upPage(androidId);
+                AdbTools.tap(androidId, 540, 630);
 
-        } catch (Exception e) {
-            log.info("QQ阅读-看小说异常");
+                AdbTools.tap(androidId, 930, y);
+                Thread.sleep(1000);
+                AdbTools.tap(androidId, 540, y);
+                for (int i = 0; i < 60; i++) {
+                    AdbTools.tap(androidId, 1030, 1560);
+                    Thread.sleep(RandomTools.init(6000));
+                }
+
+            } catch (Exception e) {
+                log.info("QQ阅读-看小说异常");
+            }
         }
     }
 
@@ -187,11 +192,14 @@ public class AppQQ阅读 {
      */
     public static void handle6(String androidId) {
         int hour = LocalDateTime.now().getHour();
-        if(hour==12||AppTools.isTest()) {
+        if(hour==0||AppTools.isTest()) {
             log.info("QQ阅读-看广告");
             try {
                 AdbTools.downPage(androidId);
-                Integer y = OcrTools.getWordsInt(androidId, "看视频领");
+                Integer y = OcrTools.getWordsInt(androidId, "大额金币");
+                if(null==y){
+                    y = OcrTools.getWordsInt(androidId, "+100金币");
+                }
                 if (null != y) {
                     for (int i = 0; i < 10; i++) {
                         Thread.sleep(3000);
