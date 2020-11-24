@@ -43,8 +43,8 @@ public class AppServiceImpl implements AppService {
 
 		//综合A
      /*	App抖音极速.circulate(androidId);
-		App火山极速.circulate(androidId);*/
-		App快手极速.circulate(androidId);
+		App火山极速.circulate(androidId);
+		App快手极速.circulate(androidId);*/
 	  	App今日头条.circulate(androidId);
 		App趣头条.circulate(androidId, port, systemPort);
 		AppQQ阅读.circulate(androidId);

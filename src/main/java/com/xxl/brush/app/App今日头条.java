@@ -7,6 +7,7 @@ import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.OcrTools;
 import com.xxl.brush.tools.RandomTools;
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,8 +45,10 @@ public class App今日头条 {
                 handle4( androidId);
 
                 AdbTools.clear(androidId);
+                clear(androidId);
 
                 AdbTools.tap(androidId, 760, y);
+                Thread.sleep(2000);
                 handle1( androidId);
                 handle9( androidId);
                 handle5( androidId);
@@ -78,8 +81,26 @@ public class App今日头条 {
      * @param androidId
 
      */
-    public static void clear( String androidId){
+    @SneakyThrows
+    public static void clear(String androidId){
+        Thread.sleep(2000);
+        Integer y1 = OcrTools.getWordsInt(androidId,"以后再说");
+        if(null!=y1){
+            AdbTools.tap(androidId,540,y1-240);
+            Thread.sleep(12000);
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.tap(androidId,540,1860);
+                Thread.sleep(12000);
+                AdbTools.tap(androidId,770,1950);
+                Thread.sleep(6000);
+            }else{
+                AdbTools.tap(androidId,540,1700);
+                Thread.sleep(12000);
+                AdbTools.tap(androidId,770,1850);
+                Thread.sleep(6000);
+            }
 
+        }
     }
 
 
@@ -161,41 +182,52 @@ public class App今日头条 {
 
     public static void handle5(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==10||hour==13||hour==18||AppTools.isTest()){
+        if(hour==12||hour==18||AppTools.isTest()){
             log.info("今日头条-看小说");
             try {
-                AdbTools.down(androidId);
-                AdbTools.down(androidId);
-                AdbTools.down(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"看小说赚金币");
                 if(null==y){
                     AdbTools.downPage(androidId);
+                    y = OcrTools.getWordsInt(androidId,"看小说赚金币");
+                }
+                if(null==y){
                     AdbTools.downPage(androidId);
                     y = OcrTools.getWordsInt(androidId,"看小说赚金币");
+                }
+                if(null!=y){
                     AdbTools.tap(androidId, 540, y);
-                }
-
-                Thread.sleep(2000);
-                AdbTools.downPage(androidId);
-                AdbTools.tap(androidId, 160, 1580);
-
-                int yy = 1950;
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    yy = 2140;
-                }
-                AdbTools.tap(androidId, 830, yy);
-                Thread.sleep(3000);
-                for (int i = 0; i < 60; i++) {
-                    try {
-                        Thread.sleep(3000);
-                        if (i % 5 == 0) {
-
-                        }
-                    } catch (Exception e) {
+                    Thread.sleep(2000);
+                    AdbTools.downPage(androidId);
+                    AdbTools.tap(androidId, 160, 1580);
+                    int yy = 1950;
+                    if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                        yy = 2140;
                     }
+                    AdbTools.tap(androidId, 830, yy);
+                    Thread.sleep(3000);
+                    for (int i = 0; i < 60; i++) {
+                        try {
+                            Thread.sleep(RandomTools.init(3000));
+                            if (i % 5 == 0) {
+                                Integer yyy = OcrTools.getWordsInt(androidId,"看视频再领");
+                                if(null!=yyy){
+                                    AdbTools.tap(androidId,540,yyy);
+                                    Thread.sleep(32000);
+                                    AdbTools.back(androidId);
+                                }
+                            }
+                        } catch (Exception e) {
+                        }
 
-                    AdbTools.tap(androidId, 1030, 600);
+                        AdbTools.tap(androidId, 1030, 600);
+                    }
                 }
+
+
+
+
+
+
 
             } catch (Exception e) {
                 log.info("今日头条-看小说异常");
@@ -283,7 +315,7 @@ public class App今日头条 {
     public static void handle11(String androidId){
         log.info("今日头条-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==8||hour==22||AppTools.isTest()) {
+        if(hour==13||hour==22||AppTools.isTest()) {
             try {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
@@ -418,17 +450,25 @@ public class App今日头条 {
                     y = OcrTools.getWordsInt(androidId,"吃饭补贴");
                 }
 
-                AdbTools.tap(androidId, 540, y);
-                Thread.sleep(2000);
+                if(null!=y) {
+                    AdbTools.tap(androidId, 540, y);
+                    Thread.sleep(2000);
 
-                int yy = 1820;
-                int yyy = 1400;
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    yy = 2000;
-                    yyy = 1500;
+                    int yy = 1820;
+                    int yyy = 1400;
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        yy = 2000;
+                        yyy = 1500;
+                    }
+                    AdbTools.tap(androidId, 540, yy);
+                    Integer y1 = OcrTools.getWordsInt(androidId,"看视频");
+                    if(null!=y1){
+                        AdbTools.tap(androidId,540,y1);
+                        Thread.sleep(32000);
+                        AdbTools.back(androidId);
+                    }
+                    AdbTools.back(androidId);
                 }
-                AdbTools.tap(androidId, 540, yy);
-
 
 
             } catch (Exception e) {

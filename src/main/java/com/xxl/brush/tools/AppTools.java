@@ -27,7 +27,7 @@ public class AppTools {
      * @return
      */
     public static boolean isTest(){
-        boolean bool = true;
+        boolean bool = false;
 
         return bool;
     }
@@ -39,7 +39,7 @@ public class AppTools {
     public static boolean appTime(){
         boolean bool = false;
         int hour = LocalDateTime.now().getHour();
-        if(hour!=0||hour!=12) {
+        if(hour!=0||hour!=6||hour!=12||hour!=18) {
           bool = true;
         }
         if(isTest()){
