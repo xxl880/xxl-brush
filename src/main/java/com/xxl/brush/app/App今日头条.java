@@ -182,7 +182,7 @@ public class App今日头条 {
 
     public static void handle5(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==12||hour==18||AppTools.isTest()){
+        if(hour==12||hour==19||AppTools.isTest()){
             log.info("今日头条-看小说");
             try {
                 Integer y = OcrTools.getWordsInt(androidId,"看小说赚金币");
@@ -208,7 +208,7 @@ public class App今日头条 {
                     for (int i = 0; i < 60; i++) {
                         try {
                             Thread.sleep(RandomTools.init(3000));
-                            if (i % 10 == 0) {
+                            if (i % 8 == 0) {
                                 Integer yyy = OcrTools.getWordsInt(androidId,"看视频再领");
                                 if(null!=yyy){
                                     AdbTools.tap(androidId,540,yyy);
@@ -360,8 +360,13 @@ public class App今日头条 {
                 if(null!=y) {
                     AdbTools.tap(androidId, 220, y);
                     Thread.sleep(2000);
-
                     AdbTools.tap(androidId, 540, 1060);
+                    Integer y1 = OcrTools.getWordsInt(androidId,"看视频");
+                    if(null!=y1){
+                        AdbTools.tap(androidId,540,y1);
+                        Thread.sleep(32000);
+                        AdbTools.back(androidId);
+                    }
                     AdbTools.back(androidId);
                 }
             } catch (Exception e) {
