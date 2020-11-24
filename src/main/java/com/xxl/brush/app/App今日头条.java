@@ -51,12 +51,12 @@ public class App今日头条 {
                 Thread.sleep(2000);
              /*   handle1( androidId);*/
                 handle9( androidId);
-                handle5( androidId);
                 handle20( androidId);
                 handle21( androidId);
                 handle16( androidId);
                 handle12( androidId);
                 handle11( androidId);
+                handle5( androidId);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -208,7 +208,7 @@ public class App今日头条 {
                     for (int i = 0; i < 60; i++) {
                         try {
                             Thread.sleep(RandomTools.init(3000));
-                            if (i % 5 == 0) {
+                            if (i % 10 == 0) {
                                 Integer yyy = OcrTools.getWordsInt(androidId,"看视频再领");
                                 if(null!=yyy){
                                     AdbTools.tap(androidId,540,yyy);
@@ -315,7 +315,7 @@ public class App今日头条 {
     public static void handle11(String androidId){
         log.info("今日头条-睡觉");
         int hour = LocalDateTime.now().getHour();
-        if(hour==13||hour==22||AppTools.isTest()) {
+        if(hour==9||hour==22||AppTools.isTest()) {
             try {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
@@ -351,7 +351,7 @@ public class App今日头条 {
 
     public static void handle12(String androidId){
         int hour = LocalDateTime.now().getHour();
-        if(hour==18||hour==23||AppTools.isTest()) {
+        if(hour==14||hour==23||AppTools.isTest()) {
             log.info("今日头条-走路");
             try {
                 AdbTools.upPage(androidId);
@@ -406,7 +406,7 @@ public class App今日头条 {
 
     public static void handle16(String androidId){
         int hour = LocalDateTime.now().getHour();
-       if(hour==8||hour==12||hour==18||hour==22||AppTools.isTest()) {
+       if(hour==8||hour==11||hour==19||hour==22||AppTools.isTest()) {
            log.info("今日头条-吃饭");
             try {
                 AdbTools.upPage(androidId);
@@ -478,7 +478,7 @@ public class App今日头条 {
     public static void handle20(String androidId){
         log.info("今日头条-模拟开店赚钱");
         int hour = LocalDateTime.now().getHour();
-       if(hour==6||hour==18||AppTools.isTest()) {
+       if(hour==6||hour==17||AppTools.isTest()) {
             try {
                 Integer y = OcrTools.getWordsInt(androidId,"模拟开店赚钱");
                 if(null==y){
@@ -532,7 +532,7 @@ public class App今日头条 {
     public static void handle21(String androidId){
         log.info("今日头条-种菜赚金币");
         int hour = LocalDateTime.now().getHour();
-        if(hour==5||hour==18||AppTools.isTest()) {
+        if(hour==5||hour==15||AppTools.isTest()) {
             try {
                 Integer y = OcrTools.getWordsInt(androidId,"种菜赚金币");
                 if(null==y){
