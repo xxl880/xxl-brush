@@ -36,7 +36,7 @@ public class App快手极速 {
                 AdbTools.clear(androidId);
                 clear(androidId);
 
-           /*     handle2(androidId);*/
+                handle2(androidId);
 
                 if (androidId.equals(PhoneConstants.phone001)) {
                     AdbTools.tap(androidId, 80, 150);
@@ -69,8 +69,8 @@ public class App快手极速 {
                 }
 
 
-             /*   handle1(androidId);
-                handle6(androidId);*/
+                handle1(androidId);
+                handle6(androidId);
                 handle20(androidId);
                 handle9(androidId);
 
