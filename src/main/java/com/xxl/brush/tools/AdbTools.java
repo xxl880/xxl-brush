@@ -102,7 +102,7 @@ public class AdbTools {
      */
     @SneakyThrows
     public static void downPage(String androidId){
-        String operate = "adb -s "+androidId +" shell input swipe 540 1600 540 400";
+        String operate = "adb -s "+androidId +" shell input swipe 540 1600 540 600";
         process(operate);
     }
 
@@ -111,7 +111,7 @@ public class AdbTools {
      */
     @SneakyThrows
     public static void upPage(String androidId){
-        String operate = "adb -s "+androidId +" shell input swipe 540 400 540 1600";
+        String operate = "adb -s "+androidId +" shell input swipe 540 600 540 1600";
         process(operate);
     }
 

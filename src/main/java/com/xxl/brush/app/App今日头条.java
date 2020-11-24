@@ -42,14 +42,14 @@ public class App今日头条 {
                      y= 2140;
                 }
                 AdbTools.tap(androidId, 110, y);
-                handle4( androidId);
+              /*  handle4( androidId);*/
 
                 AdbTools.clear(androidId);
                 clear(androidId);
 
                 AdbTools.tap(androidId, 760, y);
                 Thread.sleep(2000);
-                handle1( androidId);
+             /*   handle1( androidId);*/
                 handle9( androidId);
                 handle5( androidId);
                 handle20( androidId);
@@ -212,7 +212,7 @@ public class App今日头条 {
                                 Integer yyy = OcrTools.getWordsInt(androidId,"看视频再领");
                                 if(null!=yyy){
                                     AdbTools.tap(androidId,540,yyy);
-                                    Thread.sleep(32000);
+                                    Thread.sleep(27000);
                                     AdbTools.back(androidId);
                                 }
                             }
@@ -320,34 +320,23 @@ public class App今日头条 {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"睡觉赚钱");
-                if(null==y){
-                    AdbTools.down(androidId);
-                    y = OcrTools.getWordsInt(androidId,"睡觉赚钱");
-                }
-                if(null==y){
-                    AdbTools.downPage(androidId);
-                    y = OcrTools.getWordsInt(androidId,"睡觉赚钱");
-                }
-                if(null==y){
-                    AdbTools.downPage(androidId);
-                    AdbTools.downPage(androidId);
-                    y = OcrTools.getWordsInt(androidId,"睡觉赚钱");
-                }
-                AdbTools.tap(androidId, 540, y);
-                Thread.sleep(2000);
+                if(null!=y) {
+                    AdbTools.tap(androidId, 540, y);
+                    Thread.sleep(2000);
 
-                int yy = 1860;
-                int yyy = 1400;
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    yy = 2050;
-                    yyy = 1500;
-                }
-                AdbTools.tap(androidId, 540, yy);
-                if(hour==8){
+                    int yy = 1860;
+                    int yyy = 1400;
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        yy = 2050;
+                        yyy = 1500;
+                    }
                     AdbTools.tap(androidId, 540, yy);
+                    if (hour == 8) {
+                        AdbTools.tap(androidId, 540, yy);
+                    }
+                    AdbTools.tap(androidId, 540, yyy);
+                    AdbTools.back(androidId);
                 }
-                AdbTools.tap(androidId, 540, yyy);
-                AdbTools.back(androidId);
             } catch (Exception e) {
                 log.info("今日头条-睡觉异常");
             }
@@ -368,26 +357,13 @@ public class App今日头条 {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"走路赚钱");
-                if(null==y){
-                    AdbTools.down(androidId);
-                    y = OcrTools.getWordsInt(androidId,"走路赚钱");
-                }
-                if(null==y){
-                    AdbTools.downPage(androidId);
-                    y = OcrTools.getWordsInt(androidId,"走路赚钱");
-                }
-                if(null==y){
-                    AdbTools.downPage(androidId);
-                    AdbTools.downPage(androidId);
-                    y = OcrTools.getWordsInt(androidId,"走路赚钱");
-                }
+                if(null!=y) {
+                    AdbTools.tap(androidId, 220, y);
+                    Thread.sleep(2000);
 
-                AdbTools.tap(androidId, 220, y);
-                Thread.sleep(2000);
-
-                AdbTools.tap(androidId, 540, 1060);
-                AdbTools.back(androidId);
-
+                    AdbTools.tap(androidId, 540, 1060);
+                    AdbTools.back(androidId);
+                }
             } catch (Exception e) {
                 log.info("今日头条-走路异常");
             }
@@ -436,20 +412,6 @@ public class App今日头条 {
                 AdbTools.upPage(androidId);
                 AdbTools.upPage(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"吃饭补贴");
-                if(null==y){
-                    AdbTools.down(androidId);
-                    y = OcrTools.getWordsInt(androidId,"吃饭补贴");
-                }
-                if(null==y){
-                    AdbTools.downPage(androidId);
-                    y = OcrTools.getWordsInt(androidId,"吃饭补贴");
-                }
-                if(null==y){
-                    AdbTools.downPage(androidId);
-                    AdbTools.downPage(androidId);
-                    y = OcrTools.getWordsInt(androidId,"吃饭补贴");
-                }
-
                 if(null!=y) {
                     AdbTools.tap(androidId, 540, y);
                     Thread.sleep(2000);
@@ -469,7 +431,6 @@ public class App今日头条 {
                     }
                     AdbTools.back(androidId);
                 }
-
 
             } catch (Exception e) {
                 log.info("今日头条-吃饭异常");
@@ -519,39 +480,42 @@ public class App今日头条 {
         int hour = LocalDateTime.now().getHour();
        if(hour==6||hour==18||AppTools.isTest()) {
             try {
-                AdbTools.upPage(androidId);
-                AdbTools.upPage(androidId);
-                AdbTools.downPage(androidId);
-                AdbTools.down(androidId);
-                AdbTools.down(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"模拟开店赚钱");
                 if(null==y){
-                    AdbTools.down(androidId);
-                    AdbTools.down(androidId);
+                    AdbTools.upPage(androidId);
+                    AdbTools.upPage(androidId);
+                    AdbTools.downPage(androidId);
                     y = OcrTools.getWordsInt(androidId,"模拟开店赚钱");
                 }
-                AdbTools.tap(androidId, 540, y);
-                Thread.sleep(6000);
+                if(null==y){
+                    AdbTools.upPage(androidId);
+                    y = OcrTools.getWordsInt(androidId,"模拟开店赚钱");
+                }
 
-                AdbTools.tap(androidId, 950, 960);
-                AdbTools.tap(androidId, 950, 870);
-                AdbTools.tap(androidId, 950, 930);
-                AdbTools.tap(androidId, 1000, 470);
-                AdbTools.tap(androidId, 1000, 400);
+                if(null!=y) {
+                    AdbTools.tap(androidId, 540, y);
+                    Thread.sleep(6000);
 
-                AdbTools.tap(androidId, 970, 300);
-                AdbTools.tap(androidId, 970, 320);
-                Thread.sleep(1000);
-                AdbTools.tap(androidId, 970, 320);
-                Thread.sleep(1000);
-                AdbTools.tap(androidId, 970, 320);
+                    AdbTools.tap(androidId, 950, 960);
+                    AdbTools.tap(androidId, 950, 870);
+                    AdbTools.tap(androidId, 950, 930);
+                    AdbTools.tap(androidId, 1000, 470);
+                    AdbTools.tap(androidId, 1000, 400);
 
-                AdbTools.tap(androidId, 950, 840);
-                AdbTools.tap(androidId, 950, 930);
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    AdbTools.tap(androidId, 990, 140);
-                }else {
-                    AdbTools.tap(androidId, 1000, 130);
+                    AdbTools.tap(androidId, 970, 300);
+                    AdbTools.tap(androidId, 970, 320);
+                    Thread.sleep(1000);
+                    AdbTools.tap(androidId, 970, 320);
+                    Thread.sleep(1000);
+                    AdbTools.tap(androidId, 970, 320);
+
+                    AdbTools.tap(androidId, 950, 840);
+                    AdbTools.tap(androidId, 950, 930);
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        AdbTools.tap(androidId, 990, 140);
+                    } else {
+                        AdbTools.tap(androidId, 1000, 130);
+                    }
                 }
             } catch (Exception e) {
                 log.info("今日头条-模拟开店赚钱异常");
@@ -570,42 +534,44 @@ public class App今日头条 {
         int hour = LocalDateTime.now().getHour();
         if(hour==5||hour==18||AppTools.isTest()) {
             try {
-                WebElement wl2 = null;
-                AdbTools.upPage(androidId);
-                AdbTools.upPage(androidId);
-                AdbTools.downPage(androidId);
-                AdbTools.down(androidId);
                 Integer y = OcrTools.getWordsInt(androidId,"种菜赚金币");
                 if(null==y){
-                    AdbTools.down(androidId);
-                    AdbTools.down(androidId);
+                    AdbTools.upPage(androidId);
+                    AdbTools.upPage(androidId);
+                    AdbTools.downPage(androidId);
                     y = OcrTools.getWordsInt(androidId,"种菜赚金币");
                 }
-                AdbTools.tap(androidId, 540, y);
-                Thread.sleep(6000);
-
-                AdbTools.tap(androidId, 970, 800);
-                AdbTools.tap(androidId, 970, 880);
-                AdbTools.tap(androidId, 970, 470);
-                AdbTools.tap(androidId, 970, 460);
-                for (int i = 0; i < 3; i++) {
-                    AdbTools.tap(androidId, 970, 300);
-                    AdbTools.tap(androidId, 540, 1260);
-                    AdbTools.tap(androidId, 540, 1360);
-                    Thread.sleep(18000);
-                    AdbTools.back(androidId);
-                    AdbTools.tap(androidId, 540, 1260);
-                    AdbTools.tap(androidId, 540, 1360);
+                if(null==y){
+                    AdbTools.downPage(androidId);
+                    y = OcrTools.getWordsInt(androidId,"种菜赚金币");
                 }
 
-                AdbTools.tap(androidId, 950, 840);
-                AdbTools.tap(androidId, 950, 930);
-                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                    AdbTools.tap(androidId, 990, 140);
-                }else {
-                    AdbTools.tap(androidId, 1000, 130);
-                }
+                if(null!=y) {
+                    AdbTools.tap(androidId, 540, y);
+                    Thread.sleep(6000);
 
+                    AdbTools.tap(androidId, 970, 800);
+                    AdbTools.tap(androidId, 970, 880);
+                    AdbTools.tap(androidId, 970, 470);
+                    AdbTools.tap(androidId, 970, 460);
+                    for (int i = 0; i < 3; i++) {
+                        AdbTools.tap(androidId, 970, 300);
+                        AdbTools.tap(androidId, 540, 1260);
+                        AdbTools.tap(androidId, 540, 1360);
+                        Thread.sleep(18000);
+                        AdbTools.back(androidId);
+                        AdbTools.tap(androidId, 540, 1260);
+                        AdbTools.tap(androidId, 540, 1360);
+                    }
+
+                    AdbTools.tap(androidId, 950, 840);
+                    AdbTools.tap(androidId, 950, 930);
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                        AdbTools.tap(androidId, 990, 140);
+                    } else {
+                        AdbTools.tap(androidId, 1000, 130);
+                    }
+                }
             } catch (Exception e) {
                 log.info("今日头条-种菜赚金币异常");
             }

@@ -27,7 +27,7 @@ public class AppTools {
      * @return
      */
     public static boolean isTest(){
-        boolean bool = false;
+        boolean bool = true;
 
         return bool;
     }
