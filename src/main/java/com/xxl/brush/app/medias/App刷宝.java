@@ -22,7 +22,7 @@ public class App刷宝 {
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos*/
     public static void circulate(String androidId){
-        if(AppTools.appTime())return;
+        if(AppTools.appMediasTime())return;
         try{
             log.info("********************************刷宝操作********************************************");
 

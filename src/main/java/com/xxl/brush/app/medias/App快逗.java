@@ -22,6 +22,7 @@ public class App快逗 {
      * 以category分类定位，再点击用户行为,用一category下不可多次点击category,否则试为程序运行
      * 传相应的app_code对应的phoneCodeDtos*/
     public static void circulate(String androidId,int port,int systemPort, Map<String,Integer> map){
+        if(AppTools.appMediasTime())return;
         try{
             log.info("********************************快逗操作********************************************");
 

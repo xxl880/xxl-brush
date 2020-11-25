@@ -141,8 +141,11 @@ public class AdbTools {
     @SneakyThrows
     public static void tapDraw(String androidId, int x, int y){
         int y1 = 1000+Integer.valueOf(y);
-        String operate = "adb -s "+androidId +" shell input swipe "+ x + " " + y + " " + x +" " +y1;
-        process(operate);
+        for(int i=0;i<8;i++) {
+            x+=10;
+            String operate = "adb -s " + androidId + " shell input swipe " + x + " " + y + " " + x + " " + y1;
+            process(operate);
+        }
     }
 
     /**
