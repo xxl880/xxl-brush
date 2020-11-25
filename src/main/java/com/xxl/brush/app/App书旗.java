@@ -59,7 +59,11 @@ public class App书旗 {
         if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
             AdbTools.tap(androidId, 106, 150);
             AdbTools.tap(androidId, 975, 150);
+            AdbTools.tap(androidId, 106, 150);
+            AdbTools.tap(androidId, 975, 150);
         }else {
+            AdbTools.tap(androidId, 106, 70);
+            AdbTools.tap(androidId, 975, 70);
             AdbTools.tap(androidId, 106, 70);
             AdbTools.tap(androidId, 975, 70);
         }
@@ -76,6 +80,14 @@ public class App书旗 {
             if(null!=y){
                 AdbTools.tap(androidId,540,y);
             }
+            Thread.sleep(2000);
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                AdbTools.tap(androidId,540,1760);
+            }else {
+                AdbTools.tap(androidId,540,1660);
+            }
+
+           AdbTools.up(androidId);
         }catch (Exception e){}
     }
 
@@ -99,8 +111,7 @@ public class App书旗 {
                     }else{
                         AdbTools.tap(androidId,540, 1420);
                     }
-                    Thread.sleep(30000);
-                    Thread.sleep(32000);
+                    Thread.sleep(36000);
                     quit(androidId);
                 }
             } catch (Exception e) {

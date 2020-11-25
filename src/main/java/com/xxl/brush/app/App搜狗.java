@@ -318,12 +318,14 @@ public class App搜狗 {
      * @param robot
 */
     public static void handle20(String androidId){
+        int hour = LocalDateTime.now().getHour();
+        if(hour==0||AppTools.isTest()) {
             log.info("搜狗-搜索");
             try {
-               AdbTools.upPage(androidId);
-                Integer y = OcrTools.getWordsInt(androidId,"去搜索框");
-                if(null!=y){
-                    AdbTools.tap(androidId,910,y-70);
+                AdbTools.upPage(androidId);
+                Integer y = OcrTools.getWordsInt(androidId, "去搜索框");
+                if (null != y) {
+                    AdbTools.tap(androidId, 930, y - 70);
                     for (int i = 0; i < 6; i++) {
                         List<String> list = new ArrayList();
                         list.add("ligangjianying");
@@ -361,7 +363,7 @@ public class App搜狗 {
                         AdbTools.tap(androidId, 540, 680);
                     }
                     int yy = 1960;
-                    if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
                         yy = 2140;
                     }
                     AdbTools.tap(androidId, 540, yy);
@@ -370,6 +372,7 @@ public class App搜狗 {
             } catch (Exception e) {
                 log.info("搜狗-搜索异常");
             }
+        }
     }
 
 

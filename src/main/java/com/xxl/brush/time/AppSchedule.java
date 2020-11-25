@@ -35,7 +35,7 @@ public class AppSchedule {
      * todo 循环收取金币 定时器启动
      * 执行时间 每隔60分钟
      */
-   // @Scheduled(cron = "0 00 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * ?")
+     @Scheduled(cron = "0 06 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * ?")
     public void circulate() throws AWTException {
         log.info("********************循环收取金币 定时器启动**************************");
         int hour = LocalDateTime.now().getHour();

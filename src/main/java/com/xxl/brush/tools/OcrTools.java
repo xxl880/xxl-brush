@@ -200,7 +200,7 @@ public class OcrTools {
 
           getWordsInt(PhoneConstants.phone002,"11111111111111111111");
 
-         getWordsInt("a64d4bd","11111111111111111111");
+         getWordsInt("a276c5c","11111111111111111111");
         //getWordsInt("a314117","11111111111111111111");//6x不带
     }
 
