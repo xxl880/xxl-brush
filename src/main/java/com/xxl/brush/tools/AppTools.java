@@ -56,7 +56,7 @@ public class AppTools {
     public static boolean appMediasTime(){
         boolean bool = false;
         int hour = LocalDateTime.now().getHour();
-        if(hour!=0||hour!=1||hour!=2) {
+        if(hour!=1||hour!=7||hour!=13||hour!=19) {
             bool = true;
         }
         if(isTest()){
@@ -72,7 +72,7 @@ public class AppTools {
     public static boolean appNewsTime(){
         boolean bool = false;
         int hour = LocalDateTime.now().getHour();
-        if(hour!=0||hour!=1||hour!=2) {
+        if(hour!=2||hour!=8||hour!=14||hour!=20) {
             bool = true;
         }
         if(isTest()){
