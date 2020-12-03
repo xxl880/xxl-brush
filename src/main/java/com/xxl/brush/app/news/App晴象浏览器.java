@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.news;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -6,11 +6,8 @@ import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.RandomTools;
 import lombok.SneakyThrows;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.List;
-import java.util.Map;
 
 /*
 *

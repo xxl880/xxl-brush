@@ -1,5 +1,6 @@
 package com.xxl.brush.tools;
 
+import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import io.appium.java_client.android.AndroidDriver;
 import lombok.SneakyThrows;
@@ -238,9 +239,7 @@ public class AdbTools {
             String operateScreen = "adb -s " + androidId + " shell input keyevent 26";
             process(operateScreen);
         }
-        log.info("0.返回主界面");
-        String operateHome = "adb -s " + androidId + " shell input keyevent 3";
-        process(operateHome);
+        downPage(androidId);
 
         log.info("0.调取缓存");
         String operateDispath = "adb -s " + androidId + " shell input keyevent 82";
@@ -258,8 +257,6 @@ public class AdbTools {
            AdbTools.tap(androidId, 540, 1860);
         }
 
-        log.info("0.返回主界面");
-        process(operateHome);
 
     }
 
@@ -313,9 +310,8 @@ public class AdbTools {
     }
 
 
-
     public static void main(String[] args) throws IOException, InterruptedException {
-        pull("Q7PDU19906007551");
+       startup("a314117", AppConstants.startup我飞机打的贼6);
 
 
     }

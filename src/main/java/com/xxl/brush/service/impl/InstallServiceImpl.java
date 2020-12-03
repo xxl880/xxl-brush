@@ -1,5 +1,6 @@
 package com.xxl.brush.service.impl;
 
+import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.service.InstallService;
 import com.xxl.brush.tools.AdbTools;
 import lombok.SneakyThrows;
@@ -26,7 +27,7 @@ public class InstallServiceImpl implements InstallService {
 	@Override
 	public  void process(String androidId){
 	   Robot robot  = new Robot();
-       File file = new File("D:/install");
+       File file = new File("E:/install/app");
        if(file.exists()){
        	File[] files = file.listFiles();
        	if(null!=files){
@@ -34,7 +35,12 @@ public class InstallServiceImpl implements InstallService {
 				String installStr = "adb -s " + androidId + " install " +file1.getAbsolutePath();
 				AdbTools.process(installStr);
 				robot.delay(2000);
-				AdbTools.tap(androidId,300,1890);
+				if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+					AdbTools.tap(androidId,300,2070);
+				}else {
+					AdbTools.tap(androidId,300,1890);
+				}
+
                 robot.delay(20000);
 			}
 		}
