@@ -118,11 +118,11 @@ public class AppConstants {
     public static final String startup极限跳跃 = "com.dn.cpyr.jjbb.hb/org.cocos2dx.cpp.AppActivity";
     public static final String startup打爆怪兽 = "com.lwhy.dbxgs/com.lwhy.dbxgs.AppActivity";
     public static final String startup全民消星星 = "com.liuliuwan.ttxxl.xkx.bdfx/com.liuliuwan.MainActivity";
-    public static final String startup僵尸猎手  = "com.qmhd.game.jsls/com.qmhd.game.jsls.UnityPlayerActivity";//有问题
+    public static final String startup僵尸猎手  = "com.qmhd.game.jsls/.SplashActivity";
     public static final String startup成语摇钱树 = "com.yqs.cn/com.infini.pigfarm.unity.support.UnitySupportPlayerActivity";
     public static final String startup酷铃音 = "com.hot.war/com.hot.war.SplashActivity";
     public static final String startup趣红包 = "com.chenglie.hongbao/com.chenglie.hongbao.module.main.ui.activity.MainActivity";
-    public static final String startup把杯倒满 = "com.dl.bbzm.tf/com.ly.core.ui.SpAActivity";//有问题
+    public static final String startup把杯倒满 = "com.dl.bbzm.tf/org.cocos2dx.javascript.AppActivity";
     public static final String startup今晚娶貂蝉 = "com.lsgame.maze/com.huanyan.fu.start.ui.SplashActivity";
 
 //-----------------重启人生B
@@ -136,8 +136,8 @@ public class AppConstants {
     public static final String startup欢乐消星星 = "com.yx.stars/com.yx.stars.controller.MainActivity";
     public static final String startup考拉消消赚 = "feka.games.koala.cancellation.pop.star.puzzle.android/feka.games.koala.cancellation.pop.star.puzzle.android.SplashActivity";
     public static final String startup我摆摊贼赚 = "com.qmhd.game.wbtzz/com.qmhd.game.qcmgc.UnityPlayerActivity";
-    public static final String startup星球庄园 = "com.planet.light2345/com.planet.light2345.main.activity.MainActivity";//有问题
-    public static final String startup开心答人 = "com.gmiles.question.many/com.xmiles.main.MainActivity";//有问题
+    public static final String startup星球庄园 = "com.planet.light2345/com.planet.light2345.launch.LaunchActivity";
+    public static final String startup开心答人 = "com.gmiles.question.many/com.xmiles.vipgift.LaunchActivity";
 
 
 //-----------------重启人生C
@@ -159,10 +159,9 @@ public class AppConstants {
 //-----------------王者荣耀A
     public static final String startup多多步 = "net.rjkfw.ddb/.activity.SplashActivity";
     public static final String startup步多多 = "com.qsmy.walkmonkey/com.qsmy.busniess.welcome.WelcomeActivity";
-
     public static final String startup全民喝水  = "com.hi.shou.enjoy.health.cn/com.hi.shou.enjoy.health.cn.activity.LauncherActivity";
-
-
+    public static final String startup成语淘金记  = "com.idiom.tjj.cn/com.infini.pigfarm.unity.support.UnitySupportPlayerActivity";
+    public static final String startup赚客宝  = "com.lshd.maze/com.zkb.splash.activity.SplashActivity";
 
 
 

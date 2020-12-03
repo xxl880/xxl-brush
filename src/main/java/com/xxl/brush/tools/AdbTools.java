@@ -311,7 +311,7 @@ public class AdbTools {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
-       startup("a314117", AppConstants.startup我飞机打的贼6);
+       startup("a314117", AppConstants.startup赚客宝);
 
 
     }
