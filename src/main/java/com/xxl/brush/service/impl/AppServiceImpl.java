@@ -1,7 +1,9 @@
 package com.xxl.brush.service.impl;
 
 import com.xxl.brush.app.*;
+import com.xxl.brush.app.lifeA.App得意宝;
 import com.xxl.brush.service.AppService;
+import com.xxl.brush.tools.AdbTools;
 import lombok.SneakyThrows;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
@@ -60,11 +62,22 @@ public class AppServiceImpl implements AppService {
 
 
 
-
-
+//*************重启人生A*****************
+		App得意宝.circulate(androidId);
 
 	}
 
+	/**
+	 * todo 获取所有手机截图
+	 * @param androidId
+	 */
+	@Async
+	@SneakyThrows
+	@Override
+	public void capture(String androidId) {
+		AdbTools.screencap(androidId);
+		AdbTools.pull(androidId);
+	}
 
 
 }

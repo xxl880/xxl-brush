@@ -28,7 +28,7 @@ public class AppController {
 
     @GetMapping("circulate")
     @ApiOperation("羊毛")
-    public BaseResponse circulate() throws AWTException {
+    public BaseResponse circulate(){
         List<String> list = AdbTools.getAndroidId();
         if(!CollectionUtils.isEmpty(list)){
             for(String androidId:list){
@@ -38,6 +38,16 @@ public class AppController {
         return BaseResponse.newSuccess();
     }
 
- 
+    @GetMapping("capture")
+    @ApiOperation("获取所有手机界面截图")
+    public BaseResponse capture(){
+        List<String> list = AdbTools.getAndroidId();
+        if(!CollectionUtils.isEmpty(list)){
+            for(String androidId:list){
+                appService.capture(androidId);
+            }
+        }
+        return BaseResponse.newSuccess();
+    }
 
 }

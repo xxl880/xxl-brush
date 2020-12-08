@@ -118,13 +118,23 @@ public class AdbTools {
 
 
     /**
-     * todo 向下滑动，正常操作
+     * todo 点击，正常操作
      */
     @SneakyThrows
     public static void tap(String androidId, int x, int y){
         String operate = "adb -s "+androidId +" shell input tap " + x + " " + y;
         process(operate);
     }
+
+    /**
+     * todo 滑动，返回操作
+     */
+    @SneakyThrows
+    public static void swipeDelay(String androidId,int time){
+        String operate = "adb -s "+androidId +" shell input swipe 540 800 540 600 "+ time;
+        process(operate);
+    }
+
 
     /**
      * todo 退回，正常操作
@@ -311,7 +321,7 @@ public class AdbTools {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
-       startup("a314117", AppConstants.startup赚客宝);
+
 
 
     }

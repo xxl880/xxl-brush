@@ -7,8 +7,6 @@ import lombok.SneakyThrows;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
-import java.awt.*;
 import java.io.File;
 
 /**
@@ -26,7 +24,9 @@ public class InstallServiceImpl implements InstallService {
 	@SneakyThrows
 	@Override
 	public  void process(String androidId){
-	   Robot robot  = new Robot();
+		log.info("1.初始化手机");
+		AdbTools.initMobile(androidId);
+
        File file = new File("E:/install/app");
        if(file.exists()){
        	File[] files = file.listFiles();
@@ -34,14 +34,14 @@ public class InstallServiceImpl implements InstallService {
        		for(File file1:files){
 				String installStr = "adb -s " + androidId + " install " +file1.getAbsolutePath();
 				AdbTools.process(installStr);
-				robot.delay(2000);
+				Thread.sleep(2000);
 				if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
 					AdbTools.tap(androidId,300,2070);
 				}else {
 					AdbTools.tap(androidId,300,1890);
 				}
 
-                robot.delay(20000);
+				Thread.sleep(20000);
 			}
 		}
 	   }else {
