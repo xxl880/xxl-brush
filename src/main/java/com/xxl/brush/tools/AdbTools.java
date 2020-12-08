@@ -126,12 +126,14 @@ public class AdbTools {
         process(operate);
     }
 
+
+
     /**
      * todo 滑动，返回操作
      */
     @SneakyThrows
-    public static void swipeDelay(String androidId,int time){
-        String operate = "adb -s "+androidId +" shell input swipe 540 800 540 600 "+ time;
+    public static void swipe(String androidId){
+        String operate = "adb -s "+androidId +" shell input swipe 540 800 540 600 "+ 2000;
         process(operate);
     }
 
