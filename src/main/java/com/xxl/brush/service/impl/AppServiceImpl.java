@@ -1,7 +1,8 @@
 package com.xxl.brush.service.impl;
 
 import com.xxl.brush.app.*;
-import com.xxl.brush.app.lifeA.App得意宝;
+import com.xxl.brush.app.life.*;
+import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.service.AppService;
 import com.xxl.brush.tools.AdbTools;
@@ -10,10 +11,8 @@ import lombok.SneakyThrows;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Map;
 
 /**
  *
@@ -103,5 +102,37 @@ public class AppServiceImpl implements AppService {
 
 	}
 
+
+	/**
+	 * todo 初始化手机
+	 * @param androidId
+	 */
+	@Async
+	@SneakyThrows
+	@Override
+	public void init(String androidId) {
+		AdbTools.initMobile(androidId);
+	}
+
+	/**
+	 * todo 启动app
+	 * @param androidId
+	 */
+	@Async
+	@SneakyThrows
+	@Override
+	public void startup(String androidId,String appName) {
+		AdbTools.startup(androidId,startupInit(appName));
+	}
+
+	public String startupInit(String appName) {
+		if(appName.equals("抖音")){
+			return AppConstants.startup抖音;
+		}else if(appName.equals("快手")){
+			return AppConstants.startup快手;
+		}
+
+		return null;
+	}
 
 }

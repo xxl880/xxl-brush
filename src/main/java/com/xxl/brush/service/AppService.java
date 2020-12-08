@@ -21,4 +21,16 @@ public interface AppService {
      */
     public void cache(String androidId);
 
+    /**
+     * todo 初始化指定手机
+     */
+    public void init(String androidId);
+
+    /**
+     * todo 启动app
+     */
+    public void startup(String androidId, String appName);
+
+
+
 }

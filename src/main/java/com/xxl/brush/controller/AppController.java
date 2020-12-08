@@ -82,5 +82,29 @@ public class AppController {
         return BaseResponse.newSuccess();
     }
 
+    @GetMapping("startup")
+    @ApiOperation("启动app")
+    public BaseResponse startup(@ApiIgnore @RequestParam Map<String, Object> params){
+        String appName = MapUtils.getString(params,"appName");
+        List<String> list = AdbTools.getAndroidId();
+        if(!CollectionUtils.isEmpty(list)){
+            for(String androidId:list){
+                appService.startup(androidId,appName);
+            }
+        }
+        return BaseResponse.newSuccess();
+    }
+
+    @GetMapping("init")
+    @ApiOperation("初始化手机")
+    public BaseResponse init(){
+        List<String> list = AdbTools.getAndroidId();
+        if(!CollectionUtils.isEmpty(list)){
+            for(String androidId:list){
+                appService.init(androidId);
+            }
+        }
+        return BaseResponse.newSuccess();
+    }
 
 }
