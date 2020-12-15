@@ -1,5 +1,6 @@
 package com.xxl.brush.tools;
 
+import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import io.appium.java_client.android.AndroidDriver;
 import io.swagger.models.auth.In;
@@ -7,6 +8,7 @@ import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * todo app操作
@@ -109,14 +112,37 @@ public class AppTools {
     }
 
     public static void main(String[] args) {
-        int hour = LocalDateTime.now().getHour();
-        System.out.println(hour);
-        if(hour!=0||hour!=1||hour!=2) {
-            System.out.println(33333);
-            return;
+        List<String> list = AdbTools.getAndroidId();
+        if(!CollectionUtils.isEmpty(list)){
+            for(String androidId:list){
+                handle4(androidId);
+            }
         }
-        System.out.println(11111);
     }
+
+
+    public static void handle4(String androidId){
+        log.info("点点新闻-看新闻");
+        AdbTools.initMobile(androidId);
+        AdbTools.startup(androidId, AppConstants.startup点点);
+        try {
+
+            for (int a = 0; a < 100; a++) {
+                AdbTools.upPage(androidId);
+                AdbTools.tap(androidId, 540, 600);
+
+                for (int i=0;i<8;i++) {
+                    Thread.sleep(6000);
+                     AdbTools.down(androidId);
+                }
+                AdbTools.back(androidId);
+                Thread.sleep(2000);
+            }
+        }catch (Exception e){
+            log.info("点点新闻-看新闻异常");
+        }
+    }
+
 
 
 

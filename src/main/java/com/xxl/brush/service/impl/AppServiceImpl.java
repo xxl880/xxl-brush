@@ -34,19 +34,19 @@ public class AppServiceImpl implements AppService {
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 
 //*************A综合*****************
-        App抖音极速.circulate(androidId);
+      /*  App抖音极速.circulate(androidId);
 		App火山极速.circulate(androidId);
 		App快手极速.circulate(androidId);
 	  	App今日头条.circulate(androidId);
-	/*	App趣头条.circulate(androidId, port, systemPort);*/
+	*//*	App趣头条.circulate(androidId, port, systemPort);*//*
 		App抖音火山.circulate(androidId);
 
 		//App京东
-		App搜狗.circulate(androidId);
+		*//*App搜狗.circulate(androidId);
 		App微博.circulate(androidId);
 		App拼多多.circulate(androidId);
 		App火山小说.circulate(androidId);
-		AppNOW直播.circulate(androidId);
+		AppNOW直播.circulate(androidId);*//*
 
 
 		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
@@ -54,12 +54,13 @@ public class AppServiceImpl implements AppService {
 			log.info("*****************运行多长时间*************"+duration.toMinutes());
 			return;
 		}
-
+*/
 
 
 //*************B综合*****************
-		App米读.circulate(androidId);
 		App书旗.circulate(androidId);
+		App米读.circulate(androidId);
+
 
 
 

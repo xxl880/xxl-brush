@@ -43,7 +43,7 @@ public class App米读 {
                     AdbTools.tap(androidId, 670, 1950);
                 }
 
-                handle1(androidId);
+              /*  handle1(androidId);*/
                 handle5(androidId);
 
             } catch (Exception e) {
@@ -103,7 +103,7 @@ public class App米读 {
 
             AdbTools.tap(androidId, 540, 1720);
             AdbTools.tap(androidId, 540, 1720);
-            for(int i=0;i<60;i++) {
+            for(int i=0;i<3600;i++) {
                 Thread.sleep(RandomTools.init(6000));
                 AdbTools.tap(androidId, 1040, 1730);
             }
