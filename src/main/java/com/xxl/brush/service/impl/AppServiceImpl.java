@@ -40,10 +40,8 @@ public class AppServiceImpl implements AppService {
 		App快手极速.circulate(androidId);
      	App今日头条.circulate(androidId);
 
-
 		App米读.circulate(androidId);
         App书旗.circulate(androidId);
-
 		App快看点.circulate(androidId);
 
 
