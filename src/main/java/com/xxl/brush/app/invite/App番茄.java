@@ -1,4 +1,4 @@
-package com.xxl.brush.app.news;
+package com.xxl.brush.app.invite;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;

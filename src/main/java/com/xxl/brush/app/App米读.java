@@ -103,7 +103,7 @@ public class App米读 {
 
             AdbTools.tap(androidId, 540, 1720);
             AdbTools.tap(androidId, 540, 1720);
-            for(int i=0;i<3600;i++) {
+            for(int i=0;i<60;i++) {
                 Thread.sleep(RandomTools.init(6000));
                 AdbTools.tap(androidId, 1040, 1730);
             }

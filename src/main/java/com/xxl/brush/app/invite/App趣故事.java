@@ -1,4 +1,4 @@
-/*
+package com.xxl.brush.app.invite;/*
 package com.xxl.brush.app.news;
 
 import com.xxl.brush.constants.AppConstants;

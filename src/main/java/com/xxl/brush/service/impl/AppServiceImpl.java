@@ -1,6 +1,7 @@
 package com.xxl.brush.service.impl;
 
 import com.xxl.brush.app.*;
+import com.xxl.brush.app.invite.App快看点;
 import com.xxl.brush.app.life.*;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -33,39 +34,21 @@ public class AppServiceImpl implements AppService {
 		LocalDateTime startTime = LocalDateTime.now();
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 
-//*************A综合*****************
-      /*  App抖音极速.circulate(androidId);
-		App火山极速.circulate(androidId);
+//*************综合*****************
+
+        App抖音极速.circulate(androidId);
 		App快手极速.circulate(androidId);
-	  	App今日头条.circulate(androidId);
-	*//*	App趣头条.circulate(androidId, port, systemPort);*//*
-		App抖音火山.circulate(androidId);
-
-		//App京东
-		*//*App搜狗.circulate(androidId);
-		App微博.circulate(androidId);
-		App拼多多.circulate(androidId);
-		App火山小说.circulate(androidId);
-		AppNOW直播.circulate(androidId);*//*
+     	App今日头条.circulate(androidId);
 
 
-		duration = java.time.Duration.between( startTime,  LocalDateTime.now());
-		if(duration.toMinutes()>60){
-			log.info("*****************运行多长时间*************"+duration.toMinutes());
-			return;
-		}
-*/
-
-
-//*************B综合*****************
-		App书旗.circulate(androidId);
 		App米读.circulate(androidId);
+        App书旗.circulate(androidId);
+
+		App快看点.circulate(androidId);
 
 
 
 
-//*************重启人生A*****************
-		App得意宝.circulate(androidId);
 
 	}
 

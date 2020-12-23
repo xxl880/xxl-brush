@@ -1,5 +1,6 @@
 package com.xxl.brush.tools;
 
+import com.xxl.brush.app.App米读;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import io.appium.java_client.android.AndroidDriver;
@@ -115,7 +116,7 @@ public class AppTools {
         List<String> list = AdbTools.getAndroidId();
         if(!CollectionUtils.isEmpty(list)){
             for(String androidId:list){
-                handle4(androidId);
+                App米读.circulate(androidId);
             }
         }
     }
@@ -144,6 +145,39 @@ public class AppTools {
     }
 
 
+    /**
+     * todo 疯狂娱乐城
+     * @param androidId
+     */
+    public static void handle5(String androidId){
+        try {
+
+            for (int a = 0; a < 100; a++) {
+                Thread.sleep(2000);
+                AdbTools.tap(androidId, 540, 1550);
+                Thread.sleep(59000);
+                AdbTools.tap(androidId, 970, 170);
+                AdbTools.tap(androidId, 102, 170);
+            }
+        }catch (Exception e){
+        }
+    }
+
+
+    /**
+     * todo 看视频
+     * @param androidId
+     */
+    public static void handle6(String androidId){
+        try {
+            for (int a = 0; a < 600; a++) {
+                Thread.sleep(RandomTools.init(2000));
+                AdbTools.downPage(androidId);
+                Thread.sleep(6000+RandomTools.init(6000));
+            }
+        }catch (Exception e){
+        }
+    }
 
 
 
