@@ -163,6 +163,8 @@ public class AppConstants {
     public static final String startup成语淘金记  = "com.idiom.tjj.cn/com.infini.pigfarm.unity.support.UnitySupportPlayerActivity";
     public static final String startup赚客宝  = "com.lshd.maze/com.zkb.splash.activity.SplashActivity";
 
-
+    public static final String startup好赚钱  = "com.mints.goodmoney/com.mints.goodmoney.ui.activitys.SplashYlhActivity";
+    public static final String startup成语闯江湖  = "com.game.matrix_idiomjianghu/com.cootek.smartdialer.v6.TPDTabActivity";
+    public static final String startup矿牛守卫赚  = "com.feka.games.merge.warship.defense.star.space.android/com.feka.games.merge.warship.defense.star.space.android.SplashActivity";
 
 }

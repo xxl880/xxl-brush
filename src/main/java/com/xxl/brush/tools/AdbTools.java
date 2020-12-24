@@ -253,6 +253,10 @@ public class AdbTools {
         }
         downPage(androidId);
 
+        log.info("0.返回主界面");
+        String operateBack = "adb -s " + androidId + " shell input keyevent 3";
+        process(operateBack);
+
         log.info("0.调取缓存");
         String operateDispath = "adb -s " + androidId + " shell input keyevent 82";
         process(operateDispath);
@@ -319,11 +323,15 @@ public class AdbTools {
         }
 
         return (java.util.List) list;
+
+
+
     }
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+        AdbTools.startup("854c917", AppConstants.startup得意宝);
 
 
     }

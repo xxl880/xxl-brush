@@ -2,11 +2,11 @@ package com.xxl.brush.service.impl;
 
 import com.xxl.brush.app.*;
 import com.xxl.brush.app.invite.App快看点;
-import com.xxl.brush.app.life.*;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.service.AppService;
 import com.xxl.brush.tools.AdbTools;
+import com.xxl.brush.tools.AppiumWindow;
 import com.xxl.brush.tools.OcrTools;
 import lombok.SneakyThrows;
 import org.slf4j.LoggerFactory;
@@ -30,19 +30,30 @@ public class AppServiceImpl implements AppService {
 	@Async
 	@SneakyThrows
 	@Override
-	public void circulate(String androidId){
+	public void circulate(String androidId,int portSeq){
+		AppiumWindow appiumWindow = new AppiumWindow();
+
+		int port = 4723+ portSeq;
+		int systemPort = 9000+ portSeq;
+
+		appiumWindow.init(port,systemPort, appiumWindow);
+
 		LocalDateTime startTime = LocalDateTime.now();
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 
-//*************综合*****************
-
+/*
         App抖音极速.circulate(androidId);
 		App快手极速.circulate(androidId);
      	App今日头条.circulate(androidId);
+		App趣头条.circulate(androidId, port, systemPort);
+		App微博.circulate(androidId);
+		App搜狗.circulate(androidId);
 
 		App米读.circulate(androidId);
         App书旗.circulate(androidId);
-		App快看点.circulate(androidId);
+		App快看点.circulate(androidId);*/
+
+		App矿牛守卫赚.circulate(androidId);
 
 
 

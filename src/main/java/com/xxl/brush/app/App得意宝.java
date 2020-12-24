@@ -1,4 +1,4 @@
-package com.xxl.brush.app.life;
+package com.xxl.brush.app;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -31,15 +31,11 @@ public class App得意宝 {
                 log.info("3.清除");
                 AdbTools.clear(androidId);
 
-                int y = 1950;
-                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
-                    y = 2140;
-                }
-                AdbTools.tap(androidId, 110, y);
-
                 handle6(androidId);
                 handle8(androidId);
                 handle9(androidId);
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -73,11 +69,13 @@ public class App得意宝 {
 */
     @SneakyThrows
     public static void handle1(String androidId){
-            try{
+        log.info("App得意宝-签到");
+        try{
+           AdbTools.upPage(androidId);
 
-            } catch (Exception e) {
+           AdbTools.tap(androidId,540,1810);
 
-            }
+        } catch (Exception e) { }
     }
 
 

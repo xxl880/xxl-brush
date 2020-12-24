@@ -33,7 +33,7 @@ public class AppController {
         List<String> list = AdbTools.getAndroidId();
         if(!CollectionUtils.isEmpty(list)){
             for(String androidId:list){
-                appService.circulate(androidId);
+                appService.circulate(androidId,list.indexOf(androidId));
             }
         }
         return BaseResponse.newSuccess();

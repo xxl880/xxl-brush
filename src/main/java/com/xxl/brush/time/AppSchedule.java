@@ -41,7 +41,7 @@ public class AppSchedule {
         List<String> list = AdbTools.getAndroidId();
         if(!CollectionUtils.isEmpty(list)){
             for(String androidId:list){
-                appService.circulate(androidId);
+                appService.circulate(androidId,list.indexOf(androidId));
             }
         }
 
