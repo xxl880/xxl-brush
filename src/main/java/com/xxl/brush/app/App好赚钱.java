@@ -5,6 +5,7 @@ import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.OcrTools;
+import com.xxl.brush.tools.RandomTools;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDateTime;
 
 /*
- * todo App书旗小说
+ * todo App好赚钱
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
 */
 public class App好赚钱 {
@@ -25,7 +26,7 @@ public class App好赚钱 {
     public static void circulate(String androidId){
         if(AppTools.appTime())return;
             try {
-                log.info("********************************书旗小说操作********************************************");
+                log.info("********************************好赚钱操作********************************************");
 
                 log.info("1.初始化手机");
                 AdbTools.initMobile(androidId);
@@ -36,15 +37,10 @@ public class App好赚钱 {
                 log.info("3.清除");
                 AdbTools.clear(androidId);
 
-                int y = 1950;
-                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
-                    y = 2140;
-                }
-                AdbTools.tap(androidId, 540, y);
-
-                handle1(androidId);
                 handle6(androidId);
-                handle17(androidId);
+                handle2(androidId);
+                handle1(androidId);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -57,17 +53,8 @@ public class App好赚钱 {
      * @param robot
 */
     public static void quit(String androidId){
-        if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-            AdbTools.tap(androidId, 106, 150);
-            AdbTools.tap(androidId, 975, 150);
-            AdbTools.tap(androidId, 106, 150);
-            AdbTools.tap(androidId, 975, 150);
-        }else {
-            AdbTools.tap(androidId, 106, 70);
-            AdbTools.tap(androidId, 975, 70);
-            AdbTools.tap(androidId, 106, 70);
-            AdbTools.tap(androidId, 975, 70);
-        }
+        AdbTools.tap(androidId, 970,110);
+        AdbTools.tap(androidId, 950,370);
     }
 
 
@@ -76,20 +63,7 @@ public class App好赚钱 {
      * @param robot
 */
     public static void clear( String androidId){
-        try{
-            Integer y = OcrTools.getWordsInt(androidId,"取消");
-            if(null!=y){
-                AdbTools.tap(androidId,540,y);
-            }
-            Thread.sleep(2000);
-            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                AdbTools.tap(androidId,540,1760);
-            }else {
-                AdbTools.tap(androidId,540,1660);
-            }
-
-           AdbTools.up(androidId);
-        }catch (Exception e){}
+   
     }
 
 
@@ -100,24 +74,65 @@ public class App好赚钱 {
     @SneakyThrows
     public static void handle1(String androidId){
             try{
-                log.info("书旗小说-签到");
-                Integer y = OcrTools.getWordsInt(androidId,"签到成功");
-                if(null==y){
-                    y = OcrTools.getWordsInt(androidId,"30天");
+                log.info("好赚钱-签到");
+                int yy = 1950;
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    yy = 2140;
                 }
 
+                AdbTools.tap(androidId, 980,yy);
+                Integer y = OcrTools.getWordsInt(androidId,"看视频最高");
+                if(null==y){
+                    y = OcrTools.getWordsInt(androidId,"签到奖励");
+                    y+=120;
+                }
                 if(null!=y){
-                    if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
-                        AdbTools.tap(androidId,540, 1560);
-                    }else{
-                        AdbTools.tap(androidId,540, 1420);
-                    }
-                    Thread.sleep(36000);
+                    AdbTools.tap(androidId, 540,y);
+                    Thread.sleep(59000);
                     quit(androidId);
                 }
+
             } catch (Exception e) {
-                log.info("书旗小说-签到异常");
+                log.info("好赚钱-签到异常");
             }
+    }
+
+
+
+    /**
+     * todo 2.看视频
+     * @param androidId
+     */
+    public static void handle2(String androidId){
+        log.info("好赚钱-看视频");
+        try {
+
+            int yy = 1950;
+            int yyy = 820;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                yy = 2140;
+                yyy = 880;
+            }
+
+            AdbTools.tap(androidId, 110,yy);
+
+
+            int x = RandomTools.init(6)+6;
+            for (int a = 0; a < x; a++) {
+                Thread.sleep(RandomTools.init(15000));
+                for(int q=0;q<3;q++){
+                    Thread.sleep(RandomTools.init(6000));
+                    AdbTools.downPage(androidId);
+                }
+                AdbTools.tap(androidId, 980,1170);
+                Thread.sleep(2000);
+                AdbTools.tap(androidId, 540,yyy);
+                Thread.sleep(59000);
+                quit(androidId);
+            }
+        }catch (Exception e){
+            log.info("好赚钱-看视频异常");
+        }
     }
 
 
@@ -126,52 +141,31 @@ public class App好赚钱 {
      * @param robot
 */
     public static void handle6(String androidId){
-        log.info("书旗小说-看广告");
+        log.info("好赚钱-看广告");
         try{
-            handle1(androidId);
-            Integer y = OcrTools.getWordsInt(androidId,"已有100万");
-            if(null==y){
-                AdbTools.upPage(androidId);
-                y = OcrTools.getWordsInt(androidId,"已有100万");
+            int yy = 1950;
+            int yyy = 810;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                yy = 2140;
+                yyy = 880;
+            }
+            AdbTools.tap(androidId, 540,yy);
+
+            for(int i=0;i<10;i++) {
+                AdbTools.tap(androidId, 540, 1180);
+                Thread.sleep(8000);
+                AdbTools.tap(androidId, 540, yyy);
+                Thread.sleep(59000);
+                quit(androidId);
             }
 
-            if(null!=y){
-                for(int i=0;i<10;i++) {
-                    Thread.sleep(1000);
-                    AdbTools.tap(androidId, 540, y-130);
-                    Thread.sleep(36000);
-                    quit(androidId);
-                }
-            }
         }catch (Exception e){
-            log.info("书旗小说-看广告异常");
+            log.info("好赚钱-看广告异常");
         }
 
     }
 
 
-
-/*     * todo 17.分享
-     * @param robot*/
-    public static void handle17(String androidId){
-        int hour = LocalDateTime.now().getHour();
-        if(hour==1||AppTools.isTest()){
-            log.info("书旗小说-分享");
-            try {
-                AdbTools.downPage(androidId);
-                Integer y = OcrTools.getWordsInt(androidId,"每日邀请书友一起读赚金币");
-                if(null!=y){
-                    AdbTools.tap(androidId,540,y-60);
-                    Integer y1 = OcrTools.getWordsInt(androidId,"微信好友");
-                    AdbTools.tap(androidId,190, y1-130);
-                    Thread.sleep(2000);
-                    AdbTools.back(androidId);
-                }
-            } catch (Exception e) {
-                log.info("书旗小说-分享异常");
-            }
-        }
-    }
 
 
 

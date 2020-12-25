@@ -36,6 +36,7 @@ public class App米读 {
 
                 log.info("3.清除");
                 AdbTools.clear(androidId);
+                clear(androidId);
 
                 if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
                     AdbTools.tap(androidId, 670, 2140);
@@ -105,6 +106,13 @@ public class App米读 {
             AdbTools.tap(androidId, 540, 1720);
             for(int i=0;i<60;i++) {
                 Thread.sleep(RandomTools.init(6000));
+                if (i % 5 == 0) {
+                    Integer yyy = OcrTools.getWordsInt(androidId,"立即");
+                    if(null!=yyy){
+                        AdbTools.tap(androidId,540,1940);
+                    }
+                }
+
                 AdbTools.tap(androidId, 1040, 1730);
             }
 
