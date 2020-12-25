@@ -31,7 +31,7 @@ public class App成语闯江湖 {
                 AdbTools.initMobile(androidId);
 
                 log.info("2.启动app");
-                AdbTools.startup(androidId, AppConstants.startup好赚钱);
+                AdbTools.startup(androidId, AppConstants.startup成语闯江湖);
 
                 log.info("3.清除");
                 AdbTools.clear(androidId);

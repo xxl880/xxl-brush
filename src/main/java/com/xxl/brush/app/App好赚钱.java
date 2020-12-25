@@ -152,6 +152,7 @@ public class App好赚钱 {
             AdbTools.tap(androidId, 540,yy);
 
             for(int i=0;i<10;i++) {
+                Thread.sleep(2000);
                 AdbTools.tap(androidId, 540, 1180);
                 Thread.sleep(8000);
                 AdbTools.tap(androidId, 540, yyy);

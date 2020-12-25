@@ -48,7 +48,8 @@ public class App得意宝 {
      * @param robot
 */
     public static void quit(String androidId){
-
+        AdbTools.tap(androidId, 970, 100);
+        AdbTools.tap(androidId, 100, 100);
     }
 
 
@@ -80,43 +81,59 @@ public class App得意宝 {
 
 
 /*
-     * todo 6.看广告
+     * todo 6.走路
      * @param robot
 */
     public static void handle6(String androidId) {
-        log.info("App得意宝-看广告");
+        log.info("App得意宝-走路");
         try {
             AdbTools.downPage(androidId);
-            for (int i = 0; i < 10; i++) {
+            AdbTools.downPage(androidId);
+            for (int i = 0; i < 6; i++) {
                 Thread.sleep(2000);
-                int y = 1510;
-                int y2 = 410;
+                int y = 1000;
+                int y2 = 950;
                 if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
-                    y = 1930;
-                    y2 = 530;
-
-                    AdbTools.tap(androidId, 110, y);
-                    Thread.sleep(2000);
-                    AdbTools.tap(androidId, 990, y2);
-
+                    y = 1200;
+                    y2 = 1050;
                 }
-
-
+                AdbTools.tap(androidId, 540, y);
+                Thread.sleep(3000);
+                AdbTools.tap(androidId, 540, y2);
+                quit(androidId);
             }
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+
         }
     }
 
         /*
-     * todo 8.拆红包
+     * todo 8.看广告
      * @param robot
      */
     public static void handle8(String androidId){
         log.info("App得意宝-看广告");
         try{
+            AdbTools.downPage(androidId);
+            AdbTools.downPage(androidId);
+            for (int i = 0; i <10; i++) {
+                Thread.sleep(2000);
+                int y = 1270;
+                int y2 = 1150;
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    y = 1430;
+                    y2 = 1250;
+                }
+                AdbTools.tap(androidId, 540, y);
 
+                AdbTools.tap(androidId, 540, 1090);
+                Thread.sleep(2000);
+                AdbTools.tap(androidId, 540, y2);
+                Thread.sleep(59000);
+                quit(androidId);
+            }
+            AdbTools.back(androidId);
         }catch (Exception e){
             log.info("App得意宝-看广告异常");
         }
@@ -125,15 +142,30 @@ public class App得意宝 {
 
 
     /*
-     * todo 9.兑金币
+     * todo 9.看视频广告
      * @param robot
      */
     public static void handle9(String androidId){
-        log.info("App得意宝-看广告");
-        try{
+        log.info("App得意宝-看视频广告");
+        try {
+            AdbTools.downPage(androidId);
+            AdbTools.downPage(androidId);
+            for (int i = 0; i < 6; i++) {
+                Thread.sleep(2000);
+                int y = 1520;
+                int y2 = 950;
+                if (androidId.equals(PhoneConstants.phone001) || androidId.equals(PhoneConstants.phone002)) {
+                    y = 1200;
+                    y2 = 1720;
+                }
+                AdbTools.tap(androidId, 540, y);
+                Thread.sleep(59000);
+                quit(androidId);
 
-        }catch (Exception e){
-            log.info("App得意宝-看广告异常");
+            }
+
+        } catch (InterruptedException e) {
+            log.info("App得意宝-看视频广告异常");
         }
 
     }
