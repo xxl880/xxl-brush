@@ -87,6 +87,7 @@ public class App得意宝 {
     public static void handle6(String androidId) {
         log.info("App得意宝-走路");
         try {
+
             AdbTools.downPage(androidId);
             AdbTools.downPage(androidId);
             for (int i = 0; i < 6; i++) {
@@ -100,11 +101,11 @@ public class App得意宝 {
                 AdbTools.tap(androidId, 540, y);
                 Thread.sleep(3000);
                 AdbTools.tap(androidId, 540, y2);
-                quit(androidId);
+                AdbTools.back(androidId);
             }
 
         } catch (InterruptedException e) {
-
+            log.info("App得意宝-走路异常");
         }
     }
 
@@ -115,6 +116,12 @@ public class App得意宝 {
     public static void handle8(String androidId){
         log.info("App得意宝-看广告");
         try{
+            AdbTools.tap(androidId,940,580);
+            AdbTools.tap(androidId,940,800);
+            AdbTools.tap(androidId,940,600);
+            AdbTools.tap(androidId,940,520);
+            AdbTools.tap(androidId,920,650);
+            AdbTools.tap(androidId,920,720);
             AdbTools.downPage(androidId);
             AdbTools.downPage(androidId);
             for (int i = 0; i <10; i++) {
@@ -131,7 +138,7 @@ public class App得意宝 {
                 Thread.sleep(2000);
                 AdbTools.tap(androidId, 540, y2);
                 Thread.sleep(59000);
-                quit(androidId);
+                AdbTools.back(androidId);
             }
             AdbTools.back(androidId);
         }catch (Exception e){
@@ -160,8 +167,7 @@ public class App得意宝 {
                 }
                 AdbTools.tap(androidId, 540, y);
                 Thread.sleep(59000);
-                quit(androidId);
-
+                AdbTools.back(androidId);
             }
 
         } catch (InterruptedException e) {

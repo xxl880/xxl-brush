@@ -128,16 +128,16 @@ public class App书旗 {
         log.info("书旗小说-看广告");
         try{
             handle1(androidId);
-            Integer y = OcrTools.getWordsInt(androidId,"已有100万");
+            Integer y = OcrTools.getWordsInt(androidId,"百万");
             if(null==y){
                 AdbTools.upPage(androidId);
-                y = OcrTools.getWordsInt(androidId,"已有100万");
+                y = OcrTools.getWordsInt(androidId,"百万");
             }
 
             if(null!=y){
                 for(int i=0;i<10;i++) {
                     Thread.sleep(1000);
-                    AdbTools.tap(androidId, 540, y-130);
+                    AdbTools.tap(androidId, 540, y);
                     Thread.sleep(36000);
                     quit(androidId);
                 }
