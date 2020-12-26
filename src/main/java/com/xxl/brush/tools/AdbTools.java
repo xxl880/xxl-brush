@@ -68,9 +68,10 @@ public class AdbTools {
      * 命令2：启动报错时使用写日志方式找到主类 （adb logcat>D:/app.txt） 使用ctrl+c中断，查看mainActivity
      */
     @SneakyThrows
-    public static void connect(String androidId){
+    public static void connect(String androidId, int port){
         log.info("******************USB连接手机**************");
-        String operate = " adb -s " + androidId + " tcpip 5555";
+        int portseq = port +5555;
+        String operate = " adb -s " + androidId + " tcpip "+ portseq;
         process(operate);
         if(androidId.equals(PhoneConstants.phone001)){
             tap(androidId,540,1760);
