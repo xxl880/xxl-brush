@@ -42,20 +42,18 @@ public class AppServiceImpl implements AppService {
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 
 
-/*        App抖音极速.circulate(androidId);
+        App抖音极速.circulate(androidId);
 		App快手极速.circulate(androidId);
      	App今日头条.circulate(androidId);
 		App趣头条.circulate(androidId, port, systemPort);
 		App微博.circulate(androidId);
-		App搜狗.circulate(androidId);*/
-
-		/*App米读.circulate(androidId);
-
-		App好赚钱.circulate(androidId);*/
-/*	    App成语闯江湖.circulate(androidId);
-		App快看点.circulate(androidId);*/
-/*		App得意宝.circulate(androidId);
-	    App矿牛守卫赚.circulate(androidId);*/
+		App搜狗.circulate(androidId);
+		App米读.circulate(androidId);
+		App好赚钱.circulate(androidId);
+	    App成语闯江湖.circulate(androidId);
+		App快看点.circulate(androidId);
+		App得意宝.circulate(androidId);
+	    App矿牛守卫赚.circulate(androidId);
 		App书旗.circulate(androidId);
 
 	}
