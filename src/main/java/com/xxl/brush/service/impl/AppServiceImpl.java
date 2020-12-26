@@ -31,6 +31,7 @@ public class AppServiceImpl implements AppService {
 	@SneakyThrows
 	@Override
 	public void circulate(String androidId,int portSeq){
+        AdbTools.connect(androidId);
 		AppiumWindow appiumWindow = new AppiumWindow();
 
 		int port = 4723+ portSeq;
