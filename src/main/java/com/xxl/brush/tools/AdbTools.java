@@ -61,6 +61,26 @@ public class AdbTools {
         process(operate);
     }
 
+
+    /**
+     * todo USB连接手机
+     * 命令：查看当前app启动 （adb shell dumpsys window | findstr mCurrentFocus）
+     * 命令2：启动报错时使用写日志方式找到主类 （adb logcat>D:/app.txt） 使用ctrl+c中断，查看mainActivity
+     */
+    @SneakyThrows
+    public static void connect(String androidId){
+        log.info("******************USB连接手机**************");
+        String operate = " adb -s " + androidId + " tcpip 5555";
+        process(operate);
+        if(androidId.equals(PhoneConstants.phone001)){
+            tap(androidId,540,1760);
+        }else if(androidId.equals(PhoneConstants.phone002)){
+            tap(androidId,540,1720);
+        }else {
+            tap(androidId,540,1660);
+        }
+    }
+
     /**
      * todo 向下滑动，正常操作
      */
