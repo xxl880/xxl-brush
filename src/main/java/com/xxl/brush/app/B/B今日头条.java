@@ -1,5 +1,5 @@
 
-package com.xxl.brush.app;
+package com.xxl.brush.app.B;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -19,8 +19,8 @@ import java.util.List;
  * todo App今日头条
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
-public class App今日头条 {
-    private static Logger log = LoggerFactory.getLogger(App今日头条.class);
+public class B今日头条 {
+    private static Logger log = LoggerFactory.getLogger(B今日头条.class);
 
 /**
      * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)

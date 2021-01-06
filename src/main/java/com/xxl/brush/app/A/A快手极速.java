@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.A;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -14,8 +14,8 @@ import java.util.List;
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
-public class App快手极速 {
-    private static Logger log = LoggerFactory.getLogger(App快手极速.class);
+public class A快手极速 {
+    private static Logger log = LoggerFactory.getLogger(A快手极速.class);
 
     /**
      * todo 循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
@@ -160,7 +160,7 @@ public class App快手极速 {
     public static void handle2(String androidId){
         log.info("快手极速-看视频");
         try {
-            int x = RandomTools.init(6)+6;
+            int x = RandomTools.init(6)+36;
             for (int a = 0; a < x; a++) {
                 Thread.sleep(RandomTools.init(15000));
                 AdbTools.downPage(androidId);

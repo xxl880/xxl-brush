@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.A;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -10,14 +10,12 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDateTime;
-
 /*
  * todo App好赚钱
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
 */
-public class App好赚钱 {
-    private static Logger log = LoggerFactory.getLogger(App好赚钱.class);
+public class A好赚钱 {
+    private static Logger log = LoggerFactory.getLogger(A好赚钱.class);
 
 
     /* todo 循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)

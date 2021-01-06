@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.A;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -9,14 +9,12 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDateTime;
-
 /*
  * todo App成语闯江湖
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
 */
-public class App成语闯江湖 {
-    private static Logger log = LoggerFactory.getLogger(App成语闯江湖.class);
+public class A成语闯江湖 {
+    private static Logger log = LoggerFactory.getLogger(A成语闯江湖.class);
 
 
     /* todo 循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
@@ -36,8 +34,8 @@ public class App成语闯江湖 {
                 log.info("3.清除");
                 AdbTools.clear(androidId);
 
-
-                handle1(androidId);
+                handle10(androidId);
+                //hndle1(androidId);
                 handle9(androidId);
                 handle6(androidId);
 
@@ -52,7 +50,32 @@ public class App成语闯江湖 {
      * todo 退出
      * @param robot
 */
+    @SneakyThrows
     public static void quit(String androidId){
+/*        AdbTools.tap(androidId,970, 90);
+        AdbTools.tap(androidId,970, 190);
+        AdbTools.startup(androidId, AppConstants.startup成语闯江湖);
+        AdbTools.tap(androidId,970, 90);
+        AdbTools.tap(androidId,970, 190);*/
+
+        if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+
+           // AdbTools.tap(androidId, 970, 170);
+            AdbTools.tap(androidId, 102, 170);
+        }else{
+            //AdbTools.tap(androidId, 970, 95);
+            AdbTools.tap(androidId, 102, 95);
+        }
+
+
+        AdbTools.startup(androidId, AppConstants.startup成语闯江湖);
+        if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+            AdbTools.tap(androidId,970, 560);
+            AdbTools.tap(androidId,890, 540);
+        }else{
+            AdbTools.tap(androidId,930, 480);
+            AdbTools.tap(androidId,860, 460);
+        }
 
     }
 
@@ -166,10 +189,18 @@ public class App成语闯江湖 {
 
             for (int a = 0; a < 60; a++) {
                 Thread.sleep(2000);
-                AdbTools.tap(androidId, 540, 1550);
-                Thread.sleep(59000);
-                AdbTools.tap(androidId, 970, 170);
-                AdbTools.tap(androidId, 102, 170);
+                if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                    AdbTools.tap(androidId, 540, 1550);
+                    Thread.sleep(59000);
+                    AdbTools.tap(androidId, 970, 170);
+                    AdbTools.tap(androidId, 102, 170);
+                }else{
+                    AdbTools.tap(androidId, 540, 1410);
+                    Thread.sleep(59000);
+                    AdbTools.tap(androidId, 970, 95);
+                    AdbTools.tap(androidId, 102, 95);
+                }
+
             }
 
 
@@ -180,6 +211,56 @@ public class App成语闯江湖 {
     }
 
 
+
+    /*
+     * todo 10.领金币
+     * @param robot
+     */
+    public static void handle10(String androidId){
+        log.info("成语闯江湖 -领金币");
+        try{
+            int y = 1890;
+            int yy = 1580;
+            if(androidId.equals(PhoneConstants.phone001)||androidId.equals(PhoneConstants.phone002)){
+                y = 2060;
+                yy = 1660;
+            }
+            AdbTools.tap(androidId,200, 450);
+            AdbTools.tap(androidId,200, 450);
+            Thread.sleep(36000);
+            quit(androidId);
+
+            AdbTools.tap(androidId,420, 450);
+            AdbTools.tap(androidId,420, 450);
+            Thread.sleep(36000);
+            quit(androidId);
+
+            AdbTools.tap(androidId,680, 450);
+            AdbTools.tap(androidId,680, 450);
+            Thread.sleep(36000);
+            quit(androidId);
+
+            AdbTools.tap(androidId,200, 630);
+            AdbTools.tap(androidId,200, 630);
+            Thread.sleep(36000);
+            quit(androidId);
+
+            AdbTools.tap(androidId,620, 630);
+            AdbTools.tap(androidId,620, 630);
+            Thread.sleep(36000);
+            quit(androidId);
+
+
+            AdbTools.tap(androidId,890, 630);
+            AdbTools.tap(androidId,890, 630);
+            Thread.sleep(36000);
+            quit(androidId);
+
+        }catch (Exception e){
+            log.info("成语闯江湖-答题异常");
+        }
+
+    }
 
 
 

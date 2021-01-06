@@ -77,6 +77,7 @@ public class AdbTools {
             tap(androidId,540,1760);
         }else if(androidId.equals(PhoneConstants.phone002)){
             tap(androidId,540,1720);
+            tap(androidId,540,1720);
         }else {
             tap(androidId,540,1660);
         }

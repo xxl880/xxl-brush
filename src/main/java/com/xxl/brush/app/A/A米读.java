@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.A;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -16,8 +16,9 @@ import org.slf4j.LoggerFactory;
  * todo App米读小说
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
 */
-public class App米读 {
-    private static Logger log = LoggerFactory.getLogger(App米读.class);
+public class A米读 {
+    private static Logger log = LoggerFactory.getLogger(A米读.class);
+
 
 /*
      * todo 6.循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
@@ -104,14 +105,14 @@ public class App米读 {
 
             AdbTools.tap(androidId, 540, 1720);
             AdbTools.tap(androidId, 540, 1720);
-            for(int i=0;i<60;i++) {
+            for(int i=0;i<600;i++) {
                 Thread.sleep(RandomTools.init(6000));
-                if (i % 5 == 0) {
+ /*               if (i % 5 == 0) {
                     Integer yyy = OcrTools.getWordsInt(androidId,"立即");
                     if(null!=yyy){
                         AdbTools.tap(androidId,540,1940);
                     }
-                }
+                }*/
 
                 AdbTools.tap(androidId, 1040, 1730);
             }

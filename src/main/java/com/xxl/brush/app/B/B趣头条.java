@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.B;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -17,8 +17,8 @@ import java.util.List;
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
 
 */
-public class App趣头条 {
-    private static Logger log = LoggerFactory.getLogger(App趣头条.class);
+public class B趣头条 {
+    private static Logger log = LoggerFactory.getLogger(B趣头条.class);
 
 /*
 *

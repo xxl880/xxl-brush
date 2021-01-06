@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.B;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -13,8 +13,8 @@ import java.util.List;
  * todo App抖音
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
-public class App抖音极速 {
-    private static Logger log = LoggerFactory.getLogger(App抖音极速.class);
+public class B抖音极速 {
+    private static Logger log = LoggerFactory.getLogger(B抖音极速.class);
 
     /**
      * todo 循环(用户行为-开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)
@@ -30,7 +30,7 @@ public class App抖音极速 {
                 log.info("2.启动app");
                 AdbTools.startup(androidId, AppConstants.startup抖音);
 
-                handle2(androidId);
+              /*  handle2(androidId);*/
 
                 log.info("3.清除");
                 AdbTools.clear(androidId);
@@ -42,13 +42,13 @@ public class App抖音极速 {
                     AdbTools.tap(androidId, 540, 1950);
                 }
 
-                handle1(androidId);
+             /*   handle1(androidId);*/
                 handle9(androidId);
                 handle6(androidId);
-                handle11(androidId);
+             /*   handle11(androidId);
                 handle12(androidId);
                 handle16(androidId);
-                handle5(androidId);
+                handle5(androidId);*/
 
             } catch (Exception e) {
                 e.printStackTrace();

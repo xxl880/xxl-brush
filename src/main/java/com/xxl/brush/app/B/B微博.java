@@ -1,4 +1,4 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.B;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -18,8 +18,8 @@ import java.util.List;
  * todo App微博
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
 */
-public class App微博 {
-    private static Logger log = LoggerFactory.getLogger(App微博.class);
+public class B微博 {
+    private static Logger log = LoggerFactory.getLogger(B微博.class);
 
 /**
      * todo 循环(开宝箱，看广告，领红包,看视频，看新闻，看小说，刮卡，抽奖)

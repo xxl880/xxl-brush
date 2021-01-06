@@ -1,15 +1,12 @@
-package com.xxl.brush.app;
+package com.xxl.brush.app.C;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.tools.AdbTools;
 import com.xxl.brush.tools.AppTools;
 import com.xxl.brush.tools.OcrTools;
-import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.LocalDateTime;
 
 /*
  * todo App矿牛守卫赚

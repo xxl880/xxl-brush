@@ -1,4 +1,4 @@
-package com.xxl.brush.app.invite;
+package com.xxl.brush.app.A;
 
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
  * app-用户行为操作(签到，看视频，关注，点赞，收藏，评论，开宝箱，种菜，走路)
  */
 
-public class App快看点 {
-    private static Logger log = LoggerFactory.getLogger(App快看点.class);
+public class A快看点 {
+    private static Logger log = LoggerFactory.getLogger(A快看点.class);
 
 
     /**

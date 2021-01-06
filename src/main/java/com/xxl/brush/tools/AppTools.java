@@ -1,22 +1,12 @@
 package com.xxl.brush.tools;
 
-import com.xxl.brush.app.App米读;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
-import io.appium.java_client.android.AndroidDriver;
-import io.swagger.models.auth.In;
-import lombok.SneakyThrows;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -114,9 +104,10 @@ public class AppTools {
 
     public static void main(String[] args) {
         List<String> list = AdbTools.getAndroidId();
+        handle5(PhoneConstants.phone001);
         if(!CollectionUtils.isEmpty(list)){
             for(String androidId:list){
-                App米读.circulate(androidId);
+                handle4(androidId);
             }
         }
     }
@@ -179,6 +170,30 @@ public class AppTools {
         }
     }
 
+
+
+
+    /*
+     * todo 8.看小说
+     * @param */
+    public static void handle8(String androidId){
+        try {
+            AdbTools.upPage(androidId);
+            AdbTools.tap(androidId, 850, 760);
+            Thread.sleep(36000);
+            AdbTools.back(androidId);
+
+            AdbTools.tap(androidId, 540, 1720);
+            AdbTools.tap(androidId, 540, 1720);
+            for(int i=0;i<600;i++) {
+
+                AdbTools.tap(androidId, 1040, 1730);
+            }
+
+        }catch (Exception e){
+            log.info("米读小说-看小说异常");
+        }
+    }
 
 
 }
