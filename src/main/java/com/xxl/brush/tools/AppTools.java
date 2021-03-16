@@ -27,10 +27,26 @@ public class AppTools {
     }
 
     /**
-     * todo 基础服务时间
+     * todo 0.提现时间
      *
      */
-    public static boolean appTime(){
+    public static boolean appWithdrawTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=6||hour!=9||hour!=12||hour!=21) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
+    }
+
+    /**
+     * todo 1.签到时间
+     *
+     */
+    public static boolean appSignTime(){
         boolean bool = false;
         int hour = LocalDateTime.now().getHour();
         if(hour!=0||hour!=6||hour!=12||hour!=18) {
@@ -44,7 +60,7 @@ public class AppTools {
 
 
     /**
-     * todo 视频时间
+     * todo 2.视频时间
      *
      */
     public static boolean appMediasTime(){
@@ -60,7 +76,7 @@ public class AppTools {
     }
 
     /**
-     * todo 新闻时间
+     * todo 3.新闻时间
      *
      */
     public static boolean appNewsTime(){
@@ -75,14 +91,15 @@ public class AppTools {
         return bool;
     }
 
+
     /**
-     * todo 运动时间
+     * todo 5.看小说时间
      *
      */
-    public static boolean appSportsTime(){
+    public static boolean appNovelTime(){
         boolean bool = false;
         int hour = LocalDateTime.now().getHour();
-        if(hour!=0||hour!=1||hour!=2) {
+        if(hour!=8||hour!=12||hour!=18||hour!=21) {
             bool = true;
         }
         if(isTest()){
@@ -92,108 +109,153 @@ public class AppTools {
     }
 
     /**
-     * todo 游戏签到
+     * todo 6.吃饭时间
      *
      */
-    public static void playgameTime(){
+    public static boolean appEatTime(){
+        boolean bool = false;
         int hour = LocalDateTime.now().getHour();
-        if(hour!=4||hour!=5||hour!=6) {
-            return;
+        if(hour!=8||hour!=12||hour!=18||hour!=21) {
+            bool = true;
         }
-    }
-
-    public static void main(String[] args) {
-        List<String> list = AdbTools.getAndroidId();
-        handle5(PhoneConstants.phone001);
-        if(!CollectionUtils.isEmpty(list)){
-            for(String androidId:list){
-                handle4(androidId);
-            }
+        if(isTest()){
+            bool= false;
         }
-    }
-
-
-    public static void handle4(String androidId){
-        log.info("点点新闻-看新闻");
-        AdbTools.initMobile(androidId);
-        AdbTools.startup(androidId, AppConstants.startup点点);
-        try {
-
-            for (int a = 0; a < 100; a++) {
-                AdbTools.upPage(androidId);
-                AdbTools.tap(androidId, 540, 600);
-
-                for (int i=0;i<8;i++) {
-                    Thread.sleep(6000);
-                     AdbTools.down(androidId);
-                }
-                AdbTools.back(androidId);
-                Thread.sleep(2000);
-            }
-        }catch (Exception e){
-            log.info("点点新闻-看新闻异常");
-        }
+        return bool;
     }
 
 
     /**
-     * todo 疯狂娱乐城
-     * @param androidId
+     * todo 7.睡觉时间
+     *
      */
-    public static void handle5(String androidId){
-        try {
-
-            for (int a = 0; a < 100; a++) {
-                Thread.sleep(2000);
-                AdbTools.tap(androidId, 540, 1550);
-                Thread.sleep(59000);
-                AdbTools.tap(androidId, 970, 170);
-                AdbTools.tap(androidId, 102, 170);
-            }
-        }catch (Exception e){
+    public static boolean appSleepTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=13||hour!=23) {
+            bool = true;
         }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
+    }
+
+    /**
+     * todo 8.走路时间
+     *
+     */
+    public static boolean appWalkTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=14||hour!=20) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
     }
 
 
     /**
-     * todo 看视频
-     * @param androidId
+     * todo 9.看广告时间
+     *
      */
-    public static void handle6(String androidId){
-        try {
-            for (int a = 0; a < 600; a++) {
-                Thread.sleep(RandomTools.init(2000));
-                AdbTools.downPage(androidId);
-                Thread.sleep(6000+RandomTools.init(6000));
-            }
-        }catch (Exception e){
+    public static boolean appAdvertTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=5||hour!=9||hour!=15||hour!=19) {
+            bool = true;
         }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
     }
 
 
-
-
-    /*
-     * todo 8.看小说
-     * @param */
-    public static void handle8(String androidId){
-        try {
-            AdbTools.upPage(androidId);
-            AdbTools.tap(androidId, 850, 760);
-            Thread.sleep(36000);
-            AdbTools.back(androidId);
-
-            AdbTools.tap(androidId, 540, 1720);
-            AdbTools.tap(androidId, 540, 1720);
-            for(int i=0;i<600;i++) {
-
-                AdbTools.tap(androidId, 1040, 1730);
-            }
-
-        }catch (Exception e){
-            log.info("米读小说-看小说异常");
+    /**
+     * todo 10.看直播时间
+     *
+     */
+    public static boolean appDirectTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=2||hour!=7||hour!=16||hour!=21) {
+            bool = true;
         }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
     }
 
+
+    /**
+     * todo 11.游戏时间
+     *
+     */
+    public static boolean appPlayTime1(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=2||hour!=7) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
+    }
+
+
+    /**
+     * todo 12.游戏时间
+     *
+     */
+    public static boolean appPlayTime2(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=16||hour!=21) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
+    }
+
+
+    /**
+     * todo 13.分享时间
+     *
+     */
+    public static boolean appShareTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=7||hour!=10||hour!=13) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
+    }
+
+    /**
+     * todo 14.抽奖时间
+     *
+     */
+    public static boolean appDrawTime(){
+        boolean bool = false;
+        int hour = LocalDateTime.now().getHour();
+        if(hour!=3||hour!=15||hour!=17) {
+            bool = true;
+        }
+        if(isTest()){
+            bool= false;
+        }
+        return bool;
+    }
 
 }

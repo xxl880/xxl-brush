@@ -1,6 +1,6 @@
 package com.xxl.brush.service.impl;
 
-import com.xxl.brush.app.A.A成语闯江湖;
+import com.xxl.brush.app.A.*;
 import com.xxl.brush.constants.AppConstants;
 import com.xxl.brush.constants.PhoneConstants;
 import com.xxl.brush.service.AppService;
@@ -42,28 +42,19 @@ public class AppServiceImpl implements AppService {
 		LocalDateTime startTime = LocalDateTime.now();
 		Duration duration = java.time.Duration.between( startTime,  LocalDateTime.now());
 
-
-/*        App抖音极速.circulate(androidId);
+        App抖音极速.circulate(androidId);
 		App快手极速.circulate(androidId);
      	App今日头条.circulate(androidId);
 		App趣头条.circulate(androidId, port, systemPort);
-		App微博.circulate(androidId);
+ 		App微博.circulate(androidId);
 		App搜狗.circulate(androidId);
 		App书旗.circulate(androidId);
-
-
 		App米读.circulate(androidId);
         App好赚钱.circulate(androidId);
-	    App成语闯江湖.circulate(androidId);
 	    App快看点.circulate(androidId);
-	   	App得意宝.circulate(androidId);
-		App疯狂金币城.circulate(androidId);
-		App矿牛守卫赚.circulate(androidId);
 		App惠头条.circulate(androidId);
 		App快看点.circulate(androidId);
-		App蚂蚁看点.circulate(androidId);*/
 
-		A成语闯江湖.circulate(androidId);
 	}
 
 	/**
